@@ -14,10 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-// import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-
 import { Typewriter } from 'react-simple-typewriter'
-import { number } from 'prop-types';
+// import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
 
 // const useMountEffect = fn => useEffect(fn, []);
@@ -128,18 +126,6 @@ const Programmer = () => {
                                 : null
                         }
                     </div>
-
-                    {/* <div onMouseUp={() => setArrowUp(!arrowUp)}>
-                        <Button variant="contained"  {...bindTrigger(popupState)} >
-                            <p className='hover:text-green-400'> programming languages 2</p>
-                            <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
-                        </Button>
-                        <Menu   {...bindMenu(popupState)}>
-                            <MenuItem className='w-64 hover:text-blue-700' onClick={popupState.close}>  Python (AI Programming) </MenuItem>
-                            <MenuItem className='w-64 hover:text-blue-700' onClick={popupState.close}>  C# </MenuItem>
-                            <MenuItem className='w-64 hover:text-blue-700' onClick={popupState.close}>  Go </MenuItem>
-                        </Menu>
-                    </div> */}
 
                     <div onMouseDown={() => { setOpenMenu_4(!openMenu_4); setArrowUp(!arrowUp) }} className='relative'>
                         <Button variant="contained">
