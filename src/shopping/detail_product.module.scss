@@ -1,0 +1,33 @@
+.con_detail {
+    padding: 10px;
+    margin-top: 50px;
+    border: 2px solid;
+    gap: 10px;
+    // background-color: cornflowerblue;
+    width: 900px;
+    display: flex;
+    // justify-content: space-between;
+    margin: 0% auto;
+    align-items: center;
+    .bild_left {
+        // width: 40%;
+        img {
+            width: 100%;
+        }
+    }
+    .bild_right {
+        // width: 60%;
+    }
+    .link {
+        text-decoration: none;
+        color: antiquewhite;
+    }
+    .footer {
+        padding: 2px;
+        margin: 0% auto;
+        // width: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

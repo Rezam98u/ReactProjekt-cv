@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+
+.container_right {
+  background-color: crimson;
+}
+
+.container_left {
+  background-color: coral;
+}

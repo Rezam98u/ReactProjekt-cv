@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    font-family: cursive;
+    box-sizing: border-box;
+    box-shadow: none;
+    // scroll-behavior: smooth;
+    // scroll-padding-top: 75px;
+}
+
+////////////////////////////
+$font: 1.36rem;
+@mixin mainBtn {
+    outline: none;
+    border: 0px;
+    // outline: none;
+    // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+    color: black;
+    &:hover {
+        background-color: darkmagenta;
+        color: aliceblue;
+    }
+}
+
+.btnn {
+    @include mainBtn
+}
+
+///////////////////// Navbar
+.conn {
+    // position: relative;
+    height: 70px;
+    // background-color: rgba(0, 0, 0, 0.18);
+    // position: fixed;
+    z-index: 999;
+    width: 100%;
+    top: 0;
+    // left: 22%;
+    .navbar {
+        // position: absolute;
+        // z-index: 999;
+        width: 70%;
+        left: 24%;
+        // height: 100px;
+        // position: fixed;
+        // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+        .brnd {
+            font-size: $font;
+        }
+        .toggle {
+            // background-color: rgb(27, 27, 27);
+            .fa {
+                color: rgb(238, 94, 123);
+            }
+        }
+        .ul {
+            font-size: $font;
+            display: flex;
+            gap: 20px;
+        }
+        .li_link {
+            &:hover {
+                text-decoration: none;
+                color: rgb(255, 0, 0);
+            }
+        }
+    }
+}
+
+/////////////////////// HeroSection
+.hero_con {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    video {
+        z-index: -1;
+        // position: fixed;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+    .banner {
+        // color: aliceblue;
+        font-weight: bold;
+        position: absolute;
+        top: 100px;
+        left: 20px;
+        // span {
+        //     font-size: 1.8rem;
+        //     background-color: #007bff;
+        //     box-shadow: inset 10px 10px 10px;
+        // }
+    }
+}
+
+////////////////////// Footer
+.footer {
+    // background-color: rgb(49, 55, 67);
+    .con {
+        // width: 1200px;
+        // margin: 0% auto;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        .header_text {
+            flex: 1;
+            color: aliceblue;
+        }
+        .input_area {
+            flex: 1;
+            form {
+                input {
+                    outline: none;
+                    border: none;
+                }
+            }
+        }
+        .footer_link {
+            padding-top: 20px;
+            // border: solid 2px;
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            .footer_link_item {
+                flex: 1;
+                flex-direction: column;
+            }
+        }
+    }
+}

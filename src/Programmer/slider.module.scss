@@ -1,0 +1,83 @@
+@mixin chang_bg {
+    @keyframes chang_bg {
+        0% {
+            background: rgb(98, 237, 200);
+            background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+        }
+        25% {
+            background: rgb(98, 237, 200);
+            background: linear-gradient(90deg, rgba(98, 237, 200, 1) 16%, rgba(90, 158, 240, 1) 82%, rgba(7, 84, 168, 1) 100%);
+        }
+        50% {
+            background: rgb(237, 98, 225);
+            background: linear-gradient(90deg, rgba(237, 98, 225, 1) 16%, rgba(240, 90, 176, 1) 58%, rgba(7, 168, 74, 1) 100%);
+        }
+        75% {
+            background: rgb(237, 98, 225);
+            background: linear-gradient(90deg, rgba(237, 98, 225, 1) 16%, rgba(240, 90, 118, 1) 36%, rgba(168, 7, 154, 1) 100%);
+        }
+        100% {
+            background: rgb(237, 98, 225);
+            background: linear-gradient(90deg, rgba(237, 98, 225, 1) 16%, rgba(240, 90, 118, 1) 36%, rgba(168, 7, 154, 1) 100%);
+        }
+    }
+    animation-name: chang_bg;
+    animation-duration: 5s;
+    // animation-direction: reverse;
+    // animation-timing-function :linear;
+    animation-fill-mode: backwards;
+    // animation-timeline: initial;
+    animation-iteration-count: 100;
+}
+
+.slider {
+    // @include chang_bg ();
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+}
+
+.slider img {
+    height: 670px;
+    width: 100%;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.nextSlide {
+    cursor: pointer;
+    position: absolute;
+    left: 30px;
+    user-select: none;
+}
+
+.prevSlide {
+    cursor: pointer;
+    right: 30px;
+    position: absolute;
+    user-select: none;
+}
+
+.slide {
+    opacity: 0;
+}
+
+.slide_active {
+    opacity: 1;
+    transition: all .8s linear;
+    -webkit-transition: all .8s linear;
+    -moz-transition: all .8s linear;
+    -ms-transition: all .8s linear;
+    -o-transition: all .8s linear;
+    transform: scale(1.09);
+    -webkit-transform: scale(1.09);
+    -moz-transform: scale(1.09);
+    -ms-transform: scale(1.09);
+    -o-transform: scale(1.09);
+}
