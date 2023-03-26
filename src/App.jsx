@@ -11,7 +11,6 @@ import './styles.scss'
 // import store from "./Redux/store"
 // import { Provider } from 'react-redux';
 
-
 ////////////////////////////////////
 const initialState = {
     data: {}
