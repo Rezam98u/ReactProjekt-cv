@@ -25,7 +25,9 @@ const AddressForm = () => {
             <form onSubmit={handleSubmit(onSubmit)}
                 className='shadow-2xl border-2 rounded-lg py-4 my-5'>
 
-                <div className={pay === true ? 'mx-auto w-4/5 mb-4 pb-4 text-4xl border-b-8 text-center font-bold ' : 'text-4xl text-center mb-4 font-bold'}> Check Out </div>
+                <div className={pay === true ? 'mx-auto w-4/5 mb-4 pb-4 text-4xl border-b-8 text-center font-bold ' : 'text-4xl text-center mb-4 font-bold'}>
+                    Check Out
+                </div>
 
                 {pay === false && state.itemsCounter !== 0 ?
 
