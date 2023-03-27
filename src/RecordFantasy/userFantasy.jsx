@@ -13,39 +13,10 @@ import { useReducer } from 'react';
 ////////////////////////
 const UserFantasy = () => {
     const { profileOpen, setProfileOpen, email, setEmail,
-        fantasy, setFantasy, putNewFantasy, setPutNewFantasy, open, setOpen } = useContext(StateContext)
+        fantasy, setFantasy, putNewFantasy, setPutNewFantasy, open, setOpen, state, dispatch } = useContext(StateContext)
 
     const navigate = useNavigate()
-
-    const initialState = {
-        savedFs: [],
-        quantity_SavedFs: -1
-    }
-    const reducer = (state, action) => {
-
-        switch (action.type) {
-            case "add":
-                state.savedFs.push(action.payload)
-                state.quantity_SavedFs++
-                return {
-                    ...state, savedFs: [...state.savedFs],
-                    quantity_SavedFs: state.quantity_SavedFs
-                }
-
-            // case "delet":
-            // return { ...state, nam1: state.nam1 - action.mount }
-
-            // case "reset":
-            //     return initialState
-
-            default:
-                return state
-        }
-    }
-
-    const [state, dispatch] = useReducer(reducer, initialState)
-
-
+    const [noFs, setNoFs] = useState(true);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -103,17 +74,14 @@ const UserFantasy = () => {
                             multiline
                             value={fantasy}
                             onChange={e => setFantasy(e.target.value)}
-
                         />
-
                     </div>
                     <div>
-
-                        <Button variant='contained' onClick={() => {
+                        <Button className="bg-blue-700" onClick={() => {
                             dispatch({ type: "add", payload: fantasy })
                             // savedFs.push(fantasy);
                             setFantasy("")
-                            console.log(state);
+                            setNoFs(false)
                         }}>
                             save
                         </Button>
@@ -121,24 +89,29 @@ const UserFantasy = () => {
 
                     <div className='mt-14'>
                         <p className='text-2xl'> My fantasy </p>
-                        <div className="w-full border-4 rounded-xl p-8 mt-2">
-
-                            {
-                                <div className="flex justify-between items-center">
-                                    {state.savedFs[state.quantity_SavedFs]}
-
-                                    <div>
-                                        <Button variant='contained' onClick={() => {
-                                            dispatch({ type: "delete" })
-                                        }} >
-                                            delete
-                                        </Button>
-                                    </div>
-                                </div>
+                        <div className="w-full border-2 rounded-xl p-8 mt-2">
+                            {noFs ? <div> you have no Fantasy  </div>
+                                :
+                                state.savedFs.map(item =>
+                                    <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
+                                        {item.fantasy}
+                                        <div className="gap-2 flex mt-3">
+                                            <button className="bg-green-500 rounded-lg p-2"
+                                                onClick={() => {
+                                                    dispatch({ type: "publish", payload: item.fantasy });
+                                                    localStorage.setItem(item.id, item.fantasy)
+                                                }}>
+                                                Public to show
+                                            </button>
+                                            <button className="bg-red-600 rounded-lg p-2" onClick={() => {
+                                                dispatch({ type: "delete", payload: item.id })
+                                            }} >
+                                                delete
+                                            </button>
+                                        </div>
+                                    </div>)
                             }
-
                         </div>
-
                     </div>
 
 
