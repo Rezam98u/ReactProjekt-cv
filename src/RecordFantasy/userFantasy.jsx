@@ -6,17 +6,45 @@ import PersonIcon from '@mui/icons-material/Person';
 import { StateContext } from "./contextRecordFantasy"
 import { useNavigate } from 'react-router-dom';
 import Clear from '@mui/icons-material/Clear';
+import { useReducer } from 'react';
+
+
 
 ////////////////////////
 const UserFantasy = () => {
     const { profileOpen, setProfileOpen, email, setEmail,
         fantasy, setFantasy, putNewFantasy, setPutNewFantasy, open, setOpen } = useContext(StateContext)
 
-
     const navigate = useNavigate()
 
+    const initialState = {
+        savedFs: [],
+        quantity_SavedFs: -1
+    }
+    const reducer = (state, action) => {
 
-    const savedFs = ["reza"]
+        switch (action.type) {
+            case "add":
+                state.savedFs.push(action.payload)
+                state.quantity_SavedFs++
+                return {
+                    ...state, savedFs: [...state.savedFs],
+                    quantity_SavedFs: state.quantity_SavedFs
+                }
+
+            // case "delet":
+            // return { ...state, nam1: state.nam1 - action.mount }
+
+            // case "reset":
+            //     return initialState
+
+            default:
+                return state
+        }
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState)
+
 
 
     const handleClose = (event, reason) => {
@@ -80,28 +108,46 @@ const UserFantasy = () => {
 
                     </div>
                     <div>
+
                         <Button variant='contained' onClick={() => {
-                            savedFs.push(fantasy); setFantasy("")
-                            console.log(savedFs);
+                            dispatch({ type: "add", payload: fantasy })
+                            // savedFs.push(fantasy);
+                            setFantasy("")
+                            console.log(state);
                         }}>
                             save
                         </Button>
                     </div>
+
+                    <div className='mt-14'>
+                        <p className='text-2xl'> My fantasy </p>
+                        <div className="w-full border-4 rounded-xl p-8 mt-2">
+
+                            {
+                                <div className="flex justify-between items-center">
+                                    {state.savedFs[state.quantity_SavedFs]}
+
+                                    <div>
+                                        <Button variant='contained' onClick={() => {
+                                            dispatch({ type: "delete" })
+                                        }} >
+                                            delete
+                                        </Button>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+
+
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                             welcome {email}
                         </Alert>
                     </Snackbar>
-
-                    <div className='mt-14'>
-                        {/* <p className='text-2xl  '> fantasy of other people </p>
-
-                        <div className='w-full border-4 rounded-xl p-8 mt-2'>
-                            <p>
-                                {putNewFantasy && localStorage.getItem('fantasy')}
-                            </p>
-                        </div> */}
-                    </div>
                 </div>
             </div>
         </>
