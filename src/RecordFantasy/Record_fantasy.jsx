@@ -31,6 +31,11 @@ const RecordFantasy = () => {
                             <HomeIcon />
                         </Button>
                         <div className='flex gap-2'>
+                        <div>
+                                <Button variant="contained" >
+                                    Type of men  and women
+                                </Button>
+                            </div>
                             <div>
                                 <Button onClick={() => navigate('/Record_fantasyMain/singUp')} variant="contained" >
                                     sing up

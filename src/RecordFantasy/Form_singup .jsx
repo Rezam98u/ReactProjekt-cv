@@ -2,7 +2,7 @@ import { React, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form';
-
+import axios from "axios";
 //// context 
 import { StateContext } from "./contextRecordFantasy"
 
@@ -20,7 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // }
 
 const Form = () => {
-    const { email, setEmail , setOpen } = useContext(StateContext)
+    const { email, setEmail, pass, setPass, setOpen } = useContext(StateContext)
 
     // const [pass, setPass] = useState('');
     // console.log(`pass`, pass);
@@ -31,8 +31,10 @@ const Form = () => {
 
     const onSubmit = () => {
         Navigate('/Record_fantasyMain');
-        localStorage.setItem('email', email);
+        // localStorage.setItem('email', email);
         Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
+        axios.post('http://localhost:3003/api/Insert', { email: email, pass: pass }).then(() => console.log("successful"))
+
     }
 
     // // const notify = () => toast("Wow so easy!");
@@ -51,14 +53,10 @@ const Form = () => {
                             <p className='text-2xl  text-start font-bold pb-4'> sing up </p>
 
                             <Grid container spacing={2} >
-                                <Grid item xs={12} sm={4} >
-                                    <TextField name='password' type='password' label='password' required fullWidth />
-                                </Grid>
-
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         name='email' label='Email' type='email'
-                                        // onChange={e => setEmail(e.target.value)} 
+                                        onChange={e => setEmail(e.target.value)}
                                         fullWidth required
 
                                     // {...register("email", {
@@ -76,6 +74,11 @@ const Form = () => {
                                     />
                                 </Grid>
 
+                                <Grid item xs={12} sm={4} >
+                                    <TextField name='password' type='password' label='password'
+                                        onChange={e => setPass(e.target.value)}
+                                    required fullWidth />
+                                </Grid>
                             </Grid>
                         </div>
 
