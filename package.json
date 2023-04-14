@@ -21,6 +21,7 @@
         "firebase": "^9.10.0",
         "jquery": "^3.6.1",
         "material-ui-popup-state": "^5.0.4",
+        "mysql": "^2.18.1",
         "prop-types": "^15.8.1",
         "query-string": "^7.1.1",
         "react": "^18.2.0",

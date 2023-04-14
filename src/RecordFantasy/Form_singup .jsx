@@ -34,9 +34,22 @@ const Form = () => {
         // localStorage.setItem('email', email);
         // Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
 
-        axios.post('http://localhost:3003/data_db', { credentials: true }, { email: email, pass: pass }).then((res) => console.log(res))
+        axios.post('http://localhost:3003/', { email: email, pass: pass }).then((res) => console.log(res))
 
     }
+
+
+    // Fetch data from the backend server
+    // axios.get('http://localhost:3003/')
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     });
+
+
+
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");

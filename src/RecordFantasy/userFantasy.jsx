@@ -32,6 +32,11 @@ const UserFantasy = () => {
                     <div className="w-4/5 flex items-center justify-between">
                         <div> <p className='text-md'>My Fantasy</p> </div>
                         <div className='relative'>
+
+                            <Button variant="contained" className='gap-1'>
+                                show your character by emoji <PersonIcon />
+                            </Button>
+
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
                                 Profile <PersonIcon />
                             </Button>
