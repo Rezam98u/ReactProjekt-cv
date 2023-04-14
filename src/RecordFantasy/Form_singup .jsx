@@ -30,13 +30,13 @@ const Form = () => {
     const Navigate = useNavigate();
 
     const onSubmit = () => {
-        Navigate('/Record_fantasyMain');
+        // Navigate('/Record_fantasyMain');
         // localStorage.setItem('email', email);
-        Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
-        axios.post('http://localhost:3003/api/Insert', { email: email, pass: pass }).then(() => console.log("successful"))
+        // Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
+
+        axios.post('http://localhost:3003/data_db', { credentials: true }, { email: email, pass: pass }).then((res) => console.log(res))
 
     }
-
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");
@@ -77,7 +77,7 @@ const Form = () => {
                                 <Grid item xs={12} sm={4} >
                                     <TextField name='password' type='password' label='password'
                                         onChange={e => setPass(e.target.value)}
-                                    required fullWidth />
+                                        required fullWidth />
                                 </Grid>
                             </Grid>
                         </div>
