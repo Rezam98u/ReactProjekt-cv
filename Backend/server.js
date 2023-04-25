@@ -21,14 +21,16 @@ db.connect();
 
 
 // Create a route to fetch data from the database
-// app.get('/data_db', (req, res) => {
-//     db.query('SELECT * FROM data_db', (error, results, fields) => {
-//         if (error) throw error;
-//         res.send(results);
-//     });
-// });
+app.post('/login', (req, res) => {
+    const { pass, email } = req.body
+    db.query('SELECT * FROM data_db WHERE email = ? AND pass = ? ', [email, pass],
+        (error, results) => {
+            if (error) throw error;
+            res.send(results);
+        });
+});
 
-
+/// show status
 db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
     if (error) {
         console.error('Error checking database status:', error);
@@ -38,9 +40,8 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
 });
 
 
-app.post('/', (req, res) => {
+app.post('/singUp', (req, res) => {
     const { pass, email } = req.body
-
     const sqlInsert = "INSERT INTO data_db (email, pass) VALUES (?, ?)"
     db.query(sqlInsert, [email, pass], (err, result) => {
         if (err) {
@@ -52,5 +53,17 @@ app.post('/', (req, res) => {
         }
     });
 });
+
+
+
+app.post('/fantasy', (req, res) => {
+    db.query("SELECT * FROM fantasy", (error, results) => {
+        if (error) throw error;
+        res.send(results);
+    });
+});
+
+
+
 
 app.listen(3003, () => console.log("running on port 3003"))

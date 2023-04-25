@@ -7,6 +7,8 @@ import { StateContext } from "./contextRecordFantasy"
 import { useNavigate } from 'react-router-dom';
 import Clear from '@mui/icons-material/Clear';
 import { useReducer } from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 
 
@@ -24,6 +26,13 @@ const UserFantasy = () => {
         }
         setOpen(false);
     };
+
+
+    useEffect(() => {
+        fetch('http://localhost:3003/fantasy')
+            .then(response => response.json())
+            .then(data => console.log(data));
+    }, []);
 
     return (
         <>
@@ -83,6 +92,8 @@ const UserFantasy = () => {
                     </div>
                     <div>
                         <Button className="bg-blue-700" onClick={() => {
+                            axios.post('http://localhost:3003/fantasy', { fantasy: fantasy }).then((res) => console.log(res))
+
                             dispatch({ type: "add", payload: fantasy })
                             // savedFs.push(fantasy);
                             setFantasy("")
@@ -95,7 +106,7 @@ const UserFantasy = () => {
                     <div className='mt-14'>
                         <p className='text-2xl'> My fantasy </p>
                         <div className="w-full border-2 rounded-xl p-8 mt-2">
-                            {noFs ? <div> you have no Fantasy  </div>
+                            {noFs ? <div> you have no Fantasy </div>
                                 :
                                 state.savedFs.map(item =>
                                     <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">

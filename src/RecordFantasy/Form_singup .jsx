@@ -11,15 +11,8 @@ import { StateContext } from "./contextRecordFantasy"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const initialState = {
-//     name: "",
-//     email: "",
-//     password: "",
-//     confirm_password: "",
-//     isAccepted: true
-// }
-
-const Form = () => {
+///////////////////////
+const SingUp = () => {
     const { email, setEmail, pass, setPass, setOpen } = useContext(StateContext)
 
     // const [pass, setPass] = useState('');
@@ -30,12 +23,8 @@ const Form = () => {
     const Navigate = useNavigate();
 
     const onSubmit = () => {
-        // Navigate('/Record_fantasyMain');
-        // localStorage.setItem('email', email);
-        // Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
-
-        axios.post('http://localhost:3003/', { email: email, pass: pass }).then((res) => console.log(res))
-
+        Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
+        axios.post('http://localhost:3003/singUp', { email: email, pass: pass }).then((res) => console.log(res))
     }
 
 
@@ -111,5 +100,5 @@ const Form = () => {
     );
 }
 
-export default Form;
+export default SingUp;
 

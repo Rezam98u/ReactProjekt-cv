@@ -3,41 +3,31 @@ import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { StateContext } from "./contextRecordFantasy"
 
 // import validate from "./validate"
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
-
-// const initialState = {
-//     name: "",
-//     email: "",
-//     password: "",
-//     confirm_password: "",
-//     isAccepted: true
-// }
-
-const Form = () => {
-
-
-
-
-
+///////////////////////////
+const Login = () => {
+    const { email, pass, setOpen } = useContext(StateContext)
 
     const { handleSubmit, register, formState: { errors } } = useForm();
 
     const Navigate = useNavigate();
 
-    const onSubmit = () => { console.log(true) }
+    const onSubmit = () => {
+        // console.log(true);
+        Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
+        axios.post('http://localhost:3003/login', { email: email, pass: pass }).then((res) => console.log(res))
 
+    }
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");
-
 
     return (
         <>
@@ -50,10 +40,6 @@ const Form = () => {
                             <p className='text-2xl  text-start font-bold pb-4'> login </p>
 
                             <Grid container spacing={2} >
-                                <Grid item xs={12} sm={4} >
-                                    <TextField name='password' type='password' label='password' required fullWidth />
-                                </Grid>
-
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         name='email' label='Email' fullWidth required
@@ -70,7 +56,9 @@ const Form = () => {
                                         helperText={errors.email ? errors.email.message : null}
                                     />
                                 </Grid>
-
+                                <Grid item xs={12} sm={4} >
+                                    <TextField name='password' type='password' label='password' required fullWidth />
+                                </Grid>
                             </Grid>
                         </div>
 
@@ -82,13 +70,12 @@ const Form = () => {
                     </div>
 
                 </form>
-            </div >
+            </div>
 
             <ToastContainer />
-
         </>
     );
 }
 
-export default Form;
+export default Login;
 
