@@ -65,6 +65,26 @@ const Programmer = () => {
             setDetectedType('Desktop')
     }
 
+
+    /////////////////////// connect to metamask ////////////////////////
+    const connectWallet = async () => {
+        if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
+            try {
+                /* MetaMask is installed */
+                const accounts = await window.ethereum.request({
+                    method: "eth_requestAccounts",
+                });
+                // setWalletAddress(accounts[0]);
+                console.log(accounts[0]);
+            } catch (err) {
+                console.error(err.message);
+            }
+        } else {
+            /* MetaMask is not installed */
+            console.log("Please install MetaMask");
+        }
+    };
+
     ///////////////////////////////////////////////
     const ToPad_your_card = (str) => str
         .slice(-4)
@@ -125,6 +145,12 @@ const Programmer = () => {
                                 </div>
                                 : null
                         }
+                    </div>
+
+                    <div>
+                        <Button variant="contained" onClick={connectWallet}>
+                            <p className='hover:text-green-400'> Connect to Wallet </p>
+                        </Button>
                     </div>
 
                     <div onMouseDown={() => { setOpenMenu_4(!openMenu_4); setArrowUp(!arrowUp) }} className='relative'>
