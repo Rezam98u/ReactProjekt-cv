@@ -14,11 +14,12 @@ import { useEffect } from 'react';
 
 ////////////////////////
 const UserFantasy = () => {
+    const navigate = useNavigate()
     const { profileOpen, setProfileOpen, email, setEmail,
         fantasy, setFantasy, putNewFantasy, setPutNewFantasy, open, setOpen, state, dispatch } = useContext(StateContext)
 
-    const navigate = useNavigate()
     const [noFs, setNoFs] = useState(true);
+    const [getFantasyFromBack, setGetFantasyFromBack] = useState([]);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -29,11 +30,15 @@ const UserFantasy = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:3003/fantasy')
-            .then(response => response.json())
-            .then(data => console.log(data));
-    }, []);
-
+        const fetch = async () => {
+            const { data } = await axios.get('http://localhost:3003/fantasy')
+            setGetFantasyFromBack(data)
+            // .then(response => response.json())
+            // .then(data => setGetFantasyFromBack(data))
+            // .catch(error => console.log(error));
+        }
+        fetch()
+    }, [1]);
     return (
         <>
             <AppBar>
@@ -92,12 +97,12 @@ const UserFantasy = () => {
                     </div>
                     <div>
                         <Button className="bg-blue-700" onClick={() => {
-                            axios.post('http://localhost:3003/fantasy', { fantasy: fantasy }).then((res) => console.log(res))
+                            axios.post('http://localhost:3003/fantasy', { fantasy: fantasy , email: email }).then((res) => console.log(res))
 
-                            dispatch({ type: "add", payload: fantasy })
+                            // dispatch({ type: "add", payload: fantasy })
                             // savedFs.push(fantasy);
                             setFantasy("")
-                            setNoFs(false)
+                            // setNoFs(false)
                         }}>
                             save
                         </Button>
@@ -106,27 +111,51 @@ const UserFantasy = () => {
                     <div className='mt-14'>
                         <p className='text-2xl'> My fantasy </p>
                         <div className="w-full border-2 rounded-xl p-8 mt-2">
-                            {noFs ? <div> you have no Fantasy </div>
-                                :
-                                state.savedFs.map(item =>
-                                    <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
-                                        {item.fantasy}
-                                        <div className="gap-2 flex mt-3">
-                                            <button className="bg-green-500 rounded-lg p-2"
-                                                onClick={() => {
-                                                    dispatch({ type: "publish", payload: item.fantasy });
-                                                    localStorage.setItem(item.id, item.fantasy)
-                                                }}>
-                                                Public to show
-                                            </button>
-                                            <button className="bg-red-600 rounded-lg p-2" onClick={() => {
-                                                dispatch({ type: "delete", payload: item.id })
-                                            }} >
-                                                delete
-                                            </button>
-                                        </div>
-                                    </div>)
+
+                            {getFantasyFromBack.map(item =>
+                                <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
+                                    {item.fantasy}
+                                    <div className="gap-2 flex mt-3">
+                                        <button className="bg-green-500 rounded-lg p-2"
+                                            onClick={() => {
+                                                dispatch({ type: "publish", payload: item.fantasy });
+                                                localStorage.setItem(item.id, item.fantasy)
+                                            }}>
+                                            Public to show
+                                        </button>
+                                        <button className="bg-red-600 rounded-lg p-2" onClick={() => {
+                                            axios.post('http://localhost:3003/delete', { id: item.id }).then((res) => console.log(res))
+                                            // window.location.reload();                                            // console.log(item.id)
+                                            // dispatch({ type: "delete", payload: item.id })
+                                        }} >
+                                            delete
+                                        </button>
+                                    </div>
+                                </div>)
+
                             }
+
+                            {/* {noFs ? <div> you have no Fantasy </div>
+                                :
+                                // state.savedFs.map(item =>
+                                //     <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
+                                //         {item.fantasy}
+                                //         <div className="gap-2 flex mt-3">
+                                //             <button className="bg-green-500 rounded-lg p-2"
+                                //                 onClick={() => {
+                                //                     dispatch({ type: "publish", payload: item.fantasy });
+                                //                     localStorage.setItem(item.id, item.fantasy)
+                                //                 }}>
+                                //                 Public to show
+                                //             </button>
+                                //             <button className="bg-red-600 rounded-lg p-2" onClick={() => {
+                                //                 dispatch({ type: "delete", payload: item.id })
+                                //             }} >
+                                //                 delete
+                                //             </button>
+                                //         </div>
+                                //     </div>)
+                            } */}
                         </div>
                     </div>
 

@@ -8,22 +8,39 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { StateContext } from "./contextRecordFantasy"
+import { useEffect } from 'react';
 
 // import validate from "./validate"
 
 ///////////////////////////
 const Login = () => {
-    const { email, pass, setOpen } = useContext(StateContext)
-
-    const { handleSubmit, register, formState: { errors } } = useForm();
-
     const Navigate = useNavigate();
+    const { handleSubmit, register, formState: { errors } } = useForm();
+    const { email, pass, setOpen, setEmail, setPass } = useContext(StateContext)
+    const [loginFromBack, setLoginFromBack] = useState([])
+    const [notFound, setNotFound] = useState(Boolean);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const { data } = await axios.get('http://localhost:3003/login')
+            // setGetFantasyFromBack(data)
+            // console.log(data)
+            setLoginFromBack(data)
+
+            // .then(response => response.json())
+            // .then(data => setGetFantasyFromBack(data))
+            // .catch(error => console.log(error));
+        }
+        fetch()
+    }, [1]);
 
     const onSubmit = () => {
-        // console.log(true);
-        Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
+        // setOpen(true);
         axios.post('http://localhost:3003/login', { email: email, pass: pass }).then((res) => console.log(res))
 
+        loginFromBack.map(i => email === i.email && pass === i.pass ?
+            Navigate('/Record_fantasyMain/userFantasy')
+            : setNotFound(true))
     }
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
@@ -43,21 +60,27 @@ const Login = () => {
                                 <Grid item xs={12} sm={4}>
                                     <TextField
                                         name='email' label='Email' fullWidth required
-                                        {...register("email", {
-                                            required: 'required',
-                                            // minLength: 5,
-                                            pattern: {
-                                                // value: /^[A-Za-z]+$/i,
-                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                                message: "invalid email address"
-                                            }
-                                        })}
-                                        error={errors?.email}
-                                        helperText={errors.email ? errors.email.message : null}
+                                        onChange={e => setEmail(e.target.value)}
+
+                                    // {...register("email", {
+                                    //     required: 'required',
+                                    //     // minLength: 5,
+                                    //     // pattern: {
+                                    //     //     // value: /^[A-Za-z]+$/i,
+                                    //     //     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                    //     //     message: "invalid email address"
+                                    //     // }
+
+                                    // })}
+                                    // error={errors?.email}
+                                    // helperText={errors.email ? errors.email.message : null}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={4} >
-                                    <TextField name='password' type='password' label='password' required fullWidth />
+                                    <TextField name='password' type='password' label='password' required fullWidth
+                                        onChange={e => setPass(e.target.value)}
+
+                                    />
                                 </Grid>
                             </Grid>
                         </div>
@@ -67,6 +90,12 @@ const Login = () => {
                                 login
                             </button>
                         </div>
+
+                            {notFound &&
+                                <div className="flex justify-center bg-red-400 p-2 px-3 rounded-lg">
+                                    user not found !
+                                </div>
+                            }
                     </div>
 
                 </form>

@@ -23,12 +23,23 @@ db.connect();
 // Create a route to fetch data from the database
 app.post('/login', (req, res) => {
     const { pass, email } = req.body
-    db.query('SELECT * FROM data_db WHERE email = ? AND pass = ? ', [email, pass],
+    db.query('SELECT * FROM user WHERE email = ? AND pass = ? ', [email, pass],
+        (error, results) => {
+            if (error) throw error;
+            if (results.length === 0) return res.status(404).json('user not found')
+            res.send(results);
+        });
+});
+
+/////// get from login
+app.get('/login', (req, res) => {
+    db.query('SELECT * FROM user',
         (error, results) => {
             if (error) throw error;
             res.send(results);
         });
 });
+
 
 /// show status
 db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
@@ -42,7 +53,7 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
 
 app.post('/singUp', (req, res) => {
     const { pass, email } = req.body
-    const sqlInsert = "INSERT INTO data_db (email, pass) VALUES (?, ?)"
+    const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
     db.query(sqlInsert, [email, pass], (err, result) => {
         if (err) {
             console.error('Error inserting into database:', err);
@@ -54,9 +65,34 @@ app.post('/singUp', (req, res) => {
     });
 });
 
-
-
+//////////// insert 
 app.post('/fantasy', (req, res) => {
+    const { fantasy } = req.body
+    const sqlInsert = "INSERT INTO fantasy (fantasy) VALUES (?)"
+    db.query(sqlInsert, [fantasy], (err, result) => {
+        if (err) throw err;
+        else {
+            console.log('Query result:', result)
+            res.send('ok');
+        }
+    });
+});
+
+////////// delete s.t in fantasy
+app.post('/delete', (req, res) => {
+    const { id } = req.body
+    const sqlInsert = "DELETE FROM fantasy WHERE userId = ?"
+    db.query(sqlInsert, [id], (err, result) => {
+        if (err) throw err;
+        else {
+            console.log('Query result:', result)
+            res.send('ok');
+        }
+    });
+});
+
+/////////// get from fantasy
+app.get('/fantasy', (req, res) => {
     db.query("SELECT * FROM fantasy", (error, results) => {
         if (error) throw error;
         res.send(results);
