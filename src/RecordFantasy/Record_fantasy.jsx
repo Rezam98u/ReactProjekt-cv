@@ -8,6 +8,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import Video1 from '../video/spare your time and.mp4'
 
 import { StateContext } from "./contextRecordFantasy"
 
@@ -31,9 +32,14 @@ const RecordFantasy = () => {
                             <HomeIcon />
                         </Button>
                         <div className='flex gap-2'>
-                        <div>
+                            {/* <div>
                                 <Button variant="contained" >
-                                    Type of men  and women
+                                    Cell your time and make money 
+                                </Button>
+                            </div> */}
+                            <div>
+                                <Button variant="contained" >
+                                    Type of men and women
                                 </Button>
                             </div>
                             <div>
@@ -88,6 +94,10 @@ const RecordFantasy = () => {
                             </div>
                         </div>
                     </div>
+
+                    {/* <div className='flex justify-center my-5'>
+                        <video src={Video1} autoPlay loop muted className='rounded-3xl ' ></video>
+                    </div> */}
                 </div>
             </div>
         </>

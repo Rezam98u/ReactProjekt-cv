@@ -32,8 +32,9 @@ const Login = () => {
             // .catch(error => console.log(error));
         }
         fetch()
-    }, [1]);
 
+    }, [1]);
+    // console.log(loginFromBack);
     const onSubmit = () => {
         // setOpen(true);
         axios.post('http://localhost:3003/login', { email: email, pass: pass }).then((res) => console.log(res))
@@ -91,11 +92,11 @@ const Login = () => {
                             </button>
                         </div>
 
-                            {notFound &&
-                                <div className="flex justify-center bg-red-400 p-2 px-3 rounded-lg">
-                                    user not found !
-                                </div>
-                            }
+                        {notFound &&
+                            <div className="flex justify-center bg-red-400 p-2 px-3 rounded-lg">
+                                user not found !
+                            </div>
+                        }
                     </div>
 
                 </form>
