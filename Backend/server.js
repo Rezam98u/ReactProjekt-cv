@@ -20,7 +20,7 @@ const db = mysql.createConnection({
 db.connect();
 
 
-// Create a route to fetch data from the database
+// Create a route to fetch data from the database 
 app.post('/login', (req, res) => {
     const { pass, email } = req.body
     db.query('SELECT * FROM user WHERE email = ? AND pass = ? ', [email, pass],
@@ -50,7 +50,7 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
     }
 });
 
-
+//// Insert user
 app.post('/singUp', (req, res) => {
     const { pass, email } = req.body
     const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
@@ -67,9 +67,9 @@ app.post('/singUp', (req, res) => {
 
 //////////// insert 
 app.post('/fantasy', (req, res) => {
-    const { fantasy } = req.body
-    const sqlInsert = "INSERT INTO fantasy (fantasy) VALUES (?)"
-    db.query(sqlInsert, [fantasy], (err, result) => {
+    const { fantasy, email } = req.body
+    const sqlInsert = "INSERT INTO fantasy (fantasy, email) VALUES (? , ?)"
+    db.query(sqlInsert, [fantasy, email], (err, result) => {
         if (err) throw err;
         else {
             console.log('Query result:', result)
@@ -79,21 +79,22 @@ app.post('/fantasy', (req, res) => {
 });
 
 ////////// delete s.t in fantasy
-app.post('/delete', (req, res) => {
-    const { id } = req.body
-    const sqlInsert = "DELETE FROM fantasy WHERE userId = ?"
-    db.query(sqlInsert, [id], (err, result) => {
-        if (err) throw err;
-        else {
-            console.log('Query result:', result)
-            res.send('ok');
-        }
-    });
-});
+// app.post('/delete', (req, res) => {
+//     const { id } = req.body
+//     const sqlInsert = "DELETE FROM fantasy WHERE id = ?"
+//     db.query(sqlInsert, [id], (err, result) => {
+//         if (err) throw err;
+//         else {
+//             console.log('Query result:', result)
+//             res.send('ok');
+//         }
+//     });
+// });
 
 /////////// get from fantasy
 app.get('/fantasy', (req, res) => {
-    db.query("SELECT * FROM fantasy", (error, results) => {
+    const { email } = req.query
+    db.query("SELECT * FROM fantasy WHERE email = ? ", [email], (error, results) => {
         if (error) throw error;
         res.send(results);
     });

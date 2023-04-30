@@ -1,14 +1,15 @@
-import { Alert, AppBar, Snackbar, TextField } from '@mui/material';
-import React, { useContext, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useContext, useState, useEffect } from 'react';
+import { Alert, AppBar, Button, Snackbar, TextField } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
+
 /// context 
 import { StateContext } from "./contextRecordFantasy"
+
 import { useNavigate } from 'react-router-dom';
 import Clear from '@mui/icons-material/Clear';
 import { useReducer } from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { array } from 'prop-types';
 
 
 
@@ -16,10 +17,10 @@ import { useEffect } from 'react';
 const UserFantasy = () => {
     const navigate = useNavigate()
     const { profileOpen, setProfileOpen, email, setEmail,
-        fantasy, setFantasy, putNewFantasy, setPutNewFantasy, open, setOpen, state, dispatch } = useContext(StateContext)
+        fantasy, setFantasy, open, setOpen } = useContext(StateContext)
 
-    const [noFs, setNoFs] = useState(true);
-    const [getFantasyFromBack, setGetFantasyFromBack] = useState([]);
+    // const [noFs, setNoFs] = useState(true);
+    const [getFantasyFromBack, setGetFantasyFromBack] = useState(Array);
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -32,36 +33,46 @@ const UserFantasy = () => {
     useEffect(() => {
         const fetch = async () => {
             const { data } = await axios.get('http://localhost:3003/fantasy')
+            console.log(data);
             setGetFantasyFromBack(data)
             // .then(response => response.json())
             // .then(data => setGetFantasyFromBack(data))
             // .catch(error => console.log(error));
         }
         fetch()
-    }, [1]);
+        // if (getFantasyFromBack.length > 0) {
+
+        // }
+
+    }, []);
+
+    // console.log(getFantasyFromBack);
+    // console.log(email);
     return (
         <>
             <AppBar>
                 <div className='py-3 flex justify-center '>
                     <div className="w-4/5 flex items-center justify-between">
-                        <div> <p className='text-md'>My Fantasy</p> </div>
-                        <div className='relative'>
+                        <div> <p className='text-md'> My Fantasy </p> </div>
 
+                        <div>
                             <Button variant="contained" className='gap-1'>
                                 show your character by emoji <PersonIcon />
                             </Button>
+                        </div>
 
+                        <div className="relative">
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
                                 Profile <PersonIcon />
                             </Button>
 
                             {profileOpen &&
-                                <div className='absolute top-10   bg-slate-400 rounded-md p-1'>
+                                <div className='absolute top-10 bg-slate-500 rounded-md px-3 py-2'>
                                     <div>
-                                        <p>userName: {email}</p>
-                                        <p>saved Fantasy:  </p>
+                                        <p> userName: {email} </p>
+                                        {/* <p>saved Fantasy:  </p> */}
                                     </div>
-                                    <div>
+                                    <div className="my-3">
                                         <Button variant="contained"
                                             onClick={() => {
                                                 setEmail("");
@@ -74,7 +85,6 @@ const UserFantasy = () => {
                                 </div>
                             }
                         </div>
-
                     </div>
                 </div>
             </AppBar>
@@ -96,8 +106,8 @@ const UserFantasy = () => {
                         />
                     </div>
                     <div>
-                        <Button className="bg-blue-700" onClick={() => {
-                            axios.post('http://localhost:3003/fantasy', { fantasy: fantasy , email: email }).then((res) => console.log(res))
+                        <Button variant='contained' onClick={() => {
+                            axios.post('http://localhost:3003/fantasy', { fantasy: fantasy, email: email }).then((res) => console.log(res))
 
                             // dispatch({ type: "add", payload: fantasy })
                             // savedFs.push(fantasy);
@@ -112,26 +122,23 @@ const UserFantasy = () => {
                         <p className='text-2xl'> My fantasy </p>
                         <div className="w-full border-2 rounded-xl p-8 mt-2">
 
-                            {getFantasyFromBack.map(item =>
-                                <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
-                                    {item.fantasy}
-                                    <div className="gap-2 flex mt-3">
-                                        <button className="bg-green-500 rounded-lg p-2"
-                                            onClick={() => {
-                                                dispatch({ type: "publish", payload: item.fantasy });
-                                                localStorage.setItem(item.id, item.fantasy)
-                                            }}>
-                                            Public to show
-                                        </button>
-                                        <button className="bg-red-600 rounded-lg p-2" onClick={() => {
-                                            axios.post('http://localhost:3003/delete', { id: item.id }).then((res) => console.log(res))
-                                            // window.location.reload();                                            // console.log(item.id)
-                                            // dispatch({ type: "delete", payload: item.id })
-                                        }} >
-                                            delete
-                                        </button>
-                                    </div>
-                                </div>)
+                            {getFantasyFromBack.length === 0 ? <div> you have no fantasy </div> :
+                                getFantasyFromBack.map(item =>
+                                    <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
+                                        {item.fantasy}
+                                        <div className="gap-2 flex mt-3">
+                                            <button className="bg-green-500 rounded-lg p-2">
+                                                Public to show
+                                            </button>
+                                            <button className="bg-red-600 rounded-lg p-2" onClick={() => {
+                                                axios.post('http://localhost:3003/delete', { id: item.userId }).then((res) => console.log(res))
+                                                // window.location.reload();                                            // console.log(item.id)
+                                                // dispatch({ type: "delete", payload: item.id })
+                                            }} >
+                                                delete
+                                            </button>
+                                        </div>
+                                    </div>)
 
                             }
 
