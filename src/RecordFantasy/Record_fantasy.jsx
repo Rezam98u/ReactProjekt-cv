@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AppBar } from '@mui/material';
@@ -11,14 +11,27 @@ import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import Video1 from '../video/spare your time and.mp4'
 
 import { StateContext } from "./contextRecordFantasy"
+import axios from 'axios';
 
 /////////////////////////////////////
 const RecordFantasy = () => {
     const navigate = useNavigate()
     const { fantasy, setFantasy, setPutNewFantasy, state, like, setLike } = useContext(StateContext)
+    const [getPublishedFantasyFromBack, setGetPublishedFantasyFromBack] = useState(Array)
+
+    useEffect(() => {
+        const fetch = async () => {
+            const { data } = await axios.get('http://localhost:3003/public')
+            // console.log(data);
+            setGetPublishedFantasyFromBack(data)
+            // .then(response => response.json())
+            // .then(data => setGetFantasyFromBack(data))
+            // .catch(error => console.log(error));
+        }
+        fetch()
+    }, [1]);
 
     // [...localStorage].map(i => console.log(i))
-
     // const map = new Map(JSON.parse(localStorage.myMap));
     // localStorage.myMap = JSON.stringify(Array.from(map.entries()));
     // console.log(localStorage);
@@ -82,6 +95,15 @@ const RecordFantasy = () => {
                         <p className='text-2xl'> fantasy of other people </p>
                         <div className='w-full border-4 rounded-xl p-8 mt-2'>
                             <div>
+                                {getPublishedFantasyFromBack === 0 ? <div> there is no fantasy </div> :
+
+                                    getPublishedFantasyFromBack.map(item =>
+                                        <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
+                                            {item.publishedFantasy}
+                                        </div>)
+                                }
+
+                                {/* 
                                 {state.publishedFs.map(item =>
                                     <div key={item.id} className="flex justify-between items-center mt-1 border-t-2">
                                         <div> {item.publishedFs} </div>
@@ -90,7 +112,7 @@ const RecordFantasy = () => {
                                             <button onClick={() => setLike(!like)}> {like ? <FavoriteIcon /> : <FavoriteBorderIcon />} </button>
                                         </div>
                                     </div>)
-                                }
+                                } */}
                             </div>
                         </div>
                     </div>

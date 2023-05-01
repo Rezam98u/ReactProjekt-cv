@@ -5,10 +5,8 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { StateContext } from "./contextRecordFantasy"
-import { useEffect } from 'react';
 
 // import validate from "./validate"
 
@@ -16,32 +14,16 @@ import { useEffect } from 'react';
 const Login = () => {
     const Navigate = useNavigate();
     const { handleSubmit, register, formState: { errors } } = useForm();
-    const { email, pass, setOpen, setEmail, setPass } = useContext(StateContext)
-    const [loginFromBack, setLoginFromBack] = useState([])
+    const { email, pass, setOpen, setEmail, setPass, userId, setUserId , loginFromBack, setLoginFromBack } = useContext(StateContext)
     const [notFound, setNotFound] = useState(Boolean);
 
-    useEffect(() => {
-        const fetch = async () => {
-            const { data } = await axios.get('http://localhost:3003/login')
-            // setGetFantasyFromBack(data)
-            // console.log(data)
-            setLoginFromBack(data)
 
-            // .then(response => response.json())
-            // .then(data => setGetFantasyFromBack(data))
-            // .catch(error => console.log(error));
-        }
-        fetch()
-
-    }, [1]);
-    // console.log(loginFromBack);
     const onSubmit = () => {
-        // setOpen(true);
-        axios.post('http://localhost:3003/login', { email: email, pass: pass }).then((res) => console.log(res))
-
+        loginFromBack.map(i => i.email === email ? setUserId(i.userId) : null)
         loginFromBack.map(i => email === i.email && pass === i.pass ?
             Navigate('/Record_fantasyMain/userFantasy')
             : setNotFound(true))
+            setOpen(true);
     }
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");

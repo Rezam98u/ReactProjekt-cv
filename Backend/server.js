@@ -65,11 +65,11 @@ app.post('/singUp', (req, res) => {
     });
 });
 
-//////////// insert 
+//////////// insert to fantasy
 app.post('/fantasy', (req, res) => {
-    const { fantasy, email } = req.body
-    const sqlInsert = "INSERT INTO fantasy (fantasy, email) VALUES (? , ?)"
-    db.query(sqlInsert, [fantasy, email], (err, result) => {
+    const { fantasy, id } = req.body
+    const sqlInsert = "INSERT INTO fantasy (fantasy , userId) VALUES (? , ?)"
+    db.query(sqlInsert, [fantasy, id], (err, result) => {
         if (err) throw err;
         else {
             console.log('Query result:', result)
@@ -78,28 +78,48 @@ app.post('/fantasy', (req, res) => {
     });
 });
 
-////////// delete s.t in fantasy
-// app.post('/delete', (req, res) => {
-//     const { id } = req.body
-//     const sqlInsert = "DELETE FROM fantasy WHERE id = ?"
-//     db.query(sqlInsert, [id], (err, result) => {
-//         if (err) throw err;
-//         else {
-//             console.log('Query result:', result)
-//             res.send('ok');
-//         }
-//     });
-// });
-
-/////////// get from fantasy
-app.get('/fantasy', (req, res) => {
-    const { email } = req.query
-    db.query("SELECT * FROM fantasy WHERE email = ? ", [email], (error, results) => {
-        if (error) throw error;
-        res.send(results);
+//////// delete s.t in fantasy
+app.post('/delete', (req, res) => {
+    const { id } = req.body
+    const sqlInsert = "DELETE FROM fantasy WHERE userId = ?"
+    db.query(sqlInsert, [id], (err, result) => {
+        if (err) throw err;
+        else {
+            console.log('Query result:', result)
+            res.send('ok');
+        }
     });
 });
 
+/////////// get from fantasy
+app.get('/fantasy', (req, res) => {
+    const { userId } = req.query
+    db.query("SELECT * FROM fantasy ", [userId], (error, results) => {
+        if (error) throw error
+        res.send(results)
+    })
+})
+
+///// INSERT data to public
+app.post('/public', (req, res) => {
+    const { fantasy, id } = req.body
+    const sqlInsert = "INSERT INTO public (publishedFantasy , userId) VALUES (? , ?) "
+    db.query(sqlInsert, [fantasy, id], (err, result) => {
+        if (err) throw err;
+        else {
+            console.log('Query result:', result)
+            res.send('ok');
+        }
+    });
+});
+
+/////////// get from public
+app.get('/public', (req, res) => {
+    db.query("SELECT * FROM public ", (error, results) => {
+        if (error) throw error
+        res.send(results)
+    })
+})
 
 
 
