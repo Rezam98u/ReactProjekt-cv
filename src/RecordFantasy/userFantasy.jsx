@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Alert, AppBar, Button, Snackbar, TextField } from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -63,7 +64,7 @@ const UserFantasy = () => {
 
                         <div className="relative">
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
-                                Profile <PersonIcon />
+                                Profile  <Avatar className='ml-2' alt='#'  sx={{ width: 30, height: 30 }}/>
                             </Button>
 
                             {profileOpen &&
