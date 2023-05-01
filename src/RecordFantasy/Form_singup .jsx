@@ -13,37 +13,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 ///////////////////////
 const SingUp = () => {
+    const Navigate = useNavigate();
     const { email, setEmail, pass, setPass, setOpen } = useContext(StateContext)
-
-    // const [pass, setPass] = useState('');
-    // console.log(`pass`, pass);
-
     const { handleSubmit, register, getValues, formState: { errors } } = useForm();
 
-    const Navigate = useNavigate();
 
     const onSubmit = () => {
         Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
         axios.post('http://localhost:3003/singUp', { email: email, pass: pass }).then((res) => console.log(res))
     }
 
-
-    // Fetch data from the backend server
-    // axios.get('http://localhost:3003/')
-    //     .then(response => {
-    //         console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //     });
-
-
-
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");
-
-
     return (
         <>
             <div className=' px-8 pt-14'>
@@ -61,18 +43,17 @@ const SingUp = () => {
                                         onChange={e => setEmail(e.target.value)}
                                         fullWidth required
 
-                                    // {...register("email", {
-                                    //     required: 'required',
-                                    //     // minLength: 5,
-                                    //     pattern: {
-                                    //         // value: /^[A-Za-z]+$/i,
-                                    //         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                    //         message: "invalid email address"
-                                    //     }
-                                    // })}
-                                    // error={errors?.email}
-                                    // helperText={errors.email ? errors.email.message : null}
-
+                                        {...register("email", {
+                                            required: 'required',
+                                            // minLength: 5,
+                                            pattern: {
+                                                // value: /^[A-Za-z]+$/i,
+                                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                                message: "invalid email address"
+                                            }
+                                        })}
+                                        error={errors?.email}
+                                        helperText={errors.email ? errors.email.message : null}
                                     />
                                 </Grid>
 
@@ -90,12 +71,9 @@ const SingUp = () => {
                             </button>
                         </div>
                     </div>
-
                 </form>
-            </div >
-
+            </div>
             <ToastContainer />
-
         </>
     );
 }
