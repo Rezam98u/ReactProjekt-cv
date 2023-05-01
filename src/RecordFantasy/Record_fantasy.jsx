@@ -101,7 +101,7 @@ const RecordFantasy = () => {
                                         <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
                                             {item.publishedFantasy}
                                             <div className="flex gap-2 items-center mt-2">
-                                                <button onClick={console.log()}> <MapsUgcOutlinedIcon /> </button>
+                                                <button> <MapsUgcOutlinedIcon /> </button>
                                                 <button onClick={() => setLike(!like)}> {like ? <FavoriteIcon /> : <FavoriteBorderIcon />} </button>
                                             </div>
                                         </div>)
