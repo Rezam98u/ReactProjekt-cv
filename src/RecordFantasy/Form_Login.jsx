@@ -62,7 +62,6 @@ const Login = () => {
                                 <Grid item xs={12} sm={4} >
                                     <TextField name='password' type='password' label='password' required fullWidth
                                         onChange={e => setPass(e.target.value)}
-
                                     />
                                 </Grid>
                             </Grid>
@@ -73,7 +72,6 @@ const Login = () => {
                                 login
                             </button>
                         </div>
-
                         {notFound &&
                             <div className="flex justify-center bg-red-400 p-2 px-3 rounded-lg">
                                 user not found !
@@ -83,7 +81,6 @@ const Login = () => {
 
                 </form>
             </div>
-
             <ToastContainer />
         </>
     );

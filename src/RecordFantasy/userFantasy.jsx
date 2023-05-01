@@ -3,18 +3,14 @@ import { Alert, AppBar, Button, Snackbar, TextField } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import CircularProgress from '@mui/material/CircularProgress';
-
-
-/// context 
-import { StateContext } from "./contextRecordFantasy"
-
 import { useNavigate } from 'react-router-dom';
 import Clear from '@mui/icons-material/Clear';
 import { useReducer } from 'react';
 import axios from 'axios';
 import { array, string } from 'prop-types';
 
-
+/// context 
+import { StateContext } from "./contextRecordFantasy"
 
 ////////////////////////
 const UserFantasy = () => {
@@ -31,7 +27,6 @@ const UserFantasy = () => {
         }
         setOpen(false);
     };
-
 
     useEffect(() => {
         const fetch = async () => {
