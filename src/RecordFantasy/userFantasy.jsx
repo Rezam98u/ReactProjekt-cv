@@ -135,7 +135,7 @@ const UserFantasy = () => {
                                                     Public to show
                                                 </button>
                                                 <button className="bg-red-600 rounded-lg p-2" onClick={() => {
-                                                    axios.post('http://localhost:3003/delete', { id: item.userId }).then((res) => console.log(res))
+                                                    axios.post('http://localhost:3003/delete', { id: item.id }).then((res) => console.log(res))
                                                     // window.location.reload();                                            // console.log(item.id)
                                                     // dispatch({ type: "delete", payload: item.id })
                                                 }} >

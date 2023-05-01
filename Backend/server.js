@@ -81,7 +81,7 @@ app.post('/fantasy', (req, res) => {
 //////// delete s.t in fantasy
 app.post('/delete', (req, res) => {
     const { id } = req.body
-    const sqlInsert = "DELETE FROM fantasy WHERE userId = ?"
+    const sqlInsert = "DELETE FROM fantasy WHERE id = ?"
     db.query(sqlInsert, [id], (err, result) => {
         if (err) throw err;
         else {
