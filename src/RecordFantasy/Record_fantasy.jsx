@@ -95,7 +95,7 @@ const RecordFantasy = () => {
                         <p className='text-2xl'> fantasy of other people </p>
                         <div className='w-full border-4 rounded-xl p-8 mt-2'>
                             <div>
-                                {getPublishedFantasyFromBack === 0 ? <div> there is no fantasy </div> :
+                                {getPublishedFantasyFromBack.length === 0 ? <div> there is no fantasy </div> :
 
                                     getPublishedFantasyFromBack.map(item =>
                                         <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
