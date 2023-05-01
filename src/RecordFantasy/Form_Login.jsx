@@ -17,7 +17,6 @@ const Login = () => {
     const { email, pass, setOpen, setEmail, setPass, userId, setUserId , loginFromBack, setLoginFromBack } = useContext(StateContext)
     const [notFound, setNotFound] = useState(Boolean);
 
-
     const onSubmit = () => {
         loginFromBack.map(i => i.email === email ? setUserId(i.userId) : null)
         loginFromBack.map(i => email === i.email && pass === i.pass ?

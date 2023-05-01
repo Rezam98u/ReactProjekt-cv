@@ -106,17 +106,6 @@ const RecordFantasy = () => {
                                             </div>
                                         </div>)
                                 }
-
-                                {/* 
-                                {state.publishedFs.map(item =>
-                                    <div key={item.id} className="flex justify-between items-center mt-1 border-t-2">
-                                        <div> {item.publishedFs} </div>
-                                        <div className="flex gap-2 items-center mt-2">
-                                            <button onClick={console.log()}> <MapsUgcOutlinedIcon /> </button>
-                                            <button onClick={() => setLike(!like)}> {like ? <FavoriteIcon /> : <FavoriteBorderIcon />} </button>
-                                        </div>
-                                    </div>)
-                                } */}
                             </div>
                         </div>
                     </div>
@@ -124,6 +113,7 @@ const RecordFantasy = () => {
                     {/* <div className='flex justify-center my-5'>
                         <video src={Video1} autoPlay loop muted className='rounded-3xl ' ></video>
                     </div> */}
+
                 </div>
             </div>
         </>
