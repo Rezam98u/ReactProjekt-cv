@@ -64,7 +64,7 @@ const UserFantasy = () => {
 
                         <div className="relative">
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
-                                Profile  <Avatar className='ml-2' alt='#'  sx={{ width: 30, height: 30 }}/>
+                                Profile  <Avatar className='ml-2' alt='#' sx={{ width: 30, height: 30 }} />
                             </Button>
 
                             {profileOpen &&
@@ -109,11 +109,7 @@ const UserFantasy = () => {
                     <div>
                         <Button variant='contained' onClick={() => {
                             axios.post('http://localhost:3003/fantasy', { fantasy: fantasy, id: userId }).then((res) => console.log(res))
-
-                            // dispatch({ type: "add", payload: fantasy })
-                            // savedFs.push(fantasy);
                             setFantasy("")
-                            // setNoFs(false)
                         }}>
                             save
                         </Button>
@@ -144,38 +140,15 @@ const UserFantasy = () => {
                                             </div>
                                         </div>)
                             }
-
-                            {/* {noFs ? <div> you have no Fantasy </div>
-                                :
-                                // state.savedFs.map(item =>
-                                //     <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
-                                //         {item.fantasy}
-                                //         <div className="gap-2 flex mt-3">
-                                //             <button className="bg-green-500 rounded-lg p-2"
-                                //                 onClick={() => {
-                                //                     dispatch({ type: "publish", payload: item.fantasy });
-                                //                     localStorage.setItem(item.id, item.fantasy)
-                                //                 }}>
-                                //                 Public to show
-                                //             </button>
-                                //             <button className="bg-red-600 rounded-lg p-2" onClick={() => {
-                                //                 dispatch({ type: "delete", payload: item.id })
-                                //             }} >
-                                //                 delete
-                                //             </button>
-                                //         </div>
-                                //     </div>)
-                            } */}
                         </div>
                     </div>
-
-
 
                     <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                             welcome {email}
                         </Alert>
                     </Snackbar>
+
                 </div>
             </div>
         </>
