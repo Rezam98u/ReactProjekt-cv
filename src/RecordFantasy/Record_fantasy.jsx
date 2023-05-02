@@ -1,6 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// import GoogleLogin from 'react-google-login';
+import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
+import jwt from "jwt-decode"
+
 import { AppBar } from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -16,8 +20,25 @@ import axios from 'axios';
 /////////////////////////////////////
 const RecordFantasy = () => {
     const navigate = useNavigate()
-    const { fantasy, setFantasy, setPutNewFantasy, state, like, setLike } = useContext(StateContext)
+    const { fantasy, setFantasy, setPutNewFantasy, setEmail, email,
+        like, setLike, profilePhoto, setProfilePhoto } = useContext(StateContext)
     const [getPublishedFantasyFromBack, setGetPublishedFantasyFromBack] = useState(Array)
+
+    // const [user, setUser] = useState([]);
+    // const [profile, setProfile] = useState([]);
+    const [userObj, setUserObj] = useState({});
+
+    const responseMessage = async response => {
+        await setUserObj(jwt(response.credential));
+    }
+    const errorMessage = error => console.log(error)
+
+
+    // const login_google = useGoogleLogin({
+    //     onSuccess: (codeResponse) => setUser(codeResponse),
+    //     onError: (error) => console.log('Login Failed:', error)
+    // });
+
 
     useEffect(() => {
         const fetch = async () => {
@@ -29,7 +50,46 @@ const RecordFantasy = () => {
             // .catch(error => console.log(error));
         }
         fetch()
+
+        // if (user) {
+        //     axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`
+        //         , {
+        //             headers: {
+        //                 Authorization: `Bearer ${user.access_token}`,
+        //                 Accept: 'application/json'
+        //             }
+        //         })
+        //         .then((res) => {
+        //             setProfile(res.data);
+        //         })
+        //         .catch((err) => console.log(err));
+        // }
+
+        setEmail(userObj.email); setProfilePhoto(userObj.picture)
+
     }, [1]);
+
+
+    // const logOut = () => {
+    //     googleLogout();
+    //     setProfile(null);
+    // };
+
+    // console.log(user);
+    // console.log(profile);
+
+
+
+    // console.log(userObj);
+    // console.log(userObj.email);
+    // console.log(userObj.picture);
+    setEmail(userObj.email);
+    setProfilePhoto(userObj.picture)
+    // console.log(email);
+
+    email && profilePhoto !== undefined && navigate('/Record_fantasyMain/userFantasy')
+
+
 
     // [...localStorage].map(i => console.log(i))
     // const map = new Map(JSON.parse(localStorage.myMap));
@@ -54,6 +114,13 @@ const RecordFantasy = () => {
                                 <Button variant="contained" >
                                     Type of men and women
                                 </Button>
+                            </div>
+                            <div>
+                                <Button> <GoogleLogin onSuccess={responseMessage} onError={errorMessage} /></Button>
+                                <div>
+                                    {/* <Button variant='contained' onClick={logOut}> LogOut </Button> */}
+                                </div>
+
                             </div>
                             <div>
                                 <Button onClick={() => navigate('/Record_fantasyMain/singUp')} variant="contained" >

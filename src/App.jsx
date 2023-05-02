@@ -7,6 +7,9 @@ import AppShop from "./shopping/App_shop"
 import AppCrypto from "./Crypto/App_crypto"
 import RecordFantasyMain from "./RecordFantasy/RecordFantasyMain"
 import './styles.scss'
+
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 /////////// Redux 
 // import store from "./Redux/store"
 // import { Provider } from 'react-redux';
@@ -35,7 +38,7 @@ const App = () => {
     const MoodHandler = () => {
         setMood(!mood);
     }
-    
+
     const [data, dispatch] = useReducer(reducer, initialState)
     const get_Api = () => {
         axios.get("https://jsonplaceholder.typicode.com/posts/8")
@@ -46,22 +49,24 @@ const App = () => {
             })
     }
 
-    
+
     return (
         <>
-            {/* <Provider store={store}> */}
-            <div className={mood ? "dark" : ""}>
-                <MoodHandlerContext.Provider value={{ mood, MoodHandler }} >
-                    <Routes>
-                        <Route path='/' element={<Home/>}></Route>
-                        <Route path="/programmer" element={<Programmer/>} ></Route>
-                        {/* <Route path="/products/*" element={<AppShop/>} ></Route> */}
-                        <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
-                        <Route path="/crypto/*" element={<AppCrypto/>} ></Route>
-                    </Routes>
-                </MoodHandlerContext.Provider>
-            </div>
-            {/* </Provider> */}
+            <GoogleOAuthProvider clientId="958087409648-230adphg6efhl7t588o2mqqnoe9vo660">
+                {/* <Provider store={store}> */}
+                <div className={mood ? "dark" : ""}>
+                    <MoodHandlerContext.Provider value={{ mood, MoodHandler }} >
+                        <Routes>
+                            <Route path='/' element={<Home />}></Route>
+                            <Route path="/programmer" element={<Programmer />} ></Route>
+                            {/* <Route path="/products/*" element={<AppShop/>} ></Route> */}
+                            <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
+                            <Route path="/crypto/*" element={<AppCrypto />} ></Route>
+                        </Routes>
+                    </MoodHandlerContext.Provider>
+                </div>
+                {/* </Provider> */}
+            </GoogleOAuthProvider>
         </>
     );
 }

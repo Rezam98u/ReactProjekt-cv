@@ -15,7 +15,7 @@ import { StateContext } from "./contextRecordFantasy"
 ////////////////////////
 const UserFantasy = () => {
     const navigate = useNavigate()
-    const { profileOpen, setProfileOpen, email, setEmail,
+    const { profileOpen, setProfileOpen, email, setEmail, profilePhoto, setProfilePhoto ,
         fantasy, setFantasy, open, setOpen, userId, setUserId, loading, setLoading } = useContext(StateContext)
 
     // const [noFs, setNoFs] = useState(true);
@@ -59,7 +59,7 @@ const UserFantasy = () => {
 
                         <div className="relative">
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
-                                Profile  <Avatar className='ml-2' alt='#' sx={{ width: 30, height: 30 }} />
+                                Profile  <Avatar className='ml-2' src={profilePhoto} alt='#' sx={{ width: 30, height: 30 }} />
                             </Button>
 
                             {profileOpen &&

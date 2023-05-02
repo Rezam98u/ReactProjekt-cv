@@ -47,18 +47,17 @@ const ContextRecordFantasy = ({ children }) => {
 
     const [loading, setLoading] = useState(Boolean);
     const [profileOpen, setProfileOpen] = useState(false)
+    const [profilePhoto, setProfilePhoto] = useState(undefined)
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [fantasy, setFantasy] = useState('');
     const [userId, setUserId] = useState('');
     const [putNewFantasy, setPutNewFantasy] = useState(false);
     const [like, setLike] = useState(false);
-
+    const [open, setOpen] = useState(false);
     /// Backend
     const [loginFromBack, setLoginFromBack] = useState([])
 
-
-    const [open, setOpen] = useState(false);
 
     useEffect(() => {
         setPutNewFantasy(false)
@@ -75,7 +74,6 @@ const ContextRecordFantasy = ({ children }) => {
             // .catch(error => console.log(error));
         }
         fetch()
-
     }, [1]);
 
     // console.log(userId)
@@ -84,10 +82,10 @@ const ContextRecordFantasy = ({ children }) => {
 
     return (
         <StateContext.Provider value={{
-            profileOpen, setProfileOpen, pass, setPass,
-            email, setEmail, fantasy, setFantasy, userId, setUserId ,
-            putNewFantasy, setPutNewFantasy, open, setOpen, loginFromBack, setLoginFromBack ,
-            state, dispatch, like, setLike , loading, setLoading
+            profileOpen, setProfileOpen, pass, setPass, profilePhoto, setProfilePhoto,
+            email, setEmail, fantasy, setFantasy, userId, setUserId,
+            putNewFantasy, setPutNewFantasy, open, setOpen, loginFromBack, setLoginFromBack,
+            state, dispatch, like, setLike, loading, setLoading
         }}>
             {children}
         </StateContext.Provider >

@@ -1,6 +1,7 @@
 import React from 'react';
 import RecordFantasy from './Record_fantasy'
 import { Routes, Route } from 'react-router-dom';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import UserFantasy from './userFantasy';
 import SingUp from './Form_singup '
@@ -13,14 +14,16 @@ import ContextRecordFantasy from "./contextRecordFantasy"
 const RecordFantasyMain = () => {
     return (
         <>
-            <ContextRecordFantasy>
-                <Routes>
-                    <Route path="/" element={<RecordFantasy />} ></Route>
-                    <Route path="/userFantasy" element={<UserFantasy />} ></Route>
-                    <Route path='/singUp' element={<SingUp></SingUp>} ></Route>
-                    <Route path="/login" element={<Login></Login>} ></Route>
-                </Routes>
-            </ContextRecordFantasy>
+            {/* <GoogleOAuthProvider clientId="958087409648-230adphg6efhl7t588o2mqqnoe9vo660.apps.googleusercontent.com"> */}
+                <ContextRecordFantasy>
+                    <Routes>
+                        <Route path="/" element={<RecordFantasy />} ></Route>
+                        <Route path="/userFantasy" element={<UserFantasy />} ></Route>
+                        <Route path='/singUp' element={<SingUp></SingUp>} ></Route>
+                        <Route path="/login" element={<Login></Login>} ></Route>
+                    </Routes>
+                </ContextRecordFantasy>
+            {/* </GoogleOAuthProvider> */}
         </>
     );
 }
