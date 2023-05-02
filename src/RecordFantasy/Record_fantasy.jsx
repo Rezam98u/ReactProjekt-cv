@@ -104,7 +104,7 @@ const RecordFantasy = () => {
                         <Button variant="contained" onClick={() => navigate('/')}>
                             <HomeIcon />
                         </Button>
-                        <div className='flex gap-2'>
+                        <div className='flex gap-2 items-center'>
                             {/* <div>
                                 <Button variant="contained" >
                                     Cell your time and make money 

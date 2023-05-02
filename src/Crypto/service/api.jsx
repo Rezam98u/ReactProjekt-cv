@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 
 import BasicPagination from './material_ui'
+import { Grid } from "@mui/material";
 
 //////////////////////////////////////// new code ////////////////////////////////////////
 const Api = () => {
@@ -82,12 +83,12 @@ const Api = () => {
 
     /////////////////////////
     return (
-        <div className="pt-20">
+        <div className="mt-5">
 
             {loading &&
-                <div className="d-flex align-items-center ">
-                    <span> <Spinner animation="border" variant="warning" role="status" /></span>
-                    <span>  Loading... </span>
+                <div className="flex items-center justify-center ">
+                    <div> <Spinner animation="border" variant="warning" role="status" /></div>
+                    <div>  Loading... </div>
                 </div>}
 
             {
@@ -99,7 +100,7 @@ const Api = () => {
                                 <HomeIcon />
                             </button>
                         </div>
-                        <div className=" w-3/5 pb-4 pt-3 text-center ">
+                        <div className="w-3/5 pb-4 pt-3 text-center ">
                             <input type="text" className="rounded-lg  border-4 p-2" value={search.text} onChange={searchHandler} placeholder='search' />
                         </div>
                     </div>
@@ -107,29 +108,58 @@ const Api = () => {
                     <div>
                         {
                             search.bool ?
-                                <div className="border-4 py-3  mx-3 rounded-md bg-slate-100 ">
+                                <Grid container flex className="border-4 py-3 mx-3 rounded-md bg-slate-100">
                                     {searched.map(item =>
-                                        <div className="d-flex align-items-center justify-content-around pb-4 " key={item.id}>
-                                            <div className="w-14">
-                                                <img className="img-fluid" src={item.image} alt="#" />
-                                            </div>
-                                            <button className="btn btn-dark"> <p> {item.name}</p> </button>
-                                            <button className="btn btn-primary"> <p>{item.symbol}</p>  </button>
-                                            <p className="rounded-md border-2  ">{item.current_price}</p>
-                                        </div>)}
-                                </div>
+                                        <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
+                                            <Grid item lg={2} sm={2} xs={2}>
+                                                <div className="w-14">
+                                                    <img className="img-fluid" src={item.image} alt="#" />
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={3} sm={3} xs={3}>
+                                                <div className="lg:w-1/2 text-center">
+                                                    <button className="btn btn-dark"> <div className="text-center"> {item.name} </div> </button>
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={3} sm={3} xs={3}>
+                                                <div className="lg:w-1/2 text-center">
+                                                    <button className="btn btn-primary"> <p>{item.symbol} </p>  </button>
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={1} sm={2} xs={2}>
+                                                <div className="text-center">
+                                                    <p className="rounded-md border-2">{item.current_price} </p>
+                                                </div>
+                                            </Grid>
+                                        </Grid>)}
+                                </Grid>
                                 :
-                                <div className="border-4 py-3 mx-3 rounded-md bg-slate-100 ">
+                                <Grid container flex justifyContent={"center"} className="border-4 py-3 rounded-md bg-slate-100">
                                     {receivedData.map(item =>
-                                        <div className="d-flex align-items-center justify-content-around pb-4 " key={item.id}>
-                                            <div className="w-14">
-                                                <img className="img-fluid" src={item.image} alt="#" />
-                                            </div>
-                                            <button className="btn btn-dark"> <p> {item.name}</p> </button>
-                                            <button className="btn btn-primary"> <p>{item.symbol}</p>  </button>
-                                            <p className="rounded-md border-2  ">{item.current_price}</p>
-                                        </div>)}
-                                </div>
+                                        <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
+                                            <Grid item lg={2} sm={2} xs={2}>
+                                                <div className="w-14">
+                                                    <img className="img-fluid" src={item.image} alt="#" />
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={3} sm={3} xs={3}>
+                                                <div className="lg:w-1/2 text-center">
+                                                    <button className="btn btn-dark"> <div className="text-center"> {item.name} </div> </button>
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={3} sm={3} xs={3}>
+                                                <div className="lg:w-1/2 text-center">
+                                                    <button className="btn btn-primary"> <p>{item.symbol} </p>  </button>
+                                                </div>
+                                            </Grid>
+                                            <Grid item lg={1} sm={2} xs={2}>
+                                                <div className="text-center">
+                                                    <p className="rounded-md border-2">{item.current_price} </p>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    )}
+                                </Grid>
                         }
                     </div>
                     <BasicPagination setPage={setPage} ></BasicPagination>

@@ -55,6 +55,7 @@ const ContextRecordFantasy = ({ children }) => {
     const [putNewFantasy, setPutNewFantasy] = useState(false);
     const [like, setLike] = useState(false);
     const [open, setOpen] = useState(false);
+    
     /// Backend
     const [loginFromBack, setLoginFromBack] = useState([])
 
