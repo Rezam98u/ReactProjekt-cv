@@ -1,21 +1,24 @@
 import { React, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// context
-import { CardContext, prices, total_payment } from "../context/cardContextProvider"
-// import { ProductContext } from "../context/productContextProvider"
-
 import ClearIcon from '@mui/icons-material/Clear';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { Card, Grid } from '@mui/material';
 import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 
+// context 
+import { useStateContext } from '../context/useStateContext';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
+import { removeItem, decrease, clear } from '../Redux/useReducerAction'
+
 /////////////////////////
 const Shop = () => {
     const Navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const { state, dispatch } = useContext(CardContext);
+    const state = useSelector(state => state.useReducer)
+    const { prices, total_payment } = useContext(useStateContext)
 
     const sum = prices(state.selectedItems);
     return (
@@ -34,14 +37,14 @@ const Shop = () => {
                                     {
                                         item.quantity > 1 ?
                                             <span>
-                                                <button onClick={() => { dispatch({ type: "min", payload: item }) }}
+                                                <button onClick={() => dispatch(decrease(item))}
                                                     className='btn btn-danger text-xs Btn_out '>
                                                     <FontAwesomeIcon icon={faMinus} />
                                                 </button>
                                             </span>
                                             :
                                             <span>
-                                                <button onClick={() => { dispatch({ type: "remove_item", payload: item }) }}
+                                                <button onClick={() => { dispatch(removeItem(item)) }}
                                                     className='btn btn-danger text-xs Btn_out '>
                                                     <DeleteForeverSharpIcon fontSize='small' />
                                                 </button>
@@ -56,7 +59,6 @@ const Shop = () => {
                                             <FontAwesomeIcon icon={faAdd} />
                                         </button>
                                     </span>
-
                                 </div>
                             </Card>)
 
@@ -84,10 +86,10 @@ const Shop = () => {
 
                         <div className='d-flex items-center pt-4 gap-2' >
                             <button className={state.itemsCounter === 0 ? 'hidden' : ' btn btn-secondary w-1/4 Btn_out '}
-                                onClick={() => { dispatch({ type: "clear" }); Navigate("/products") }} >
+                                onClick={() => { dispatch(clear()); Navigate("/products") }} >
                                 <ClearIcon fontSize='small' /> clear
                             </button>
-                            <button onClick={() => Navigate('/products/checkout')} className={state.itemsCounter > 0 ? 'btn btn-primary Btn_out w-3/4  ' : ' hidden'} >
+                            <button onClick={() => { Navigate('/products/checkout') }} className={state.itemsCounter > 0 ? 'btn btn-primary Btn_out w-3/4  ' : ' hidden'} >
                                 checkout
                             </button>
                             {/* <Link to="/products/checkout"> <button className={state.itemsCounter > 0 ? 'btn btn-primary mx-1 Btn_out w-80 ' : ' hidden'} onClick={() => { dispatch({ type: "checkout" }) }} > checkout </button> </Link> */}
@@ -95,7 +97,7 @@ const Shop = () => {
                     </div>
                 </Grid>
             </Grid>
-        </div >
+        </div>
     );
 }
 

@@ -13,14 +13,17 @@
 
 // export default store
 
+/////////////////////////// Redux toolkit
+import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './rootReducer'
 
-///// reduxJs/toolkit
-/////////////////////////////
-// import { configureStore } from '@reduxjs/toolkit'
-// import counterReducer from '../features/counter/counterSlice'
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+  })
+})
 
-// export const store = configureStore({
-//     reducer: {
-//         counter: counterReducer,
-//     },
-// })
+export default store
+

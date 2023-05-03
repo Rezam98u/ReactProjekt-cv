@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { Grid } from '@mui/material';
 import axios from 'axios';
 
+// Context
+import { useStateContext } from './context/useStateContext';
+
 ////////////////////////////
 const DetailProduct = () => {
-
     const params = useParams();
     const id = params.id;
     // console.log(id);
 
-    const [loading, setLoading] = useState(false);
+    const { loading, setLoading, Data, setData } = useContext(useStateContext)
 
     //Method 1
     // const api_Data = async () => {
@@ -21,11 +23,8 @@ const DetailProduct = () => {
     //     return response.data
     // }
 
-    const [Data, setData] = useState([]);
-
     useEffect(() => {
         setLoading(true)
-        console.log(loading);
 
         //Method 2
         const fetchApi = async () => {
@@ -36,7 +35,6 @@ const DetailProduct = () => {
 
         setLoading(false)
     }, []);
-
 
     const { image, title, price, category, description } = Data
 
@@ -75,7 +73,6 @@ const DetailProduct = () => {
                     </button>
                 </Link>
             </div>
-
         </>
     );
 }

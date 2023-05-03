@@ -5,26 +5,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faMinus, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 import { Card, Grid } from '@mui/material';
-import { shorten, isInCart, quantityCount } from "../helpers/function"
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, removeItem, increase, decrease } from '../Redux/useReducerAction'
 
-//Context
-import { CardContext } from "../context/cardContextProvider"
-
-// styles 
-// import styles from "./product.module.scss"
+//context
+import { useStateContext } from '../context/useStateContext';
 
 ///////////////////////////////////
-
 const Product = (props) => {
-
-    const { state, dispatch } = useContext(CardContext)
-
+    const dispatch = useDispatch()
+    const { shorten, isInCart, quantityCount } = useContext(useStateContext)
+    const state = useSelector(state => state.useReducer)
     const { image, price, title, id } = props.Data
 
     return (
-
-        <Card elevation={8} className='py-3 dark:bg-slate-500 '>
-            <img src={image} alt="#" />
+        <Card elevation={8} className='py-3 dark:bg-slate-500'>
+            <Link to={`/products/${id}`} className='link'> <img src={image} alt="#" /> </Link>
             <div className='flex justify-between py-6'>
                 <p className='text-start font-bold pl-2 text-lg '>{shorten(title)}</p>
                 <p className='text-end pr-2 text-lg '> {price}$ </p>
@@ -41,14 +37,14 @@ const Product = (props) => {
                             <div>
                                 {quantityCount(state, id) > 1 ?
                                     <span>
-                                        <button onClick={() => { dispatch({ type: "min", payload: props.Data }) }}
+                                        <button onClick={() => dispatch(decrease(props.Data))}
                                             className='btn btn-danger Btn_out text-sm'>
                                             <FontAwesomeIcon icon={faMinus} />
                                         </button>
                                     </span>
                                     :
                                     <span>
-                                        <button onClick={() => { dispatch({ type: "remove_item", payload: props.Data }) }}
+                                        <button onClick={() => dispatch(removeItem(props.Data))}
                                             className='btn btn-danger Btn_out text-xs'>
                                             {/* <FontAwesomeIcon icon={faDeleteLeft} /> */}
                                             <DeleteForeverSharpIcon fontSize='small' />
@@ -59,14 +55,14 @@ const Product = (props) => {
                                 {<Badge pill className='p-2 m-1'> {quantityCount(state, id)} </Badge>}
 
                                 <span>
-                                    <button onClick={() => { dispatch({ type: "add", payload: props.Data }) }}
+                                    <button onClick={() => dispatch(increase(props.Data))}
                                         className='btn btn-info Btn_out text-sm'>
                                         <FontAwesomeIcon icon={faAdd} />
                                     </button>
                                 </span>
                             </div>
                             :
-                            <button onClick={() => { dispatch({ type: "add_item", payload: props.Data }) }}
+                            <button onClick={() => dispatch(addItem(props.Data))}
                                 className='btn  btn-info text-sm w-36'>
                                 <FontAwesomeIcon icon={faShoppingCart} />
                                 Add to card
@@ -74,7 +70,6 @@ const Product = (props) => {
                     }
                 </div>
             </Grid>
-
         </Card>
     );
 }

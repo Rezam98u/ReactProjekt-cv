@@ -1,25 +1,25 @@
-import { React, useContext, useState } from 'react';
+import { React, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 import { useForm } from 'react-hook-form';
 
 // Context
-import { CardContext, total_payment } from "../context/cardContextProvider"
+import { useStateContext } from "../context/useStateContext"
+// Redux
+import { checkout } from '../Redux/useReducerAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 /////////////////
 const AddressForm = () => {
+    const Navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { total_payment, pay, setPay } = useContext(useStateContext)
+    const state = useSelector(state => state.useReducer)
 
-    const { handleSubmit, register, formState: { errors } } = useForm();
-
-    const [pay, setPay] = useState(false);
-    const onSubmit = () => { setPay(true); dispatch({ type: "checkout" }) }
-
-    const Navigate = useNavigate();
-    const { state, dispatch } = useContext(CardContext);
-
+    const { handleSubmit, register, formState: { errors } } = useForm()
+    const onSubmit = () => { setPay(false); dispatch(checkout()) }
     return (
         <div className=' px-8 pt-14'>
             <form onSubmit={handleSubmit(onSubmit)}
@@ -29,7 +29,7 @@ const AddressForm = () => {
                     Check Out
                 </div>
 
-                {pay === false && state.itemsCounter !== 0 ?
+                {pay === true && state.itemsCounter !== 0 ?
 
                     /// section 1 
                     <div className='mx-auto w-4/5 '>
