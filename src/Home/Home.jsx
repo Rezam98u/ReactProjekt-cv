@@ -60,7 +60,7 @@ const Home = () => {
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         <button onClick={() => Navigate('/crypto')} >
-                            <FontAwesomeIcon icon={faCreditCard} />  Crypto  (is completing)
+                            <FontAwesomeIcon icon={faCreditCard} />  Crypto
                         </button>
                     </Box>
 
