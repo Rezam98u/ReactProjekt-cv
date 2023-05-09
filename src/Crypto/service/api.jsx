@@ -3,25 +3,18 @@ import { useState, useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
-
 import BasicPagination from './material_ui'
 import { Grid } from "@mui/material";
-
+import Pagination from '@mui/material/Pagination';
 //////////////////////////////////////// new code ////////////////////////////////////////
 const Api = () => {
+    const navigate = useNavigate()
     // const BASE_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}`
     const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
 
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate()
-
-    const [receivedData, setReceivedData] = useState([]);
-
+    const [loading, setLoading] = useState(true)
+    const [receivedData, setReceivedData] = useState([])
     const [search, setSearch] = useState({ text: "", bool: false })
-
-    /////////////
-    const [page, setPage] = useState(1);
-
 
     /////////////
     useEffect(() => {
@@ -38,40 +31,22 @@ const Api = () => {
         fetchData();
     }, []);
 
-    console.log(receivedData);
-    // const arrayData = [...data]
+    // console.log(receivedData);
 
-    // const Data1 = receivedData.splice(0, 20)
-    // const Data2 = receivedData.splice(0, 20)
-    // const Data3 = receivedData.splice(0, 20)
-    // const Data4 = receivedData.splice(0, 20)
-    // // console.log(Data1);
+    ///Pagination
+    const PAGE_LIMIT = 20; // Number of items to display on each page
+    const [currentPage, setCurrentPage] = useState(1)
 
-    // const [splicedData, setSplicedData] = useState(Data1);
+    // Calculate the items to display on the current page
+    const startIndex = (currentPage - 1) * PAGE_LIMIT;
+    const endIndex = startIndex + PAGE_LIMIT;
 
-    // switch (page) {
-    //     case 1:
-    //         setSplicedData(Data1)
-    //         break;
-    //     case 2:
-    //         setSplicedData(Data2)
-    //         break;
-    //     case 3:
-    //         setSplicedData(Data3)
-    //         break;
-    //     case 4:
-    //         setSplicedData(Data4)
-    //         break;
-
-    //     default: setSplicedData(Data1)
-    //         break;
-    // }
-
-    // console.log(page);
-    // console.log(Data1);
-    // console.log(Data2);
-    // console.log(Data3);
-    // console.log(Data4);
+    // Slice the items according to the current page
+    const currentData = receivedData.slice(startIndex, endIndex)
+    // console.log(currentData)
+    const handleClick = e => {
+        setCurrentPage(e.target.textContent); // Set the current page number
+    };
 
     const searchHandler = event => {
         setSearch({
@@ -79,8 +54,7 @@ const Api = () => {
             bool: true,
         })
     }
-    const searched = receivedData.filter(item => item.id.includes(search.text))
-
+    const searched = currentData.filter(item => item.id.includes(search.text))
     /////////////////////////
     return (
         <div className="mt-5">
@@ -108,7 +82,7 @@ const Api = () => {
                     <div>
                         {
                             search.bool ?
-                                <Grid container flex className="border-4 py-3 mx-3 rounded-md bg-slate-100">
+                                <Grid container flex className="border-4 py-3 rounded-md bg-slate-100">
                                     {searched.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
@@ -135,7 +109,7 @@ const Api = () => {
                                 </Grid>
                                 :
                                 <Grid container flex justifyContent={"center"} className="border-4 py-3 rounded-md bg-slate-100">
-                                    {receivedData.map(item =>
+                                    {currentData.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
                                                 <div className="w-14">
@@ -162,7 +136,13 @@ const Api = () => {
                                 </Grid>
                         }
                     </div>
-                    <BasicPagination setPage={setPage} ></BasicPagination>
+                    <div className="flex justify-center my-5">
+                        {/* Method 1 */}
+                        {/* <BasicPagination setPage={setCurrentPage} /> */}
+
+                        {/* Method 2 */}
+                        <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
+                    </div>
                 </div>
             }
         </div>
