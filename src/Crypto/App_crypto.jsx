@@ -61,7 +61,7 @@ const AppCrypto = () => {
         <div className="mt-5">
 
             {loading &&
-                <div className="flex items-center justify-center ">
+                <div className="flex items-center justify-center gap-3">
                     <div> <Spinner animation="border" variant="warning" role="status" /></div>
                     <div>  Loading... </div>
                 </div>}
@@ -69,21 +69,21 @@ const AppCrypto = () => {
             {
                 !loading &&
                 <div>
-                    <div className="flex items-center justify-around">
+                    <div className="flex w-4/5 mx-auto items-center justify-between my-4">
                         <div>
-                            <button className="btn bg-slate-400" onClick={() => navigate('/')}>
+                            <button className="btn bg-slate-400 ml-5" onClick={() => navigate('/')}>
                                 <HomeIcon />
                             </button>
                         </div>
-                        <div className="w-3/5 pb-4 pt-3 text-center ">
-                            <input type="text" className="rounded-lg  border-4 p-2" value={search.text} onChange={searchHandler} placeholder='search' />
+                        <div>
+                            <input type="text" className="rounded-lg w-72 border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
                         </div>
                     </div>
 
                     <div>
                         {
                             search.bool ?
-                                <Grid container flex className="border-4 py-3 rounded-md bg-slate-100">
+                                <Grid container flex width={"98%"} marginX={"auto"} className="border-4 py-3 rounded-md bg-slate-100">
                                     {searched.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
@@ -109,7 +109,7 @@ const AppCrypto = () => {
                                         </Grid>)}
                                 </Grid>
                                 :
-                                <Grid container flex justifyContent={"center"} className="border-4 py-3 rounded-md bg-slate-100">
+                                <Grid container width={"98%"} marginX={"auto"} flex justifyContent={"center"} className="border-4 py-3 rounded-md bg-slate-100">
                                     {currentData.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
