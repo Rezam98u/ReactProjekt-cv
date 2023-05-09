@@ -8,7 +8,7 @@ import SingUp from './Form_singup '
 import Login from "./Form_Login"
 
 /// context
-import ContextRecordFantasy from "./contextRecordFantasy"
+import ContextRecordFantasy from "./Context/contextRecordFantasy"
 
 ////////////////////////////////
 const RecordFantasyMain = () => {

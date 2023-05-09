@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form';
 import axios from "axios";
-//// context 
-import { StateContext } from "./contextRecordFantasy"
+//// Context 
+import { StateContext } from "./Context/contextRecordFantasy"
 
 // import validate from "./validate"
-
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

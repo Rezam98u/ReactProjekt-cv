@@ -21,6 +21,7 @@ import { Typewriter } from 'react-simple-typewriter'
 // const useMountEffect = fn => useEffect(fn, []);
 
 const Programmer = () => {
+    const navigate = useNavigate()
 
     useEffect(() => {
         // window.scrollTo(0, 0);
@@ -38,22 +39,21 @@ const Programmer = () => {
     const ScrollToyolov8 = () => yolov8.current.scrollIntoView()
     const yolov8 = useRef(null)
     ////
-    const ScrollToDetectType = () => detect.current.scrollIntoView()
-    const detect = useRef(null)
+    const ScrollToDetectType = () => ToDetectType.current.scrollIntoView()
+    const ToDetectType = useRef(null)
     ////
-
+    const ScrollToNavbar = () => ToNavbar.current.scrollIntoView()
+    const ToNavbar = useRef(null)
+    // console.log();
+    ////
 
     const [openMenu, setOpenMenu] = useState(false);
     const [openMenu_2, setOpenMenu_2] = useState(false);
     const [openMenu_4, setOpenMenu_4] = useState(false);
-
     const [numCard, setNumCard] = useState();
-
     const [arrowUp, setArrowUp] = useState(false);
     // console.log(arrowUp);
     // const [openMenu, setOpenmenu] = useState(false);
-
-    const navigate = useNavigate()
 
     ////////////////////////////////////////////////
     const [detectOn, setDetectOn] = useState(false);
@@ -64,7 +64,6 @@ const Programmer = () => {
             setDetectedType('Mobile') :
             setDetectedType('Desktop')
     }
-
 
     /////////////////////// connect to metamask ////////////////////////
     const connectWallet = async () => {
@@ -98,11 +97,11 @@ const Programmer = () => {
     ///////////////////////////////////////////
     return (
         <>
-            <AppBar>
+            <AppBar style={{ background: 'transparent', boxShadow: 'none' }}>
                 <div className='flex justify-around py-3'>
-                    <button className="btn bg-slate-400" onClick={() => navigate('/')}>
+                    <Button variant="outlined" onClick={() => navigate('/')}>
                         <HomeIcon />  Home
-                    </button>
+                    </Button>
 
                     {/* <div onClick={executeScroll} >
                         <button> Scroll </button>
@@ -110,7 +109,7 @@ const Programmer = () => {
 
 
                     <div onClick={() => { setOpenMenu(!openMenu); setArrowUp(!arrowUp) }} className='relative'>
-                        <Button variant="contained" >
+                        <Button variant="outlined" >
                             <p className='hover:text-green-400'> Magazine </p>
                             <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
                             {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
@@ -132,7 +131,7 @@ const Programmer = () => {
 
 
                     <div onClick={() => { setArrowUp(!arrowUp); setOpenMenu_2(!openMenu_2) }} className='relative' >
-                        <Button variant="contained" >
+                        <Button variant="outlined" >
                             <p className='hover:text-green-400'> programming languages</p>
                             <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
                         </Button>
@@ -148,13 +147,13 @@ const Programmer = () => {
                     </div>
 
                     <div>
-                        <Button variant="contained" onClick={connectWallet}>
+                        <Button variant="outlined" onClick={connectWallet}>
                             <p className='hover:text-green-400'> Connect to Wallet </p>
                         </Button>
                     </div>
 
                     <div onMouseDown={() => { setOpenMenu_4(!openMenu_4); setArrowUp(!arrowUp) }} className='relative'>
-                        <Button variant="contained">
+                        <Button variant="outlined">
                             <p className='hover:text-green-400'> more </p>
                             <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
                             {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
@@ -165,8 +164,8 @@ const Programmer = () => {
                                     {/* <MenuItem className='w-56 hover:text-blue-700'>
                                         to pad your card
                                     </MenuItem> */}
-                                    <MenuItem onClick={() => console.log('hh')} className='w-56 hover:text-blue-700'>
-                                        show detail
+                                    <MenuItem onClick={() => console.log(45)} className=' hover:text-blue-700'>
+                                        show detail 
                                     </MenuItem>
                                 </div>
                             </div>
@@ -202,7 +201,7 @@ const Programmer = () => {
             </div>
 
 
-            <div className='flex justify-center '>
+            <div ref={ToNavbar} className='flex justify-center '>
                 <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-1'> What is Python? </p>
                     <p>
@@ -265,8 +264,7 @@ const Programmer = () => {
                 </div>
             </div>
 
-
-            <div ref={detect} className='flex justify-center'>
+            <div ref={ToDetectType} className='flex justify-center'>
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start '> show your details </p>
                     <p className='text-md'> for example : login with mobile or laptop </p>
@@ -275,7 +273,7 @@ const Programmer = () => {
                             click to show
                         </button>
                         {detectOn &&
-                            <p className='text-lg mt-1  '>
+                            <p className='text-lg mt-1'>
                                 Website is showed in {detectedType}
                             </p>
                         }

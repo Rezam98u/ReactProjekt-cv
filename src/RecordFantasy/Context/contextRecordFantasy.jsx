@@ -55,7 +55,9 @@ const ContextRecordFantasy = ({ children }) => {
     const [putNewFantasy, setPutNewFantasy] = useState(false);
     const [like, setLike] = useState(false);
     const [open, setOpen] = useState(false);
-    
+    const [openMenu, setOpenMenu] = useState(false);
+
+
     /// Backend
     const [loginFromBack, setLoginFromBack] = useState([])
 
@@ -86,7 +88,7 @@ const ContextRecordFantasy = ({ children }) => {
             profileOpen, setProfileOpen, pass, setPass, profilePhoto, setProfilePhoto,
             email, setEmail, fantasy, setFantasy, userId, setUserId,
             putNewFantasy, setPutNewFantasy, open, setOpen, loginFromBack, setLoginFromBack,
-            state, dispatch, like, setLike, loading, setLoading
+            state, dispatch, like, setLike, loading, setLoading, openMenu, setOpenMenu
         }}>
             {children}
         </StateContext.Provider >

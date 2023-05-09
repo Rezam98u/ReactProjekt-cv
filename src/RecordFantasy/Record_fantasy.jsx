@@ -1,10 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
+import { React, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// import GoogleLogin from 'react-google-login';
-import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
-import jwt from "jwt-decode"
-
+import Avatar from '@mui/material/Avatar';
 import { AppBar } from '@mui/material';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -12,16 +8,22 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
+import MenuItem from '@mui/material/MenuItem';
+
 import Video1 from '../video/spare your time and.mp4'
 
-import { StateContext } from "./contextRecordFantasy"
+//Context
+import { StateContext } from "./Context/contextRecordFantasy"
 import axios from 'axios';
+// import GoogleLogin from 'react-google-login';
+import { GoogleLogin, googleLogout, useGoogleLogin } from '@react-oauth/google';
+import jwt from "jwt-decode"
 
 /////////////////////////////////////
 const RecordFantasy = () => {
     const navigate = useNavigate()
     const { fantasy, setFantasy, setPutNewFantasy, setEmail, email,
-        like, setLike, profilePhoto, setProfilePhoto } = useContext(StateContext)
+        like, setLike, profilePhoto, setProfilePhoto, openMenu, setOpenMenu } = useContext(StateContext)
     const [getPublishedFantasyFromBack, setGetPublishedFantasyFromBack] = useState(Array)
 
     // const [user, setUser] = useState([]);
@@ -95,12 +97,13 @@ const RecordFantasy = () => {
     // const map = new Map(JSON.parse(localStorage.myMap));
     // localStorage.myMap = JSON.stringify(Array.from(map.entries()));
     // console.log(localStorage);
+    console.log(email);
 
     return (
         <>
             <AppBar>
                 <div className='flex justify-center'>
-                    <div className='flex justify-between w-4/5 py-4 '>
+                    <div className='flex justify-between items-center w-4/5 py-4 '>
                         <Button variant="contained" onClick={() => navigate('/')}>
                             <HomeIcon />
                         </Button>
@@ -123,16 +126,28 @@ const RecordFantasy = () => {
 
                             </div>
                             <div>
-                                <Button onClick={() => navigate('/Record_fantasyMain/singUp')} variant="contained" >
+                                <Button onClick={() => navigate('/Record_fantasyMain/singUp')} variant="contained">
                                     sing up
                                 </Button>
                             </div>
                             <div>
-                                <Button onClick={() => navigate('/Record_fantasyMain/login')} variant="contained" >
+                                <Button onClick={() => navigate('/Record_fantasyMain/login')} variant="contained">
                                     login
                                 </Button>
                             </div>
                         </div>
+                        <button variant="contained" onClick={() => setOpenMenu(!openMenu)} className="relative ">
+                            <Avatar className='ml-2' src={profilePhoto} alt='#' sx={{ width: 32, height: 32 }} />
+                            {openMenu &&
+                                <div className="absolute right-4 border-2 top-9 rounded-lg py-2 px-1 bg-slate-400 ">
+                                    <MenuItem onClick={() => { email !== undefined && navigate('/Record_fantasyMain/userFantasy') }}> my profile </MenuItem>
+                                    <MenuItem> empty </MenuItem>
+                                    <MenuItem> empty </MenuItem>
+                                    <MenuItem> empty </MenuItem>
+                                    <MenuItem> empty </MenuItem>
+                                </div>
+                            }
+                        </button>
                     </div>
                 </div>
             </AppBar>

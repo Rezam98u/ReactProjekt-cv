@@ -9,13 +9,13 @@ import { useReducer } from 'react';
 import axios from 'axios';
 import { array, string } from 'prop-types';
 
-/// context 
-import { StateContext } from "./contextRecordFantasy"
+/// Context 
+import { StateContext } from "./Context/contextRecordFantasy"
 
 ////////////////////////
 const UserFantasy = () => {
     const navigate = useNavigate()
-    const { profileOpen, setProfileOpen, email, setEmail, profilePhoto, setProfilePhoto ,
+    const { profileOpen, setProfileOpen, email, setEmail, profilePhoto, setProfilePhoto,
         fantasy, setFantasy, open, setOpen, userId, setUserId, loading, setLoading } = useContext(StateContext)
 
     // const [noFs, setNoFs] = useState(true);
