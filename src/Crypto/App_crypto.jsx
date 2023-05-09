@@ -138,10 +138,6 @@ const AppCrypto = () => {
                         }
                     </div>
                     <div className="flex justify-center my-5">
-                        {/* Method 1 */}
-                        {/* <BasicPagination setPage={setCurrentPage} /> */}
-
-                        {/* Method 2 */}
                         <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
                     </div>
                 </div>
