@@ -55,7 +55,7 @@ const AppCrypto = () => {
             bool: true,
         })
     }
-    const searched = currentData.filter(item => item.id.includes(search.text))
+    const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
     /////////////////////////
     return (
         <div className="mt-5">
