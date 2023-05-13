@@ -42,7 +42,8 @@ const UserFantasy = () => {
         setLoading(true)
     }, [1]);
 
-    // console.log(getFantasyFromBack);
+    // console.log(getFantasyFromBack.findIndex(i => i.id));
+    console.log(getFantasyFromBack);
     // console.log(email);
     return (
         <>
@@ -118,7 +119,7 @@ const UserFantasy = () => {
                                 getFantasyFromBack.length === 0 ? <div> you have no fantasy </div> :
                                     getFantasyFromBack.map(item =>
                                         <div key={item.id} className="flex justify-between items-center mt-3 border-t-2">
-                                            {item.fantasy}
+                                            <p> {getFantasyFromBack.findIndex(i => i.id === item.id) + 1}.  {item.fantasy} </p>
                                             <div className="gap-2 flex mt-3">
                                                 <button className="bg-green-500 rounded-lg p-2" onClick={() =>
                                                     axios.post('http://localhost:3003/public', { id: item.userId, fantasy: item.fantasy }).then((res) => console.log(res))
