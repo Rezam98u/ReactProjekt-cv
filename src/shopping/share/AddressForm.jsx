@@ -21,11 +21,10 @@ const AddressForm = () => {
     const { handleSubmit, register, formState: { errors } } = useForm()
     const onSubmit = () => { setPay(false); dispatch(checkout()) }
     return (
-        <div className=' px-8 pt-14'>
-            <form onSubmit={handleSubmit(onSubmit)}
-                className='shadow-2xl border-2 rounded-lg py-4 my-5'>
+        <div className='px-8 pt-14'>
+            <form onSubmit={handleSubmit(onSubmit)} className='shadow-2xl border-2 rounded-lg py-4 my-5'>
 
-                <div className={pay === true ? 'mx-auto w-4/5 mb-4 pb-4 text-4xl border-b-8 text-center font-bold ' : 'text-4xl text-center mb-4 font-bold'}>
+                <div className='mx-auto w-4/5 mb-4 pb-4 text-4xl text-center font-bold'>
                     Check Out
                 </div>
 
