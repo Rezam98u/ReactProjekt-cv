@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Spinner } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
 
 ////////////////////////////
@@ -119,12 +119,12 @@ const AppCrypto = () => {
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <button className="btn btn-dark"> <div className="text-center"> {item.name} </div> </button>
+                                                    <Button variant='text'> <div className="text-center"> {item.name} </div> </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <button className="btn btn-primary"> <p>{item.symbol} </p>  </button>
+                                                    <Button variant='contained'> <p>{item.symbol} </p>  </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={1} sm={2} xs={2}>

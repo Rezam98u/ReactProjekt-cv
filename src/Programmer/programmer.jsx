@@ -195,7 +195,7 @@ const Programmer = () => {
 
             <div ref={ToNavbar} className='flex justify-center '>
                 <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-1'> What is Python? </p>
+                    <p className='text-2xl text-start pb-2'> What is Python? </p>
                     <p>
                         <span className='bg-blue-300 rounded-md px-1 py-1'>
                             Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.
@@ -210,7 +210,7 @@ const Programmer = () => {
 
             <div className='flex justify-center'>
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-1'> What is C#? </p>
+                    <p className='text-2xl text-start pb-2'> What is C#? </p>
                     <p>
                         <span className='bg-blue-300 rounded-md px-1 py-1'>
                             C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET. C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers.
@@ -242,7 +242,7 @@ const Programmer = () => {
 
             <div ref={yolov8} className='flex justify-center'>
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-1'> What is YoLo v8 ? </p>
+                    <p className='text-2xl text-start pb-2'> What is YoLo v8 ? </p>
                     <p>
                         Ultralytics YOLOv8 is the latest version of the YOLO (You Only Look Once) object detection and image segmentation model developed by Ultralytics.
                         This page serves as the starting point for exploring the various resources available to help you get started with YOLOv8 and understand its features and capabilities.
