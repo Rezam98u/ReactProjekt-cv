@@ -15,19 +15,19 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 // import { Provider } from 'react-redux';
 
 ////////////////////////////////////
-const initialState = {
-    data: {}
-}
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "true":
-            return {
-                data: action.payload
-            }
-        default:
-            return state
-    }
-}
+// const initialState = {
+//     data: {}
+// }
+// const reducer = (state, action) => {
+//     switch (action.type) {
+//         case "true":
+//             return {
+//                 data: action.payload
+//             }
+//         default:
+//             return state
+//     }
+// }
 
 export const MoodHandlerContext = createContext()
 /////////////////////////////
@@ -35,38 +35,36 @@ const App = () => {
 
     const [mood, setMood] = useState(false);
 
-    const MoodHandler = () => {
-        setMood(!mood);
-    }
+    const MoodHandler = () => setMood(!mood)
 
-    const [data, dispatch] = useReducer(reducer, initialState)
-    const get_Api = () => {
-        axios.get("https://jsonplaceholder.typicode.com/posts/8")
-            .then(response => {
-                dispatch({
-                    type: "true", payload: response.data
-                })
-            })
-    }
 
+    // const [data, dispatch] = useReducer(reducer, initialState)
+    // const get_Api = () => {
+    //     axios.get("https://jsonplaceholder.typicode.com/posts/8")
+    //         .then(response => {
+    //             dispatch({
+    //                 type: "true", payload: response.data
+    //             })
+    //         })
+    // }
 
     return (
         <>
+            {/* <Provider store={store}> */}
             <GoogleOAuthProvider clientId="958087409648-230adphg6efhl7t588o2mqqnoe9vo660">
-                {/* <Provider store={store}> */}
                 <div className={mood ? "dark" : ""}>
                     <MoodHandlerContext.Provider value={{ mood, MoodHandler }} >
                         <Routes>
                             <Route path='/' element={<Home />}></Route>
                             <Route path="/programmer" element={<Programmer />} ></Route>
-                            <Route path="/products/*" element={<AppShop/>} ></Route>
+                            <Route path="/products/*" element={<AppShop />} ></Route>
                             <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
                             <Route path="/crypto/*" element={<AppCrypto />} ></Route>
                         </Routes>
                     </MoodHandlerContext.Provider>
                 </div>
-                {/* </Provider> */}
             </GoogleOAuthProvider>
+            {/* </Provider> */}
         </>
     );
 }

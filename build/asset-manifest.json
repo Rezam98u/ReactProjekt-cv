@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.fbce6141.css",
-    "main.js": "/static/js/main.73ffbd89.js",
+    "main.js": "/static/js/main.e4c49b03.js",
     "static/media/video-1.mp4": "/static/media/video-1.59e75226d30ad48f9ede.mp4",
     "static/media/v617batch2-kul-01-technology.jpg": "/static/media/v617batch2-kul-01-technology.dd8d5eabc9647d80c6ba.jpg",
     "static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4": "/static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.b167724f7ca53838b7b9.mp4",
@@ -9,10 +9,10 @@
     "static/media/digitalernomade-984x540.jpg": "/static/media/digitalernomade-984x540.fe9925c31d4cb4cc2ae4.jpg",
     "index.html": "/index.html",
     "main.fbce6141.css.map": "/static/css/main.fbce6141.css.map",
-    "main.73ffbd89.js.map": "/static/js/main.73ffbd89.js.map"
+    "main.e4c49b03.js.map": "/static/js/main.e4c49b03.js.map"
   },
   "entrypoints": [
     "static/css/main.fbce6141.css",
-    "static/js/main.73ffbd89.js"
+    "static/js/main.e4c49b03.js"
   ]
 }
