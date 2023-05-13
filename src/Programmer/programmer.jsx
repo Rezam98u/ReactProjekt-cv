@@ -23,6 +23,11 @@ import { Typewriter } from 'react-simple-typewriter'
 const Programmer = () => {
     const navigate = useNavigate()
 
+    const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: false });
+    const [openMenu_2, setOpenMenu_2] = useState({ open: false, arrowUP: false });
+    const [openMenu_4, setOpenMenu_4] = useState({ open: false, arrowUP: false });
+    const [numCard, setNumCard] = useState();
+
     useEffect(() => {
         // window.scrollTo(0, 0);
         // executeScroll()
@@ -44,17 +49,6 @@ const Programmer = () => {
     ////
     const ScrollToNavbar = () => ToNavbar.current.scrollIntoView()
     const ToNavbar = useRef(null)
-    // console.log();
-    ////
-
-    const [openMenu, setOpenMenu] = useState(false);
-    const [openMenu_2, setOpenMenu_2] = useState(false);
-    const [openMenu_4, setOpenMenu_4] = useState(false);
-    const [numCard, setNumCard] = useState();
-    const [arrowUp, setArrowUp] = useState(false);
-    // console.log(arrowUp);
-    // const [openMenu, setOpenmenu] = useState(false);
-
     ////////////////////////////////////////////////
     const [detectOn, setDetectOn] = useState(false);
     const [detectedType, setDetectedType] = useState('');
@@ -94,7 +88,7 @@ const Programmer = () => {
     const hex1 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
     // console.log(hex1);
 
-    ///////////////////////////////////////////
+    ///////////////////////////////////////////////
     return (
         <>
             <AppBar style={{ background: 'transparent', boxShadow: 'none' }}>
@@ -108,13 +102,13 @@ const Programmer = () => {
                     </div> */}
 
 
-                    <div onClick={() => { setOpenMenu(!openMenu); setArrowUp(!arrowUp) }} className='relative'>
-                        <Button variant="outlined" >
+                    <div onMouseEnter={() => { setOpenMenu({ open: !openMenu.open, arrowUP: !openMenu.arrowUP }) }} className='relative'>
+                        <Button>
                             <p className='hover:text-green-400'> Magazine </p>
-                            <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
+                            <KeyboardArrowUpIcon style={{ transform: openMenu.arrowUP ? 'rotate(180deg)' : null }} />
                             {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
                         </Button>
-                        {openMenu ?
+                        {openMenu.open ?
                             <div className='absolute top-9 left-0  bg-white text-black px-1 py-2 rounded-md'>
                                 <div className='border-l-4 rounded-md mx-2'>
                                     <MenuItem onClick={executeScroll} className='w-56 hover:text-blue-700' >
@@ -129,14 +123,13 @@ const Programmer = () => {
                         }
                     </div>
 
-
-                    <div onClick={() => { setArrowUp(!arrowUp); setOpenMenu_2(!openMenu_2) }} className='relative' >
-                        <Button variant="outlined" >
+                    <div onMouseEnter={() => { setOpenMenu_2({ open: !openMenu_2.open, arrowUP: !openMenu_2.arrowUP }) }} className='relative' >
+                        <Button>
                             <p className='hover:text-green-400'> programming languages</p>
-                            <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
+                            <KeyboardArrowUpIcon style={{ transform: openMenu_2.arrowUP ? 'rotate(180deg)' : null }} />
                         </Button>
                         {
-                            openMenu_2 ?
+                            openMenu_2.open ?
                                 <div className='absolute top-9 left-0  bg-white text-black px-1 py-2 rounded-md'>
                                     <MenuItem className='w-56 hover:text-blue-700' >  Python (AI Programming)</MenuItem>
                                     <MenuItem className='w-56 hover:text-blue-700' >  C# </MenuItem>
@@ -152,20 +145,19 @@ const Programmer = () => {
                         </Button>
                     </div>
 
-                    <div onMouseDown={() => { setOpenMenu_4(!openMenu_4); setArrowUp(!arrowUp) }} className='relative'>
-                        <Button variant="outlined">
+                    <div onMouseEnter={() => { setOpenMenu_4({ open: !openMenu_4.open, arrowUP: !openMenu_4.arrowUP }) }} className='relative'>
+                        <Button>
                             <p className='hover:text-green-400'> more </p>
-                            <KeyboardArrowUpIcon style={{ transform: arrowUp ? 'rotate(180deg)' : null }} />
-                            {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
+                            <KeyboardArrowUpIcon style={{ transform: openMenu_4.arrowUP ? 'rotate(180deg)' : null }} />
                         </Button>
-                        {openMenu_4 ?
+                        {openMenu_4.open ?
                             <div className='absolute top-9 left-0 bg-white text-black px-1 py-2 rounded-md'>
                                 <div className='border-l-4 rounded-md mx-2'>
                                     {/* <MenuItem className='w-56 hover:text-blue-700'>
                                         to pad your card
                                     </MenuItem> */}
-                                    <MenuItem onClick={() => console.log(45)} className=' hover:text-blue-700'>
-                                        show detail 
+                                    <MenuItem onClick={ScrollToDetectType} className=' hover:text-blue-700'>
+                                        show detail
                                     </MenuItem>
                                 </div>
                             </div>
@@ -173,7 +165,7 @@ const Programmer = () => {
                         }
                     </div>
                 </div>
-            </AppBar>
+            </AppBar >
 
 
             <div className='relative'>
