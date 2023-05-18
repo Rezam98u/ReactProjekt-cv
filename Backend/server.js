@@ -50,7 +50,7 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
     }
 });
 
-//// Insert user
+//// Insert into user
 app.post('/singUp', (req, res) => {
     const { pass, email } = req.body
     const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
@@ -93,8 +93,7 @@ app.post('/delete', (req, res) => {
 
 /////////// get from fantasy
 app.get('/fantasy', (req, res) => {
-    const { userId } = req.query
-    db.query("SELECT * FROM fantasy ", [userId], (error, results) => {
+    db.query("SELECT * FROM fantasy ", (error, results) => {
         if (error) throw error
         res.send(results)
     })
@@ -116,6 +115,28 @@ app.post('/public', (req, res) => {
 /////////// get from public
 app.get('/public', (req, res) => {
     db.query("SELECT * FROM public ", (error, results) => {
+        if (error) throw error
+        res.send(results)
+    })
+})
+
+
+////////// Insert Image 
+app.post('/image', (req, res) => {
+    const { userId, profilePhoto } = req.body
+    const sqlInsert = "UPDATE user SET image = ? WHERE userId = ? "
+    db.query(sqlInsert, [profilePhoto, userId], (err, result) => {
+        if (err) throw err;
+        else {
+            console.log('Query result:', result)
+            res.send('ok');
+        }
+    });
+});
+
+////////// get image
+app.get('/image', (req, res) => {
+    db.query("SELECT * FROM user ", (error, results) => {
         if (error) throw error
         res.send(results)
     })

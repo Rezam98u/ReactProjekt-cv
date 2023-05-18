@@ -29,8 +29,19 @@ const UserFantasy = () => {
     };
 
     useEffect(() => {
+        setLoading(false)
         const fetch = async () => {
-            setLoading(false)
+
+            const responsive = await axios.get('http://localhost:3003/image')
+            const selectRes = responsive.data.filter(i => i.userId === userId)
+            const bufferArray = selectRes[0].image.data
+            console.log(bufferArray)
+            const base64String = window.btoa(String.fromCharCode(...new Uint8Array(bufferArray)))
+            setProfilePhoto(`data:image/png;base64,${base64String}`)
+            // // const base64Image = Buffer.from(imageBuffer).toString('base64');
+
+            // setProfilePhoto(base64String)
+
 
             const res = await axios.get('http://localhost:3003/fantasy')
             setGetFantasyFromBack(res.data.filter(i => i.userId === userId))
@@ -43,8 +54,18 @@ const UserFantasy = () => {
     }, [1]);
 
     // console.log(getFantasyFromBack.findIndex(i => i.id));
-    console.log(getFantasyFromBack);
+    // console.log(getFantasyFromBack);
     // console.log(email);
+    console.log(profilePhoto);
+
+    //////// set Image
+    const imageHandler = (e) => {
+        // e.preventDefault();
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0])
+        reader.onloadend = () => setProfilePhoto(reader.result)
+    }
+
     return (
         <>
             <AppBar>
@@ -57,11 +78,21 @@ const UserFantasy = () => {
                                 show your character by emoji <PersonIcon />
                             </Button>
                         </div>
-
+                        <div className="flex items-center gap-2">
+                            <TextField type="file" variant='standard' onChange={imageHandler} />
+                            <Button variant='contained' onClick={() =>
+                                axios.post('http://localhost:3003/image', { userId, profilePhoto }).then((res) => console.log(res))}>
+                                Upload
+                            </Button>
+                        </div>
                         <div className="relative">
+
                             <Button onClick={() => setProfileOpen(!profileOpen)} variant="contained" className='gap-1'>
                                 Profile  <Avatar className='ml-2' src={profilePhoto} alt='#' sx={{ width: 30, height: 30 }} />
                             </Button>
+                            {/* <div>
+                                <img src={profilePhoto} alt="Buffered_Image" />
+                            </div> */}
 
                             {profileOpen &&
                                 <div className='absolute top-10 bg-slate-500 rounded-md px-3 py-2'>

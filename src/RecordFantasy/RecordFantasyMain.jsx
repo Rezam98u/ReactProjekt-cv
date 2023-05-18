@@ -9,20 +9,22 @@ import Login from "./Form_Login"
 
 /// context
 import ContextRecordFantasy from "./Context/contextRecordFantasy"
+import TypeOfManAndWoman from './typeOfManAndWoman';
 
 ////////////////////////////////
 const RecordFantasyMain = () => {
     return (
         <>
             {/* <GoogleOAuthProvider clientId="958087409648-230adphg6efhl7t588o2mqqnoe9vo660.apps.googleusercontent.com"> */}
-                <ContextRecordFantasy>
-                    <Routes>
-                        <Route path="/" element={<RecordFantasy />} ></Route>
-                        <Route path="/userFantasy" element={<UserFantasy />} ></Route>
-                        <Route path='/singUp' element={<SingUp></SingUp>} ></Route>
-                        <Route path="/login" element={<Login></Login>} ></Route>
-                    </Routes>
-                </ContextRecordFantasy>
+            <ContextRecordFantasy>
+                <Routes>
+                    <Route path="/" element={<RecordFantasy />} ></Route>
+                    <Route path="/userFantasy" element={<UserFantasy />} ></Route>
+                    <Route path='/singUp' element={<SingUp></SingUp>} ></Route>
+                    <Route path="/login" element={<Login></Login>} ></Route>
+                    <Route path="/typeOfManAndWoman" element={<TypeOfManAndWoman />} ></Route>
+                </Routes>
+            </ContextRecordFantasy>
             {/* </GoogleOAuthProvider> */}
         </>
     );

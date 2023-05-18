@@ -114,7 +114,7 @@ const RecordFantasy = () => {
                                 </Button>
                             </div> */}
                             <div>
-                                <Button variant="contained" >
+                                <Button variant="contained" onClick={() => navigate("/Record_fantasyMain/typeOfManAndWoman")} >
                                     Type of men and women
                                 </Button>
                             </div>

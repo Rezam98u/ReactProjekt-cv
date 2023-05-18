@@ -47,7 +47,7 @@ const ContextRecordFantasy = ({ children }) => {
 
     const [loading, setLoading] = useState(Boolean);
     const [profileOpen, setProfileOpen] = useState(false)
-    const [profilePhoto, setProfilePhoto] = useState(undefined)
+    const [profilePhoto, setProfilePhoto] = useState(null)
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [fantasy, setFantasy] = useState('');
