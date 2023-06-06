@@ -25,6 +25,35 @@ const SingUp = () => {
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");
+
+    const nodemailer = require('nodemailer');
+
+    const sendConfirmationEmail = email => {
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'reza137997@gmail.com',
+                pass: '979797@@'
+                // user: 'your_email@gmail.com', // your email address
+                // pass: 'your_password' // your email password
+            }
+        });
+
+        // send mail with defined transport object
+        let info = transporter.sendMail({
+            from: '"From Name" <your_email@gmail.com>', // sender address
+            to: email, // list of receivers
+            subject: 'Confirmation Email Subject', // Subject line
+            text: 'Confirmation Email Message', // plain text body
+            html: '<b>Confirmation Email Message</b>' // html body
+        });
+
+        console.log('Message sent: %s', info.messageId);
+    }
+
     return (
         <>
             <div className=' px-8 pt-14'>
