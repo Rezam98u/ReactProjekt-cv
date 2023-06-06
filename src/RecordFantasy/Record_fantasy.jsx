@@ -168,8 +168,8 @@ const RecordFantasy = () => {
                         />
                     </div>
                     <div>
-                        <Button onClick={() => { setPutNewFantasy(true); localStorage.setItem('fantasy', fantasy) }} variant='contained' >
-                            save (as unknown person)
+                        <Button onClick={() => setPutNewFantasy(true)} variant='contained' >
+                            save(as unknown person)
                         </Button>
                     </div>
 
@@ -197,7 +197,7 @@ const RecordFantasy = () => {
                     </div> */}
 
                 </div>
-            </div>
+            </div >
         </>
     );
 }

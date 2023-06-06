@@ -4,10 +4,10 @@ import Avatar from '@mui/material/Avatar';
 import PersonIcon from '@mui/icons-material/Person';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
-import Clear from '@mui/icons-material/Clear';
-import { useReducer } from 'react';
+// import Clear from '@mui/icons-material/Clear';
+// import { useReducer } from 'react';
 import axios from 'axios';
-import { array, string } from 'prop-types';
+// import { array, string } from 'prop-types';
 
 /// Context 
 import { StateContext } from "./Context/contextRecordFantasy"
@@ -38,10 +38,21 @@ const UserFantasy = () => {
             console.log(bufferArray)
             const base64String = window.btoa(String.fromCharCode(...new Uint8Array(bufferArray)))
             setProfilePhoto(`data:image/png;base64,${base64String}`)
+
+            // const blob = new Blob(bufferArray)
+            // const srcBlob = URL.createObjectURL(blob);
+            // setProfilePhoto(srcBlob)
             // // const base64Image = Buffer.from(imageBuffer).toString('base64');
 
-            // setProfilePhoto(base64String)
 
+
+            // var arrayBufferView = new Uint8Array( this.response );
+            // var blob = new Blob(bufferArray, { type: "image/png" });
+            // var urlCreator = window.URL || window.webkitURL;
+            // const imageUrl = urlCreator.createObjectURL(blob);
+            // // var img = document.querySelector("#photo");
+            // // img.src = imageUrl;
+            // setProfilePhoto(imageUrl)
 
             const res = await axios.get('http://localhost:3003/fantasy')
             setGetFantasyFromBack(res.data.filter(i => i.userId === userId))
@@ -69,7 +80,7 @@ const UserFantasy = () => {
     return (
         <>
             <AppBar>
-                <div className='py-3 flex justify-center '>
+                <div className='py-3 flex justify-center'>
                     <div className="w-4/5 flex items-center justify-between">
                         <div> <p className='text-md'> My Fantasy </p> </div>
 

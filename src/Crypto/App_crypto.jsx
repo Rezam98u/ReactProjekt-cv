@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
-
+import video from "../video/spare your time and.mp4"
 ////////////////////////////
 const AppCrypto = () => {
     const navigate = useNavigate()
@@ -58,7 +58,7 @@ const AppCrypto = () => {
     const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
     /////////////////////////
     return (
-        <div className="mt-5">
+        <div>
 
             {loading &&
                 <div className="flex items-center justify-center gap-3">
@@ -69,6 +69,9 @@ const AppCrypto = () => {
             {
                 !loading &&
                 <div>
+                    {/* <div className='w-full'>
+                        <video src={video} autoPlay alt="#" />
+                    </div> */}
                     <div className="flex w-4/5 mx-auto items-center justify-between my-4">
                         <div>
                             <button className="btn bg-slate-400 ml-5" onClick={() => navigate('/')}>
