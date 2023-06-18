@@ -4,6 +4,17 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 
 
+//////////////////////////////
+const router = express.Router()
+
+router.post('/register')
+
+
+
+
+
+
+//////////////////////////////
 const app = express();
 app.use(cors())
     // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
@@ -51,19 +62,19 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
 });
 
 //// Insert into user
-app.post('/singUp', (req, res) => {
-    const { pass, email } = req.body
-    const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
-    db.query(sqlInsert, [email, pass], (err, result) => {
-        if (err) {
-            console.error('Error inserting into database:', err);
-            res.status(500).send('Error inserting into database. Please try again later.');
-        } else {
-            console.log('Query result:', result)
-            res.send('ok');
-        }
-    });
-});
+// app.post('/singUp', (req, res) => {
+//     const { pass, email } = req.body
+//     const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
+//     db.query(sqlInsert, [email, pass], (err, result) => {
+//         if (err) {
+//             console.error('Error inserting into database:', err);
+//             res.status(500).send('Error inserting into database. Please try again later.');
+//         } else {
+//             console.log('Query result:', result)
+//             res.send('ok');
+//         }
+//     });
+// });
 
 //////////// insert to fantasy
 app.post('/fantasy', (req, res) => {

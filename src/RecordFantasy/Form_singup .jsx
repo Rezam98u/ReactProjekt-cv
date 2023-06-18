@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+// import nodemailer from 'nodemailer'
+
 //// Context 
 import { StateContext } from "./Context/contextRecordFantasy"
 
@@ -17,42 +19,47 @@ const SingUp = () => {
     const { handleSubmit, register, getValues, formState: { errors } } = useForm();
 
 
+    // const sendConfirmationEmail = email => {
+
+    //     axios.post('http://localhost:3003/register', { email: email, pass: pass }).then((res) => console.log(res));
+
+
+    //     // create reusable transporter object using the default SMTP transport
+    //     const transporter = nodemailer.createTransport({
+    //         host: 'smtp.ethereal.email',
+    //         port: 587,
+    //         secure: false, // true for 465, false for other ports
+    //         auth: {
+    //             user: 'reza137997@gmail.com',
+    //             pass: '09197116203'
+    //             // user: 'your_email@gmail.com', // your email address
+    //             // pass: 'your_password' // your email password
+    //         }
+    //     });
+
+    //     // send mail with defined transport object
+    //     const info = transporter.sendMail({
+    //         from: '"RecordFantasy" <reza137997@gmail.com>', // sender address
+    //         to: email, // list of receivers
+    //         subject: 'Confirmation Email Subject', // Subject line
+    //         text: 'Confirmation Email Message', // plain text body
+    //         html: '<b> Confirmation Email Message </b>' // html body
+    //     });
+
+    //     console.log('Message sent: %s', info.messageId);
+    // }
+
+
     const onSubmit = () => {
         Navigate('/Record_fantasyMain/userFantasy'); setOpen(true);
-        axios.post('http://localhost:3003/singUp', { email: email, pass: pass }).then((res) => console.log(res))
+        axios.post('http://localhost:3003/singUp', { email: email, pass: pass }).then((res) => console.log(res));
+        // sendConfirmationEmail()
     }
 
     // // const notify = () => toast("Wow so easy!");
     // const notify_success = () => toast.success("success");
     // const notify_error = () => toast.error("error");
 
-    const nodemailer = require('nodemailer');
-
-    const sendConfirmationEmail = email => {
-        // create reusable transporter object using the default SMTP transport
-        let transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: 'reza137997@gmail.com',
-                pass: '979797@@'
-                // user: 'your_email@gmail.com', // your email address
-                // pass: 'your_password' // your email password
-            }
-        });
-
-        // send mail with defined transport object
-        let info = transporter.sendMail({
-            from: '"From Name" <your_email@gmail.com>', // sender address
-            to: email, // list of receivers
-            subject: 'Confirmation Email Subject', // Subject line
-            text: 'Confirmation Email Message', // plain text body
-            html: '<b>Confirmation Email Message</b>' // html body
-        });
-
-        console.log('Message sent: %s', info.messageId);
-    }
 
     return (
         <>
