@@ -1,5 +1,5 @@
 import { React, useEffect, useState, useRef } from 'react';
-import { AppBar } from '@mui/material';
+import { AppBar, duration } from '@mui/material';
 
 // import HeroSection from './HeroSection';
 import HomeIcon from '@mui/icons-material/Home';
@@ -15,6 +15,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import { Typewriter } from 'react-simple-typewriter'
+
+import { motion } from "framer-motion"
 // import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
 
@@ -29,6 +31,8 @@ const Programmer = () => {
     const [numCard, setNumCard] = useState();
 
     useEffect(() => {
+        // let winScroll = window.scrollY
+        console.log(window.scrollY)
         // window.scrollTo(0, 0);
         // executeScroll()
         // console.log('s');
@@ -49,6 +53,12 @@ const Programmer = () => {
     ////
     const ScrollToNavbar = () => ToNavbar.current.scrollIntoView()
     const ToNavbar = useRef(null)
+    ////
+    const ScrollToPython = () => ToPython.current.scrollIntoView()
+    const ToPython = useRef(null)
+    ////
+    const ScrollToC = () => ToC.current.scrollIntoView()
+    const ToC = useRef(null)
     ////////////////////////////////////////////////
     const [detectOn, setDetectOn] = useState(false);
     const [detectedType, setDetectedType] = useState('');
@@ -88,10 +98,15 @@ const Programmer = () => {
     const hex1 = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
     // console.log(hex1);
 
+    // console.log(winScroll)
+
     ///////////////////////////////////////////////
     return (
         <>
-            <AppBar style={{ background: 'transparent', boxShadow: 'none' }}>
+            <AppBar style={{
+                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent"
+                , boxShadow: 'none'
+            }}>
                 <div className='flex justify-around py-3'>
                     <Button variant="outlined" onClick={() => navigate('/')}>
                         <HomeIcon />  Home
@@ -131,8 +146,8 @@ const Programmer = () => {
                         {
                             openMenu_2.open ?
                                 <div className='absolute top-9 left-0  bg-white text-black px-1 py-2 rounded-md'>
-                                    <MenuItem className='w-56 hover:text-blue-700' >  Python (AI Programming)</MenuItem>
-                                    <MenuItem className='w-56 hover:text-blue-700' >  C# </MenuItem>
+                                    <MenuItem className='w-56 hover:text-blue-700' onClick={ScrollToPython}>  Python (AI Programming)</MenuItem>
+                                    <MenuItem className='w-56 hover:text-blue-700' onClick={ScrollToC}>  C# </MenuItem>
                                     <MenuItem className='w-56 hover:text-blue-700' >  Go </MenuItem>
                                 </div>
                                 : null
@@ -192,8 +207,17 @@ const Programmer = () => {
                 </div>
             </div>
 
+            <div className='bg-green-400  text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+                <motion.div
+                    style={{ width: '30%' }}
+                    initial={{ scale: 0 }}
+                    animate={{ x: 200, scale: 1.5 }}
+                    transition={{ duration: 4, delay: 0.5 }}>
+                    Programming
+                </motion.div>
+            </div>
 
-            <div ref={ToNavbar} className='flex justify-center '>
+            <div ref={ToPython} className='flex justify-center'>
                 <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-2'> What is Python? </p>
                     <p>
@@ -208,7 +232,7 @@ const Programmer = () => {
             </div>
 
 
-            <div className='flex justify-center'>
+            <div ref={ToC} className='flex justify-center'>
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-2'> What is C#? </p>
                     <p>
