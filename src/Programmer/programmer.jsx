@@ -17,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Typewriter } from 'react-simple-typewriter'
 
 import { motion } from "framer-motion"
+import { Animator, Fade, MoveOut, ScrollContainer, ScrollPage, Sticky, batch } from "react-scroll-motion"
 // import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
 
@@ -207,7 +208,7 @@ const Programmer = () => {
                 </div>
             </div>
 
-            <div className='bg-green-400  text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
                 <motion.div
                     style={{ width: '30%' }}
                     initial={{ scale: 0 }}
@@ -216,6 +217,19 @@ const Programmer = () => {
                     Programming
                 </motion.div>
             </div>
+
+
+            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+                <ScrollContainer>
+                    <ScrollPage>
+                        <Animator animation={batch(Fade(), MoveOut(0, 200))}>
+                            <div className="font-bold"> Hello World </div>
+                            {/* <span style={{ fontSize: "30px" }}>Let me show you scroll animation 😀</span> */}
+                        </Animator>
+                    </ScrollPage>
+                </ScrollContainer>
+            </div>
+
 
             <div ref={ToPython} className='flex justify-center'>
                 <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
