@@ -13,11 +13,14 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import { Typewriter } from 'react-simple-typewriter'
 
-import { motion } from "framer-motion"
-import { Animator, Fade, MoveOut, ScrollContainer, ScrollPage, Sticky, batch } from "react-scroll-motion"
+import PageScrollProgressBar from "react-page-scroll-progress-bar";
+
+import { motion, useScroll } from "framer-motion"
+import { Animator, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, ScrollContainer, ScrollPage, Sticky, StickyIn, ZoomIn, batch } from "react-scroll-motion"
 // import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
 
@@ -25,6 +28,7 @@ import { Animator, Fade, MoveOut, ScrollContainer, ScrollPage, Sticky, batch } f
 
 const Programmer = () => {
     const navigate = useNavigate()
+    const { scrollYProgress } = useScroll();
 
     const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: false });
     const [openMenu_2, setOpenMenu_2] = useState({ open: false, arrowUP: false });
@@ -104,10 +108,12 @@ const Programmer = () => {
     ///////////////////////////////////////////////
     return (
         <>
+            <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" />
+
             <AppBar style={{
-                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent"
-                , boxShadow: 'none'
+                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent", boxShadow: 'none'
             }}>
+
                 <div className='flex justify-around py-3'>
                     <Button variant="outlined" onClick={() => navigate('/')}>
                         <HomeIcon />  Home
@@ -116,7 +122,6 @@ const Programmer = () => {
                     {/* <div onClick={executeScroll} >
                         <button> Scroll </button>
                     </div> */}
-
 
                     <div onMouseEnter={() => { setOpenMenu({ open: !openMenu.open, arrowUP: !openMenu.arrowUP }) }} className='relative'>
                         <Button>
@@ -208,6 +213,8 @@ const Programmer = () => {
                 </div>
             </div>
 
+
+
             <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
                 <motion.div
                     style={{ width: '30%' }}
@@ -218,18 +225,48 @@ const Programmer = () => {
                 </motion.div>
             </div>
 
-
-            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 pt-3 rounded-lg'>
                 <ScrollContainer>
                     <ScrollPage>
-                        <Animator animation={batch(Fade(), MoveOut(0, 200))}>
-                            <div className="font-bold"> Hello World </div>
-                            {/* <span style={{ fontSize: "30px" }}>Let me show you scroll animation 😀</span> */}
+                        <Animator animation={batch(MoveIn(400, 500))}>
+                            <div ref={ToPython} className='flex justify-center'>
+                                <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
+                                    <p className='text-2xl text-start pb-2'> What is Python? </p>
+                                    <p>
+                                        <span className='bg-blue-300 rounded-md px-1 py-1'>
+                                            Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.
+                                            Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn’t specialized for any specific problems.
+                                        </span>
+                                        This versatility, along with its beginner-friendliness, has made it one of the most-used programming languages today.
+                                        A survey conducted by industry analyst firm RedMonk found that it was the second-most popular programming language among developers in 2021.
+                                    </p>
+                                </div>
+                            </div>
                         </Animator>
+                    </ScrollPage>
+                    {/* <ScrollPage>
+                        <Animator animation={batch(StickyIn(), FadeIn(), ZoomIn())}>
+                            <span className="mt-6"> I'm FadeUpScrollOut ✨ </span>
+                        </Animator>
+                    </ScrollPage> */}
+                    {/* <ScrollPage>
+                        <Animator animation={batch(Fade(), Move(), Sticky())}>
+                            <span > I'm FadeUp ⛅️</span>
+                        </Animator>
+                    </ScrollPage> */}
+                    <ScrollPage>
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
+                            <span style={{ fontSize: "40px" }}>
+                                <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
+                                <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
+                                - I'm Dante Chun -
+                                <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
+                                <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
+                            </span>
+                        </div>
                     </ScrollPage>
                 </ScrollContainer>
             </div>
-
 
             <div ref={ToPython} className='flex justify-center'>
                 <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
@@ -261,10 +298,27 @@ const Programmer = () => {
 
 
             <div ref={scrollToRef} className='flex justify-center '>
-                <div style={{ background: `${hex}` }} className='w-4/5 border-4 rounded-xl p-8 m-4 '>
-                    <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => setHex(hex1)}>
-                        click to change color
-                    </button>
+                <div style={{ background: `${hex}` }} className='w-4/5 border-4 rounded-xl p-8 m-4'>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{
+                            duration: 0.5,
+                            ease: [0, 0.71, 0.2, 1.01],
+                            scale: {
+                                type: "spring",
+                                damping: 6,
+                                stiffness: 100,
+                                restDelta: 0.001
+                            }
+                        }}
+                    // animate={{ scaleX: "2", rotate: 2 }}
+                    // transition={{ duration: 1, delay: 0 }}
+                    >
+                        <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => setHex(hex1)}>
+                            click to change color
+                        </button>
+                    </motion.div>
                     <p className='text-2xl text-center pb-4 '>
                         Living like a digital nomad - that's how it's done!
                     </p>
