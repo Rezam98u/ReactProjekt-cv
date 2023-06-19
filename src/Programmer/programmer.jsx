@@ -227,7 +227,7 @@ const Programmer = () => {
             </div>
 
             <div className='bg-green-400 text-center w-4/5 mx-auto my-2 pt-3 rounded-lg'>
-                <ScrollContainer>
+                {/* <ScrollContainer>
                     <ScrollPage>
                         <Animator animation={batch(MoveIn(400, 500))}>
                             <div ref={ToPython} className='flex justify-center'>
@@ -244,7 +244,7 @@ const Programmer = () => {
                                 </div>
                             </div>
                         </Animator>
-                    </ScrollPage>
+                    </ScrollPage> */}
                     {/* <ScrollPage>
                         <Animator animation={batch(StickyIn(), FadeIn(), ZoomIn())}>
                             <span className="mt-6"> I'm FadeUpScrollOut ✨ </span>
@@ -255,7 +255,7 @@ const Programmer = () => {
                             <span > I'm FadeUp ⛅️</span>
                         </Animator>
                     </ScrollPage> */}
-                    <ScrollPage>
+                    {/* <ScrollPage>
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
                             <span style={{ fontSize: "40px" }}>
                                 <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
@@ -266,7 +266,7 @@ const Programmer = () => {
                             </span>
                         </div>
                     </ScrollPage>
-                </ScrollContainer>
+                </ScrollContainer> */}
             </div>
 
             <div ref={ToPython} className='flex justify-center'>
