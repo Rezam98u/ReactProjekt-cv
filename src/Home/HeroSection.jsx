@@ -2,8 +2,8 @@ import { React, useState, useContext } from 'react';
 // import video from './video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4'
 import video1 from "../video/video-1.mp4"
 import video2 from "../video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4"
-import { Button } from 'react-bootstrap';
 import { MoodHandlerContext } from '../App'
+import { Button } from '@mui/material';
 
 // import './hero.styles.scss'
 //////////////////////////////////
@@ -24,11 +24,9 @@ const HeroSection = () => {
                         <span className='shadow-inner text-teal-400'> Zelten </span>
                         in der Natur oder irgendwo
                     </p>
-                    <Button className='text-xl  mt-3 bg-blue-500'> Get Started </Button>
+                    <Button variant='contained' className='text-xl  mt-3 bg-blue-500'> Get Started </Button>
                 </div>
-
             </div>
-
         </>
     );
 }
