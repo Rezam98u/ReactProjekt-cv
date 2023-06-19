@@ -108,10 +108,10 @@ const Programmer = () => {
     ///////////////////////////////////////////////
     return (
         <>
-            <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" />
+            <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" zIndex="2" />
 
             <AppBar style={{
-                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent", boxShadow: 'none'
+                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent", boxShadow: 'none', zIndex: 1
             }}>
 
                 <div className='flex justify-around py-3'>
