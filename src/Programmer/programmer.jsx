@@ -267,6 +267,7 @@ const Programmer = () => {
                         </div>
                     </ScrollPage>
                 </ScrollContainer> */}
+                
             </div>
 
             <div ref={ToPython} className='flex justify-center'>
