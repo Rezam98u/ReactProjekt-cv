@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 * {
-  font-family: cursive;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 400;
   box-sizing: border-box;
   box-shadow: none;
 }

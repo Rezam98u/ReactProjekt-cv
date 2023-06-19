@@ -2,13 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 * {
-    font-family: cursive;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
     box-sizing: border-box;
     box-shadow: none;
     // scroll-behavior: smooth;
     // scroll-padding-top: 75px;
 }
 
+// @font-face {
+//     font-family: "IBM Plex Sans":
+//     src: local('CustomFont1Name'),
+//          url('./fonts/CustomFont1Name.woff') format('woff'),
+//          url('./fonts/CustomFont1Name.woff2') format('woff2');
+// }
 ////////////////////////////
 $font: 1.36rem;
 @mixin mainBtn {

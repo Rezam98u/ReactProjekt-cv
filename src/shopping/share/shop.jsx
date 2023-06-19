@@ -10,7 +10,7 @@ import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 import { useStateContext } from '../context/useStateContext';
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItem, decrease, clear } from '../Redux/useReducerAction'
+import { removeItem, decrease, clear, increase } from '../Redux/useReducerAction'
 
 /////////////////////////
 const Shop = () => {
@@ -54,7 +54,7 @@ const Shop = () => {
                                     <button className='btn btn-dark rounded-2xl mx-2'>{item.quantity}</button>
 
                                     <span>
-                                        <button onClick={() => { dispatch({ type: "add", payload: item }) }}
+                                        <button onClick={() => { dispatch(increase(item)) }}
                                             className='btn btn-info text-xs Btn_out '>
                                             <FontAwesomeIcon icon={faAdd} />
                                         </button>

@@ -34,13 +34,15 @@ const Programmer = () => {
     const [openMenu_2, setOpenMenu_2] = useState({ open: false, arrowUP: false });
     const [openMenu_4, setOpenMenu_4] = useState({ open: false, arrowUP: false });
     const [numCard, setNumCard] = useState();
+    const [moveMotion, setMoveMotion] = useState(false);
+    const [scroll, setScroll] = useState(Number);
 
     useEffect(() => {
-        // let winScroll = window.scrollY
-        console.log(window.scrollY)
-        // window.scrollTo(0, 0);
-        // executeScroll()
-        // console.log('s');
+        const onScroll = () => {
+            const scrollY = window.scrollY;
+            setScroll(scrollY)
+        };
+        window.addEventListener("scroll", onScroll);
     }, []);
 
     // const executeScroll = () => myRef.current.scrollIntoView()
@@ -108,15 +110,14 @@ const Programmer = () => {
     ///////////////////////////////////////////////
     return (
         <>
-            <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" zIndex="2" />
-
             <AppBar style={{
-                background: window.scrollY >= 950.4000244140625 ? 'black' : "transparent", boxShadow: 'none', zIndex: 1
+                background: scroll >= 950.4000244140625 ? '#C3D0FF' : "transparent", boxShadow: 'none', zIndex: 1 , 
             }}>
+                <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" zIndex="2" />
 
-                <div className='flex justify-around py-3'>
-                    <Button variant="outlined" onClick={() => navigate('/')}>
-                        <HomeIcon />  Home
+                <div className='flex justify-around py-3 '>
+                    <Button className='flex items-center' onClick={() => navigate('/')}>
+                        <HomeIcon /> Home
                     </Button>
 
                     {/* <div onClick={executeScroll} >
@@ -125,7 +126,7 @@ const Programmer = () => {
 
                     <div onMouseEnter={() => { setOpenMenu({ open: !openMenu.open, arrowUP: !openMenu.arrowUP }) }} className='relative'>
                         <Button>
-                            <p className='hover:text-green-400'> Magazine </p>
+                            <p> Magazine </p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu.arrowUP ? 'rotate(180deg)' : null }} />
                             {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
                         </Button>
@@ -146,7 +147,7 @@ const Programmer = () => {
 
                     <div onMouseEnter={() => { setOpenMenu_2({ open: !openMenu_2.open, arrowUP: !openMenu_2.arrowUP }) }} className='relative' >
                         <Button>
-                            <p className='hover:text-green-400'> programming languages</p>
+                            <p> programming languages</p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu_2.arrowUP ? 'rotate(180deg)' : null }} />
                         </Button>
                         {
@@ -161,14 +162,14 @@ const Programmer = () => {
                     </div>
 
                     <div>
-                        <Button variant="outlined" onClick={connectWallet}>
-                            <p className='hover:text-green-400'> Connect to Wallet </p>
+                        <Button onClick={connectWallet}>
+                            <p> Connect to Wallet </p>
                         </Button>
                     </div>
 
                     <div onMouseEnter={() => { setOpenMenu_4({ open: !openMenu_4.open, arrowUP: !openMenu_4.arrowUP }) }} className='relative'>
                         <Button>
-                            <p className='hover:text-green-400'> more </p>
+                            <p> more </p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu_4.arrowUP ? 'rotate(180deg)' : null }} />
                         </Button>
                         {openMenu_4.open ?
@@ -300,8 +301,8 @@ const Programmer = () => {
             <div ref={scrollToRef} className='flex justify-center '>
                 <div style={{ background: `${hex}` }} className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
+                        animate={{ opacity: 1, scale: 1, rotate: moveMotion ? [7, 0, 0] : [0, 0, 0] }}
                         transition={{
                             duration: 0.5,
                             ease: [0, 0.71, 0.2, 1.01],
@@ -312,10 +313,8 @@ const Programmer = () => {
                                 restDelta: 0.001
                             }
                         }}
-                    // animate={{ scaleX: "2", rotate: 2 }}
-                    // transition={{ duration: 1, delay: 0 }}
                     >
-                        <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => setHex(hex1)}>
+                        <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => { setHex(hex1); setMoveMotion(!moveMotion) }}>
                             click to change color
                         </button>
                     </motion.div>
@@ -329,7 +328,7 @@ const Programmer = () => {
                         Living and working everywhere - just wishful thinking or really feasible? Live like a digital nomad, So, as an entrepreneur or even an employee who uses almost exclusively digital technologies to do his work and at the same time leads a rather location-independent or multi-local life... Nothing is impossible!
                     </p>
                 </div>
-            </div>
+            </div >
 
 
             <div ref={yolov8} className='flex justify-center'>
