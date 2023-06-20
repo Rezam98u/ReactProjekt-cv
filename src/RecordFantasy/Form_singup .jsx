@@ -10,7 +10,7 @@ import { StateContext } from "./Context/contextRecordFantasy"
 
 // import validate from "./validate"
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-tnpm startoastify/dist/ReactToastify.css';
 
 ///////////////////////
 const SingUp = () => {
