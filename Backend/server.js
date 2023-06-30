@@ -4,18 +4,67 @@ import cors from 'cors'
 import bodyParser from 'body-parser'
 
 
+import { graphqlHTTP } from 'express-graphql'
+import {
+    GraphQLSchema,
+    GraphQLObjectType,
+    GraphQLString,
+    GraphQLList,
+    GraphQLInt,
+    GraphQLNonNull
+} from 'graphql'
+
 //////////////////////////////
-const router = express.Router()
+// const router = express.Router()
+// router.post('/register')
 
-router.post('/register')
-
-
-
-
-
-
-//////////////////////////////
+/////////////////////////////
 const app = express();
+
+
+//         "id": "bitcoin",
+//     "symbol": "btc",
+//       "name": "Bitcoin",
+
+// const BookType = new GraphQLObjectType({
+//     name: 'Book',
+
+//     fields: () => ({
+//         id: { type: GraphQLNonNull(GraphQLString) },
+//         symbol: { type: GraphQLNonNull(GraphQLString) },
+//         name: { type: GraphQLNonNull(GraphQLString) },
+//         author: {
+//             type: AuthorType,
+//             resolve: (book) => {
+//                 return authors.find(author => author.id === book.authorId)
+//             }
+//         }
+//     })
+// })
+
+
+// const resolver = { Query: }
+
+
+const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+        name: "helloWorld",
+        fields: () => ({
+            message: {
+                type: GraphQLString,
+                resolve: () => 'helloWorld'
+            }
+        })
+    })
+})
+
+app.use('/graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: true
+}))
+
+
+
 app.use(cors())
     // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
 

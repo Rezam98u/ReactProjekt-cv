@@ -2,7 +2,6 @@ import { React, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard, faShop } from '@fortawesome/free-solid-svg-icons';
-import { MoodHandlerContext } from '../App'
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 
@@ -10,13 +9,14 @@ import DrawerMui from '../shopping/Drawer/Drawer_mui'
 import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import HeroSection from './HeroSection';
 import Footer from './Footer';
+import {AppContext} from '../ContextApp';
 // import "./navbar.styles.scss"
 
 ///////////////////////////
 const Home = () => {
     const Navigate = useNavigate()
 
-    const { MoodHandler } = useContext(MoodHandlerContext);
+    const { MoodHandler } = useContext(AppContext);
 
     const [click, setClick] = useState(true)
 

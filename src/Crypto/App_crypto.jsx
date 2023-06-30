@@ -6,48 +6,89 @@ import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
-import video from "../video/spare your time and.mp4"
+// import video from "../video/spare your time and.mp4"
+
+import { useQuery, gql } from '@apollo/client';
+
 ////////////////////////////
 const AppCrypto = () => {
     const navigate = useNavigate()
     // const BASE_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}`
-    const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
+    // const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
 
     const [loading, setLoading] = useState(true)
     const [receivedData, setReceivedData] = useState([])
     const [search, setSearch] = useState({ text: "", bool: false })
 
+    // const GET_Data = gql(`
+    //  query GET_Data {
+    //       data {
+    //          id
+    //          symbol
+    //          name
+    //          current_price
+    //       }
+    //     } `
+    // )
+    //     ;
+
+        const getGen3 = gql`
+        query getGen3 {
+          pokemon_v2_pokemonspecies(
+            order_by: { id: asc }
+            where: { pokemon_v2_generation: { name: { _eq: "generation-iii" } } }
+          ) {
+            name
+            id
+          }
+        }
+      `
+
+    //     launchesPast(limit: 10) {
+    //         id
+    //         mission_name
+    //     }
+    // }
+
+
+
+    const { error, data } = useQuery(getGen3);
+
+    console.log(data);
+
     /////////////
     useEffect(() => {
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const { data } = await axios.get(BASE_URL);
-                setReceivedData(data);
-            } catch (error) {
-                console.error(error.message);
-            }
-            setLoading(false);
-        }
-        fetchData();
+        setReceivedData(data)
+
+        // const fetchData = async () => {
+        //     setLoading(true);
+        //     try {
+        //         const { data } = await axios.get(BASE_URL);
+        //         setReceivedData(data);
+        //     } catch (error) {
+        //         console.error(error.message);
+        //     }
+        //     setLoading(false);
+        // }
+        // fetchData();
     }, []);
 
     // console.log(receivedData);
 
     ///Pagination
-    const PAGE_LIMIT = 20; // Number of items to display on each page
-    const [currentPage, setCurrentPage] = useState(1)
+    // const PAGE_LIMIT = 20; // Number of items to display on each page
+    // const [currentPage, setCurrentPage] = useState(1)
 
-    // Calculate the items to display on the current page
-    const startIndex = (currentPage - 1) * PAGE_LIMIT;
-    const endIndex = startIndex + PAGE_LIMIT;
+    // // Calculate the items to display on the current page
+    // const startIndex = (currentPage - 1) * PAGE_LIMIT;
+    // const endIndex = startIndex + PAGE_LIMIT;
 
-    // Slice the items according to the current page
-    const currentData = receivedData.slice(startIndex, endIndex)
-    // console.log(currentData)
-    const handleClick = e => {
-        setCurrentPage(e.target.textContent); // Set the current page number
-    };
+    // // Slice the items according to the current page
+    // const currentData = receivedData.slice(startIndex, endIndex)
+    // // console.log(currentData)
+    // const handleClick = e => {
+    //     setCurrentPage(e.target.textContent); // Set the current page number
+    // };
 
     const searchHandler = event => {
         setSearch({
@@ -55,8 +96,10 @@ const AppCrypto = () => {
             bool: true,
         })
     }
-    const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
+    // const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
     /////////////////////////
+
+
     return (
         <div>
 
@@ -84,7 +127,7 @@ const AppCrypto = () => {
                     </div>
 
                     <div>
-                        {
+                        {/* {
                             search.bool ?
                                 <Grid container flex width={"98%"} marginX={"auto"} className="border-4 py-3 rounded-md bg-slate-100">
                                     {searched.map(item =>
@@ -138,13 +181,14 @@ const AppCrypto = () => {
                                         </Grid>
                                     )}
                                 </Grid>
-                        }
+                        } */}
                     </div>
-                    <div className="flex justify-center my-5">
+                    {/* <div className="flex justify-center my-5">
                         <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
-                    </div>
+                    </div> */}
                 </div>
             }
+
         </div>
     )
 }

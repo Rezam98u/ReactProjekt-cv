@@ -30,7 +30,7 @@ const NavbarAppShop = () => {
     return (
         <>
             <AppBar>
-                <PageScrollProgressBar color="#00AE47" bgColor="#f2f2f2" height="7px" />
+                <PageScrollProgressBar color="#00AE47" bgColor="#f2f2f2" height="4.1px" />
                 <Toolbar className='navbar_app_shop flex md:justify-around py-3'>
 
                     <div className='md:hidden'>

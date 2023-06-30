@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 * {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
   box-shadow: none;
 }
@@ -17,6 +16,74 @@
 .btnn:hover {
   background-color: darkmagenta;
   color: aliceblue;
+}
+
+.scrollChange {
+  color: black;
+}
+
+.scrollChange:hover {
+  color: cornflowerblue;
+}
+
+.Hero_Section {
+  cursor: none;
+  overflow: hidden;
+}
+
+.Hero_Section .cursor {
+  box-sizing: border-box;
+  width: 44px;
+  height: 44px;
+  background-color: white;
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  mix-blend-mode: difference;
+  transform: translate(-44%, -40%);
+  -webkit-transform: translate(-44%, -40%);
+  -moz-transform: translate(-44%, -40%);
+  -ms-transform: translate(-44%, -40%);
+  -o-transform: translate(-44%, -40%);
+}
+
+.Hero_Section .text_hero:hover {
+  background-color: darkcyan;
+}
+
+.Hero_Section .text_hero:hover ~ .cursor {
+  background-color: #00c8c8;
+  height: 100px;
+  width: 100px;
+}
+
+.Hero_Section .text_hero2 {
+  background-color: aliceblue;
+}
+
+.Hero_Section .hero {
+  width: 4rem;
+  height: 4rem;
+  color: black;
+  border: 2.8px solid;
+  border-color: black;
+  border-radius: 10%;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  -o-border-radius: 10%;
+}
+
+.Hero_Section .hero:hover {
+  border-color: #9e9e9e;
+}
+
+.special_color {
+  color: #ff12df;
 }
 
 .conn {

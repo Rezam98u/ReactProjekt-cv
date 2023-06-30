@@ -1,4 +1,4 @@
-import { React, useContext, useState } from 'react';
+import { React, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import { useForm } from 'react-hook-form';
@@ -9,14 +9,14 @@ import axios from "axios";
 import { StateContext } from "./Context/contextRecordFantasy"
 
 // import validate from "./validate"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 // import 'react-tnpm startoastify/dist/ReactToastify.css';
 
 ///////////////////////
 const SingUp = () => {
     const Navigate = useNavigate();
     const { email, setEmail, pass, setPass, setOpen } = useContext(StateContext)
-    const { handleSubmit, register, getValues, formState: { errors } } = useForm();
+    const { handleSubmit, register, formState: { errors } } = useForm();
 
 
     // const sendConfirmationEmail = email => {

@@ -1,14 +1,14 @@
-import { React, useState, useContext } from 'react';
+import { React, useContext } from 'react';
 // import video from './video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4'
 import video1 from "../video/video-1.mp4"
 import video2 from "../video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4"
-import { MoodHandlerContext } from '../App'
 import { Button } from '@mui/material';
+import { AppContext } from '../ContextApp';
 
 // import './hero.styles.scss'
 //////////////////////////////////
 const HeroSection = () => {
-    const { mood } = useContext(MoodHandlerContext);
+    const { mood } = useContext(AppContext);
 
     return (
         <>

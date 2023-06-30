@@ -1,12 +1,12 @@
 import { React, useState, useContext } from 'react';
-import { MoodHandlerContext } from '../App'
 import { Button } from '@mui/material';
+import {AppContext} from '../ContextApp';
 
 ////////////////////////////
 const Footer = () => {
     const [open, setOpen] = useState(false);
 
-    const { mood } = useContext(MoodHandlerContext);
+    const { mood } = useContext(AppContext);
 
     return (
         < >

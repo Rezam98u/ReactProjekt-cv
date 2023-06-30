@@ -1,50 +1,60 @@
-import { React, useEffect, useState, useRef } from 'react';
-import { AppBar, duration } from '@mui/material';
-
-// import HeroSection from './HeroSection';
+import { React, useEffect, useState, useRef, useContext } from 'react';
+import { AppBar } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Button from '@mui/material/Button';
 import img from "../img/v617batch2-kul-01-technology.jpg"
 import img_digitale_nomade from "../img/digitalernomade-984x540.jpg"
-import TextField from '@mui/material/TextField';
-// import Slider from "./Slider"
 import { useNavigate } from 'react-router-dom';
-import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import LinearProgress from '@mui/material/LinearProgress';
-
 import { Typewriter } from 'react-simple-typewriter'
 
 import PageScrollProgressBar from "react-page-scroll-progress-bar";
 
 import { motion, useScroll } from "framer-motion"
 import { Animator, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, ScrollContainer, ScrollPage, Sticky, StickyIn, ZoomIn, batch } from "react-scroll-motion"
+
+import img_p from '../img/Layer.png'
+import img_p2 from '../img/Layer_1_2-removebg-preview (1).png'
+
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+///Context 
+import { AppContext } from "../ContextApp"
 // import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
-
-// const useMountEffect = fn => useEffect(fn, []);
-
 const Programmer = () => {
     const navigate = useNavigate()
     const { scrollYProgress } = useScroll();
+
+    const { scroll, setScroll } = useContext(AppContext);
 
     const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: false });
     const [openMenu_2, setOpenMenu_2] = useState({ open: false, arrowUP: false });
     const [openMenu_4, setOpenMenu_4] = useState({ open: false, arrowUP: false });
     const [numCard, setNumCard] = useState();
     const [moveMotion, setMoveMotion] = useState(false);
-    const [scroll, setScroll] = useState(Number);
+
+    const [cursorY, setCursorY] = useState();
+    const [cursorX, setCursorX] = useState();
+
 
     useEffect(() => {
+        AOS.init();
+        AOS.refresh();
         const onScroll = () => {
             const scrollY = window.scrollY;
             setScroll(scrollY)
         };
         window.addEventListener("scroll", onScroll);
-    }, []);
 
+        window.addEventListener("mousemove", (e) => {
+            setCursorY(e.pageY)
+            setCursorX(e.pageX)
+        })
+
+    }, []);
+    // console.log(scroll);
     // const executeScroll = () => myRef.current.scrollIntoView()
 
     const executeScroll = () => scrollToRef.current.scrollIntoView()
@@ -75,7 +85,6 @@ const Programmer = () => {
             setDetectedType('Mobile') :
             setDetectedType('Desktop')
     }
-
     /////////////////////// connect to metamask ////////////////////////
     const connectWallet = async () => {
         if (typeof window != "undefined" && typeof window.ethereum != "undefined") {
@@ -111,78 +120,109 @@ const Programmer = () => {
     return (
         <>
             <AppBar style={{
-                background: scroll >= 950.4000244140625 ? '#C3D0FF' : "transparent", boxShadow: 'none', zIndex: 1 , 
+                background: scroll >= 2.933333396911621 ? '#FFFFFF' : "transparent", boxShadow: 'none', zIndex: 5, height: "62px"
             }}>
-                <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="7px" zIndex="2" />
+                <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="4.1px" zIndex="2" />
 
-                <div className='flex justify-around py-3 '>
-                    <Button className='flex items-center' onClick={() => navigate('/')}>
-                        <HomeIcon /> Home
-                    </Button>
+                <div className='flex justify-around py-4 items-center'>
+                    <div className={scroll === 0 && 'relative rounded-lg flex hover:bg-gray-700'}>
+                        <button className={scroll >= 2.933333396911621 ? "scrollChange flex" : "flex px-2"}
+                            onClick={() => navigate('/')}>
+                            <HomeIcon />
+                            <p> Home </p>
+                        </button>
+                    </div>
 
-                    {/* <div onClick={executeScroll} >
-                        <button> Scroll </button>
-                    </div> */}
-
-                    <div onMouseEnter={() => { setOpenMenu({ open: !openMenu.open, arrowUP: !openMenu.arrowUP }) }} className='relative'>
-                        <Button>
+                    <div onMouseEnter={() => { setOpenMenu({ open: true, arrowUP: !openMenu.arrowUP }) }}
+                        onMouseLeave={() => { setOpenMenu({ open: false, arrowUP: !openMenu.arrowUP }) }}
+                        className={scroll === 0 && 'relative rounded-lg hover:bg-gray-700'}
+                    >
+                        <button className={scroll >= 2.933333396911621 ? "scrollChange flex" : "flex px-2"}>
                             <p> Magazine </p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu.arrowUP ? 'rotate(180deg)' : null }} />
                             {/* <KeyboardArrowUpIcon style={{ transform: 'rotate(180deg)' }} /> */}
-                        </Button>
+                        </button>
                         {openMenu.open ?
-                            <div className='absolute top-9 left-0  bg-white text-black px-1 py-2 rounded-md'>
-                                <div className='border-l-4 rounded-md mx-2'>
-                                    <MenuItem onClick={executeScroll} className='w-56 hover:text-blue-700' >
-                                        Arbeit als digitaler Nomade
-                                    </MenuItem>
-                                    <MenuItem onClick={ScrollToyolov8} className='w-56 hover:text-blue-700' >
-                                        What is YoLo V8
-                                    </MenuItem>
+                            <motion.div
+                                initial={{ scaleY: 0 }}
+                                animate={{ scaleY: 1 }}
+                                transition={{ duration: 0.3 }}
+                                tra
+                            >
+                                <div className='absolute bg-white text-black px-1 py-2 rounded-md'>
+                                    <div className='border-l-4 rounded-md mx-2'>
+                                        <MenuItem onClick={executeScroll} className='w-56 hover:text-blue-700' >
+                                            Arbeit als digitaler Nomade
+                                        </MenuItem>
+                                        <MenuItem onClick={ScrollToyolov8} className='w-56 hover:text-blue-700' >
+                                            What is YoLo V8
+                                        </MenuItem>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                             : null
                         }
                     </div>
 
-                    <div onMouseEnter={() => { setOpenMenu_2({ open: !openMenu_2.open, arrowUP: !openMenu_2.arrowUP }) }} className='relative' >
-                        <Button>
-                            <p> programming languages</p>
+                    <div onMouseEnter={() => { setOpenMenu_2({ open: true, arrowUP: !openMenu_2.arrowUP }) }}
+                        onMouseLeave={() => { setOpenMenu_2({ open: false, arrowUP: !openMenu_2.arrowUP }) }}
+                        className={scroll === 0 && 'relative rounded-lg hover:bg-gray-700'}
+                    >
+                        <button className={scroll >= 2.933333396911621 ? "scrollChange flex" : "flex px-2"}>
+                            <p> Programming Languages </p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu_2.arrowUP ? 'rotate(180deg)' : null }} />
-                        </Button>
+                        </button>
                         {
                             openMenu_2.open ?
-                                <div className='absolute top-9 left-0  bg-white text-black px-1 py-2 rounded-md'>
-                                    <MenuItem className='w-56 hover:text-blue-700' onClick={ScrollToPython}>  Python (AI Programming)</MenuItem>
-                                    <MenuItem className='w-56 hover:text-blue-700' onClick={ScrollToC}>  C# </MenuItem>
-                                    <MenuItem className='w-56 hover:text-blue-700' >  Go </MenuItem>
-                                </div>
+                                <motion.div
+                                    initial={{ scaleY: 0 }}
+                                    animate={{ scaleY: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                    tra
+                                >
+                                    <div className='absolute bg-white text-black px-1 py-2 rounded-md w-56'>
+                                        <MenuItem className='hover:text-blue-700' onClick={ScrollToPython}>  Python (AI Programming)</MenuItem>
+                                        <MenuItem className='hover:text-blue-700' onClick={ScrollToC}>  C# </MenuItem>
+                                        <MenuItem className='hover:text-blue-700' >  Go </MenuItem>
+                                    </div>
+                                </motion.div>
                                 : null
                         }
                     </div>
 
-                    <div>
-                        <Button onClick={connectWallet}>
+                    <div className={scroll === 0 && 'relative rounded-lg hover:bg-gray-700'}>
+                        <button className={scroll >= 2.933333396911621 ? "scrollChange flex px-2" : "flex px-2"}
+                            onClick={connectWallet}>
                             <p> Connect to Wallet </p>
-                        </Button>
+                        </button>
                     </div>
 
-                    <div onMouseEnter={() => { setOpenMenu_4({ open: !openMenu_4.open, arrowUP: !openMenu_4.arrowUP }) }} className='relative'>
-                        <Button>
+                    <div onMouseEnter={() => { setOpenMenu_4({ open: true, arrowUP: !openMenu_4.arrowUP }) }}
+                        onMouseLeave={() => { setOpenMenu_4({ open: false, arrowUP: !openMenu_4.arrowUP }) }}
+                        className={scroll === 0 && 'relative rounded-lg hover:bg-gray-700'}
+                    >
+                        <button className={scroll >= 2.933333396911621 ? "scrollChange flex px-2" : "flex px-2"}>
                             <p> more </p>
                             <KeyboardArrowUpIcon style={{ transform: openMenu_4.arrowUP ? 'rotate(180deg)' : null }} />
-                        </Button>
+                        </button>
                         {openMenu_4.open ?
-                            <div className='absolute top-9 left-0 bg-white text-black px-1 py-2 rounded-md'>
-                                <div className='border-l-4 rounded-md mx-2'>
-                                    {/* <MenuItem className='w-56 hover:text-blue-700'>
+                            <motion.div
+                                initial={{ scaleY: 0 }}
+                                animate={{ scaleY: 1 }}
+                                transition={{ duration: 0.3 }}
+                                tra
+                            >
+                                <div className='absolute  bg-white text-black px-1 py-2 rounded-md'>
+                                    <div className='border-l-4 rounded-md mx-2'>
+                                        {/* <MenuItem className='w-56 hover:text-blue-700'>
                                         to pad your card
                                     </MenuItem> */}
-                                    <MenuItem onClick={ScrollToDetectType} className=' hover:text-blue-700'>
-                                        show detail
-                                    </MenuItem>
+                                        <MenuItem onClick={ScrollToDetectType} className=' hover:text-blue-700'>
+                                            show detail
+                                        </MenuItem>
+                                    </div>
                                 </div>
-                            </div>
+                            </motion.div>
                             : null
                         }
                     </div>
@@ -190,88 +230,97 @@ const Programmer = () => {
             </AppBar >
 
 
-            <div className='relative'>
-                <img className='bg-no-repeat bg-cover bg-center' src={img} alt="" />
-                <div className='absolute top-36 left-5 p-3 rounded-xl bg-slate-400 z-10'>
+            <div className='relative Hero_Section'>
+                {/* <img className='bg-no-repeat bg-cover bg-center' src={img} alt="" /> */}
+                <div className='w-full h-screen bg-black'>
+                    <div className='flex gap-3 absolute bottom-16 left-5'>
+                        <div className="bg-white w-16 h-16 rounded-lg"></div>
+                        <div className="bg-white w-16 h-16 rounded-lg"></div>
+                        <div className="bg-white w-16 h-16 rounded-lg"></div>
+                    </div>
+
+                    <div className='absolute top-20 right-5'>
+                        <div className='flex items-center gap-3'>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className='hero'></div>
+                            <div className=" w-16 h-16 rounded-lg"></div>
+                            <div className="bg-white w-16 h-16 rounded-lg"></div>
+                            <div className="bg-white w-16 h-16 rounded-lg"></div>
+                            <div className="bg-white w-16 h-16 rounded-lg"></div>
+                        </div>
+                    </div>
+
+                    {/* <div className='absolute  bottom-10 right-10 text-center bg-slate-500 px-3 rounded-lg  text_hero'>
+                        <div> here is a text ! </div>
+                    </div> */}
+
+                    {/* <motion.div className="absolute bottom-56 special_color"
+                        initial={{ x: 0 }} animate={{ x: 1200 }} transition={{ duration: 5 }}
+                    >
+                        <p className='font-bold font-sans text-xl'> Programming</p> 
+                    </motion.div> */}
+
+                </div>
+                <div className='absolute top-72 left-10 p-3 rounded-xl z-3'>
                     <div>
-                        <p className='text-lg font-bold'>
+                        <p className='text-xl font-bold text-white'>
                             Programming is actually <Typewriter
                                 words={['a Life Style', 'a big dream']}
                                 loop={2}
-                                typeSpeed={70}
-                                deleteSpeed={40}
+                                typeSpeed={72}
+                                deleteSpeed={45}
                                 delaySpeed={1500}
                             />
                         </p>
                     </div>
                     <div>
-                        <p>
-                            <Typewriter words={["Make grate change in your Life with Programming"]} loop={2} />
+                        <p className='text-white'>
+                            <Typewriter words={["Make grate change in your Life with Programming"]} loop={2} typeSpeed={72} />
                         </p>
                     </div>
                     {/* <p className='text-lg'> Programming is actually a Life Style </p>  */}
                     {/* <p className='text-lg'> Make grate change in your Life with Programming </p>  */}
                 </div>
+
+                {/* <img width="512" height="512" src="https://img.icons8.com/glyph-neue/512/000000/search--v1.png" alt="search--v1"
+                    className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }}
+                /> */}
+
+                <div className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }} />
+                {/* <SearchIcon></SearchIcon> */}
             </div>
 
+            <div className='w-4/5 mx-auto  mt-20 mb-3 py-2 pr-2 flex justify-end rounded-lg '>
+                <div>
+                    <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 2 }} >
+                        <img className='z-20 ml-4' width={230} height={230} src={img_p} alt='#' />
+                    </motion.div>
+                    <motion.div initial={{ y: 80 }} whileInView={{ y: -12 }} transition={{ duration: 2 }}>
+                        <img className='z-10' width={320} height={320} src={img_p2} alt='#' />
+                    </motion.div>
+                </div>
+            </div>
 
-
-            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+            {/* <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
                 <motion.div
                     style={{ width: '30%' }}
                     initial={{ scale: 0 }}
-                    animate={{ x: 200, scale: 1.5 }}
-                    transition={{ duration: 4, delay: 0.5 }}>
+                    // animate={{ x: 200, scale: 1.5 }}
+                    transition={{ duration: 2 }}
+                    whileInView={{ x: 200, scale: 1.5 }}
+                >
                     Programming
                 </motion.div>
-            </div>
+            </div> */}
 
-            <div className='bg-green-400 text-center w-4/5 mx-auto my-2 pt-3 rounded-lg'>
-                {/* <ScrollContainer>
-                    <ScrollPage>
-                        <Animator animation={batch(MoveIn(400, 500))}>
-                            <div ref={ToPython} className='flex justify-center'>
-                                <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
-                                    <p className='text-2xl text-start pb-2'> What is Python? </p>
-                                    <p>
-                                        <span className='bg-blue-300 rounded-md px-1 py-1'>
-                                            Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.
-                                            Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn’t specialized for any specific problems.
-                                        </span>
-                                        This versatility, along with its beginner-friendliness, has made it one of the most-used programming languages today.
-                                        A survey conducted by industry analyst firm RedMonk found that it was the second-most popular programming language among developers in 2021.
-                                    </p>
-                                </div>
-                            </div>
-                        </Animator>
-                    </ScrollPage> */}
-                    {/* <ScrollPage>
-                        <Animator animation={batch(StickyIn(), FadeIn(), ZoomIn())}>
-                            <span className="mt-6"> I'm FadeUpScrollOut ✨ </span>
-                        </Animator>
-                    </ScrollPage> */}
-                    {/* <ScrollPage>
-                        <Animator animation={batch(Fade(), Move(), Sticky())}>
-                            <span > I'm FadeUp ⛅️</span>
-                        </Animator>
-                    </ScrollPage> */}
-                    {/* <ScrollPage>
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
-                            <span style={{ fontSize: "40px" }}>
-                                <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
-                                <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
-                                - I'm Dante Chun -
-                                <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
-                                <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
-                            </span>
-                        </div>
-                    </ScrollPage>
-                </ScrollContainer> */}
-                
-            </div>
 
-            <div ref={ToPython} className='flex justify-center'>
-                <div className='w-4/5 border-4  rounded-xl p-8 m-4'>
+            <div ref={ToPython} className='flex justify-center'
+                data-aos='fade-up'
+                // data-aos-easing="linear"
+                data-aos-duration="1100"
+            >
+                <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-2'> What is Python? </p>
                     <p>
                         <span className='bg-blue-300 rounded-md px-1 py-1'>
@@ -285,7 +334,7 @@ const Programmer = () => {
             </div>
 
 
-            <div ref={ToC} className='flex justify-center'>
+            <div ref={ToC} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-2'> What is C#? </p>
                     <p>
@@ -299,7 +348,7 @@ const Programmer = () => {
             </div>
 
 
-            <div ref={scrollToRef} className='flex justify-center '>
+            <div ref={scrollToRef} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
                 <div style={{ background: `${hex}` }} className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <motion.div
                         initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
@@ -332,7 +381,7 @@ const Programmer = () => {
             </div >
 
 
-            <div ref={yolov8} className='flex justify-center'>
+            <div ref={yolov8} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start pb-2'> What is YoLo v8 ? </p>
                     <p>
@@ -348,7 +397,7 @@ const Programmer = () => {
                 </div>
             </div>
 
-            <div ref={ToDetectType} className='flex justify-center'>
+            <div ref={ToDetectType} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
                 <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
                     <p className='text-2xl text-start '> show your details </p>
                     <p className='text-md'> for example : login with mobile or laptop </p>
