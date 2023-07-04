@@ -8,6 +8,16 @@ import img_digitale_nomade from "../img/digitalernomade-984x540.jpg"
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import { Typewriter } from 'react-simple-typewriter'
+import searchIcon from '../img/8666693_search_icon.png'
+
+import { AiFillGithub } from "react-icons/ai";
+import { BsDiscord } from "react-icons/bs";
+import { BsTwitch } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
+import { BsTwitter } from "react-icons/bs";
+import { BsYoutube } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 
 import PageScrollProgressBar from "react-page-scroll-progress-bar";
 
@@ -38,6 +48,8 @@ const Programmer = () => {
     const [cursorY, setCursorY] = useState();
     const [cursorX, setCursorX] = useState();
 
+    const [lineWidth, setLineWidth] = useState('100%');
+
 
     useEffect(() => {
         AOS.init();
@@ -53,7 +65,11 @@ const Programmer = () => {
             setCursorX(e.pageX)
         })
 
+        const timer = setTimeout(() => { setLineWidth('0%') }, 2000)
+        return () => clearTimeout(timer);
+
     }, []);
+
     // console.log(scroll);
     // const executeScroll = () => myRef.current.scrollIntoView()
 
@@ -230,68 +246,72 @@ const Programmer = () => {
             </AppBar >
 
 
-            <div className='relative Hero_Section'>
+            <div className={scroll === 0 ? 'Hero_Section relative' : 'relative'}>
                 {/* <img className='bg-no-repeat bg-cover bg-center' src={img} alt="" /> */}
                 <div className='w-full h-screen bg-black'>
-                    <div className='flex gap-3 absolute bottom-16 left-5'>
+                    <div className='flex gap-3 absolute bottom-16 left-5 text_hero'>
                         <div className="bg-white w-16 h-16 rounded-lg"></div>
                         <div className="bg-white w-16 h-16 rounded-lg"></div>
                         <div className="bg-white w-16 h-16 rounded-lg"></div>
                     </div>
 
-                    <div className='absolute top-20 right-5'>
-                        <div className='flex items-center gap-3'>
+                    {/* <div className='absolute top-20 right-5 '>
+                        <div className='flex items-center gap-1'>
                             <div className="hero"></div>
                             <div className="hero"></div>
                             <div className='hero'></div>
-                            <div className=" w-16 h-16 rounded-lg"></div>
-                            <div className="bg-white w-16 h-16 rounded-lg"></div>
-                            <div className="bg-white w-16 h-16 rounded-lg"></div>
-                            <div className="bg-white w-16 h-16 rounded-lg"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className='hero'></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                            <div className="hero"></div>
+                        </div>
+                    </div> */}
+
+                    <div>
+                        <motion.div className="absolute bottom-56 special_color text_hero w-full programming"
+                            initial={{ x: '-100%' }} animate={{ x: '100%', width: lineWidth }}
+                            transition={{ duration: 4, loop: Infinity, repeatDelay: 1 }}
+                        >
+                            <div className='font-bold '> </div>
+                        </motion.div>
+                    </div>
+
+                    <div className='absolute top-72 left-10 p-3 rounded-xl z-3 text_hero'>
+                        <div>
+                            <p className='text-xl font-bold text-white'>
+                                Programming is actually <Typewriter
+                                    words={['a big dream', 'a Life Style']}
+                                    loop={2}
+                                    typeSpeed={72}
+                                    deleteSpeed={45}
+                                    delaySpeed={1500}
+                                />
+                            </p>
+                        </div>
+                        <div>
+                            <p className='text-white'>
+                                <Typewriter words={["Make grate change in your Life with Programming"]} loop={2} typeSpeed={72} />
+                            </p>
                         </div>
                     </div>
 
-                    {/* <div className='absolute  bottom-10 right-10 text-center bg-slate-500 px-3 rounded-lg  text_hero'>
-                        <div> here is a text ! </div>
-                    </div> */}
-
-                    {/* <motion.div className="absolute bottom-56 special_color"
-                        initial={{ x: 0 }} animate={{ x: 1200 }} transition={{ duration: 5 }}
-                    >
-                        <p className='font-bold font-sans text-xl'> Programming</p> 
-                    </motion.div> */}
-
-                </div>
-                <div className='absolute top-72 left-10 p-3 rounded-xl z-3'>
-                    <div>
-                        <p className='text-xl font-bold text-white'>
-                            Programming is actually <Typewriter
-                                words={['a Life Style', 'a big dream']}
-                                loop={2}
-                                typeSpeed={72}
-                                deleteSpeed={45}
-                                delaySpeed={1500}
-                            />
-                        </p>
-                    </div>
-                    <div>
-                        <p className='text-white'>
-                            <Typewriter words={["Make grate change in your Life with Programming"]} loop={2} typeSpeed={72} />
-                        </p>
-                    </div>
-                    {/* <p className='text-lg'> Programming is actually a Life Style </p>  */}
-                    {/* <p className='text-lg'> Make grate change in your Life with Programming </p>  */}
-                </div>
-
-                {/* <img width="512" height="512" src="https://img.icons8.com/glyph-neue/512/000000/search--v1.png" alt="search--v1"
+                    {/* <img width="512" height="512" src="https://img.icons8.com/glyph-neue/512/000000/search--v1.png" alt="search--v1"
                     className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }}
                 /> */}
+                    {scroll === 0 && <img src={searchIcon} alt="" className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }} />}
 
-                <div className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }} />
-                {/* <SearchIcon></SearchIcon> */}
+                    {/* {scroll === 0 && <div className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }} />} */}
+                </div>
             </div>
 
-            <div className='w-4/5 mx-auto  mt-20 mb-3 py-2 pr-2 flex justify-end rounded-lg '>
+            <div className='w-4/5 mx-auto  mt-20 mb-3 py-2 pr-2 flex justify-end rounded-lg'>
                 <div>
                     <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 2 }} >
                         <img className='z-20 ml-4' width={230} height={230} src={img_p} alt='#' />
@@ -413,8 +433,30 @@ const Programmer = () => {
                     </div>
                 </div>
             </div>
+
+            <div className='flex w-full footer justify-center mt-5 bg-slate-200'>
+                <div className='flex justify-between w-4/5 my-4'>
+                    <div className='flex gap-5 items-center'>
+                        <p> © 2023, Strapi </p>
+                        <p>License</p>
+                        <p>Terms</p>
+                        <p>Privacy</p>
+                    </div>
+
+                    <div className='flex gap-6 items-center'>
+                        <div className='text-lg'> Join us on </div>
+
+                        <div className='text-xl hover:text-black'> <AiFillGithub /> </div>
+                        <div className='text-xl hover:text-blue-600'> <BsDiscord /> </div>
+                        <div className='text-xl hover:text-blue-400'> <BsTwitter /> </div>
+                        <div className='text-xl hover:text-blue-800'> <BsFacebook /> </div>
+                        <div className='text-xl hover:text-blue-700'> <BsLinkedin /> </div>
+                        <div className='text-xl hover:text-fuchsia-500'> <BsInstagram /> </div>
+                        <div className='text-xl hover:text-red-500'> <BsYoutube /> </div>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
-
 export default Programmer;

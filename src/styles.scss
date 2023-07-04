@@ -3,7 +3,7 @@
 @tailwind utilities;
 * {
     // font-family: 'IBM Plex Sans', sans-serif;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     // font-weight: 400;
     box-sizing: border-box;
     box-shadow: none;
@@ -32,7 +32,7 @@ $font: 1.36rem;
 }
 
 .btnn {
-    @include mainBtn
+    @include mainBtn;
 }
 
 .scrollChange {
@@ -65,38 +65,44 @@ $font: 1.36rem;
         -o-transform: translate(-44%, -40%);
     }
     .text_hero {
-        &:hover {
-            background-color: darkcyan;
-        }
-        &:hover~.cursor {
-            background-color: rgb(0, 200, 200);
-            height: 100px;
-            width: 100px;
+        &:hover ~ .cursor {
+            //background-color: rgb(0, 200, 200);
+            height: 120px;
+            width: 120px;
         }
     }
     .text_hero2 {
         background-color: aliceblue;
     }
     .hero {
+        &:hover {
+            // border-color: rgb(220, 22, 255);
+            // border-bottom: solid 3px rgb(221, 27, 255);
+            // border-top: solid 3px rgb(221, 27, 255);
+            transform: scaleX(2);
+        }
         width: 4rem;
         height: 4rem;
-        color: black;
-        // background-color: rgb(105, 105, 105);
-        border: 2.8px solid;
-        border-color: rgb(0, 0, 0);
-        border-radius: 10%;
-        -webkit-border-radius: 10%;
-        -moz-border-radius: 10%;
-        -ms-border-radius: 10%;
-        -o-border-radius: 10%;
-        &:hover {
-            border-color: rgb(158, 158, 158);
-        }
+        //color: black;
+        background-color: rgb(161, 161, 161);
+        // border: 2.8px solid;
+        // border-color: rgb(0, 0, 0);
+        // border-radius: 10%;
+        transform: scaleX(1);
+        // transition-duration: 2s;
+    }
+    .programming {
+        border-bottom: solid 4px rgb(255, 18, 223);
+
+        // background-color: aqua;
     }
 }
 
 .special_color {
     color: rgb(255, 18, 223);
+}
+.footer {border-top: 3px solid black;
+    width: 100%;
 }
 
 ///////////////////// Navbar
