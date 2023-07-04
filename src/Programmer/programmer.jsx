@@ -2,33 +2,26 @@ import { React, useEffect, useState, useRef, useContext } from 'react';
 import { AppBar } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Button from '@mui/material/Button';
 import img from "../img/v617batch2-kul-01-technology.jpg"
 import img_digitale_nomade from "../img/digitalernomade-984x540.jpg"
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import { Typewriter } from 'react-simple-typewriter'
 import searchIcon from '../img/8666693_search_icon.png'
-
 import { AiFillGithub } from "react-icons/ai";
 import { BsDiscord } from "react-icons/bs";
-import { BsTwitch } from "react-icons/bs";
 import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { BsYoutube } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
-
 import PageScrollProgressBar from "react-page-scroll-progress-bar";
-
 import { motion, useScroll } from "framer-motion"
-import { Animator, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, ScrollContainer, ScrollPage, Sticky, StickyIn, ZoomIn, batch } from "react-scroll-motion"
-
 import img_p from '../img/Layer.png'
 import img_p2 from '../img/Layer_1_2-removebg-preview (1).png'
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 ///Context 
 import { AppContext } from "../ContextApp"
 // import { number } from 'prop-types';
