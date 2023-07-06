@@ -8,51 +8,20 @@ import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
 // import video from "../video/spare your time and.mp4"
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
+import { GET_Data } from './GraphQl/queries ';
 ////////////////////////////
 const AppCrypto = () => {
     const navigate = useNavigate()
-    // const BASE_URL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${page}`
-    // const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
-
     const [loading, setLoading] = useState(true)
     const [receivedData, setReceivedData] = useState([])
     const [search, setSearch] = useState({ text: "", bool: false })
 
-    // const GET_Data = gql(`
-    //  query GET_Data {
-    //       data {
-    //          id
-    //          symbol
-    //          name
-    //          current_price
-    //       }
-    //     } `
-    // )
-    //     ;
-
-        const getGen3 = gql`
-        query getGen3 {
-          pokemon_v2_pokemonspecies(
-            order_by: { id: asc }
-            where: { pokemon_v2_generation: { name: { _eq: "generation-iii" } } }
-          ) {
-            name
-            id
-          }
-        }
-      `
-
-    //     launchesPast(limit: 10) {
-    //         id
-    //         mission_name
-    //     }
-    // }
 
 
 
-    const { error, data } = useQuery(getGen3);
+    const { error, data } = useQuery(GET_Data);
 
     console.log(data);
 

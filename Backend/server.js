@@ -13,6 +13,7 @@ import {
     GraphQLInt,
     GraphQLNonNull
 } from 'graphql'
+import { type } from '@testing-library/user-event/dist/type'
 
 //////////////////////////////
 // const router = express.Router()
@@ -45,17 +46,28 @@ const app = express();
 
 // const resolver = { Query: }
 
+const helloWorldType = new GraphQLObjectType({
+    name: "helloWorld",
+    fields: () => ({
+        message: {
+            type: GraphQLString,
+            resolve: () => 'helloWorld'
+        }
+    })
+})
+
+const CoinType = new GraphQLObjectType({
+    name: 'CoinType',
+    fields: () => ({
+        id: { type: GraphQLNonNull(GraphQLInt) },
+        name: { type: GraphQLNonNull(GraphQLString) }
+    })
+})
+
 
 const schema = new GraphQLSchema({
-    query: new GraphQLObjectType({
-        name: "helloWorld",
-        fields: () => ({
-            message: {
-                type: GraphQLString,
-                resolve: () => 'helloWorld'
-            }
-        })
-    })
+    query: helloWorldType
+
 })
 
 app.use('/graphql', graphqlHTTP({
@@ -66,11 +78,11 @@ app.use('/graphql', graphqlHTTP({
 
 
 app.use(cors())
-    // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
+// app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-    /////////////////////////////////// 
+/////////////////////////////////// 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',

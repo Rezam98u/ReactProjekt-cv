@@ -7,9 +7,10 @@ import { onError } from "@apollo/client/link/error";
 ///////////////
 const ApiProvider = () => {
   // const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
-  // const BASE_URL = "https://api.coingecko.com/api/v3"
-  const BASE_URL = "https://beta.pokeapi.co/graphql/v1beta"
-  // const BASE_URL = "http://localhost:3003/graphql"
+  const BASE_URL = "https://api.coingecko.com/api/v3/graphql"
+  // const BASE_URL = "https://rickandmortyapi.com/graphql"
+  // const BASE_URL = "https://api.coinpaprika.com/v1"
+  // const BASE_URL = "https://graphql-us-east-1.upstash.io/"
 
   const errorLink = onError(({ graphqlErrors, networkError }) => {
     if (graphqlErrors) {
@@ -28,22 +29,6 @@ const ApiProvider = () => {
     cache: new InMemoryCache(),
     link: link,
   });
-
-  // client
-  //   .query({
-  //     query: gql`
-  //     query GetLocations {
-  //       locations {
-  //         id
-  //         symbol
-  //         name
-  //         image
-  //         current_price
-  //       }
-  //     }
-  //   `,
-  //   })
-  //   .then((result) => console.log(result));
 
   return (
     <ApolloProvider client={client}>

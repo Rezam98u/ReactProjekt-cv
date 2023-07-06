@@ -267,14 +267,14 @@ const Programmer = () => {
                         </div>
                     </div> */}
 
-                    <div>
+                    {/* <div>
                         <motion.div className="absolute bottom-56 special_color text_hero w-full programming"
                             initial={{ x: '-100%' }} animate={{ x: '100%', width: lineWidth }}
                             transition={{ duration: 4, loop: Infinity, repeatDelay: 1 }}
                         >
                             <div className='font-bold '> </div>
                         </motion.div>
-                    </div>
+                    </div> */}
 
                     <div className='absolute top-72 left-10 p-3 rounded-xl z-3 text_hero'>
                         <div>

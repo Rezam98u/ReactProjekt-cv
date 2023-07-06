@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.2883551b.css",
-    "main.js": "/static/js/main.714cf5c7.js",
+    "main.css": "/static/css/main.728fcfa3.css",
+    "main.js": "/static/js/main.a121c225.js",
     "static/media/video-1.mp4": "/static/media/video-1.59e75226d30ad48f9ede.mp4",
     "static/media/v617batch2-kul-01-technology.jpg": "/static/media/v617batch2-kul-01-technology.dd8d5eabc9647d80c6ba.jpg",
     "static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4": "/static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.b167724f7ca53838b7b9.mp4",
@@ -10,12 +10,13 @@
     "service-worker.js": "/service-worker.js",
     "static/media/digitalernomade-984x540.jpg": "/static/media/digitalernomade-984x540.fe9925c31d4cb4cc2ae4.jpg",
     "static/media/Layer.png": "/static/media/Layer.f0391fd9cb759b8d5cd9.png",
+    "static/media/8666693_search_icon.png": "/static/media/8666693_search_icon.3dfbe172722c8c10b696.png",
     "index.html": "/index.html",
-    "main.2883551b.css.map": "/static/css/main.2883551b.css.map",
-    "main.714cf5c7.js.map": "/static/js/main.714cf5c7.js.map"
+    "main.728fcfa3.css.map": "/static/css/main.728fcfa3.css.map",
+    "main.a121c225.js.map": "/static/js/main.a121c225.js.map"
   },
   "entrypoints": [
-    "static/css/main.2883551b.css",
-    "static/js/main.714cf5c7.js"
+    "static/css/main.728fcfa3.css",
+    "static/js/main.a121c225.js"
   ]
 }
