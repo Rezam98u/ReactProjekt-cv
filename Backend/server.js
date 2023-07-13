@@ -13,7 +13,7 @@ import {
     GraphQLInt,
     GraphQLNonNull
 } from 'graphql'
-import { type } from '@testing-library/user-event/dist/type'
+// import { type } from '@testing-library/user-event/dist/type'
 
 //////////////////////////////
 // const router = express.Router()
@@ -56,13 +56,13 @@ const helloWorldType = new GraphQLObjectType({
     })
 })
 
-const CoinType = new GraphQLObjectType({
-    name: 'CoinType',
-    fields: () => ({
-        id: { type: GraphQLNonNull(GraphQLInt) },
-        name: { type: GraphQLNonNull(GraphQLString) }
-    })
-})
+// const CoinType = new GraphQLObjectType({
+//     name: 'CoinType',
+//     fields: () => ({
+//         id: { type: GraphQLNonNull(GraphQLInt) },
+//         name: { type: GraphQLNonNull(GraphQLString) }
+//     })
+// })
 
 
 const schema = new GraphQLSchema({

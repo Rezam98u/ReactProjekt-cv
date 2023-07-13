@@ -119,13 +119,26 @@ import { gql } from '@apollo/client'
 
 
 ////////////////////////////
+// export const GET_Data = gql `
+// query {
+//     coin (id: "bitcoin") {
+//       marketData {
+//         currentPrice {
+//           usd
+//         }
+//       }
+//     }
+//   }
+//   `
+
+
 export const GET_Data = gql`
-query {
-    coin(symbol: "BTC") {
-      price
-    }
+query LatestEuro {
+  latest(baseCurrency: "EUR", quoteCurrencies: ["USD", "CHF", "HKD"]) {
+    date
+    baseCurrency
+    quoteCurrency
+    quote
   }
-  `
-
-
-
+}
+`

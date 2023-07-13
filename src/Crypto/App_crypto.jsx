@@ -19,6 +19,29 @@ const AppCrypto = () => {
     const [search, setSearch] = useState({ text: "", bool: false })
 
 
+    //     const getGen3 = gql`
+    //     query getGen3 {
+    //       pokemon_v2_pokemonspecies(
+    //         order_by: { id: asc }
+    //         where: { pokemon_v2_generation: { name: { _eq: "generation-iii" } } }
+    //       ) {
+    //         name
+    //         id
+    //       }
+    //     }
+    //   `
+
+    // id
+    // symbol
+    // name
+    // current_price
+
+    //     launchesPast(limit: 10) {
+    //         id
+    //         mission_name
+    //     }
+    // }
+
 
 
     const { error, data } = useQuery(GET_Data);

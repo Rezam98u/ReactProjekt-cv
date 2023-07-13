@@ -11,17 +11,11 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 /// Context
 import ContextApp from './ContextApp';
 
-/////////// Redux 
-// import store from "./Redux/store"
-// import { Provider } from 'react-redux';
-
 import './styles.scss'
-
 /////////////////////////////
 const App = () => {
     return (
         <>
-            {/* <Provider store={store}> */}
             <GoogleOAuthProvider clientId="958087409648-230adphg6efhl7t588o2mqqnoe9vo660">
                 <ContextApp>
                     <Routes>
@@ -33,7 +27,6 @@ const App = () => {
                     </Routes>
                 </ContextApp>
             </GoogleOAuthProvider>
-            {/* </Provider> */}
         </>
     );
 }
