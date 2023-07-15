@@ -83,7 +83,7 @@ const Home = () => {
 
             <HeroSection />
 
-            <div className='w-4/5 mx-auto border-4 my-3'>
+            {/* <div className='w-4/5 mx-auto border-4 my-3'>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -102,7 +102,7 @@ const Home = () => {
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
-            </div>
+            </div> */}
 
             <Footer />
         </>
