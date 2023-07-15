@@ -1,15 +1,10 @@
-import { React, useState, useContext } from 'react';
+import { React, } from 'react';
 import { Button } from '@mui/material';
-import {AppContext} from '../ContextApp';
 
 ////////////////////////////
 const Footer = () => {
-    const [open, setOpen] = useState(false);
-
-    const { mood } = useContext(AppContext);
-
     return (
-        < >
+        <>
             <div className="footer bg-gradient-to-b from-yellow-300 to-blue-900 ">
                 <div className='con text-center py-4  dark:bg-gradient-to-b from-black to-gray-500 '>
                     <div className='header_text'>

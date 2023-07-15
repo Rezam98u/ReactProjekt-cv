@@ -79,11 +79,6 @@
   color: #ff12df;
 }
 
-.footer {
-  border-top: 3px solid black;
-  width: 100%;
-}
-
 .conn {
   height: 70px;
   z-index: 999;

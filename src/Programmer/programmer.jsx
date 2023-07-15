@@ -2,8 +2,9 @@ import { React, useEffect, useState, useRef, useContext } from 'react';
 import { AppBar } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import img from "../img/v617batch2-kul-01-technology.jpg"
+import img from "../img/ales-nesetril-Im7lZjxeLhg-unsplash.jpg"
 import img_digitale_nomade from "../img/digitalernomade-984x540.jpg"
+import img_neon from '../img/Frame 3.svg'
 import { useNavigate } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import { Typewriter } from 'react-simple-typewriter'
@@ -242,6 +243,7 @@ const Programmer = () => {
             <div className={scroll === 0 ? 'Hero_Section relative' : 'relative'}>
                 {/* <img className='bg-no-repeat bg-cover bg-center' src={img} alt="" /> */}
                 <div className='w-full h-screen bg-black'>
+                    {/* <img src={img} alt="" /> */}
                     <div className='flex gap-3 absolute bottom-16 left-5 text_hero'>
                         <div className="bg-white w-16 h-16 rounded-lg"></div>
                         <div className="bg-white w-16 h-16 rounded-lg"></div>
@@ -294,6 +296,14 @@ const Programmer = () => {
                             </p>
                         </div>
                     </div>
+
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 1.8 }}
+                        className='absolute bottom-1 right-9 '>
+                        <img src={img_neon} alt="" width={245} />
+                    </motion.div>
 
                     {/* <img width="512" height="512" src="https://img.icons8.com/glyph-neue/512/000000/search--v1.png" alt="search--v1"
                     className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }}

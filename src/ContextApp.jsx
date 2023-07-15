@@ -11,7 +11,7 @@ const ContextApp = ({ children }) => {
 
 
     return (
-        <div className={mood || scroll >= 2.933333396911621 ? "dark" || 'Dark' : ""}>
+        <div className={mood ? "dark" : ""}>
             <AppContext.Provider value={{ mood, setMood, MoodHandler, scroll, setScroll }}>
                 {children}
             </AppContext.Provider>
