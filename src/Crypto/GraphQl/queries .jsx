@@ -97,7 +97,7 @@ import { gql } from '@apollo/client'
 // `
 
 
-////////////////////////////
+//////////////////////////// https://rickandmortyapi.com/graphql
 // export const GET_Data = gql`
 // query {
 //     characters(page: 2, filter: { name: "rick" }) {
@@ -132,13 +132,23 @@ import { gql } from '@apollo/client'
 //   `
 
 
-export const GET_Data = gql`
-query LatestEuro {
-  latest(baseCurrency: "EUR", quoteCurrencies: ["USD", "CHF", "HKD"]) {
-    date
-    baseCurrency
-    quoteCurrency
-    quote
-  }
-}
-`
+// export const GET_Data = gql`
+// query {
+//   bitcoin: cryptocurrency(id: "bitcoin") {
+//     symbol
+//     marketData {
+//       currentPrice {
+//         usd
+//       }
+//     }
+//   }
+//   ethereum: cryptocurrency(id: "ethereum") {
+//     symbol
+//     marketData {
+//       currentPrice {
+//         usd
+//       }
+//     }
+//   }
+// }
+// `
