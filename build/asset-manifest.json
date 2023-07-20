@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.ea211b88.css",
-    "main.js": "/static/js/main.e8da9d53.js",
+    "main.css": "/static/css/main.0d1d3ff3.css",
+    "main.js": "/static/js/main.89c72ae4.js",
     "static/media/video-1.mp4": "/static/media/video-1.59e75226d30ad48f9ede.mp4",
     "static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4": "/static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.b167724f7ca53838b7b9.mp4",
+    "static/media/Frame 3.png": "/static/media/Frame 3.98ea2a49c1a27b023ea7.png",
     "static/media/ales-nesetril-Im7lZjxeLhg-unsplash.jpg": "/static/media/ales-nesetril-Im7lZjxeLhg-unsplash.37f9618ac10afa3bfcdd.jpg",
+    "static/media/40428-removebg.png": "/static/media/40428-removebg.bdb72c9b4c55aa993444.png",
     "static/media/spare your time and.mp4": "/static/media/spare your time and.8fb9c6cb3a124a642e1a.mp4",
     "static/media/Layer_1_2-removebg-preview (1).png": "/static/media/Layer_1_2-removebg-preview (1).6cb3b6d7ea36524e63bc.png",
     "service-worker.js": "/service-worker.js",
+    "static/media/11765-removebg-preview.png": "/static/media/11765-removebg-preview.5ba1d5eb4a4c211d6dea.png",
     "static/media/digitalernomade-984x540.jpg": "/static/media/digitalernomade-984x540.fe9925c31d4cb4cc2ae4.jpg",
     "static/media/Layer.png": "/static/media/Layer.f0391fd9cb759b8d5cd9.png",
     "static/media/8666693_search_icon.png": "/static/media/8666693_search_icon.3dfbe172722c8c10b696.png",
     "static/media/Frame 3.svg": "/static/media/Frame 3.bd8223f4f8ad8a2a652c02f428849fe0.svg",
     "index.html": "/index.html",
-    "main.ea211b88.css.map": "/static/css/main.ea211b88.css.map",
-    "main.e8da9d53.js.map": "/static/js/main.e8da9d53.js.map"
+    "main.0d1d3ff3.css.map": "/static/css/main.0d1d3ff3.css.map",
+    "main.89c72ae4.js.map": "/static/js/main.89c72ae4.js.map"
   },
   "entrypoints": [
-    "static/css/main.ea211b88.css",
-    "static/js/main.e8da9d53.js"
+    "static/css/main.0d1d3ff3.css",
+    "static/js/main.89c72ae4.js"
   ]
 }

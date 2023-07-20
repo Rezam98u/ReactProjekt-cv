@@ -6,10 +6,15 @@ import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
-import { motion, useScroll } from "framer-motion"
+import { motion } from "framer-motion"
+import { AiFillGithub } from "react-icons/ai";
+import { BsDiscord } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
+import { BsTwitter } from "react-icons/bs";
+import { BsYoutube } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
+import { BsInstagram } from "react-icons/bs";
 
-// import video from "../video/spare your time and.mp4"
-import img from "../img/brick-wall 1.png"
 import img1 from "../img/Frame 3.png"
 import img2 from "../img/11765-removebg-preview.png"
 import img3 from "../img/40428-removebg.png"
@@ -144,7 +149,7 @@ const AppCrypto = () => {
                         </motion.div>
                     </div>
 
-                    <div style={{ width: "90%" }} className='bg-slate-300 mx-auto rounded-md'>
+                    ``                    <div style={{ width: "90%" }} className='bg-slate-300 mx-auto rounded-md'>
                         <div className='flex justify-center py-3 '>
                             <input style={{ width: 600 }} type="text" className="rounded-lg border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
                         </div>
@@ -207,6 +212,28 @@ const AppCrypto = () => {
                         }
                         <div className="flex justify-center py-3 mx-auto bg-slate-300 rounded-lg">
                             <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
+                        </div>
+                    </div>
+
+                    <div className='flex w-full footer justify-center mt-5 '>
+                        <div className='flex justify-between w-4/5 my-4'>
+                            <div className='flex gap-5 items-center text-white'>
+                                <p> Crypto developed by React JS </p>
+                                <p>License</p>
+                                <p>Terms</p>
+                                <p>Privacy</p>
+                            </div>
+                            <div className='flex gap-6 items-center '>
+                                <div className='text-lg text-white'> Join us on </div>
+
+                                <div className='text-white text-xl hover:text-black'> <AiFillGithub /> </div>
+                                <div className='text-white text-xl hover:text-blue-600'> <BsDiscord /> </div>
+                                <div className='text-white text-xl hover:text-blue-400'> <BsTwitter /> </div>
+                                <div className='text-white text-xl hover:text-blue-800'> <BsFacebook /> </div>
+                                <div className='text-white text-xl hover:text-blue-700'> <BsLinkedin /> </div>
+                                <div className='text-white text-xl hover:text-fuchsia-500'> <BsInstagram /> </div>
+                                <div className='text-white text-xl hover:text-red-500'> <BsYoutube /> </div>
+                            </div>
                         </div>
                     </div>
                 </div>
