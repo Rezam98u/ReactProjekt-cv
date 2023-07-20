@@ -1,86 +1,70 @@
 import { React } from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Spinner } from 'react-bootstrap';
+// import { Spinner } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import { Button, Grid } from "@mui/material";
 import Pagination from '@mui/material/Pagination';
+import { motion, useScroll } from "framer-motion"
+
 // import video from "../video/spare your time and.mp4"
+import img from "../img/brick-wall 1.png"
+import img1 from "../img/Frame 3.png"
+import img2 from "../img/11765-removebg-preview.png"
+import img3 from "../img/40428-removebg.png"
 
-import { useQuery } from '@apollo/client';
 
-import { GET_Data } from './GraphQl/queries ';
+// import { useQuery } from '@apollo/client';
+// import { GET_Data } from './GraphQl/queries ';
+
+import '../styles.css'
 ////////////////////////////
 const AppCrypto = () => {
     const navigate = useNavigate()
+    //  const { error, data } = useQuery(GET_Data);
+    //  console.log(data);
+
+
     const [loading, setLoading] = useState(true)
     const [receivedData, setReceivedData] = useState([])
     const [search, setSearch] = useState({ text: "", bool: false })
 
-
-    //     const getGen3 = gql`
-    //     query getGen3 {
-    //       pokemon_v2_pokemonspecies(
-    //         order_by: { id: asc }
-    //         where: { pokemon_v2_generation: { name: { _eq: "generation-iii" } } }
-    //       ) {
-    //         name
-    //         id
-    //       }
-    //     }
-    //   `
-
-    // id
-    // symbol
-    // name
-    // current_price
-
-    //     launchesPast(limit: 10) {
-    //         id
-    //         mission_name
-    //     }
-    // }
-
-
-
-    const { error, data } = useQuery(GET_Data);
-
-    console.log(data);
+    const BASE_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1"
 
     /////////////
     useEffect(() => {
-        setReceivedData(data)
+        // setReceivedData(data)
 
-        // const fetchData = async () => {
-        //     setLoading(true);
-        //     try {
-        //         const { data } = await axios.get(BASE_URL);
-        //         setReceivedData(data);
-        //     } catch (error) {
-        //         console.error(error.message);
-        //     }
-        //     setLoading(false);
-        // }
-        // fetchData();
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const { data } = await axios.get(BASE_URL);
+                setReceivedData(data);
+            } catch (error) {
+                console.error(error.message);
+            }
+            setLoading(false);
+        }
+        fetchData();
     }, []);
 
     // console.log(receivedData);
 
     ///Pagination
-    // const PAGE_LIMIT = 20; // Number of items to display on each page
-    // const [currentPage, setCurrentPage] = useState(1)
+    const PAGE_LIMIT = 20; // Number of items to display on each page
+    const [currentPage, setCurrentPage] = useState(1)
 
-    // // Calculate the items to display on the current page
-    // const startIndex = (currentPage - 1) * PAGE_LIMIT;
-    // const endIndex = startIndex + PAGE_LIMIT;
+    // Calculate the items to display on the current page
+    const startIndex = (currentPage - 1) * PAGE_LIMIT;
+    const endIndex = startIndex + PAGE_LIMIT;
 
-    // // Slice the items according to the current page
-    // const currentData = receivedData.slice(startIndex, endIndex)
-    // // console.log(currentData)
-    // const handleClick = e => {
-    //     setCurrentPage(e.target.textContent); // Set the current page number
-    // };
+    // Slice the items according to the current page
+    const currentData = receivedData.slice(startIndex, endIndex)
+    // console.log(currentData)
+    const handleClick = e => {
+        setCurrentPage(e.target.textContent); // Set the current page number
+    };
 
     const searchHandler = event => {
         setSearch({
@@ -88,40 +72,86 @@ const AppCrypto = () => {
             bool: true,
         })
     }
-    // const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
+    const searched = currentData.filter(item => item.id.includes(search.text.toLowerCase()))
     /////////////////////////
 
 
     return (
-        <div>
-
+        <>
             {loading &&
-                <div className="flex items-center justify-center gap-3 mt-4">
-                    <div> <Spinner animation="border" variant="warning" role="status" /></div>
+                <div className="flex items-center justify-center gap-3 mt-4 pt-10">
+                    <div className="🤚">
+                        <div className="👉"></div>
+                        <div className="👉"></div>
+                        <div className="👉"></div>
+                        <div className="👉"></div>
+                        <div className="🌴"></div>
+                        <div className="👍"></div>
+                    </div>
                     <div>  Loading... </div>
                 </div>}
 
             {
                 !loading &&
-                <div>
-                    {/* <div className='w-full'>
-                        <video src={video} autoPlay alt="#" />
-                    </div> */}
-                    <div className="flex w-4/5 mx-auto items-center justify-between my-4">
+                <div className='bg-black'>
+                    <div style={{ height: 560 }} className="relative bg-black">
                         <div>
-                            <button className="btn bg-slate-400 ml-5" onClick={() => navigate('/')}>
+                            <button className="btn bg-slate-400 ml-20" onClick={() => navigate('/')}>
                                 <HomeIcon />
                             </button>
                         </div>
-                        <div>
-                            <input type="text" className="rounded-lg w-72 border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
+
+                        <motion.div
+                            className='absolute'
+                            initial={{ right: -70 }}
+                            animate={{ right: 30 }}
+                            transition={{ duration: 1.8 }} >
+                            <img src={img3} width={350} alt="#" />
+                        </motion.div>
+
+                        <div className='absolute top-20'>
+                            <motion.div
+                                // className='absolute bottom-16 '
+                                initial={{ scale: 2 }}
+                                animate={{ scale: 0.87 }}
+                                transition={{ duration: 1.8 }} >
+                                <img src={img1} width={900} alt="#" />
+                            </motion.div>
+
+                            <motion.div
+                                className='absolute'
+                                initial={{ left: -20 }}
+                                animate={{ left: 82 }}
+                                transition={{ duration: 1.8 }} >
+                                <p className='text-white'>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+                                    Nunc vulputate libero et velit interdum, ac aliquet odio mattis. <br />
+                                    Class aptent taciti sociosqu ad litora torquent per conubia nostra per
+                                    inceptos himenaeos.
+                                </p>
+                                <button className="rounded bg-slate-400 py-1 mt-3 px-5">
+                                    Discover
+                                </button>
+                            </motion.div>
                         </div>
+
+                        <motion.div
+                            className='absolute bottom-1 right-9'
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 1.8 }} >
+                            <img src={img2} width={245} alt="#" />
+                        </motion.div>
                     </div>
 
-                    <div>
-                        {/* {
+                    <div style={{ width: "90%" }} className='bg-slate-300 mx-auto rounded-md'>
+                        <div className='flex justify-center py-3 '>
+                            <input style={{ width: 600 }} type="text" className="rounded-lg border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
+                        </div>
+
+                        {
                             search.bool ?
-                                <Grid container flex width={"98%"} marginX={"auto"} className="border-4 py-3 rounded-md bg-slate-100">
+                                <Grid container flex marginX={"auto"} className="border-4 py-3  bg-slate-300">
                                     {searched.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
@@ -147,7 +177,7 @@ const AppCrypto = () => {
                                         </Grid>)}
                                 </Grid>
                                 :
-                                <Grid container width={"98%"} marginX={"auto"} flex justifyContent={"center"} className="border-4 py-3 rounded-md bg-slate-100">
+                                <Grid container marginX={"auto"} flex justifyContent={"center"} className="border-4 py-3  bg-slate-300">
                                     {currentData.map(item =>
                                         <Grid container item flex alignItems={"center"} justifyContent={"center"} key={item.id} className="mb-4">
                                             <Grid item lg={2} sm={2} xs={2}>
@@ -173,73 +203,17 @@ const AppCrypto = () => {
                                         </Grid>
                                     )}
                                 </Grid>
-                        } */}
+
+                        }
+                        <div className="flex justify-center py-3 mx-auto bg-slate-300 rounded-lg">
+                            <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
+                        </div>
                     </div>
-                    {/* <div className="flex justify-center my-5">
-                        <Pagination count={5} color="primary" variant="outlined" shape="rounded" onChange={handleClick} />
-                    </div> */}
                 </div>
             }
 
-        </div>
+        </>
     )
 }
 
 export default AppCrypto;
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////////////////
-
-
-
-// const AppCrypto = () => {
-
-//     const [loading, setLoading] = useState(true);
-
-//     const [data, setData] = useState([]);
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             setLoading(true);
-//             try {
-//                 const { data: response } = await axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1');
-//                 setData(response);
-
-//                 // console.log(data)
-
-//             } catch (error) {
-//                 console.error(error.message);
-//             }
-//             setLoading(false);
-//         }
-
-//         fetchData();
-//     }, []);
-
-//     return (
-//         <div>
-
-//             {loading && <div> Loading </div>}
-
-//             {!loading &&
-//                 <div>
-//                     <div> <input type="text" name="" value="" placeholder='search' /> </div>
-//                     {data.map(item => (<span>{item.name}</span>))}
-//                 </div>
-//             }
-
-//         </div>
-//     )
-// }
-
-// export default AppCrypto;
