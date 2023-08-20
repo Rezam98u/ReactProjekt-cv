@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { useEffect } from 'react';
-import { React, useState, createContext, useReducer } from 'react';
+import { React, useState, createContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useQuery } from "react-query";
+import { CircularProgress } from '@mui/material';
 
 export const useStateContext = createContext()
 //////////////////////////
@@ -14,106 +15,38 @@ const UseStateContext = ({ children }) => {
     const [loading, setLoading] = useState(Boolean);
     const [products, setProducts] = useState([]);
     const [pay, setPay] = useState(true);
-    const [Data, setData] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState([]);
+    const [scroll, setScroll] = useState(Number);
+    const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: Boolean });
+    const [openMenuAcc, setOpenMenuAcc] = useState({ open: false, arrowUP: Boolean });
 
-    //////////////////////
-    const initialState = {
-        selectedItems: [],
-        itemsCounter: 0,
-        checkout: false
-    }
 
-    const cartReducer = (state, action) => {
-        console.log(state)
-        switch (action.type) {
+    /////////////////// React Query Method /////////////////// 
+    const { isLoading, isError, data, error, refetch } = useQuery(["repo"], () =>
+        axios.get("https://fakestoreapi.com/products")
+            .then(res => setProducts(res.data))
+    )
 
-            case "add_item":
-                state.selectedItems.push({ ...action.payload, quantity: 1 })
-                state.itemsCounter++
-                return {
-                    ...state,
-                    selectedItems: [...state.selectedItems],
-                    itemsCounter: state.itemsCounter
-                }
-            // if (!state.selectedItems.find(item => item.id === action.payload.id)) {
+    if (isLoading) return (
+        <div className='mt-36 flex items-center justify-center gap-3'>
+            <p className='text-3xl'> Loading... </p> <CircularProgress size={45} thickness={5} />
+        </div>)
 
-            //     state.selectedItems.push({
-            //         ...action.payload,
-            //         quantity: 1
-            //     })
-            // }
-            // return {
-            //     ...state,
-            //     selectedItems: [...state.selectedItems]
-            // }
+    if (error) return "An error has occurred: " + error.message;
 
-            case "remove_item":
-                const newSelectedItems = state.selectedItems.filter(item => item.id !== action.payload.id)
-                state.itemsCounter--;
-                console.log(newSelectedItems);
-                return {
-                    ...state,
-                    selectedItems: [...newSelectedItems]
-                }
-            // case "remove_item":
-            //     // state.selectedItems.find(item => item.id === action.payload.id)
+    // console.log(products)
 
-            //     const index = state.selectedItems.findIndex(item => item.id === action.payload.id)
-            //     state.selectedItems[index].shift()
-            //     state.itemsCounter--
-
-            //     return {
-            //         ...state,
-            //         selectedItems: [...state.selectedItems]
-            //     }
-
-            case "add":
-                const add_index = state.selectedItems.findIndex(item => item.id === action.payload.id)
-                state.selectedItems[add_index].quantity++;
-                return {
-                    ...state,
-                }
-            case "min":
-                state.itemsCounter++;
-                const min_index = state.selectedItems.findIndex(item => item.id === action.payload.id)
-                state.selectedItems[min_index].quantity--;
-                return {
-                    ...state,
-                }
-
-            case "checkout":
-                return {
-                    selectedItems: [],
-                    itemsCounter: 0,
-                    total: 0,
-                    checkout: true,
-                }
-
-            case "clear":
-                return {
-                    selectedItems: [],
-                    itemsCounter: 0,
-                    total: 0,
-                    checkout: false,
-                }
-
-            default: return state
-        }
-    }
-
-    const [state, dispatch] = useReducer(cartReducer, initialState)
-
-    //////////////////////
-    useEffect(() => {
-        const fetchApi = async () => {
-            setLoading(true)
-            const response = await axios.get("https://fakestoreapi.com/products")
-            setProducts(response.data);
-            setLoading(false)
-        }
-        fetchApi()
-    }, []);
-    ///////////////////////
+    /////////////////// Old Method
+    // useEffect(() => {
+    //     const fetchApi = async () => {
+    //         setLoading(true)
+    //         const response = await axios.get("https://fakestoreapi.com/products")
+    //         setProducts(response.data);
+    //         setLoading(false)
+    //     }
+    //     fetchApi()
+    // }, []);
+    ////////////////////////////////////////////////////////////////////
     const searchHandler = (e) => {
         setSearch({ text: e.target.value, bool: true })
     }
@@ -121,16 +54,16 @@ const UseStateContext = ({ children }) => {
         setSelect({ text: e.target.value, bool: true })
     }
     const categoryBESelected = productsData.filter(item => item.category.includes(select.text))
-    const searched = categoryBESelected.filter(item => item.title.includes(search.text));
+    const searched = categoryBESelected.filter(item => item.title.includes(search.text))
     ///////////////////////
     const prices = (sum) => {
-        const summ = sum.map(item => item.quantity)
-        let summm = 0
-        for (let i = 0; i < summ.length; i++) {
-            summm += summ[i]
+        const newSum = sum.map(item => item.quantity)
+        let finalSum = 0
+        for (let i = 0; i < newSum.length; i++) {
+            finalSum += newSum[i]
         }
-        return summm
-        // console.log(summm);
+        return finalSum
+        // console.log(finalSum);
     }
     const total_payment = (sum) => {
         const total_payment = sum.map(item => item.quantity * item.price)
@@ -154,11 +87,10 @@ const UseStateContext = ({ children }) => {
         <>
             <useStateContext.Provider value={{
                 search, setSearch, select, setSelect, isMobile, searchHandler, pay, setPay,
-                setIsMobile, searched, categoryBESelected, selectHandler, state, dispatch,
-                prices, total_payment, loading, setLoading, shorten, isInCart, quantityCount,
-                Data, setData, products
+                setIsMobile, searched, categoryBESelected, selectHandler, prices, total_payment,
+                loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
+                products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc
             }}>
-
                 {children}
             </useStateContext.Provider>
         </>

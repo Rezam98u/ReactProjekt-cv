@@ -6,14 +6,13 @@ import { useState } from 'react';
 import styles from "./slider.module.scss"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight, faMap } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Button, Container } from 'react-bootstrap';
 
 const Slider = () => {
     const length = dataSlider.length
 
     const [current, setCurrent] = useState(0);
-
 
     const nextSlide = () => {
         setCurrent(current === length - 1 ? 0 : current + 1)
@@ -31,22 +30,19 @@ const Slider = () => {
     }
 
     return (
-
         <Container fluid={true} className={styles.slider}>
             {dataSlider.map((slide, index) =>
-
-                <div className={index === current ? styles.slide_active : styles.slide} key={index}   >
-
+                <div className={index === current ? styles.slide_active : styles.slide} key={index} >
                     {index === current && <img src={slide.image} alt="" />}
-
                 </div>
-
             )}
-            <Button className={styles.nextSlide} onClick={nextSlide} ><FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon></Button>
-            <Button className={styles.prevSlide} onClick={prevSlide} ><FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon></Button>
+            <Button className={styles.nextSlide} onClick={nextSlide} >
+                <FontAwesomeIcon icon={faArrowLeft}></FontAwesomeIcon>
+            </Button>
+            <Button className={styles.prevSlide} onClick={prevSlide} >
+                <FontAwesomeIcon icon={faArrowRight}></FontAwesomeIcon>
+            </Button>
         </Container>
-
-
     );
 }
 

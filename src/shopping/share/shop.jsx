@@ -22,15 +22,15 @@ const Shop = () => {
 
     const sum = prices(state.selectedItems);
     return (
-        <div className='px-2  dark:bg-gray-800'>
-            <Grid container rowGap={0} columnGap={3} className='pt-28'>
-                <Grid item xs >
+        <div className='px-4 pt-24 dark:bg-gray-800'>
+            <Grid container rowGap={0} columnGap={3}>
+                <Grid item xs>
                     {state.itemsCounter > 0 ?
 
                         state.selectedItems.map(item =>
                             <Card elevation={5} key={item.id} className='mb-3 dark:bg-gray-800'>
                                 <div className='pl-3 py-2'>
-                                    <div className='w-36 '><img src={item.image} alt="" /></div>
+                                    <div className='w-36 '> <img src={item.image} alt="#" /> </div>
                                     <div className='text-xl font-bold'> {item.title} </div>
                                     <div className='pl-3 text-4xl py-2'>   {item.price} $ </div>
 
@@ -38,14 +38,14 @@ const Shop = () => {
                                         item.quantity > 1 ?
                                             <span>
                                                 <button onClick={() => dispatch(decrease(item))}
-                                                    className='btn btn-danger text-xs Btn_out '>
+                                                    className='btn btn-danger text-xs Btn_out'>
                                                     <FontAwesomeIcon icon={faMinus} />
                                                 </button>
                                             </span>
                                             :
                                             <span>
                                                 <button onClick={() => { dispatch(removeItem(item)) }}
-                                                    className='btn btn-danger text-xs Btn_out '>
+                                                    className='btn btn-danger text-xs Btn_out'>
                                                     <DeleteForeverSharpIcon fontSize='small' />
                                                 </button>
                                             </span>
@@ -55,7 +55,7 @@ const Shop = () => {
 
                                     <span>
                                         <button onClick={() => { dispatch(increase(item)) }}
-                                            className='btn btn-info text-xs Btn_out '>
+                                            className='btn btn-info text-xs Btn_out'>
                                             <FontAwesomeIcon icon={faAdd} />
                                         </button>
                                     </span>
@@ -77,19 +77,19 @@ const Shop = () => {
                 </Grid>
 
                 <Grid item xs={12} md={4} lg={4} >
-                    <div className='border-2 shadow rounded-2xl py-3 h-full px-3   '>
+                    <div className='border-2 shadow rounded-2xl py-3 h-full px-3'>
                         <div>
-                            <p className='text-3xl text-center border-b-4 mb-3 pb-2 '> Order-Summary</p>
+                            <p className='text-3xl text-center border-b-4 mb-3 pb-2'> Order-Summary </p>
                             <p className='text-lg font-bold'>Total item : {sum}  </p>
-                            <p className='text-lg font-bold'>Total payment : {total_payment(state.selectedItems)}</p>
+                            <p className='text-lg font-bold'>Total payment : {total_payment(state.selectedItems)} $ </p>
                         </div>
 
-                        <div className='d-flex items-center pt-4 gap-2' >
-                            <button className={state.itemsCounter === 0 ? 'hidden' : ' btn btn-secondary w-1/4 Btn_out '}
-                                onClick={() => { dispatch(clear()); Navigate("/products") }} >
+                        <div className='d-flex items-center pt-4 gap-2'>
+                            <button className={state.itemsCounter === 0 ? 'hidden' : ' btn btn-secondary w-1/4 Btn_out'}
+                                onClick={() => { dispatch(clear()); Navigate("/AppShop/products") }} >
                                 <ClearIcon fontSize='small' /> clear
                             </button>
-                            <button onClick={() => { Navigate('/products/checkout') }} className={state.itemsCounter > 0 ? 'btn btn-primary Btn_out w-3/4  ' : ' hidden'} >
+                            <button onClick={() => { Navigate('/AppShop/checkout') }} className={state.itemsCounter > 0 ? 'btn btn-primary Btn_out w-3/4  ' : ' hidden'} >
                                 checkout
                             </button>
                             {/* <Link to="/products/checkout"> <button className={state.itemsCounter > 0 ? 'btn btn-primary mx-1 Btn_out w-80 ' : ' hidden'} onClick={() => { dispatch({ type: "checkout" }) }} > checkout </button> </Link> */}

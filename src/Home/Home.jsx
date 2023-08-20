@@ -54,8 +54,8 @@ const Home = () => {
                     </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                        <button onClick={() => Navigate('/products')} >
-                            <FontAwesomeIcon icon={faShop} />  Products
+                        <button onClick={() => Navigate('/AppShop')} >
+                            <FontAwesomeIcon icon={faShop} />  Online Shop
                         </button>
                     </Box>
 

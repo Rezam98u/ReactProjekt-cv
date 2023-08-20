@@ -157,7 +157,6 @@ const Programmer = () => {
                                 initial={{ scaleY: 0 }}
                                 animate={{ scaleY: 1 }}
                                 transition={{ duration: 0.3 }}
-                                tra
                             >
                                 <div className='absolute bg-white text-black px-1 py-2 rounded-md'>
                                     <div className='border-l-4 rounded-md mx-2'>
@@ -237,7 +236,7 @@ const Programmer = () => {
                         }
                     </div>
                 </div>
-            </AppBar >
+            </AppBar>
 
 
             <div className={scroll === 0 ? 'Hero_Section relative' : 'relative'}>

@@ -117,7 +117,7 @@ const AddressForm = () => {
                         </div>
 
                         <div className='flex SM:flex-col SM:gap-2 sm:justify-between'>
-                            <button className='btn btn-primary w-52 SM:w-full SM:order-3' onClick={() => { Navigate("/products/shop") }} >
+                            <button className='btn btn-primary w-52 SM:w-full SM:order-3' onClick={() => { Navigate("/AppShop/shop") }} >
                                 <KeyboardBackspaceIcon />  Back to Card
                             </button>
                             <button type='submit' className='btn text-white w-52 bg-blue-600 SM:w-full SM:order-2'>
@@ -132,7 +132,7 @@ const AddressForm = () => {
                         <div>
                             <p className='text-green-600 text-2xl pb-2 font-bold'> Successfully  </p>
                             <p className=' text-lg'> Thank You for your Shop </p>
-                            <button className='mt-12 btn btn-primary w-2/5 ' onClick={() => Navigate("/products")}>
+                            <button className='mt-12 btn btn-primary w-2/5 ' onClick={() => Navigate("/AppShop/products")}>
                                 <ArrowBackIcon /> <ArrowBackIcon />  Back to Product
                             </button>
                         </div>

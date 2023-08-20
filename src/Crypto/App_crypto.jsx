@@ -219,9 +219,9 @@ const AppCrypto = () => {
                         <div className='flex justify-between w-4/5 my-4'>
                             <div className='flex gap-5 items-center text-white'>
                                 <p> Crypto developed by React JS </p>
-                                <p>License</p>
-                                <p>Terms</p>
-                                <p>Privacy</p>
+                                <p>License </p>
+                                <p>Terms </p>
+                                <p>Privacy </p>
                             </div>
                             <div className='flex gap-6 items-center '>
                                 <div className='text-lg text-white'> Join us on </div>

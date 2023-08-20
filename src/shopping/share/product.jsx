@@ -20,14 +20,14 @@ const Product = (props) => {
 
     return (
         <Card elevation={8} className='py-3 dark:bg-slate-500'>
-            <Link to={`/products/${id}`} className='link'> <img src={image} alt="#" /> </Link>
+            <Link to={`/AppShop/${id}`} className='link'> <img src={image} alt="#" /> </Link>
             <div className='flex justify-between py-6'>
                 <p className='text-start font-bold pl-2 text-lg '>{shorten(title)}</p>
-                <p className='text-end pr-2 text-lg '> {price}$ </p>
+                <p className='text-end pr-2 text-lg '> {price} $ </p>
             </div>
 
             <Grid className='flex' alignItems={'center'} justifyContent={'space-evenly'} >
-                <Link to={`/products/${id}`} className='link'>
+                <Link to={`/AppShop/${id}`} className='link'>
                     <button className='btn btn-success  text-sm text-center w-20 rounded-lg'> Details </button>
                 </Link>
 

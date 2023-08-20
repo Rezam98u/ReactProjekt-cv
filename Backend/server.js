@@ -78,11 +78,11 @@ app.use('/graphql', graphqlHTTP({
 
 
 app.use(cors())
-// app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
+    // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-/////////////////////////////////// 
+    /////////////////////////////////// 
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',

@@ -1,15 +1,4 @@
 .navbar_app_shop {
-  width: 100%;
-  top: 0%;
-  position: sticky;
-  padding-top: 10px;
-  justify-content: space-around;
-  display: flex;
   background: #62edc8;
   background: linear-gradient(90deg, #62edc8 0%, #5a9ef0 39%, #18518f 100%);
-}
-
-.navbar_app_shop .link {
-  text-decoration: none;
-  color: aliceblue;
 }
