@@ -28,7 +28,7 @@ const Product = (props) => {
 
             <Grid className='flex' alignItems={'center'} justifyContent={'space-evenly'} >
                 <Link to={`/AppShop/${id}`} className='link'>
-                    <button className='btn btn-success  text-sm text-center w-20 rounded-lg'> Details </button>
+                    <button className='py-2 btn-success text-sm text-center w-20 rounded-lg'> Details </button>
                 </Link>
 
                 <div>
@@ -38,34 +38,33 @@ const Product = (props) => {
                                 {quantityCount(state, id) > 1 ?
                                     <span>
                                         <button onClick={() => dispatch(decrease(props.Data))}
-                                            className='btn btn-danger Btn_out text-sm'>
+                                            className='p-1 px-2 rounded-lg btn-danger Btn_out text-sm'>
                                             <FontAwesomeIcon icon={faMinus} />
                                         </button>
                                     </span>
                                     :
                                     <span>
                                         <button onClick={() => dispatch(removeItem(props.Data))}
-                                            className='btn btn-danger Btn_out text-xs'>
+                                            className='px-2 p-1 rounded-lg btn-danger Btn_out text-xs'>
                                             {/* <FontAwesomeIcon icon={faDeleteLeft} /> */}
                                             <DeleteForeverSharpIcon fontSize='small' />
                                         </button>
                                     </span>
                                 }
 
-                                {<Badge pill className='p-2 m-1'> {quantityCount(state, id)} </Badge>}
+                                {<Badge pill className='p-2 mx-2'> {quantityCount(state, id)} </Badge>}
 
                                 <span>
                                     <button onClick={() => dispatch(increase(props.Data))}
-                                        className='btn btn-info Btn_out text-sm'>
+                                        className='p-1 px-2 rounded-lg btn-info Btn_out text-sm'>
                                         <FontAwesomeIcon icon={faAdd} />
                                     </button>
                                 </span>
                             </div>
                             :
                             <button onClick={() => dispatch(addItem(props.Data))}
-                                className='btn  btn-info text-sm w-36'>
-                                <FontAwesomeIcon icon={faShoppingCart} />
-                                Add to card
+                                className='py-2 rounded-lg btn-info text-sm w-36'>
+                                <FontAwesomeIcon icon={faShoppingCart} /> Add to card
                             </button>
                     }
                 </div>

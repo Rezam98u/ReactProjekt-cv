@@ -19,6 +19,8 @@ const UseStateContext = ({ children }) => {
     const [scroll, setScroll] = useState(Number);
     const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: Boolean });
     const [openMenuAcc, setOpenMenuAcc] = useState({ open: false, arrowUP: Boolean });
+    const [openModal, setOpenModal] = useState(Boolean);
+
 
 
     /////////////////// React Query Method /////////////////// 
@@ -89,7 +91,8 @@ const UseStateContext = ({ children }) => {
                 search, setSearch, select, setSelect, isMobile, searchHandler, pay, setPay,
                 setIsMobile, searched, categoryBESelected, selectHandler, prices, total_payment,
                 loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
-                products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc
+                products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc,
+                openModal, setOpenModal
             }}>
                 {children}
             </useStateContext.Provider>
