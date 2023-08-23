@@ -3,7 +3,6 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
-import { MongoClient } from 'mongodb'
 
 
 // import { graphqlHTTP } from 'express-graphql'
