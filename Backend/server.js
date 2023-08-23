@@ -2,26 +2,100 @@ import mysql from 'mysql'
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
+import { MongoClient } from 'mongodb'
 
 
-import { graphqlHTTP } from 'express-graphql'
-import {
-    GraphQLSchema,
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLList,
-    GraphQLInt,
-    GraphQLNonNull
-} from 'graphql'
-// import { type } from '@testing-library/user-event/dist/type'
+// import { graphqlHTTP } from 'express-graphql'
+// import {
+//     GraphQLSchema,
+//     GraphQLObjectType,
+//     GraphQLString,
+//     GraphQLList,
+//     GraphQLInt,
+//     GraphQLNonNull
+// } from 'graphql'
 
-//////////////////////////////
-// const router = express.Router()
-// router.post('/register')
-
-/////////////////////////////
+// import router from './routers/api'
+// import { User } from './models/user'
+//////////////////////////////////////////////////////////////////////////////////
 const app = express();
 
+
+///////////////////////////////// Mongo database /////////////////////////////////
+const MONGODB_URI = "mongodb+srv://root444:<root444>@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
+
+app.use(express.json())
+app.use(cors())
+
+// const client = new MongoClient(MONGODB_URI, {
+//     serverApi: {
+//         version: ServerApiVersion.v1,
+//         strict: true,
+//         deprecationErrors: true,
+//     }
+// });
+
+// mongoose.connect(MONGODB_URI, {
+//         dbName: 'mongodb',
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     }, err => err ? console.log(err) :
+//     console.log('Connected to mongodb'))
+
+const connectToMongo = async() => {
+    await mongoose.connect(MONGODB_URI);
+    console.log("Connected to MongoDB");
+};
+
+connectToMongo();
+
+const UserSchema = new mongoose.Schema({
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+})
+const User = mongoose.model('users', UserSchema)
+User.createIndexes()
+
+
+app.get("/", (req, resp) => {
+
+    resp.send("App is Working")
+        // You can check backend is working or not by
+        // entering http://loacalhost:5000
+
+    // If you see App is working means
+    // backend working properly
+})
+
+app.post("/postUser", async(req, resp) => {
+    try {
+        const user = new User({
+            email: req.body.email,
+            password: req.body.pass
+        });
+        let result = await user.save();
+        result = result.toObject();
+        if (result) {
+            delete result.password;
+            resp.send(req.body);
+            console.log(result);
+        } else {
+            console.log("User already register");
+        }
+
+    } catch (e) {
+        resp.send("Something Went Wrong");
+    }
+});
+
+///////////////////////////////// GraphQl /////////////////////////////////
 
 //         "id": "bitcoin",
 //     "symbol": "btc",
@@ -46,15 +120,15 @@ const app = express();
 
 // const resolver = { Query: }
 
-const helloWorldType = new GraphQLObjectType({
-    name: "helloWorld",
-    fields: () => ({
-        message: {
-            type: GraphQLString,
-            resolve: () => 'helloWorld'
-        }
-    })
-})
+// const helloWorldType = new GraphQLObjectType({
+//     name: "helloWorld",
+//     fields: () => ({
+//         message: {
+//             type: GraphQLString,
+//             resolve: () => 'helloWorld'
+//         }
+//     })
+// })
 
 // const CoinType = new GraphQLObjectType({
 //     name: 'CoinType',
@@ -65,24 +139,28 @@ const helloWorldType = new GraphQLObjectType({
 // })
 
 
-const schema = new GraphQLSchema({
-    query: helloWorldType
+// const schema = new GraphQLSchema({
+//     query: helloWorldType
 
-})
+// })
 
-app.use('/graphql', graphqlHTTP({
-    schema: schema,
-    graphiql: true
-}))
+// app.use('/graphql', graphqlHTTP({
+//     schema: schema,
+//     graphiql: true
+// }))
 
 
 
-app.use(cors())
-    // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
 
-app.use(express.json())
-app.use(bodyParser.urlencoded({ extended: true }))
-    /////////////////////////////////// 
+
+///////////////////////////////// MySql database /////////////////////////////////
+// app.use(cors())
+//     // app.use(cors({ credentials: true, origin: 'http://localhost:3003' }))
+
+// app.use(express.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+
+
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -92,7 +170,7 @@ const db = mysql.createConnection({
 db.connect();
 
 
-// Create a route to fetch data from the database 
+////////// Create a route to fetch data from the database 
 app.post('/login', (req, res) => {
     const { pass, email } = req.body
     db.query('SELECT * FROM user WHERE email = ? AND pass = ? ', [email, pass],
@@ -103,7 +181,7 @@ app.post('/login', (req, res) => {
         });
 });
 
-/////// get from login
+////////// get from login
 app.get('/login', (req, res) => {
     db.query('SELECT * FROM user',
         (error, results) => {
@@ -113,7 +191,7 @@ app.get('/login', (req, res) => {
 });
 
 
-/// show status
+////////// show status
 db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
     if (error) {
         console.error('Error checking database status:', error);
@@ -122,7 +200,7 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
     }
 });
 
-//// Insert into user
+////////// Insert into user
 // app.post('/singUp', (req, res) => {
 //     const { pass, email } = req.body
 //     const sqlInsert = "INSERT INTO user (email, pass) VALUES (?, ?)"
@@ -137,7 +215,7 @@ db.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
 //     });
 // });
 
-//////////// insert to fantasy
+////////// insert to fantasy
 app.post('/fantasy', (req, res) => {
     const { fantasy, id } = req.body
     const sqlInsert = "INSERT INTO fantasy (fantasy , userId) VALUES (? , ?)"
@@ -150,7 +228,7 @@ app.post('/fantasy', (req, res) => {
     });
 });
 
-//////// delete s.t in fantasy
+////////// delete s.t in fantasy
 app.post('/delete', (req, res) => {
     const { id } = req.body
     const sqlInsert = "DELETE FROM fantasy WHERE id = ?"
@@ -163,7 +241,7 @@ app.post('/delete', (req, res) => {
     });
 });
 
-/////////// get from fantasy
+////////// get from fantasy
 app.get('/fantasy', (req, res) => {
     db.query("SELECT * FROM fantasy ", (error, results) => {
         if (error) throw error
@@ -171,7 +249,7 @@ app.get('/fantasy', (req, res) => {
     })
 })
 
-///// INSERT data to public
+////////// INSERT data to public
 app.post('/public', (req, res) => {
     const { fantasy, id } = req.body
     const sqlInsert = "INSERT INTO public (publishedFantasy , userId) VALUES (? , ?) "
@@ -184,7 +262,7 @@ app.post('/public', (req, res) => {
     });
 });
 
-/////////// get from public
+////////// get from public
 app.get('/public', (req, res) => {
     db.query("SELECT * FROM public ", (error, results) => {
         if (error) throw error
@@ -213,6 +291,9 @@ app.get('/image', (req, res) => {
         res.send(results)
     })
 })
+
+
+
 
 
 

@@ -20,6 +20,8 @@ const UseStateContext = ({ children }) => {
     const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: Boolean });
     const [openMenuAcc, setOpenMenuAcc] = useState({ open: false, arrowUP: Boolean });
     const [openModal, setOpenModal] = useState(Boolean);
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
 
 
 
@@ -92,7 +94,7 @@ const UseStateContext = ({ children }) => {
                 setIsMobile, searched, categoryBESelected, selectHandler, prices, total_payment,
                 loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
                 products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc,
-                openModal, setOpenModal
+                openModal, setOpenModal, email, setEmail, pass, setPass
             }}>
                 {children}
             </useStateContext.Provider>
