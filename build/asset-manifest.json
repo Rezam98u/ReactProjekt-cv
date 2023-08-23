@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.0d1d3ff3.css",
-    "main.js": "/static/js/main.89c72ae4.js",
+    "main.css": "/static/css/main.7f815f9e.css",
+    "main.js": "/static/js/main.a5cc63b9.js",
     "static/media/video-1.mp4": "/static/media/video-1.59e75226d30ad48f9ede.mp4",
+    "static/media/mainImg.webp": "/static/media/mainImg.160189837f998cb1e9f7.webp",
     "static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4": "/static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.b167724f7ca53838b7b9.mp4",
     "static/media/Frame 3.png": "/static/media/Frame 3.98ea2a49c1a27b023ea7.png",
     "static/media/ales-nesetril-Im7lZjxeLhg-unsplash.jpg": "/static/media/ales-nesetril-Im7lZjxeLhg-unsplash.37f9618ac10afa3bfcdd.jpg",
@@ -13,14 +14,28 @@
     "static/media/11765-removebg-preview.png": "/static/media/11765-removebg-preview.5ba1d5eb4a4c211d6dea.png",
     "static/media/digitalernomade-984x540.jpg": "/static/media/digitalernomade-984x540.fe9925c31d4cb4cc2ae4.jpg",
     "static/media/Layer.png": "/static/media/Layer.f0391fd9cb759b8d5cd9.png",
+    "static/media/CW-logo-tag-2-sm-min.png": "/static/media/CW-logo-tag-2-sm-min.a8ff5660e5b9e6cfc622.png",
+    "static/media/Fruit-Slicer-.webp": "/static/media/Fruit-Slicer-.eb489c312d9b581f520e.webp",
     "static/media/8666693_search_icon.png": "/static/media/8666693_search_icon.3dfbe172722c8c10b696.png",
+    "static/media/LIGE-2023-Fashion-Smart-Watch-Men-Fitness-Bracelet-Heart-Rate-Blood-Pressure-Monitoring-Sports-Tracker-Smartwatch.jpg_220x220xz.jpg_.webp": "/static/media/LIGE-2023-Fashion-Smart-Watch-Men-Fitness-Bracelet-Heart-Rate-Blood-Pressure-Monitoring-Sports-Tracker-Smartwatch.jpg_220x220xz.jpg_.a8e757bece0727bcce00.webp",
+    "static/media/Custom-Neon-Signs-Led-Light-Sign-DIY-Letters-Extra-Large-Led-Neon-Wall-.webp": "/static/media/Custom-Neon-Signs-Led-Light-Sign-DIY-Letters-Extra-Large-Led-Neon-Wall-.bd76ed243edc528f39bb.webp",
+    "static/media/1-Pairs-Weightlifting-Training-Gloves-for-Men-Women-Fitness-Sports-.webp": "/static/media/1-Pairs-Weightlifting-Training-Gloves-for-Men-Women-Fitness-Sports-.9cfe93dcd3660f3e4cac.webp",
+    "static/media/Boho-Geometric-Bracelet-Bangle-Sets-For-Women-Vintage-Star-Map-Hand-Heart-charm-Beads-Chains-Fashion.jpg_220x220xz.jpg_.webp": "/static/media/Boho-Geometric-Bracelet-Bangle-Sets-For-Women-Vintage-Star-Map-Hand-Heart-charm-Beads-Chains-Fashion.jpg_220x220xz.jpg_.833adb2aebcd02149193.webp",
+    "static/media/EMS-Muscle-Stimulator-Abdominal-Body-Slimming-Belt-Electric-Smart-ABS-Trainer-Arm-Leg-Waist-Weight-Loss.jpg_220x220xz.jpg_.webp": "/static/media/EMS-Muscle-Stimulator-Abdominal-Body-Slimming-Belt-Electric-Smart-ABS-Trainer-Arm-Leg-Waist-Weight-Loss.jpg_220x220xz.jpg_.05f72724921dbf2ae4dc.webp",
     "static/media/Frame 3.svg": "/static/media/Frame 3.bd8223f4f8ad8a2a652c02f428849fe0.svg",
+    "static/media/New-2021-Loudly-Gas-Lighter-Square-Metal-Sideslip-.webp": "/static/media/New-2021-Loudly-Gas-Lighter-Square-Metal-Sideslip-.bb818878a5b8e2532aad.webp",
+    "static/media/2023-New-high-quality-acetate-unisex-fashion-trend.webp": "/static/media/2023-New-high-quality-acetate-unisex-fashion-trend.c5e20839ad60871cd87a.webp",
+    "static/media/2023-Women-s-Summer-New-Top-Women-s-Famous-BA-Brand-Printed-Short-Sleeve-Pure-Cotton.jpg_220x220xz.jpg_.webp": "/static/media/2023-Women-s-Summer-New-Top-Women-s-Famous-BA-Brand-Printed-Short-Sleeve-Pure-Cotton.jpg_220x220xz.jpg_.94c0af1e0331ec0e881c.webp",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.0d1d3ff3.css.map": "/static/css/main.0d1d3ff3.css.map",
-    "main.89c72ae4.js.map": "/static/js/main.89c72ae4.js.map"
+    "main.7f815f9e.css.map": "/static/css/main.7f815f9e.css.map",
+    "main.a5cc63b9.js.map": "/static/js/main.a5cc63b9.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d1d3ff3.css",
-    "static/js/main.89c72ae4.js"
+    "static/css/main.7f815f9e.css",
+    "static/js/main.a5cc63b9.js"
   ]
 }

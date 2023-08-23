@@ -19,6 +19,8 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FaChevronCircleDown, FaChevronCircleUp, FaUser } from 'react-icons/fa'
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 
 import { IoMdCloseCircle } from 'react-icons/io'
 import axios from 'axios';
@@ -29,9 +31,16 @@ const NavbarAppShop = () => {
     const PathName = location.pathname
     // console.log(PathName);
 
+    const { handleSubmit } = useForm();
+
     const { isMobile, setIsMobile, searchHandler, search, selectHandler,
         select, prices, scroll, setScroll, openMenu, setOpenMenu,
         openMenuAcc, setOpenMenuAcc, email, setEmail, pass, setPass } = useContext(useStateContext)
+
+    const onSubmit = () => {
+        axios.post('http://localhost:3003/postUser',
+            { email: email, pass: pass }).then((res) => console.log(res))
+    }
 
     ////Modal
     Modal.setAppElement('#root')
@@ -49,7 +58,7 @@ const NavbarAppShop = () => {
 
     const state = useSelector(state => state.useReducer)
 
-    console.log(email);
+    // console.log(email);
     useEffect(() => {
         const onScroll = () => {
             const scrollY = window.scrollY;
@@ -195,14 +204,7 @@ const NavbarAppShop = () => {
 
                                     <div className="form-container">
                                         <p className="title"> Login </p>
-                                        <form className="form" onSubmit={() => {
-                                            axios.post('http://localhost:3003/postUser', {
-                                                body: JSON.stringify({ email, pass }),
-                                                // headers: {
-                                                //     'Content-Type': 'application/json'
-                                                // }
-                                            }).then(res => console.log(res));
-                                        }}>
+                                        <form className="form" onSubmit={handleSubmit(onSubmit)}>
                                             <div className="input-group">
                                                 <label htmlFor="email"> email </label>
                                                 <input type="email" name="email" id="email"
@@ -217,7 +219,7 @@ const NavbarAppShop = () => {
                                                 </div>
 
                                             </div>
-                                            <button className="sign"> Sign in </button>
+                                            <button type='submit' className="sign"> Sign in </button>
                                         </form>
                                         <div className="social-message">
                                             <div className="line"></div>

@@ -23,25 +23,10 @@ const app = express();
 
 
 ///////////////////////////////// Mongo database /////////////////////////////////
-const MONGODB_URI = "mongodb+srv://root444:<root444>@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
+const MONGODB_URI = "mongodb+srv://root111:2gN2vBVngSYwcWzr@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
 
 app.use(express.json())
 app.use(cors())
-
-// const client = new MongoClient(MONGODB_URI, {
-//     serverApi: {
-//         version: ServerApiVersion.v1,
-//         strict: true,
-//         deprecationErrors: true,
-//     }
-// });
-
-// mongoose.connect(MONGODB_URI, {
-//         dbName: 'mongodb',
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true
-//     }, err => err ? console.log(err) :
-//     console.log('Connected to mongodb'))
 
 const connectToMongo = async() => {
     await mongoose.connect(MONGODB_URI);
@@ -63,35 +48,37 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('users', UserSchema)
 User.createIndexes()
 
-
 app.get("/", (req, resp) => {
-
     resp.send("App is Working")
         // You can check backend is working or not by
         // entering http://loacalhost:5000
-
-    // If you see App is working means
-    // backend working properly
+        // If you see App is working means
+        // backend working properly
 })
 
-app.post("/postUser", async(req, resp) => {
+app.post("/postUser", async(req, res) => {
     try {
         const user = new User({
             email: req.body.email,
             password: req.body.pass
-        });
+        })
+        await user.save();
+        // console.log(req.body)
+
         let result = await user.save();
+        console.log(result);
         result = result.toObject();
         if (result) {
             delete result.password;
-            resp.send(req.body);
+            res.send(req.body);
             console.log(result);
         } else {
             console.log("User already register");
         }
 
     } catch (e) {
-        resp.send("Something Went Wrong");
+        res.send("Something Went Wrong")
+        console.log(e);
     }
 });
 
