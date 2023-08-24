@@ -28,8 +28,8 @@ app.use(express.json())
 app.use(cors())
 
 const connectToMongo = async() => {
-    await mongoose.connect(MONGODB_URI);
-    console.log("Connected to MongoDB");
+    await mongoose.connect(MONGODB_URI)
+    console.log("Connected to MongoDB")
 };
 
 connectToMongo();

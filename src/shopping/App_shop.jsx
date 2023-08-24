@@ -6,6 +6,7 @@ import Store from './store';
 import DetailProduct from "./detail_product"
 import Shop from "./share/shop"
 import Home_shop from './Home_shop';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // Context 
 import UseStateContext from './context/useStateContext';
@@ -19,20 +20,22 @@ import './App_shop.scss'
 const AppShop = () => {
     return (
         <Provider store={store}>
-            <UseStateContext>
-                <div className="relative">
-                    <div className="absolute w-full">
-                        <NavbarAppShop />
+            <GoogleOAuthProvider clientId='175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com'>
+                <UseStateContext>
+                    <div className="relative">
+                        <div className="absolute w-full">
+                            <NavbarAppShop />
+                        </div>
+                        <Routes>
+                            <Route path="/:id" element={<DetailProduct />}></Route>
+                            <Route path="/shop" element={<Shop />}></Route>
+                            <Route path="/" element={<Home_shop />}></Route>
+                            <Route path="/products" element={<Store />}></Route>
+                            <Route path="/checkout" element={<AddressForm />}></Route>
+                        </Routes>
                     </div>
-                    <Routes>
-                        <Route path="/:id" element={<DetailProduct />}></Route>
-                        <Route path="/shop" element={<Shop />}></Route>
-                        <Route path="/" element={<Home_shop />}></Route>
-                        <Route path="/products" element={<Store />}></Route>
-                        <Route path="/checkout" element={<AddressForm />}></Route>
-                    </Routes>
-                </div>
-            </UseStateContext>
+                </UseStateContext>
+            </GoogleOAuthProvider>
         </Provider>
     );
 }
