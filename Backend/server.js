@@ -90,7 +90,7 @@ app.post("/postUser", async(req, res) => {
             from: 'onlineShopping@gmail.com',
             to: email,
             subject: 'Email Verification',
-            text: `Please click the following link to verify your email: http://localhost:3002/verify/${verificationToken}`,
+            text: `Please click the following link to verify your email: http://localhost:3003/verify/${verificationToken}`,
         };
         await transporter.sendMail(mailOptions, (error, info) => {
             if (error) throw Error(error)
@@ -113,12 +113,13 @@ app.post("/postUser", async(req, res) => {
 
 app.get("/verify/:verificationToken", async(req, res) => {
     const { verificationToken } = req.params
-    console.log(verificationToken)
+        // console.log(verificationToken)
     const user = await User.findOne({ verificationToken: verificationToken })
     if (user) {
         user.isValid = true
         await user.save()
-        res.redirect("/AppShop")
+            // res.send("email is verified")
+        res.redirect("http://localhost:3002/AppShop")
     } else { res.json("Invalid Token or user not found") }
 })
 
