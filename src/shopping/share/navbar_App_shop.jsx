@@ -26,12 +26,12 @@ import { IoMdCloseCircle } from 'react-icons/io'
 import axios from 'axios';
 ///////////////////////
 const NavbarAppShop = () => {
+    const { handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
     const PathName = location.pathname
     // console.log(PathName);
 
-    const { handleSubmit } = useForm();
 
     const { isMobile, setIsMobile, searchHandler, search, selectHandler,
         select, prices, scroll, setScroll, openMenu, setOpenMenu,
@@ -39,7 +39,10 @@ const NavbarAppShop = () => {
 
     const onSubmit = () => {
         axios.post('http://localhost:3003/postUser',
-            { email: email, pass: pass }).then((res) => console.log(res)); setOpenModal(false)
+            { email: email, pass: pass }).then((res) => console.log(res)); 
+            // setOpenModal(false);
+        // axios.post('http://localhost:3003/register',
+        //     { email: email, pass: pass }).then((res) => console.log(res))
     }
 
     const responseGoogle = (response) => {
@@ -233,7 +236,7 @@ const NavbarAppShop = () => {
                                         </div>
                                         <div className="flex items-center justify-center gap-3 my-2">
                                             <button aria-label="Log in with Google">
-                                                <GoogleLogin
+                                                {/* <GoogleLogin
                                                     clientId="175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com"
                                                     buttonText=""
                                                     // theme='dark'
@@ -241,7 +244,7 @@ const NavbarAppShop = () => {
                                                     onSuccess={responseGoogle}
                                                     onFailure={responseGoogle}
                                                     cookiePolicy={'single_host_origin'}
-                                                />
+                                                /> */}
                                             </button>
                                             <button aria-label="Log in with GitHub" className="icon">
                                                 <BsGithub size={24} />

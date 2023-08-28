@@ -5,6 +5,9 @@ import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 
 
+import nodemailer from 'nodemailer'
+import randomToken from 'random-token'
+// import "dotenv/config"
 // import { graphqlHTTP } from 'express-graphql'
 // import {
 //     GraphQLSchema,
@@ -20,19 +23,18 @@ import mongoose from 'mongoose'
 //////////////////////////////////////////////////////////////////////////////////
 const app = express();
 
-
-///////////////////////////////// Mongo database /////////////////////////////////
+///////////////////////// Mongo database and Email verification //////////////////
 const MONGODB_URI = "mongodb+srv://root111:2gN2vBVngSYwcWzr@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
-
+    // console.log(process.env.MONGODB_URI)
 app.use(express.json())
 app.use(cors())
 
 const connectToMongo = async() => {
     await mongoose.connect(MONGODB_URI)
     console.log("Connected to MongoDB")
-};
+}
 
-connectToMongo();
+connectToMongo()
 
 const UserSchema = new mongoose.Schema({
     email: {
@@ -43,9 +45,27 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isValid: {
+        type: Boolean,
+        // required: true
+    },
+    verificationToken: { type: String }
 })
 const User = mongoose.model('users', UserSchema)
 User.createIndexes()
+
+// Configure Nodemailer transporter
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    // port: 465,
+    // secure: true, // true for 465, false for other ports
+    auth: {
+        user: 'reza.m2000u@gmail.com',
+        pass: 'zdcrgqspdjptgmse',
+    },
+});
 
 app.get("/", (req, resp) => {
     resp.send("App is Working")
@@ -56,32 +76,86 @@ app.get("/", (req, resp) => {
 })
 
 app.post("/postUser", async(req, res) => {
+    const verificationToken = randomToken(16)
     try {
         const user = new User({
             email: req.body.email,
-            password: req.body.pass
+            password: req.body.pass,
+            isValid: false,
+            verificationToken: verificationToken
         })
-        await user.save();
-        // console.log(req.body)
+        const { email } = req.body
 
-        let result = await user.save();
-        console.log(result);
-        result = result.toObject();
-        if (result) {
-            delete result.password;
-            res.send(req.body);
-            console.log(result);
-        } else {
-            console.log("User already register");
-        }
+        const mailOptions = {
+            from: 'onlineShopping@gmail.com',
+            to: email,
+            subject: 'Email Verification',
+            text: `Please click the following link to verify your email: http://localhost:3002/verify/${verificationToken}`,
+        };
+        await transporter.sendMail(mailOptions, (error, info) => {
+            if (error) throw Error(error)
+            console.log('Email Sent Successfully')
+                // console.log(info)
+        })
+        res.status(200).json({ message: 'Registration successful. Please check your email for verification instructions.' })
+            // if (isValid === true) { await user.save() }
+        await user.save()
 
-    } catch (e) {
-        res.send("Something Went Wrong")
-        console.log(e);
+    } catch (error) {
+        console.error(error)
+            // res.status(500).json({ message: 'An error occurred.' })
+            // res.send("Something Went Wrong")
     }
-});
+    // res.redirect("AppShop")
 
-///////////////////////////////// GraphQl /////////////////////////////////
+})
+
+
+app.get("/verify/:verificationToken", async(req, res) => {
+    const { verificationToken } = req.params
+    console.log(verificationToken)
+    const user = await User.findOne({ verificationToken: verificationToken })
+    if (user) {
+        user.isValid = true
+        await user.save()
+        res.redirect("/AppShop")
+    } else { res.json("Invalid Token or user not found") }
+})
+
+
+///////////////////////////////// Email verification //////////////////////
+// const testAccount = nodemailer.createTestAccount()
+// console.log(testAccount.user);
+
+// Endpoint for user registration
+// app.post('/register', async(req, res) => {
+//     try {
+//         const { email } = req.body
+//             // console.log(email)
+//         const verificationToken = randomToken(16) // Implement your token generation logic
+
+//         // Send a confirmation email
+//         const mailOptions = {
+//             from: 'onlineShopping@gmail.com',
+//             to: email,
+//             subject: 'Email Verification',
+//             text: `Please click the following link to verify your email: http://localhost:3000/verify?token=${verificationToken}`,
+//         };
+//         await transporter.sendMail(mailOptions);
+
+//         // Save the user and verification token in your database
+//         // Implement your database logic here
+
+//         res.status(200).json({ message: 'Registration successful. Please check your email for verification instructions.' })
+//     } catch (error) {
+//         console.error(error)
+//         res.status(500).json({ message: 'An error occurred.' })
+
+//     }
+//     res.redirect("back")
+// })
+
+///////////////////////////////// GraphQl /////////////////////////////////  
 
 //         "id": "bitcoin",
 //     "symbol": "btc",
