@@ -33,7 +33,6 @@ const connectToMongo = async() => {
     await mongoose.connect(MONGODB_URI)
     console.log("Connected to MongoDB")
 }
-
 connectToMongo()
 
 const UserSchema = new mongoose.Schema({
@@ -54,37 +53,39 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('users', UserSchema)
 User.createIndexes()
 
+// const testAccount = nodemailer.createTestAccount()
+// console.log(testAccount.user);
+
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
-    // port: 465,
     // secure: true, // true for 465, false for other ports
     auth: {
         user: 'reza.m2000u@gmail.com',
         pass: 'zdcrgqspdjptgmse',
     },
-});
+})
 
-app.get("/", (req, resp) => {
-    resp.send("App is Working")
+app.get("/", (req, res) => {
+    res.send("App is Working")
         // You can check backend is working or not by
-        // entering http://loacalhost:5000
+        // entering http://loacalhost:3003
         // If you see App is working means
         // backend working properly
 })
 
 app.post("/postUser", async(req, res) => {
     const verificationToken = randomToken(16)
+    const { email, pass } = req.body
     try {
         const user = new User({
-            email: req.body.email,
-            password: req.body.pass,
+            email: email,
+            password: pass,
             isValid: false,
             verificationToken: verificationToken
         })
-        const { email } = req.body
 
         const mailOptions = {
             from: 'onlineShopping@gmail.com',
@@ -92,28 +93,24 @@ app.post("/postUser", async(req, res) => {
             subject: 'Email Verification',
             text: `Please click the following link to verify your email: http://localhost:3003/verify/${verificationToken}`,
         };
-        await transporter.sendMail(mailOptions, (error, info) => {
+        transporter.sendMail(mailOptions, (error, info) => {
             if (error) throw Error(error)
             console.log('Email Sent Successfully')
                 // console.log(info)
         })
         res.status(200).json({ message: 'Registration successful. Please check your email for verification instructions.' })
-            // if (isValid === true) { await user.save() }
         await user.save()
 
     } catch (error) {
-        console.error(error)
-            // res.status(500).json({ message: 'An error occurred.' })
-            // res.send("Something Went Wrong")
+        res.status(500).json({ message: 'An error occurred.' })
     }
-    // res.redirect("AppShop")
-
+    // res.redirect("http://localhost:3002/AppShop")
 })
 
 
 app.get("/verify/:verificationToken", async(req, res) => {
     const { verificationToken } = req.params
-        // console.log(verificationToken)
+    console.log(verificationToken)
     const user = await User.findOne({ verificationToken: verificationToken })
     if (user) {
         user.isValid = true

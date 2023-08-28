@@ -39,8 +39,8 @@ const NavbarAppShop = () => {
 
     const onSubmit = () => {
         axios.post('http://localhost:3003/postUser',
-            { email: email, pass: pass }).then((res) => console.log(res)); 
-            // setOpenModal(false);
+            { email: email, pass: pass }).then((res) => console.log(res));
+        // setOpenModal(false);
         // axios.post('http://localhost:3003/register',
         //     { email: email, pass: pass }).then((res) => console.log(res))
     }
@@ -206,12 +206,14 @@ const NavbarAppShop = () => {
                                     style={customStyles}
                                 // contentLabel="Example Modal"
                                 >
-                                    <button className="flex gap-2 items-center bg-red-400 px-3 py-2 mb-2 rounded-lg" onClick={() => setOpenModal(false)}>
-                                        <IoMdCloseCircle size={19} /> close
-                                    </button>
+                                    <div>
+                                        <button className="flex gap-2 items-center bg-red-400 px-3 py-2 mb-2 rounded-lg" onClick={() => setOpenModal(false)}>
+                                            <IoMdCloseCircle size={19} /> close
+                                        </button>
+                                    </div>
 
                                     <div className="form-container">
-                                        <p className="title"> Login </p>
+                                        <div className="title"> Login </div>
                                         <form className="form" onSubmit={handleSubmit(onSubmit)}>
                                             <div className="input-group">
                                                 <label htmlFor="email"> email </label>
@@ -231,21 +233,19 @@ const NavbarAppShop = () => {
                                         </form>
                                         <div className="social-message">
                                             <div className="line"></div>
-                                            <p className="message"> Login with social accounts </p>
+                                            <div className="message"> Login with social accounts </div>
                                             <div className="line"></div>
                                         </div>
                                         <div className="flex items-center justify-center gap-3 my-2">
-                                            <button aria-label="Log in with Google">
-                                                {/* <GoogleLogin
-                                                    clientId="175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com"
-                                                    buttonText=""
-                                                    // theme='dark'
-                                                    className='bg-transparent'
-                                                    onSuccess={responseGoogle}
-                                                    onFailure={responseGoogle}
-                                                    cookiePolicy={'single_host_origin'}
-                                                /> */}
-                                            </button>
+                                            <GoogleLogin
+                                                clientId="175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com"
+                                                buttonText=""
+                                                // theme='dark'
+                                                className='bg-transparent'
+                                                onSuccess={responseGoogle}
+                                                onFailure={responseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                            />
                                             <button aria-label="Log in with GitHub" className="icon">
                                                 <BsGithub size={24} />
                                             </button>
