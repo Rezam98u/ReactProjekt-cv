@@ -19,7 +19,11 @@ import 'tippy.js/dist/tippy.css';
 import { FaChevronCircleDown, FaChevronCircleUp, FaUser } from 'react-icons/fa'
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import GoogleLogin from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
+
+
 
 
 import { IoMdCloseCircle } from 'react-icons/io'
@@ -45,10 +49,10 @@ const NavbarAppShop = () => {
         //     { email: email, pass: pass }).then((res) => console.log(res))
     }
 
-    const responseGoogle = (response) => {
-        console.log(response);
-        // Handle the response from Google Authentication
-    };
+
+    ////Google Authentication
+    const responseMessage = (response) => { console.log(response) }
+    const errorMessage = (error) => { console.log(error) }
 
     ////Modal
     Modal.setAppElement('#root')
@@ -237,15 +241,7 @@ const NavbarAppShop = () => {
                                             <div className="line"></div>
                                         </div>
                                         <div className="flex items-center justify-center gap-3 my-2">
-                                            <GoogleLogin
-                                                clientId="175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com"
-                                                buttonText=""
-                                                // theme='dark'
-                                                className='bg-transparent'
-                                                onSuccess={responseGoogle}
-                                                onFailure={responseGoogle}
-                                                cookiePolicy={'single_host_origin'}
-                                            />
+                                            <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
                                             <button aria-label="Log in with GitHub" className="icon">
                                                 <BsGithub size={24} />
                                             </button>
