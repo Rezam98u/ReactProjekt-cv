@@ -49,7 +49,7 @@ var UserSchema = new mongoose.Schema({
         // required: true
     },
     verificationToken: { type: String },
-    Purchased_products: Number
+    purchased_products: Number
 })
 var User = mongoose.model('users', UserSchema)
 User.createIndexes()
