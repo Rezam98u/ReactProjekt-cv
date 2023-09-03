@@ -22,8 +22,17 @@ const UseStateContext = ({ children }) => {
     const [openModal, setOpenModal] = useState(Boolean);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [allDataFromMongoDb, setAllDataFromMongoDb] = useState([])
 
 
+    useEffect(() => {
+        const fetch = async () => {
+            const { data } = await axios.get('http://localhost:3003/getDataMongoDb')
+            setAllDataFromMongoDb(data.data)
+            // console.log(data.data)
+        }
+        fetch()
+    }, []);
 
     /////////////////// React Query Method /////////////////// 
     const { isLoading, isError, data, error, refetch } = useQuery(["repo"], () =>
@@ -60,7 +69,7 @@ const UseStateContext = ({ children }) => {
     const categoryBESelected = productsData.filter(item => item.category.includes(select.text))
     const searched = categoryBESelected.filter(item => item.title.includes(search.text))
     ///////////////////////
-    const prices = (sum) => {
+    const total_item = (sum) => {
         const newSum = sum.map(item => item.quantity)
         let finalSum = 0
         for (let i = 0; i < newSum.length; i++) {
@@ -91,10 +100,10 @@ const UseStateContext = ({ children }) => {
         <>
             <useStateContext.Provider value={{
                 search, setSearch, select, setSelect, isMobile, searchHandler, pay, setPay,
-                setIsMobile, searched, categoryBESelected, selectHandler, prices, total_payment,
+                setIsMobile, searched, categoryBESelected, selectHandler, total_item, total_payment,
                 loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
                 products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc,
-                openModal, setOpenModal, email, setEmail, pass, setPass
+                openModal, setOpenModal, email, setEmail, pass, setPass, allDataFromMongoDb, setAllDataFromMongoDb
             }}>
                 {children}
             </useStateContext.Provider>

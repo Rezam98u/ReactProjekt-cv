@@ -10,19 +10,25 @@ import { useStateContext } from "../context/useStateContext"
 // Redux
 import { checkout } from '../Redux/useReducerAction';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 /////////////////
 const AddressForm = () => {
     const Navigate = useNavigate()
     const dispatch = useDispatch()
-    const { total_payment, pay, setPay } = useContext(useStateContext)
+    const { total_payment, pay, setPay, email, total_item } = useContext(useStateContext)
     const state = useSelector(state => state.useReducer)
 
     const { handleSubmit, register, formState: { errors } } = useForm()
-    const onSubmit = () => { setPay(false); dispatch(checkout()) }
+    const paySubmit = () => {
+        axios.post('http://localhost:3003/checkOut', { email: email, total_item: total_item(state.selectedItems) })
+            .then(res => console.log(res))
+            .catch(e => console.log(e))
+        // setPay(false); dispatch(checkout())
+    }
     return (
         <div className='px-8 pt-14'>
-            <form onSubmit={handleSubmit(onSubmit)} className='shadow-2xl border-2 rounded-lg py-4 my-5'>
+            <form onSubmit={handleSubmit(paySubmit)} className='shadow-2xl border-2 rounded-lg py-4 my-5'>
 
                 <div className='mx-auto w-4/5 mb-4 pb-4 text-4xl text-center font-bold'>
                     Check Out
@@ -56,6 +62,7 @@ const AddressForm = () => {
                                         })}
                                         error={errors?.email}
                                         helperText={errors.email ? errors.email.message : null}
+                                        value={email}
                                     />
                                 </Grid>
 

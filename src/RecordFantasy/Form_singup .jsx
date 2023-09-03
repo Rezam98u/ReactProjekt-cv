@@ -9,7 +9,7 @@ import axios from "axios";
 import { StateContext } from "./Context/contextRecordFantasy"
 
 // import validate from "./validate"
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify'
 // import 'react-tnpm startoastify/dist/ReactToastify.css';
 
 ///////////////////////

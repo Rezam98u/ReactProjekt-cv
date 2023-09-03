@@ -24,7 +24,7 @@ import randomToken from 'random-token'
 const app = express();
 
 ///////////////////////// Mongo database and Email verification //////////////////
-const MONGODB_URI = "mongodb+srv://root111:2gN2vBVngSYwcWzr@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
+const MONGODB_URI = "mongodb+srv://root111:15H0rRro5uLFJcZQ@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
     // console.log(process.env.MONGODB_URI)
 app.use(express.json())
 app.use(cors())
@@ -35,7 +35,7 @@ const connectToMongo = async() => {
 }
 connectToMongo()
 
-const UserSchema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true
@@ -48,9 +48,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         // required: true
     },
-    verificationToken: { type: String }
+    verificationToken: { type: String },
+    Purchased_products: Number
 })
-const User = mongoose.model('users', UserSchema)
+var User = mongoose.model('users', UserSchema)
 User.createIndexes()
 
 // const testAccount = nodemailer.createTestAccount()
@@ -84,7 +85,8 @@ app.post("/postUser", async(req, res) => {
             email: email,
             password: pass,
             isValid: false,
-            verificationToken: verificationToken
+            verificationToken: verificationToken,
+            purchased_products: 0
         })
 
         const mailOptions = {
@@ -102,11 +104,23 @@ app.post("/postUser", async(req, res) => {
         await user.save()
 
     } catch (error) {
-        res.status(500).json({ message: 'An error occurred.' })
+        res.json({ message: 'An error occurred.' })
     }
     // res.redirect("http://localhost:3002/AppShop")
 })
 
+app.post('/postUserGoogle', async(req, res) => {
+    const { email } = req.body
+    try {
+        const user = new User({
+            email: email,
+            isValid: true,
+        })
+        await user.save()
+    } catch (error) {
+        res.status(500).json({ message: 'An error occurred.' })
+    }
+})
 
 app.get("/verify/:verificationToken", async(req, res) => {
     const { verificationToken } = req.params
@@ -120,6 +134,26 @@ app.get("/verify/:verificationToken", async(req, res) => {
     } else { res.json("Invalid Token or user not found") }
 })
 
+
+app.get("/getDataMongoDb", async(req, res) => {
+    try {
+        const users = await User.find({})
+        res.send({ data: users, status: "ok" })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.post('/checkOut', async(req, res) => {
+    const { email, total_item } = req.body
+    const user = await User.findOne({ email: email })
+    if (user) {
+        user.purchased_products = total_item
+        await user.save()
+        res.status(200).json({ massage: total_item + " products are purchased" })
+    } else { res.json("Invalid user") }
+
+})
 
 ///////////////////////////////// Email verification //////////////////////
 // const testAccount = nodemailer.createTestAccount()

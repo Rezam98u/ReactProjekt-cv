@@ -16,11 +16,8 @@ import { removeItem, decrease, clear, increase } from '../Redux/useReducerAction
 const Shop = () => {
     const Navigate = useNavigate();
     const dispatch = useDispatch();
-
     const state = useSelector(state => state.useReducer)
-    const { prices, total_payment } = useContext(useStateContext)
-
-    const sum = prices(state.selectedItems);
+    const { total_item, total_payment } = useContext(useStateContext)
     return (
         <div className='px-4 pt-24 dark:bg-gray-800'>
             <Grid container rowGap={0} columnGap={3}>
@@ -80,7 +77,7 @@ const Shop = () => {
                     <div className='border-2 shadow rounded-2xl py-3 h-full px-3'>
                         <div>
                             <p className='text-3xl text-center border-b-4 mb-3 pb-2'> Order-Summary </p>
-                            <p className='text-lg font-bold'>Total item : {sum}  </p>
+                            <p className='text-lg font-bold'>Total item : {total_item(state.selectedItems)}  </p>
                             <p className='text-lg font-bold'>Total payment : {total_payment(state.selectedItems)} $ </p>
                         </div>
 
