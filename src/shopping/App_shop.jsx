@@ -1,10 +1,10 @@
 import { React } from 'react'
 import { Routes, Route } from "react-router-dom"
-import NavbarAppShop from "./share/navbar_App_shop"
-import AddressForm from './share/AddressForm';
+import NavbarAppShop from "./navbar_App_shop"
+import AddressForm from './AddressForm';
 import Store from './store';
 import DetailProduct from "./detail_product"
-import Shop from "./share/shop"
+import Shop from "./shop"
 import Home_shop from './Home_shop';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 

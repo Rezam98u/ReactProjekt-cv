@@ -146,11 +146,12 @@ app.get("/getDataMongoDb", async(req, res) => {
 
 app.post('/checkOut', async(req, res) => {
     const { email, total_item } = req.body
-    const user = await User.findOne({ email: email })
+    const user = await User.findOneAndUpdate({ email: email })
     if (user) {
-        user.purchased_products = total_item
+        user.purchased_products += total_item
         await user.save()
         res.status(200).json({ massage: total_item + " products are purchased" })
+            // res.status(200).redirect("http://localhost:3002/AppShop")
     } else { res.json("Invalid user") }
 
 })

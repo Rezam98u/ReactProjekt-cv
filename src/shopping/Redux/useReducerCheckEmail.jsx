@@ -10,7 +10,7 @@ const useReducerCheckEmail = (state = initialState, action) => {
     switch (action.type) {
 
         case "USER_NOT_FOUND":
-            state.massage = "USER NOT FOUND"
+            state.massage = "user not found"
             state.emailFind = false
             return { ...state }
 

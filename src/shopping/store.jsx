@@ -1,5 +1,5 @@
 import { React, useContext, useEffect } from 'react';
-import Product from "./share/product"
+import Product from "./product"
 import { Grid } from '@mui/material';
 // import CircularProgress from '@mui/material/CircularProgress';
 
