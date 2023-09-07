@@ -90,7 +90,7 @@ const UserFantasy = () => {
                             </Button>
                         </div>
                         <div className="flex items-center gap-2">
-                            <TextField type="file" variant='standard' onChange={imageHandler} />
+                            <TextField type="file" variant='standard' onChange={imageHandler}  />
                             <Button variant='contained' onClick={() =>
                                 axios.post('http://localhost:3003/image', { userId, profilePhoto }).then((res) => console.log(res))}>
                                 Upload

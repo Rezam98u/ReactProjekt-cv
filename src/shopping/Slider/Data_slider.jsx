@@ -1,7 +1,9 @@
 // import img1 from "./4a6acc1ad1f0def9695c57702e289673d1d32204_1690118516.webp"
 // import img2 from "./b382dadcb5dd1d27faca7b365b5cbf74f975ee02_1689751569.webp"
 // import img3 from "./cc99bfb51b3f5ccd5dfd23984a0a6fb8e12690b5_1689504981.webp"
-// import img4 from "./fe2491448fa82a761c8e01d3e77b73180f5c9bae_1681544141.webp"
+import img4 from "./HeroImg/fe2491448fa82a761c8e01d3e77b73180f5c9bae_1681544141.webp"
+import img5 from './HeroImg/desktop/Frame 5.png'
+import img6 from './HeroImg/desktop/Frame 4.png'
 
 ////////////////
 import logo1 from "./Logo/129b6bbd-e076-4364-aaee-126674090402-1.png"
@@ -30,6 +32,14 @@ import fitness3 from "./Fitness/LIGE-2023-Fashion-Smart-Watch-Men-Fitness-Bracel
 //     { image: img4 },
 // ]
 
+export const imgSlider = [
+    // { id: 1, img: img1 },
+    // { id: 2, img: img2 },
+    // { id: 3, img: img3 },
+    // { id: 4, img: img4 },
+    { id: 5, img: img5, description: "Explore the Great Outdoors" },
+    { id: 6, img: img6, description: "The Ultimate Shopping Experience" },
+]
 export const logoSlider = [
     { id: 1, logo: logo1 },
     { id: 2, logo: logo2 },

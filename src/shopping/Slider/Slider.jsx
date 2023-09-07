@@ -1,15 +1,14 @@
 import React from 'react';
-import { logoSlider, gadgets, fashion, fitness } from '../Slider/Data_slider'
+import { logoSlider, gadgets, fashion, fitness, imgSlider } from '../Slider/Data_slider'
 import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
 
 // import Carousel from 'react-elastic-carousel';
-import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
+// import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 import "./slider.module.scss"
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { motion } from "framer-motion"
 
-import img1 from './mainImg.webp'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 const SliderComponent = () => {
 
     const [sliderRef, setSliderRef] = useState(null)
+    const [sliderRef2, setSliderRef2] = useState(null)
     // const [gadgetsShow, setGadgetsShow] = useState(Boolean)
     // const [fashionShow, setFashionShow] = useState(Boolean)
 
@@ -45,7 +45,7 @@ const SliderComponent = () => {
     //     };
     // }, [index]);
 
-    const settings = {
+    const settings_logo = {
         arrows: false,
         dots: true,
         infinite: true,
@@ -56,13 +56,55 @@ const SliderComponent = () => {
         autoplaySpeed: 3100,
     };
 
+    const settings_img = {
+        arrows: false,
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 4000,
+
+    };
+
     return (
         <>
-            <div className="relative">
+            {/* <div className="relative">
                 <img src={img1} alt="" />
                 <div className="absolute left-12 top-32 text-xl font-bold ">
                     <p className="text-2xl mb-3"> Shopping and Department Store </p>
                     <button className="bg-slate-500 text-white px-3 py-1 rounded-md"> learn more </button>
+                </div>
+            </div> */}
+
+            <div className='relative'>
+                <div>
+                    <button onClick={sliderRef2?.slickPrev}
+                        className="absolute bottom-16 left-7 z-10 bg-blue-600 p-2 rounded-xl">
+                        <FaChevronLeft color='white' size={20} />
+                    </button>
+                    <button onClick={sliderRef2?.slickNext}
+                        className="absolute bottom-16 right-7 z-10 bg-blue-600 p-2 rounded-xl ">
+                        <FaChevronRight color='white' size={20} />
+                    </button>
+                </div>
+                <div className="">
+                    <Slider ref={setSliderRef2} {...settings_img}>
+                        {imgSlider.map(item => (
+                            <motion.div
+                                // initial={{ opacity: 0 }}
+                                // animate={{ opacity: 1 }}
+                                // transition={{ duration: 2 }}
+                                key={item.id} className='relative'>
+                                <img src={item.img} alt='#' width={"100%"} height={"100%"} />
+                                <div className="absolute left-10 top-32 text-xl font-bold">
+                                    <p className="text-2xl mb-3 bg-slate-300 p-2 rounded-lg"> {item.description} </p>
+                                    <button className="bg-slate-500 text-white px-3 py-1 rounded-md"> learn more </button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </Slider>
                 </div>
             </div>
 
@@ -93,7 +135,7 @@ const SliderComponent = () => {
             </div> */}
 
 
-            <div className='relative'>
+            <div className='relative mt-36'>
                 <div>
                     <button onClick={sliderRef?.slickPrev}
                         className="absolute top-12 left-7 z-10 bg-blue-600 p-1 rounded-xl">
@@ -105,7 +147,7 @@ const SliderComponent = () => {
                     </button>
                 </div>
                 <div className="m-3 rounded-xl px-12 py-2">
-                    <Slider ref={setSliderRef} {...settings}>
+                    <Slider ref={setSliderRef} {...settings_logo}>
                         {logoSlider.map((item) => (
                             <div key={item.id}>
                                 <img src={item.logo} alt='#' width={'50%'} height={"50%"} />

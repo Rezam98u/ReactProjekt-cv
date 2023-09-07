@@ -23,15 +23,16 @@ const UseStateContext = ({ children }) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [allDataFromMongoDb, setAllDataFromMongoDb] = useState([])
+    const [profileImg, setProfileImg] = useState(null)
 
 
     useEffect(() => {
-        const fetch = async () => {
-            const { data } = await axios.get('http://localhost:3003/getDataMongoDb')
-            setAllDataFromMongoDb(data.data)
-            // console.log(data.data)
-        }
-        fetch()
+        // const fetch = async () => {
+        //     const { data } = await axios.get('http://localhost:3003/getDataMongoDb')
+        //     setAllDataFromMongoDb(data.data)
+        //     // console.log(data.data)
+        // }
+        // fetch()
     }, []);
 
     /////////////////// React Query Method /////////////////// 
@@ -103,7 +104,8 @@ const UseStateContext = ({ children }) => {
                 setIsMobile, searched, categoryBESelected, selectHandler, total_item, total_payment,
                 loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
                 products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc,
-                openModal, setOpenModal, email, setEmail, pass, setPass, allDataFromMongoDb, setAllDataFromMongoDb
+                openModal, setOpenModal, email, setEmail, pass, setPass, allDataFromMongoDb, setAllDataFromMongoDb,
+                profileImg, setProfileImg
             }}>
                 {children}
             </useStateContext.Provider>
