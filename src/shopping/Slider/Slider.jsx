@@ -1,5 +1,5 @@
 import React from 'react';
-import { logoSlider, gadgets, fashion, fitness, imgSlider } from '../Slider/Data_slider'
+import { logoSlider, gadgets, fashion, fitness, imgSlider, imgSlider3 } from '../Slider/Data_slider'
 import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
 
@@ -14,15 +14,22 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
+// import img1 from './scribble_gif_croped.webp'
+// import img2 from './trash_talk_full_en.webp'
 ///////////////////////
 const SliderComponent = () => {
 
     const [sliderRef, setSliderRef] = useState(null)
     const [sliderRef2, setSliderRef2] = useState(null)
+    const [sliderRef3, setSliderRef3] = useState(null)
     // const [gadgetsShow, setGadgetsShow] = useState(Boolean)
     // const [fashionShow, setFashionShow] = useState(Boolean)
 
     const state = useSelector(state => state.useReducerShow)
+    const state_img2 = useSelector(state => state.useReducerShow2)
+    const state_img3 = useSelector(state => state.useReducerShow3)
     const dispatch = useDispatch()
 
     /// old Method
@@ -68,6 +75,17 @@ const SliderComponent = () => {
 
     };
 
+    const settings_img3 = {
+        arrows: true,
+        dots: true,
+        infinite: false,
+        speed: 800,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        // autoplay: true,
+        autoplaySpeed: 4000,
+    };
+
     return (
         <>
             {/* <div className="relative">
@@ -78,6 +96,7 @@ const SliderComponent = () => {
                 </div>
             </div> */}
 
+            {/* Section Slider 1  */}
             <div className='relative'>
                 <div>
                     <button onClick={sliderRef2?.slickPrev}
@@ -134,8 +153,8 @@ const SliderComponent = () => {
                 </button>
             </div> */}
 
-
-            <div className='relative mt-36'>
+            {/* Section Slider 2  */}
+            {/* <div className='relative mt-36'>
                 <div>
                     <button onClick={sliderRef?.slickPrev}
                         className="absolute top-12 left-7 z-10 bg-blue-600 p-1 rounded-xl">
@@ -150,12 +169,14 @@ const SliderComponent = () => {
                     <Slider ref={setSliderRef} {...settings_logo}>
                         {logoSlider.map((item) => (
                             <div key={item.id}>
-                                <img src={item.logo} alt='#' width={'50%'} height={"50%"} />
+                                <div className="flex justify-center">
+                                    <img src={item.logo} alt='#' width={'50%'} height={"50%"} />
+                                </div>
                             </div>
                         ))}
                     </Slider>
                 </div>
-            </div>
+            </div> */}
 
 
             {/* {dataSlider.map((slide, index) =>
@@ -178,10 +199,104 @@ const SliderComponent = () => {
             </button> */}
 
 
+            <div style={{ width: "93%" }} className='mx-auto my-20'>
+                <div className="text-2xl font-bold mb-4"> Back In Stock </div>
+
+                <div className="flex gap-3 justify-center">
+                    <div>
+                        <div key={state_img2.id}>
+                            <div className="relative">
+                                <img src={state_img2.img} alt="#" width={"19.5%"} className="rounded-lg" />
+                                <p className="absolute bottom-0 left-2 bg-black rounded-xl px-2 text-xs text-white">Sale</p>
+                            </div>
+                            <p className="my-2 hover:underline"> {state_img2.title} </p>
+                            <p className="my-2"> {state_img2.price} </p>
+                        </div>
+                        <div className='flex gap-3 mt-3'>
+                            <div className="rounded-full bg-slate-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Navy' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-amber-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Red' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-red-600 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Lime' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-lime-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Orange' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-orange-400 w-6 h-6"></div>
+                        </div>
+                    </div>
+
+
+                    <div>
+                        <div key={state_img3.id}>
+                            <div className="relative">
+                                <img src={state_img3.img} alt="#" width={"19.5%"} className="rounded-lg" />
+                                <p className="absolute bottom-0 left-2 bg-black rounded-xl px-2 text-xs text-white capitalize"> selling fast </p>
+                            </div>
+                            <div className="my-2"> {state_img3.title} </div>
+                            <div className="my-2"> {state_img3.price} </div>
+                        </div>
+                        <div className='flex gap-3 mt-3 '>
+                            <div className="rounded-full bg-slate-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Merlot' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-blue-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Egret' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-red-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Lagoon' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-orange-500 w-6 h-6"></div>
+                            <div onMouseEnter={() => dispatch({ type: 'Smoky_Ochre' })} onMouseLeave={() => dispatch({ type: 'Default' })} className="rounded-full bg-gray-500 w-6 h-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div style={{ width: "93%" }} className='mx-auto my-20'>
+                <div className='flex justify-around gap-2 items-center'>
+                    <div className="relative">
+
+                        {/* <img src={img2} alt="" className="absolute  left-36 " width={"30%"} />
+                        <img src={img1} alt="" className="absolute  left-36 " width={"30%"} /> */}
+
+                        <div>
+                            <p className="text-4xl font-bold">Sustainability = Transparency</p>
+                            <p className="text-lg font-bold"> LEARN MORE</p>
+                            The apparel industry creates a lot of trash—10.5 million tonnes per year, to be exact. We're helping
+                            divert some of it from landfills, while conserving water and important resources, too.
+                            By planting trees for every item purchased, we prove to the world that sustainability can and should be as easy as putting on a t-shirt. Here's a snapshot of the impact you've helped create so far this year:
+                        </div>
+                    </div>
+                    <div>
+                        <img src={img} alt="" width={"1100px"} className="rounded-lg" />
+                    </div>
+                </div>
+            </div>
+
+
+            {/* Section Slider 3  */}
+            <div className='relative my-36 mx-auto px-2' style={{ width: "95%" }} >
+                <div className="text-2xl font-bold my-7 ml-2">  The Environmentor </div>
+                <div>
+                    <button onClick={sliderRef3?.slickPrev}
+                        className="absolute top-0 right-20 z-10 bg-blue-600 p-1 rounded-xl">
+                        <FaChevronLeft color='white' size={18} />
+                    </button>
+                    <button onClick={sliderRef3?.slickNext}
+                        className="absolute top-0 right-7 z-10 bg-blue-600 p-1 rounded-xl">
+                        <FaChevronRight color='white' size={18} />
+                    </button>
+                </div>
+                <div>
+                    <Slider ref={setSliderRef3} {...settings_img3} >
+                        {imgSlider3.map((item) => (
+                            <div key={item.id}>
+                                <img src={item.img} alt='#' width={'90%'} className="mx-auto rounded-lg" />
+                                <div style={{ width: '90%' }} className="mx-auto">
+                                    <p className="my-2 font-bold">{item.title}</p>
+                                    <button> READ NOW </button>
+                                </div>
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
+            </div>
 
 
             <div>
-                <div style={{ width: '90%' }} className="mx-auto my-12 bg-gray-300 py-8 px-4 rounded-xl ">
+                <div style={{ width: '93%' }} className="mx-auto my-12 bg-gray-300 py-8 px-4 rounded-xl ">
                     <h1 className="text-black font-bold text-xl mb-3"> Today Best Deals For You! </h1>
                     <div className="flex items-center gap-4 my-2">
                         <div>
@@ -275,40 +390,31 @@ const SliderComponent = () => {
 
                         <div style={{ width: '60%' }} className="flex justify-between">
                             <div>
-                                <p> Department </p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
+                                <p className="font-bold"> ABOUT US </p>
+                                <p> ABOUT ShopCart!</p>
+                                <p> ABOUT THE FOUNDERS </p>
+                                <p>IN THE PRESS</p>
+                                <p>TESTIMONIALS</p>
+                                <p>SUBMIT PRODUCTS</p>
+                                <p>WISHLIST</p>
                             </div>
 
                             <div>
-                                <p> About us </p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
+                                <p className="font-bold"> CUSTOMER SERVICE </p>
+                                <p> FREE SHIPPING + RETURNS </p>
+                                <p> START A RETURN </p>
+                                <p> FAQS </p>
+                                <p> RETURN POLICY </p>
+                                <p> CONTACT US </p>
+                                <p> TRADE PROGRAM </p>
+                                <p> AFFILIATE PROGRAM </p>
+                                <p> TERMS OF SERVICE </p>
+                                <p> PRIVACY POLICY </p>
+                                <p> PRESS REQUESTS </p>
                             </div>
 
                             <div>
-                                <p> Services </p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                            </div>
-
-                            <div>
-                                <p> Help </p>
+                                <p className="font-bold"> Help </p>
                                 <p>#</p>
                                 <p>#</p>
                                 <p>#</p>

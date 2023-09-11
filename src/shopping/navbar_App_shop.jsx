@@ -7,7 +7,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Drawer, Toolbar, IconButton, Box, TextField, MenuItem } from '@mui/material';
+import { AppBar, Drawer, Toolbar, IconButton, Box, TextField, MenuItem, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useStateContext } from './context/useStateContext';
 import { useDispatch, useSelector } from 'react-redux';
@@ -65,12 +65,15 @@ const NavbarAppShop = () => {
         //     { email: email, pass: pass }).then((res) => console.log(res))
     }
     const onSubmit_login = () => {
-        allDataFromMongoDb.find(i => i.email === email) ? setOpenModal(false) :
+        allDataFromMongoDb.find(i => i.email === email) ?
+            setSigned_user(allDataFromMongoDb.find(i => i.email === email)) 
+            // setOpenModal(false)
+            :
             dispatch({ type: "USER_NOT_FOUND" })
-        setSigned_user(allDataFromMongoDb.find(i => i.email === email))
+
         // console.log(signed_user);
     }
-    // console.log(dataFromMongoDb)
+    // console.log(allDataFromMongoDb)
 
     ////Google Authentication
     const responseMessage = res => {
@@ -102,16 +105,14 @@ const NavbarAppShop = () => {
         },
     };
 
-    const imgHandler = (e) => {
-        e.preventDefault()
-        console.log(e.target)
+    const imgHandler = async (e) => {
         const reader = new FileReader()
         reader.readAsDataURL(e.target.files[0])
         reader.onloadend = () => setProfileImg(reader.result)
         reader.onerror = error => console.log(error)
 
     }
-    console.log(profileImg);
+    // console.log(profileImg)
 
     return (
         <>
@@ -340,8 +341,11 @@ const NavbarAppShop = () => {
                         onMouseLeave={() => { setOpenMenuAcc({ open: false, arrowUP: !openMenuAcc.arrowUP }) }}>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <button className="flex items-center gap-2">
-                                <FaUser /> Account  <FaChevronCircleUp style={{ transform: openMenuAcc.arrowUP ? 'rotate(180deg)' : null }} />
+                                {/* <FaUser /> */}
+                                <Avatar className='ml-2' src={signed_user.profileImg} alt='#' sx={{ width: 30, height: 30 }} />
+                                Account  <FaChevronCircleUp style={{ transform: openMenuAcc.arrowUP ? 'rotate(180deg)' : null }} />
                             </button>
+
                         </Box>
                         {openMenuAcc.open ?
                             <motion.div
@@ -350,13 +354,11 @@ const NavbarAppShop = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className='absolute'>
-                                    <div className='w-52 rounded-md bg-white text-black py-2 mt-3 px-3'>
+                                    <div className='w-60 rounded-md bg-white text-black py-2 mt-3 px-3'>
                                         <p> Welcome to ShopCart!</p>
-                                        <div className='flex gap-3 my-2'>
-                                            <div className="bg-red-500 px-2 rounded-lg">
-                                                userName : {email}
-                                            </div>
-                                            <input type="file" onChange={e => imgHandler(e)} name='myFile' />
+
+                                        <div className="bg-green-300 px-2 rounded-lg my-2">
+                                            userName : {signed_user.email}
                                         </div>
 
                                         <MenuItem className='hover:text-blue-700'>
@@ -381,6 +383,18 @@ const NavbarAppShop = () => {
                             : null
                         }
                     </div>
+                    {signed_user.profileImg === null ?
+                        <div>
+                            <input type="file" onChange={imgHandler} name='myFile' accept='.png , .jpg' />
+                            <button className='bg-white px-2 rounded-lg' onClick={() => {
+                                axios.post('http://localhost:3003/postProfileImg', { email: email, img: profileImg })
+                                    .then(res => console.log(res))
+                            }}>
+                                save photo
+                            </button>
+                        </div>
+                        : null
+                    }
 
                     {/* <div className={PathName === "/products" ? "flex items-center MD:hidden" : "hidden"}>
                         <button className='btn'><SearchIcon fontSize='large' /></button>

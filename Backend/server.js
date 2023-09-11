@@ -22,6 +22,8 @@ import randomToken from 'random-token'
 // import { User } from './models/user'
 //////////////////////////////////////////////////////////////////////////////////
 const app = express();
+app.use(bodyParser.json({ limit: "50mb" }))
+
 
 ///////////////////////// Mongo database and Email verification //////////////////
 const MONGODB_URI = "mongodb+srv://root111:15H0rRro5uLFJcZQ@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
@@ -48,9 +50,14 @@ var UserSchema = new mongoose.Schema({
         type: Boolean,
         // required: true
     },
-    verificationToken: { type: String },
+    verificationToken: {
+        type: String
+    },
     purchased_products: Number,
-    img: { data: Buffer, contentType: String }
+    profileImg: {
+        data: Buffer,
+        type: String
+    }
 })
 var User = mongoose.model('users', UserSchema)
 User.createIndexes()
@@ -87,7 +94,8 @@ app.post("/postUser", async(req, res) => {
             password: pass,
             isValid: false,
             verificationToken: verificationToken,
-            purchased_products: 0
+            purchased_products: 0,
+            profileImg: null
         })
 
         const mailOptions = {
@@ -151,7 +159,19 @@ app.post('/checkOut', async(req, res) => {
     if (user) {
         user.purchased_products += total_item
         await user.save()
-        res.status(200).json({ massage: total_item + " products are purchased" })
+        res.status(200).json({ massage: total_item + " products were purchased" })
+            // res.status(200).redirect("http://localhost:3002/AppShop")
+    } else { res.json("Invalid user") }
+
+})
+
+app.post('/postProfileImg', async(req, res) => {
+    const { email, img } = req.body
+    const user = await User.findOneAndUpdate({ email: email })
+    if (user) {
+        user.profileImg = img
+        await user.save()
+        res.status(200).json({ massage: "profile was saved" })
             // res.status(200).redirect("http://localhost:3002/AppShop")
     } else { res.json("Invalid user") }
 

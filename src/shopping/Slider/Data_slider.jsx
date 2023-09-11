@@ -6,6 +6,23 @@ import img5 from './HeroImg/desktop/Frame 5.png'
 import img6 from './HeroImg/desktop/Frame 4.png'
 
 ////////////////
+import img3_1 from './img3/Fast-fasion-hero-3-800x800.webp'
+import img3_2 from './img3/c2c-hero-1-800x800.webp'
+import img3_3 from './img3/free-to-run-hero-800x800.webp'
+import img3_4 from './img3/hero-linen-800x800.webp'
+import img3_5 from './img3/how-to-style-your-active-wear-hero-800x800.webp'
+import img3_6 from './img3/ipcc-800x800.webp'
+import img3_7 from './img3/meettheartistnatgeo-800x800.webp'
+import img3_8 from './img3/textile-dyeing-new-hero-800x800.webp'
+
+////////////////
+// import img4_1 from './img4/OrangeBisonSock-1_1.webp'
+// import img4_2 from './img4/ULTIMATEBISONSOCK_BROWN_709-001-04624_5133.webp'
+// import img4_3 from './img4/ULTIMATEBISONSOCK_LIME_709-001-07024_3085.webp'
+// import img4_4 from './img4/ULTIMATEBISONSOCK_NAVY_709-001-13224_8207.webp'
+// import img4_5 from './img4/ULTIMATEBISONSOCK_RED_709-001-10724_1036.webp'
+
+////////////////
 import logo1 from "./Logo/129b6bbd-e076-4364-aaee-126674090402-1.png"
 import logo2 from "./Logo/Alcumus-ContractorCheck-logo-RGBr.png"
 import logo3 from "./Logo/CW-logo-tag-2-sm-min.png"
@@ -47,6 +64,26 @@ export const logoSlider = [
     { id: 4, logo: logo4 },
     { id: 5, logo: logo5 },
 ]
+
+export const imgSlider3 = [
+    { id: 1, img: img3_1, title: "4 Big Takeaways from the IPCC Report" },
+    { id: 2, img: img3_2, title: "Cradle to Cradle Certification" },
+    { id: 3, img: img3_3, title: "IWD Spotlight: Free To Run" },
+    { id: 4, img: img3_4, title: "The Environmental Impact of Textile Dyeing" },
+    { id: 5, img: img3_5, title: "What Is Fast Fashion? Why Is it Bad?" },
+    { id: 6, img: img3_6, title: "How To Style Your Activewear" },
+    { id: 7, img: img3_7, title: "Fabric Focus: Linen" },
+    { id: 8, img: img3_8, title: "Illustrating National Geographic: Meet The Artist" },
+]
+
+// export const img_4 = [
+//     { id: 1, img: img4_1 },
+//     { id: 2, img: img4_2 },
+//     { id: 3, img: img4_3 },
+//     { id: 4, img: img4_4 },
+//     { id: 5, img: img4_5 },
+
+// ]
 
 export const gadgets = [
     { id: 1, price: "2$", img: gadget1 },
