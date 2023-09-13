@@ -14,8 +14,6 @@ const initialState = {
 }
 
 const useReducerShow3 = (state = initialState, action) => {
-    // console.log(state)
-
     switch (action.type) {
 
         case "Merlot":

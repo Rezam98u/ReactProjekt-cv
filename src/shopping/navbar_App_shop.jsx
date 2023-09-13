@@ -28,7 +28,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-
+import img from './Slider/SS23_NavContentUpdate_Accessories_FA.min.avif'
 import { IoMdCloseCircle } from 'react-icons/io'
 import axios from 'axios';
 ///////////////////////
@@ -46,7 +46,8 @@ const NavbarAppShop = () => {
 
     const { isMobile, setIsMobile, searchHandler, search, selectHandler, profileImg, setProfileImg,
         select, total_item, scroll, setScroll, openMenu, setOpenMenu, allDataFromMongoDb, setAllDataFromMongoDb,
-        openMenuAcc, setOpenMenuAcc, email, setEmail, pass, setPass } = useContext(useStateContext)
+        openMenuAcc, setOpenMenuAcc, email, setEmail, openMenuAccessories, setOpenMenuAccessories,
+        pass, setPass } = useContext(useStateContext)
 
     useEffect(() => {
         const onScroll = () => {
@@ -66,7 +67,7 @@ const NavbarAppShop = () => {
     }
     const onSubmit_login = () => {
         allDataFromMongoDb.find(i => i.email === email) ?
-            setSigned_user(allDataFromMongoDb.find(i => i.email === email)) 
+            setSigned_user(allDataFromMongoDb.find(i => i.email === email))
             // setOpenModal(false)
             :
             dispatch({ type: "USER_NOT_FOUND" })
@@ -120,9 +121,7 @@ const NavbarAppShop = () => {
                 background: scroll >= 2.933333396911621 ? '#FFFFFF' : "transparent", boxShadow: 'none', zIndex: 5, height: "62px"
             }}> */}
             <PageScrollProgressBar color="#00AE47" bgColor="#f2f2f2" height="4.1px" />
-            <Toolbar className={PathName === "/AppShop/products" ?
-                "flex md:justify-around absolute top-0 z-10 bg-slate-200" :
-                "flex md:justify-around absolute top-0 z-10"}>
+            <div className={scroll >= 2.933333396911621 ? "bg-white fixed z-20 h-14 pt-2 my-auto w-full" : 'sticky pt-2 z-10'}>
 
                 <div className='md:hidden'>
                     <IconButton aria-label='logo' onClick={() => setIsMobile(true)}>
@@ -316,16 +315,71 @@ const NavbarAppShop = () => {
                                     Whats News
                                 </button>
                             </Tippy>
-
                         </Box>
                     </div>
 
-                    <div>
+                    <div onMouseEnter={() => { setOpenMenuAccessories({ open: true, arrowUP: !openMenuAccessories.arrowUP }) }}
+                        onMouseLeave={() => { setOpenMenuAccessories({ open: false, arrowUP: !openMenuAccessories.arrowUP }) }}>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                            <button>
-                                Delivery
+                            <button className="flex items-center gap-2">
+                                Accessories  <FaChevronCircleUp style={{ transform: openMenuAccessories.arrowUP ? 'rotate(180deg)' : null }} />
                             </button>
                         </Box>
+                        {openMenuAccessories.open ?
+                            <motion.div
+                                initial={{ scaleY: 0 }}
+                                animate={{ scaleY: 1 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className='absolute left-96'>
+                                    <div className='rounded-md bg-white text-black py-2 mt-3 flex gap-4'>
+                                        <div>
+                                            <MenuItem className='hover:text-blue-700'>
+                                                Features
+                                            </MenuItem>
+                                            <div className="px-3 leading-9">
+                                                <div><button>All Accessories</button></div>
+                                                <div><button>Hats & Beanies</button></div>
+                                                <div><button>Backpacks</button></div>
+                                                <div><button>Scarves</button></div>
+                                                <div><button>Homeware</button></div>
+                                                <div><button>Socks</button></div>
+                                                <div><button> Shoes</button></div>
+                                                <div><button>Candles</button></div>
+                                                <div><button>Face Masks</button></div>
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <MenuItem className='hover:text-blue-700'>
+                                                Features
+                                            </MenuItem>
+                                            <div className="px-3 leading-9">
+                                                <div><button>New Accessories</button></div>
+                                                <div><button>Best Sellers</button></div>
+                                                <div><button>Cold Weather Accessories</button></div>
+                                                <div><button>The Mobius Collection</button></div>
+                                                <div><button>Shoes</button></div>
+                                                <div><button>Gift Cards</button></div>
+                                                <div><button>Mystery Bags</button></div>
+                                                <div><button>Sale</button></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <img src={img} alt="" width={200} className="rounded-lg mb-2" />
+                                            <p>NEW ARRIVALS </p>
+                                            <p>
+                                                Accessories
+                                                It's the little things. <br />
+                                                These Earth-First accessories are here <br /> to keep your
+                                                impact to a planet-friendly minimum.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                            : null
+                        }
                     </div>
 
 
@@ -345,7 +399,6 @@ const NavbarAppShop = () => {
                                 <Avatar className='ml-2' src={signed_user.profileImg} alt='#' sx={{ width: 30, height: 30 }} />
                                 Account  <FaChevronCircleUp style={{ transform: openMenuAcc.arrowUP ? 'rotate(180deg)' : null }} />
                             </button>
-
                         </Box>
                         {openMenuAcc.open ?
                             <motion.div
@@ -429,7 +482,7 @@ const NavbarAppShop = () => {
                         </Box>
                     </div>
                 </div>
-            </Toolbar >
+            </div>
             {/* </AppBar > */}
             <ToastContainer />
         </>

@@ -1,6 +1,10 @@
 import { React, useContext, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import Product from "./product"
-import { Grid } from '@mui/material';
+import { Grid, TextField, MenuItem } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+
 // import CircularProgress from '@mui/material/CircularProgress';
 
 // Context
@@ -12,7 +16,10 @@ import { fetchData } from './Redux/actions';
 /////////////////////
 const Store = () => {
     // const dispatch = useDispatch()
-    const { search, select, searched, categoryBESelected, products } = useContext(useStateContext);
+    const location = useLocation();
+    const PathName = location.pathname
+
+    const { search, select, searched, categoryBESelected, products, searchHandler, selectHandler } = useContext(useStateContext);
     // const { loading, productsData, error } = useSelector(state => state.productsState)
 
     // useEffect(() => {
@@ -20,8 +27,37 @@ const Store = () => {
     // }, [dispatch]);
 
     return (
-        <div className="px-4 pt-20 dark:bg-slate-500">
-            <Grid container rowGap={5} columnSpacing={3} justifyContent={'center'} className='container_store'>
+        <div className="mx-10 pt-20 pb-5 dark:bg-slate-500">
+            <div className={PathName === "/AppShop/products" ? "flex items-center justify-around MD:hidden" : "hidden"}>
+                <div className="flex gap-2 items-center">
+                    <button> <SearchIcon fontSize='medium' /> </button>
+                    <div>
+                        <TextField className='bg-zinc-300 rounded-lg w-60' 
+                            type="search"
+                            label="search"
+                            value={search.text}
+                            size='small'
+                            onChange={searchHandler} />
+                    </div>
+                </div>
+
+                <div className='w-60'>
+                    <TextField
+                        className='ml-2 bg-zinc-300 rounded-md'
+                        select fullWidth
+                        value={select.text}
+                        label="Please select a Category"
+                        size='small'
+                        onChange={selectHandler} >
+
+                        <MenuItem value="">All</MenuItem>
+                        <MenuItem value="clothing">clothing</MenuItem>
+                        <MenuItem value="electronics">electrical devices</MenuItem>
+                        <MenuItem value="jeweler">jeweler</MenuItem>
+                    </TextField>
+                </div>
+            </div>
+            <Grid container rowGap={5} columnSpacing={3} justifyContent={'center'} className='container_store mt-3'>
                 {search.bool ?
                     searched.map(item =>
                         <Grid item xs={12} sm={6} md={4} lg={3} minWidth='300px' key={item.id} className='bild'>

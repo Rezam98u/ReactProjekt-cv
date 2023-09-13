@@ -19,6 +19,7 @@ const UseStateContext = ({ children }) => {
     const [scroll, setScroll] = useState(Number);
     const [openMenu, setOpenMenu] = useState({ open: false, arrowUP: Boolean });
     const [openMenuAcc, setOpenMenuAcc] = useState({ open: false, arrowUP: Boolean });
+    const [openMenuAccessories, setOpenMenuAccessories] = useState({ open: false, arrowUP: Boolean });
     const [openModal, setOpenModal] = useState(Boolean);
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
@@ -35,7 +36,7 @@ const UseStateContext = ({ children }) => {
         // fetch()
     }, []);
 
-    /////////////////// React Query Method /////////////////// 
+    //////////////////////// React Query Method //////////////////////// 
     const { isLoading, isError, data, error, refetch } = useQuery(["repo"], () =>
         axios.get("https://fakestoreapi.com/products")
             .then(res => setProducts(res.data))
@@ -48,8 +49,6 @@ const UseStateContext = ({ children }) => {
 
     if (error) return "An error has occurred: " + error.message;
 
-    // console.log(products)
-
     /////////////////// Old Method
     // useEffect(() => {
     //     const fetchApi = async () => {
@@ -60,15 +59,12 @@ const UseStateContext = ({ children }) => {
     //     }
     //     fetchApi()
     // }, []);
-    ////////////////////////////////////////////////////////////////////
-    const searchHandler = (e) => {
-        setSearch({ text: e.target.value, bool: true })
-    }
-    const selectHandler = (e) => {
-        setSelect({ text: e.target.value, bool: true })
-    }
-    const categoryBESelected = productsData.filter(item => item.category.includes(select.text))
-    const searched = categoryBESelected.filter(item => item.title.includes(search.text))
+
+    //////////////////////// Search products //////////////////////// 
+    const searchHandler = e => { setSearch({ text: e.target.value, bool: true }) }
+    const selectHandler = e => { setSelect({ text: e.target.value, bool: true }) }
+    const categoryBESelected = products.filter(i => i.category.includes(select.text))
+    const searched = categoryBESelected.filter(i => i.title.includes(search.text))
     ///////////////////////
     const total_item = (sum) => {
         const newSum = sum.map(item => item.quantity)
@@ -105,7 +101,7 @@ const UseStateContext = ({ children }) => {
                 loading, setLoading, shorten, isInCart, quantityCount, selectedProduct, setSelectedProduct,
                 products, setProducts, scroll, setScroll, openMenu, setOpenMenu, openMenuAcc, setOpenMenuAcc,
                 openModal, setOpenModal, email, setEmail, pass, setPass, allDataFromMongoDb, setAllDataFromMongoDb,
-                profileImg, setProfileImg
+                profileImg, setProfileImg, openMenuAccessories, setOpenMenuAccessories
             }}>
                 {children}
             </useStateContext.Provider>

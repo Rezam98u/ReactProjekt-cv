@@ -16,11 +16,6 @@ import img3_7 from './img3/meettheartistnatgeo-800x800.webp'
 import img3_8 from './img3/textile-dyeing-new-hero-800x800.webp'
 
 ////////////////
-// import img4_1 from './img4/OrangeBisonSock-1_1.webp'
-// import img4_2 from './img4/ULTIMATEBISONSOCK_BROWN_709-001-04624_5133.webp'
-// import img4_3 from './img4/ULTIMATEBISONSOCK_LIME_709-001-07024_3085.webp'
-// import img4_4 from './img4/ULTIMATEBISONSOCK_NAVY_709-001-13224_8207.webp'
-// import img4_5 from './img4/ULTIMATEBISONSOCK_RED_709-001-10724_1036.webp'
 
 ////////////////
 import logo1 from "./Logo/129b6bbd-e076-4364-aaee-126674090402-1.png"
@@ -76,14 +71,6 @@ export const imgSlider3 = [
     { id: 8, img: img3_8, title: "Illustrating National Geographic: Meet The Artist" },
 ]
 
-// export const img_4 = [
-//     { id: 1, img: img4_1 },
-//     { id: 2, img: img4_2 },
-//     { id: 3, img: img4_3 },
-//     { id: 4, img: img4_4 },
-//     { id: 5, img: img4_5 },
-
-// ]
 
 export const gadgets = [
     { id: 1, price: "2$", img: gadget1 },

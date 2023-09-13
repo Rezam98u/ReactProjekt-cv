@@ -1,4 +1,4 @@
-import img4_1 from '../Slider/img4/OrangeBisonSock-1_1.webp'
+import img4_1 from '../Slider/img4/Frame 5.jpg'
 import img4_2 from '../Slider/img4/ULTIMATEBISONSOCK_BROWN_709-001-04624_5133.webp'
 import img4_3 from '../Slider/img4/ULTIMATEBISONSOCK_LIME_709-001-07024_3085.webp'
 import img4_4 from '../Slider/img4/ULTIMATEBISONSOCK_NAVY_709-001-13224_8207.webp'
@@ -13,8 +13,6 @@ const initialState = {
 }
 
 const useReducerShow2 = (state = initialState, action) => {
-    // console.log(state)
-
     switch (action.type) {
 
         case "Navy":

@@ -2,6 +2,8 @@ import React from 'react';
 import { logoSlider, gadgets, fashion, fitness, imgSlider, imgSlider3 } from '../Slider/Data_slider'
 import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
+import { RiDeleteBin6Fill } from 'react-icons/ri'
+import { AiTwotoneCloud } from "react-icons/ai"
 
 // import Carousel from 'react-elastic-carousel';
 // import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
@@ -16,6 +18,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
+import { IoIosWater } from 'react-icons/io';
+import { BsArrowUpSquareFill } from 'react-icons/bs';
+import Tippy from '@tippyjs/react';
 // import img1 from './scribble_gif_croped.webp'
 // import img2 from './trash_talk_full_en.webp'
 ///////////////////////
@@ -79,7 +84,7 @@ const SliderComponent = () => {
         arrows: true,
         dots: true,
         infinite: false,
-        speed: 800,
+        speed: 450,
         slidesToShow: 5,
         slidesToScroll: 1,
         // autoplay: true,
@@ -153,30 +158,7 @@ const SliderComponent = () => {
                 </button>
             </div> */}
 
-            {/* Section Slider 2  */}
-            {/* <div className='relative mt-36'>
-                <div>
-                    <button onClick={sliderRef?.slickPrev}
-                        className="absolute top-12 left-7 z-10 bg-blue-600 p-1 rounded-xl">
-                        <FaChevronLeft color='white' size={18} />
-                    </button>
-                    <button onClick={sliderRef?.slickNext}
-                        className="absolute top-12 right-7 z-10 bg-blue-600 p-1 rounded-xl">
-                        <FaChevronRight color='white' size={18} />
-                    </button>
-                </div>
-                <div className="m-3 rounded-xl px-12 py-2">
-                    <Slider ref={setSliderRef} {...settings_logo}>
-                        {logoSlider.map((item) => (
-                            <div key={item.id}>
-                                <div className="flex justify-center">
-                                    <img src={item.logo} alt='#' width={'50%'} height={"50%"} />
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>
-                </div>
-            </div> */}
+
 
 
             {/* {dataSlider.map((slide, index) =>
@@ -209,7 +191,7 @@ const SliderComponent = () => {
                                 <img src={state_img2.img} alt="#" width={"19.5%"} className="rounded-lg" />
                                 <p className="absolute bottom-0 left-2 bg-black rounded-xl px-2 text-xs text-white">Sale</p>
                             </div>
-                            <p className="my-2 hover:underline"> {state_img2.title} </p>
+                            <p className="my-2"> {state_img2.title} </p>
                             <p className="my-2"> {state_img2.price} </p>
                         </div>
                         <div className='flex gap-3 mt-3'>
@@ -243,6 +225,30 @@ const SliderComponent = () => {
 
             </div>
 
+            {/* Section Slider 2  */}
+            <div style={{ width: "93%" }} className='relative mt-36 mx-auto'>
+                <div>
+                    <button onClick={sliderRef?.slickPrev}
+                        className="absolute top-12 left-1 z-10 bg-blue-600 p-1 rounded-xl">
+                        <FaChevronLeft color='white' size={18} />
+                    </button>
+                    <button onClick={sliderRef?.slickNext}
+                        className="absolute top-12 right-1 z-10 bg-blue-600 p-1 rounded-xl">
+                        <FaChevronRight color='white' size={18} />
+                    </button>
+                </div>
+                <div className="m-3 rounded-xl px-10 py-2">
+                    <Slider ref={setSliderRef} {...settings_logo}>
+                        {logoSlider.map((item) => (
+                            <div key={item.id}>
+                                <div className="flex justify-center">
+                                    <img src={item.logo} alt='#' width={'50%'} height={"50%"} />
+                                </div>
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
+            </div>
 
             <div style={{ width: "93%" }} className='mx-auto my-20'>
                 <div className='flex justify-around gap-2 items-center'>
@@ -258,7 +264,26 @@ const SliderComponent = () => {
                             divert some of it from landfills, while conserving water and important resources, too.
                             By planting trees for every item purchased, we prove to the world that sustainability can and should be as easy as putting on a t-shirt. Here's a snapshot of the impact you've helped create so far this year:
                         </div>
+                        <div className="flex justify-around mt-5">
+                            <div>
+                                <div className="flex justify-center"> <RiDeleteBin6Fill size={30} /></div>
+                                <p className='mt-2'>200 MM g</p>
+                                <p className="text-gray-400 text-sm"> waste saved</p>
+                            </div>
+                            <div>
+                                <div className="flex justify-center"><IoIosWater size={30} /></div>
+                                <p className='mt-2'>245 MM l</p>
+                                <p className="text-gray-400 text-sm"> water saved</p>
+                            </div>
+                            <div>
+                                <div className="flex justify-center"><AiTwotoneCloud size={30} /></div>
+                                <p className='mt-2'>1 MM kg</p>
+                                <p className="text-gray-400 text-sm">CO2 saved</p>
+                            </div>
+                        </div>
+
                     </div>
+
                     <div>
                         <img src={img} alt="" width={"1100px"} className="rounded-lg" />
                     </div>
@@ -266,8 +291,74 @@ const SliderComponent = () => {
             </div>
 
 
+            <div style={{ width: '93%' }} className="mx-auto my-12 rounded-xl">
+                <h1 className="text-black font-bold text-2xl mb-3"> Today Best Deals For You! </h1>
+                <div className="flex items-center gap-4 my-2">
+                    <div>
+                        <button className={state.showGadget ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
+                            "py-1 px-2 rounded-xl bg-white text-black"}
+                            onClick={() => dispatch({ type: 'GADGET' })}>
+                            Gadgets
+                        </button>
+                    </div>
+                    <div>
+                        <button className={state.showFashion ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
+                            "py-1 px-2 rounded-xl bg-white text-black"}
+                            onClick={() => dispatch({ type: 'FASHION' })}>
+                            Fashion
+                        </button>
+                    </div>
+                    <div>
+                        <button className={state.showFitness ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
+                            "py-1 px-2 rounded-xl bg-white text-black"}
+                            onClick={() => dispatch({ type: 'FITNESS' })}>
+                            Fitness
+                        </button>
+                    </div>
+
+                    {/* <div>
+                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Toys </button>
+                        </div>
+                        <div>
+                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Educations </button>
+                        </div>
+                        <div>
+                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Beauty </button>
+                        </div>
+                        <div>
+                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Travel </button>
+                        </div>
+                        */}
+                </div>
+
+                {state.showGadget &&
+                    <div className="flex items-center gap-9 mt-4">
+                        {gadgets.map(i => <div key={i.id}>
+                            <img src={i.img} alt="#" className="rounded-xl" />
+                            <p className='mt-2 ml-2'>Price : {i.price}</p>
+                        </div>)}
+                    </div>
+                }
+                {state.showFashion &&
+                    <div className="flex items-center gap-9 mt-4">
+                        {fashion.map(i => <div key={i.id}>
+                            <img src={i.img} alt="#" className="rounded-xl" />
+                            <p className='mt-2 ml-2'>Price : {i.price}</p>
+                        </div>)}
+                    </div>
+                }
+                {state.showFitness &&
+                    <div className="flex items-center gap-9 mt-4">
+                        {fitness.map(i => <div key={i.id}>
+                            <img src={i.img} alt="#" className="rounded-xl" />
+                            <p className='mt-2 ml-2'>Price : {i.price}</p>
+                        </div>)}
+                    </div>
+                }
+            </div>
+
             {/* Section Slider 3  */}
-            <div className='relative my-36 mx-auto px-2' style={{ width: "95%" }} >
+            <div className='relative my-20 mx-auto px-2' style={{ width: "95%" }} >
                 <div className="text-2xl font-bold my-7 ml-2">  The Environmentor </div>
                 <div>
                     <button onClick={sliderRef3?.slickPrev}
@@ -295,149 +386,79 @@ const SliderComponent = () => {
             </div>
 
 
-            <div>
-                <div style={{ width: '93%' }} className="mx-auto my-12 bg-gray-300 py-8 px-4 rounded-xl ">
-                    <h1 className="text-black font-bold text-xl mb-3"> Today Best Deals For You! </h1>
-                    <div className="flex items-center gap-4 my-2">
+            {/* Footer Section */}
+            <div style={{ width: '93%' }} className="mx-auto">
+                <div className='border-y-2 py-5 flex'>
+                    <div style={{ width: '40%' }}>
                         <div>
-                            <button className={state.showGadget ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
-                                "py-1 px-2 rounded-xl bg-white text-black"}
-                                onClick={() => dispatch({ type: 'GADGET' })}>
-                                Gadgets
-                            </button>
+                            <p>ShopCart</p>
+                            <p>Text ...</p>
+                            <p>Accepted Payments</p>
                         </div>
-                        <div>
-                            <button className={state.showFashion ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
-                                "py-1 px-2 rounded-xl bg-white text-black"}
-                                onClick={() => dispatch({ type: 'FASHION' })}>
-                                Fashion
-                            </button>
+                        <div className="flex items-center gap-3 my-3">
+                            <p><FaCcVisa size={35} /></p>
+                            <p><FaCcStripe size={35} /></p>
+                            <p><FaAmazon size={35} /></p>
+                            <p><FaPaypal size={35} /></p>
                         </div>
+                        <div className="flex items-center gap-3">
+                            <p><FaApplePay size={35} /></p>
+                            <p><FaGooglePay size={35} /></p>
+                            <p><FaCcAmex size={35} /></p>
+                            <p><FaCcDiscover size={35} /></p>
+                        </div>
+                    </div>
+
+                    <div style={{ width: '93%' }} className="flex justify-between">
                         <div>
-                            <button className={state.showFitness ? "bg-green-700 text-white py-1 px-2 rounded-xl" :
-                                "py-1 px-2 rounded-xl bg-white text-black"}
-                                onClick={() => dispatch({ type: 'FITNESS' })}>
-                                Fitness
-                            </button>
+                            <p className="font-bold"> ABOUT US </p>
+                            <p> ABOUT ShopCart!</p>
+                            <p> ABOUT THE FOUNDERS </p>
+                            <p>IN THE PRESS</p>
+                            <p>TESTIMONIALS</p>
+                            <p>SUBMIT PRODUCTS</p>
+                            <p>WISHLIST</p>
+                        </div>
+
+                        <div>
+                            <p className="font-bold"> CUSTOMER SERVICE </p>
+                            <p> FREE SHIPPING + RETURNS </p>
+                            <p> START A RETURN </p>
+                            <p> FAQS </p>
+                            <p> RETURN POLICY </p>
+                            <p> CONTACT US </p>
+                            <p> TRADE PROGRAM </p>
+                            <p> AFFILIATE PROGRAM </p>
+                            <p> TERMS OF SERVICE </p>
+                            <p> PRIVACY POLICY </p>
+                            <p> PRESS REQUESTS </p>
                         </div>
 
                         {/* <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Toys </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Educations </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Beauty </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Travel </button>
-                        </div>
-                        */}
-                    </div>
-
-                    {state.showGadget &&
-                        <div className="flex items-center gap-9 mt-4">
-                            {gadgets.map(i => <div key={i.id}>
-                                <img src={i.img} alt="#" className="rounded-xl" />
-                                <p className='mt-2 ml-2'>Price : {i.price}</p>
-                            </div>)}
-                        </div>
-                    }
-                    {state.showFashion &&
-                        <div className="flex items-center gap-9 mt-4">
-                            {fashion.map(i => <div key={i.id}>
-                                <img src={i.img} alt="#" className="rounded-xl" />
-                                <p className='mt-2 ml-2'>Price : {i.price}</p>
-                            </div>)}
-                        </div>
-                    }
-                    {state.showFitness &&
-                        <div className="flex items-center gap-9 mt-4">
-                            {fitness.map(i => <div key={i.id}>
-                                <img src={i.img} alt="#" className="rounded-xl" />
-                                <p className='mt-2 ml-2'>Price : {i.price}</p>
-                            </div>)}
-                        </div>
-                    }
-
-                </div>
-
-
-
-                {/* Footer Section */}
-                <div style={{ width: '90%' }} className="mx-auto">
-                    <div className='border-y-2 py-5 flex'>
-                        <div style={{ width: '40%' }}>
-                            <div>
-                                <p>ShopCart</p>
-                                <p>Text ...</p>
-                                <p>Accepted Payments</p>
-                            </div>
-                            <div className="flex items-center gap-3 my-3">
-                                <p><FaCcVisa size={35} /></p>
-                                <p><FaCcStripe size={35} /></p>
-                                <p><FaAmazon size={35} /></p>
-                                <p><FaPaypal size={35} /></p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <p><FaApplePay size={35} /></p>
-                                <p><FaGooglePay size={35} /></p>
-                                <p><FaCcAmex size={35} /></p>
-                                <p><FaCcDiscover size={35} /></p>
-                            </div>
-                        </div>
-
-                        <div style={{ width: '60%' }} className="flex justify-between">
-                            <div>
-                                <p className="font-bold"> ABOUT US </p>
-                                <p> ABOUT ShopCart!</p>
-                                <p> ABOUT THE FOUNDERS </p>
-                                <p>IN THE PRESS</p>
-                                <p>TESTIMONIALS</p>
-                                <p>SUBMIT PRODUCTS</p>
-                                <p>WISHLIST</p>
-                            </div>
-
-                            <div>
-                                <p className="font-bold"> CUSTOMER SERVICE </p>
-                                <p> FREE SHIPPING + RETURNS </p>
-                                <p> START A RETURN </p>
-                                <p> FAQS </p>
-                                <p> RETURN POLICY </p>
-                                <p> CONTACT US </p>
-                                <p> TRADE PROGRAM </p>
-                                <p> AFFILIATE PROGRAM </p>
-                                <p> TERMS OF SERVICE </p>
-                                <p> PRIVACY POLICY </p>
-                                <p> PRESS REQUESTS </p>
-                            </div>
-
-                            <div>
                                 <p className="font-bold"> Help </p>
                                 <p>#</p>
                                 <p>#</p>
                                 <p>#</p>
                                 <p>#</p>
                                 <p>#</p>
-                            </div>
-                        </div>
+                            </div> */}
+                    </div>
+                </div>
+
+                <div className="my-3 relative">
+                    {/* <div className="text-sm text-gray-400 flex justify-center text-center">
+                            We acknowledge that our company is based on the traditional, ancestral and unceded territories of the Coast Salish <br />
+                             Nations — xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish) and səlil̓ilw̓ətaʔɬ (Tsleil-Waututh).
+                        </div> */}
+                    <div className="flex justify-center text-gray-400 mt-4">
+                        <p>© 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
                     </div>
 
-                    <div className="flex justify-between my-3">
-                        <div className="flex gap-4">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                        </div>
-                        <div className="flex gap-2">
-                            <div>4</div>
-                            <div>5</div>
-                        </div>
-                        <div className="flex">
-                            <p>text </p>
-                        </div>
-                    </div>
+                    <Tippy content="click to scroll on top" delay={550} placement='top'>
+                        <button className="absolute right-4 top-0">
+                            <BsArrowUpSquareFill size={33} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+                        </button>
+                    </Tippy>
                 </div>
             </div>
         </>
