@@ -1,13 +1,13 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PageScrollProgressBar from "react-page-scroll-progress-bar";
-import { BsGoogle, BsGithub } from 'react-icons/bs'
+import { BsGithub } from 'react-icons/bs'
 import { Badge } from 'react-bootstrap';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Drawer, Toolbar, IconButton, Box, TextField, MenuItem, Avatar } from '@mui/material';
+import { Drawer, IconButton, Box, TextField, MenuItem, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useStateContext } from './context/useStateContext';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,8 +16,7 @@ import { motion } from "framer-motion"
 import Modal from 'react-modal';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { FaChevronCircleDown, FaChevronCircleUp, FaUser } from 'react-icons/fa'
-import { useState } from 'react';
+import { FaChevronCircleUp, } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
 // import { GoogleLogin } from 'react-google-login';
 // import { GoogleLogin } from '@react-oauth/google';
@@ -233,83 +232,6 @@ const NavbarAppShop = () => {
 
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                            <button onClick={() => setOpenModal(true)}>
-                                Sing up / Sign in
-                            </button>
-                            <Modal isOpen={openModal}
-                                // onAfterOpen={afterOpenModal}
-                                onRequestClose={() => setOpenModal(false)}
-                                style={customStyles}
-                            // contentLabel="Example Modal"
-                            >
-                                <div>
-                                    <button className="flex gap-2 items-center bg-red-400 px-3 py-2 mb-2 rounded-lg" onClick={() => setOpenModal(false)}>
-                                        <IoMdCloseCircle size={19} /> close
-                                    </button>
-                                </div>
-
-                                <div className="flex gap-4">
-                                    <div>
-                                        <div className="title"> sign up </div>
-                                        <form onSubmit={handleSubmit(onSubmit_signUp)}>
-                                            <div className="input-group">
-                                                <label htmlFor="email"> email </label>
-                                                <input type="email" name="email" id="email" placeholder="email" onChange={i => setEmail(i.target.value)} />
-                                            </div>
-                                            <div className="input-group">
-                                                <label htmlFor="password">Password</label>
-                                                <input type="password" name="password" id="password" onChange={i => setPass(i.target.value)} />
-                                                {/* <div className="forgot">
-                                                        <a rel="noopener noreferrer" href="#"> Forgot Password ? </a>
-                                                    </div> */}
-                                            </div>
-                                            <button type='submit' className="sign mt-4"> Sign up </button>
-                                            {state2.emailFind && <div className="text-center my-1 text-red-400 font-bold"> {state2.massage} </div>}
-                                        </form>
-                                    </div>
-
-                                    <div>
-                                        <div className="title"> sign in </div>
-                                        <form onSubmit={handleSubmit(onSubmit_login)}>
-                                            <div className="input-group">
-                                                <label htmlFor="email"> email </label>
-                                                <input type="email" name="email" id="email" placeholder="email" onChange={i => setEmail(i.target.value)} />
-                                            </div>
-                                            <div className="input-group">
-                                                <label htmlFor="password">Password</label>
-                                                <input type="password" name="password" id="password" onChange={i => setPass(i.target.value)} />
-                                                {/* <div className="forgot">
-                                                        <a rel="noopener noreferrer" href="#"> Forgot Password ? </a>
-                                                    </div> */}
-                                            </div>
-                                            <div>
-                                                <button type='submit' className="sign mt-4"> Sign in </button>
-                                            </div>
-                                            {!state2.emailFind && <div className="text-center my-1 text-red-400 font-bold"> {state2.massage} </div>}
-                                            <div className="social-message">
-                                                <div className="line"></div>
-                                                <div className="message"> Login with social accounts </div>
-                                                <div className="line"></div>
-                                            </div>
-                                            <div className="flex items-center justify-center gap-3 my-2">
-                                                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
-                                                <button aria-label="Log in with GitHub" className="icon">
-                                                    <BsGithub size={24} />
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                    {/* <div className="signup"> Don't have an account?
-                                            <button className="text-white ml-2"> Sign up </button>
-                                        </div> */}
-                                </div>
-                            </Modal>
-                        </Box>
-                    </div>
-
-                    <div>
-                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <Tippy content="Whats News" delay={550} placement='auto-end'>
                                 <button>
                                     Whats News
@@ -388,6 +310,83 @@ const NavbarAppShop = () => {
                             <button className='' onClick={() => navigate('/AppShop/products')}>
                                 <ProductionQuantityLimitsIcon />  products
                             </button>
+                        </Box>
+                    </div>
+
+                    <div>
+                        <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                            <button onClick={() => setOpenModal(true)}>
+                                Sing up / Sign in
+                            </button>
+                            <Modal isOpen={openModal}
+                                // onAfterOpen={afterOpenModal}
+                                onRequestClose={() => setOpenModal(false)}
+                                style={customStyles}
+                            // contentLabel="Example Modal"
+                            >
+                                <div>
+                                    <button className="flex gap-2 items-center bg-red-400 px-3 py-2 mb-2 rounded-lg" onClick={() => setOpenModal(false)}>
+                                        <IoMdCloseCircle size={19} /> close
+                                    </button>
+                                </div>
+
+                                <div className="flex gap-4">
+                                    <div>
+                                        <div className="title"> sign up </div>
+                                        <form onSubmit={handleSubmit(onSubmit_signUp)}>
+                                            <div className="input-group">
+                                                <label htmlFor="email"> email </label>
+                                                <input type="email" name="email" id="email" placeholder="email" onChange={i => setEmail(i.target.value)} />
+                                            </div>
+                                            <div className="input-group">
+                                                <label htmlFor="password">Password</label>
+                                                <input type="password" name="password" id="password" onChange={i => setPass(i.target.value)} />
+                                                {/* <div className="forgot">
+                                                        <a rel="noopener noreferrer" href="#"> Forgot Password ? </a>
+                                                    </div> */}
+                                            </div>
+                                            <button type='submit' className="sign mt-4"> Sign up </button>
+                                            {state2.emailFind && <div className="text-center my-1 text-red-400 font-bold"> {state2.massage} </div>}
+                                        </form>
+                                    </div>
+
+                                    <div>
+                                        <div className="title"> sign in </div>
+                                        <form onSubmit={handleSubmit(onSubmit_login)}>
+                                            <div className="input-group">
+                                                <label htmlFor="email"> email </label>
+                                                <input type="email" name="email" id="email" placeholder="email" onChange={i => setEmail(i.target.value)} />
+                                            </div>
+                                            <div className="input-group">
+                                                <label htmlFor="password">Password</label>
+                                                <input type="password" name="password" id="password" onChange={i => setPass(i.target.value)} />
+                                                {/* <div className="forgot">
+                                                        <a rel="noopener noreferrer" href="#"> Forgot Password ? </a>
+                                                    </div> */}
+                                            </div>
+                                            <div>
+                                                <button type='submit' className="sign mt-4"> Sign in </button>
+                                            </div>
+                                            {!state2.emailFind && <div className="text-center my-1 text-red-400 font-bold"> {state2.massage} </div>}
+                                            <div className="social-message">
+                                                <div className="line"></div>
+                                                <div className="message"> Login with social accounts </div>
+                                                <div className="line"></div>
+                                            </div>
+                                            <div className="flex items-center justify-center gap-3 my-2">
+                                                <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+                                                <button aria-label="Log in with GitHub" className="icon">
+                                                    <BsGithub size={24} />
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    {/* <div className="signup"> Don't have an account?
+                                            <button className="text-white ml-2"> Sign up </button>
+                                        </div> */}
+                                </div>
+                            </Modal>
                         </Box>
                     </div>
 

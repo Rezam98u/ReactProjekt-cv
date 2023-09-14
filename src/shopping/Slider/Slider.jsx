@@ -1,9 +1,15 @@
-import React from 'react';
+import { React, useContext } from 'react';
 import { logoSlider, gadgets, fashion, fitness, imgSlider, imgSlider3 } from '../Slider/Data_slider'
 import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
-import { AiTwotoneCloud } from "react-icons/ai"
+import { AiOutlineMinus, AiOutlinePlus, AiTwotoneCloud } from "react-icons/ai"
+import { TextField } from '@mui/material';
+import Collapse from '@mui/material/Collapse';
+
+import { useStateContext } from '../context/useStateContext';
+
+
 
 // import Carousel from 'react-elastic-carousel';
 // import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
@@ -19,7 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
 import { IoIosWater } from 'react-icons/io';
-import { BsArrowUpSquareFill } from 'react-icons/bs';
+import { BsArrowUpSquareFill, BsPlusCircleFill } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
 // import img1 from './scribble_gif_croped.webp'
 // import img2 from './trash_talk_full_en.webp'
@@ -36,6 +42,8 @@ const SliderComponent = () => {
     const state_img2 = useSelector(state => state.useReducerShow2)
     const state_img3 = useSelector(state => state.useReducerShow3)
     const dispatch = useDispatch()
+
+    const { FAQ, isCollapse, setIsCollapse } = useContext(useStateContext);
 
     /// old Method
     // const length = dataSlider.length
@@ -90,6 +98,13 @@ const SliderComponent = () => {
         // autoplay: true,
         autoplaySpeed: 4000,
     };
+
+    const toggleCollapse = id => {
+        setIsCollapse(prevState => ({
+            ...prevState,
+            [id]: !prevState[id],
+        }))
+    }
 
     return (
         <>
@@ -388,11 +403,35 @@ const SliderComponent = () => {
 
             {/* Footer Section */}
             <div style={{ width: '93%' }} className="mx-auto">
-                <div className='border-y-2 py-5 flex'>
-                    <div style={{ width: '40%' }}>
+                <div className="my-4">
+                    <div className="text-center my-2 text-white bg-black py-3 rounded-lg">
+                        <p className="font-bold mb-2 text-4xl"> How Can We Help? </p>
+                        <p>Send us a text: 1-814-251-9966 </p>
+                        <p>Give us a call: 1-888-963-8944 </p>
+                        <p>Monday - Thursday: 5AM - 5PM PST </p>
+                        <p> Friday: 6AM - 5PM PST </p>
+                    </div>
+                    <div>
+                        <p className="text-center text-4xl my-4"> Frequently Asked Questions </p>
+                        {FAQ.map(item =>
+                            <div key={item.id} className="bg-gray-100 p-1 rounded-lg px-3 mb-2">
+                                <button onClick={() => toggleCollapse(item.id)} className='my-2 flex items-center justify-between w-full text-lg'>
+                                    {item.question} {isCollapse[item.id] ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                                </button>
+                                <Collapse in={isCollapse[item.id]} timeout="auto" unmountOnExit className=''>
+                                    {item.answer}
+                                </Collapse>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+
+                <div className='border-y-2 py-7 flex justify-between'>
+                    <div>
                         <div>
                             <p>ShopCart</p>
-                            <p>Text ...</p>
+                            {/* <p>Text ...</p> */}
                             <p>Accepted Payments</p>
                         </div>
                         <div className="flex items-center gap-3 my-3">
@@ -409,39 +448,26 @@ const SliderComponent = () => {
                         </div>
                     </div>
 
-                    <div style={{ width: '93%' }} className="flex justify-between">
-                        <div>
-                            <p className="font-bold"> ABOUT US </p>
-                            <p> ABOUT ShopCart!</p>
-                            <p> ABOUT THE FOUNDERS </p>
-                            <p>IN THE PRESS</p>
-                            <p>TESTIMONIALS</p>
-                            <p>SUBMIT PRODUCTS</p>
-                            <p>WISHLIST</p>
-                        </div>
+                    <div>
+                        <p className="font-bold"> ABOUT US </p>
+                        <p> ABOUT ShopCart!</p>
+                        <p> ABOUT THE FOUNDERS </p>
+                        <p>IN THE PRESS</p>
+                        <p>TESTIMONIALS</p>
+                        <p>SUBMIT PRODUCTS</p>
+                        <p>WISHLIST</p>
+                    </div>
 
-                        <div>
-                            <p className="font-bold"> CUSTOMER SERVICE </p>
-                            <p> FREE SHIPPING + RETURNS </p>
-                            <p> START A RETURN </p>
-                            <p> FAQS </p>
-                            <p> RETURN POLICY </p>
-                            <p> CONTACT US </p>
-                            <p> TRADE PROGRAM </p>
-                            <p> AFFILIATE PROGRAM </p>
-                            <p> TERMS OF SERVICE </p>
-                            <p> PRIVACY POLICY </p>
-                            <p> PRESS REQUESTS </p>
-                        </div>
-
-                        {/* <div>
-                                <p className="font-bold"> Help </p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                                <p>#</p>
-                            </div> */}
+                    <div>
+                        <p className="font-bold"> CUSTOMER SERVICE </p>
+                        <p> FREE SHIPPING + RETURNS </p>
+                        <p> START A RETURN </p>
+                        <p> RETURN POLICY </p>
+                        <p> TRADE PROGRAM </p>
+                        <p> AFFILIATE PROGRAM </p>
+                        <p> TERMS OF SERVICE </p>
+                        <p> PRIVACY POLICY </p>
+                        <p> PRESS REQUESTS </p>
                     </div>
                 </div>
 
