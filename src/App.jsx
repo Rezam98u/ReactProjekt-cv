@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from "./Home/Home"
 import Programmer from './Programmer/programmer';
 import AppShop from "./shopping/App_shop"
-import Api from "./Crypto/Api_Provider"
+import AppCrypto from "./Crypto/Api_Provider"
 import RecordFantasyMain from "./RecordFantasy/RecordFantasyMain"
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -23,7 +23,7 @@ const App = () => {
                         <Route path="/programmer" element={<Programmer />} ></Route>
                         <Route path="/AppShop/*" element={<AppShop />} ></Route>
                         <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
-                        <Route path="/crypto/*" element={<Api />} ></Route>
+                        <Route path="/crypto/*" element={<AppCrypto />} ></Route>
                     </Routes>
                 </ContextApp>
             </GoogleOAuthProvider>

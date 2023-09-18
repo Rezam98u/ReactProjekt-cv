@@ -18,6 +18,8 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import { FaChevronCircleUp, } from 'react-icons/fa'
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
 // import { GoogleLogin } from 'react-google-login';
 // import { GoogleLogin } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
@@ -30,8 +32,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import img from './Slider/SS23_NavContentUpdate_Accessories_FA.min.avif'
 import { IoMdCloseCircle } from 'react-icons/io'
 import axios from 'axios';
+import { RiEnglishInput } from 'react-icons/ri';
 ///////////////////////
 const NavbarAppShop = () => {
+    const { i18n } = useTranslation();
+    const { t } = useTranslation();
+
     const { handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
@@ -446,12 +452,22 @@ const NavbarAppShop = () => {
                             </button>
                         </Box>
                     </div>
+
+                    <div>
+                        {/* <RiEnglishInput /> */}
+                        <div className="flex gap-3 mt-2">
+                            <button onClick={() => i18n.changeLanguage('en')}>English</button>
+                            <button onClick={() => i18n.changeLanguage('de')}>Deutsch</button>
+                        </div>
+                        <div>
+                            <h1>{t('welcome')}</h1>
+                        </div>
+                    </div>
                 </div>
             </div>
             <ToastContainer />
         </>
-
-    );
+    )
 }
 
 export default NavbarAppShop;
