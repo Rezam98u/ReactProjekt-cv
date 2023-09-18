@@ -31,6 +31,7 @@ import Tippy from '@tippyjs/react';
 import { useNavigate } from 'react-router-dom';
 // import img1 from './scribble_gif_croped.webp'
 // import img2 from './trash_talk_full_en.webp'
+import img3 from '../img/iconshome-07_300x.avif'
 import '../App_shop.scss'
 ///////////////////////
 const SliderComponent = () => {
@@ -94,7 +95,7 @@ const SliderComponent = () => {
 
     const settings_img3 = {
         arrows: true,
-        dots: true,
+        dots: false,
         infinite: false,
         speed: 450,
         slidesToShow: 5,
@@ -135,8 +136,8 @@ const SliderComponent = () => {
                                 <img src={item.img} alt='#' width={"100%"} height={"100%"} />
                                 <div className="absolute left-10 top-32 text-xl font-bold">
                                     <p className="text-2xl mb-3 bg-slate-300 p-2 rounded-lg"> {item.description} </p>
-                                    <button onClick={() => navigate("/AppShop/products")} className="px-3 py-1 rounded-md btn"> 
-                                    shop now 
+                                    <button onClick={() => navigate("/AppShop/products")} className="px-3 py-1 rounded-md btn">
+                                        shop now
                                     </button>
                                 </div>
                                 {item.id === 6 && <img src={img_gift} alt="#" className="absolute bottom-4 right-64"
@@ -303,7 +304,7 @@ const SliderComponent = () => {
             </div>
 
 
-            <div style={{ width: '93%' }} className="mx-auto my-12 rounded-xl">
+            <div style={{ width: '93%' }} className="mx-auto my-12 rounded-xl relative">
                 <h1 className="text-black font-bold text-2xl mb-3"> Today Best Deals For You! </h1>
                 <div className="flex items-center gap-4 my-2">
                     <div>
@@ -341,6 +342,7 @@ const SliderComponent = () => {
                             <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Travel </button>
                         </div>
                         */}
+
                 </div>
 
                 {state.showGadget &&
@@ -367,6 +369,12 @@ const SliderComponent = () => {
                         </div>)}
                     </div>
                 }
+
+                <Tippy content='recycle'>
+                    <img src={img3} alt="#" width={100} className="absolute right-20 bottom-20"
+                        style={{ rotate: scroll * .3 + "deg" }} />
+                </Tippy>
+
             </div>
 
             {/* Section Slider 3  */}
@@ -387,9 +395,9 @@ const SliderComponent = () => {
                         {imgSlider3.map((item) => (
                             <div key={item.id}>
                                 <img src={item.img} alt='#' width={'90%'} className="mx-auto rounded-lg" />
-                                <div style={{ width: '90%' }} className="mx-auto">
-                                    <p className="my-2 font-bold">{item.title}</p>
-                                    <button> READ NOW </button>
+                                <div style={{ width: '90%' }} className="my-2 mx-auto flex flex-col items-stretch">
+                                    <p className="my-2 font-bold h-14">{item.title}</p>
+                                    <button className="self-start mb-3 text-neutral-400 underline decoration-2 underline-offset-4 hover:no-underline"> Read more </button>
                                 </div>
                             </div>
                         ))}
@@ -398,7 +406,6 @@ const SliderComponent = () => {
             </div>
 
 
-            {/* Footer Section */}
             <div style={{ width: '93%' }} className="mx-auto">
                 <div className="my-4">
                     <div className="text-center my-2 text-white bg-black py-3 rounded-lg">
@@ -415,72 +422,74 @@ const SliderComponent = () => {
                                 <button onClick={() => toggleCollapse(item.id)} className='my-2 flex items-center justify-between w-full text-lg'>
                                     {item.question} {isCollapse[item.id] ? <AiOutlineMinus /> : <AiOutlinePlus />}
                                 </button>
-                                <Collapse in={isCollapse[item.id]} timeout="auto" unmountOnExit className=''>
+                                <Collapse in={isCollapse[item.id]} timeout="auto" unmountOnExit
+                                    className='whitespace-normal break-all'>
                                     {item.answer}
                                 </Collapse>
                             </div>
                         )}
                     </div>
                 </div>
+            </div>
 
-                <div className='border-y-2 py-7 flex justify-between'>
-                    <div>
+
+            {/* Footer Section */}
+            <div className='pt-5 bg-blue-600 text-white'>
+                <div style={{ width: "93%" }} className="mx-auto">
+                    <div className="flex justify-between mb-3">
                         <div>
-                            <p>ShopCart</p>
-                            {/* <p>Text ...</p> */}
-                            <p>Accepted Payments</p>
+                            <div>
+                                <p>ShopCart</p>
+                                {/* <p>Text ...</p> */}
+                                <p>Accepted Payments</p>
+                            </div>
+                            <div className="flex items-center gap-3 my-3">
+                                <p><FaCcVisa size={35} /></p>
+                                <p><FaCcStripe size={35} /></p>
+                                <p><FaAmazon size={35} /></p>
+                                <p><FaPaypal size={35} /></p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <p><FaApplePay size={35} /></p>
+                                <p><FaGooglePay size={35} /></p>
+                                <p><FaCcAmex size={35} /></p>
+                                <p><FaCcDiscover size={35} /></p>
+                            </div>
                         </div>
-                        <div className="flex items-center gap-3 my-3">
-                            <p><FaCcVisa size={35} /></p>
-                            <p><FaCcStripe size={35} /></p>
-                            <p><FaAmazon size={35} /></p>
-                            <p><FaPaypal size={35} /></p>
+
+                        <div>
+                            <p className="font-bold"> ABOUT US </p>
+                            <p> ABOUT ShopCart!</p>
+                            <p> ABOUT THE FOUNDERS </p>
+                            <p>IN THE PRESS</p>
+                            <p>TESTIMONIALS</p>
+                            <p>SUBMIT PRODUCTS</p>
+                            <p>WISHLIST</p>
                         </div>
-                        <div className="flex items-center gap-3">
-                            <p><FaApplePay size={35} /></p>
-                            <p><FaGooglePay size={35} /></p>
-                            <p><FaCcAmex size={35} /></p>
-                            <p><FaCcDiscover size={35} /></p>
+
+                        <div>
+                            <p className="font-bold"> CUSTOMER SERVICE </p>
+                            <p> FREE SHIPPING + RETURNS </p>
+                            <p> START A RETURN </p>
+                            <p> RETURN POLICY </p>
+                            <p> TRADE PROGRAM </p>
+                            <p> AFFILIATE PROGRAM </p>
+                            <p> TERMS OF SERVICE </p>
+                            <p> PRIVACY POLICY </p>
+                            <p> PRESS REQUESTS </p>
                         </div>
                     </div>
 
-                    <div>
-                        <p className="font-bold"> ABOUT US </p>
-                        <p> ABOUT ShopCart!</p>
-                        <p> ABOUT THE FOUNDERS </p>
-                        <p>IN THE PRESS</p>
-                        <p>TESTIMONIALS</p>
-                        <p>SUBMIT PRODUCTS</p>
-                        <p>WISHLIST</p>
+                    <div className="pb-3 relative border-t-2">
+                        <div className="flex justify-center  mt-3">
+                            <p> © 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
+                        </div>
+                        <Tippy content="click to scroll on top" delay={550} placement='top'>
+                            <button className="absolute right-4 top-3">
+                                <BsArrowUpSquareFill size={33} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+                            </button>
+                        </Tippy>
                     </div>
-
-                    <div>
-                        <p className="font-bold"> CUSTOMER SERVICE </p>
-                        <p> FREE SHIPPING + RETURNS </p>
-                        <p> START A RETURN </p>
-                        <p> RETURN POLICY </p>
-                        <p> TRADE PROGRAM </p>
-                        <p> AFFILIATE PROGRAM </p>
-                        <p> TERMS OF SERVICE </p>
-                        <p> PRIVACY POLICY </p>
-                        <p> PRESS REQUESTS </p>
-                    </div>
-                </div>
-
-                <div className="my-3 relative">
-                    {/* <div className="text-sm text-gray-400 flex justify-center text-center">
-                            We acknowledge that our company is based on the traditional, ancestral and unceded territories of the Coast Salish <br />
-                             Nations — xʷməθkʷəy̓əm (Musqueam), Sḵwx̱wú7mesh (Squamish) and səlil̓ilw̓ətaʔɬ (Tsleil-Waututh).
-                        </div> */}
-                    <div className="flex justify-center text-gray-400 mt-4">
-                        <p>© 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
-                    </div>
-
-                    <Tippy content="click to scroll on top" delay={550} placement='top'>
-                        <button className="absolute right-4 top-0">
-                            <BsArrowUpSquareFill size={33} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-                        </button>
-                    </Tippy>
                 </div>
             </div>
         </>
