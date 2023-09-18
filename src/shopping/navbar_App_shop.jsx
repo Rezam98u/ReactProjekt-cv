@@ -116,63 +116,58 @@ const NavbarAppShop = () => {
 
     return (
         <>
-            {/* <AppBar style={{
-                background: scroll >= 2.933333396911621 ? '#FFFFFF' : "transparent", boxShadow: 'none', zIndex: 5, height: "62px"
-            }}> */}
             <PageScrollProgressBar color="#00AE47" bgColor="#f2f2f2" height="4.1px" />
-            <div className={scroll >= 2.933333396911621 ? "bg-white fixed z-20 h-14 pt-2 my-auto w-full" : 'sticky pt-2 z-10'}>
+            <div className={scroll >= 2.933333396911621 ? "bg-white fixed z-20 h-14 pt-2 w-full" : 'sticky h-14 pt-2 z-10'}
+                style={{ backgroundColor: "transparent" }}>
 
                 <div className='md:hidden'>
                     <IconButton aria-label='logo' onClick={() => setIsMobile(true)}>
                         <MenuIcon />
                     </IconButton>
                     <Drawer open={isMobile} anchor='left' onClose={() => setIsMobile(false)}>
-                        <Box p={2}>
-                            <Box m={1}>
-                                <button className='btn btn-success Btn_out' onClick={() => navigate('/')} >
-                                    <HomeIcon />
-                                </button>
-                            </Box>
-                            <Box m={1}>
-                                <button className='btn btn-primary Btn_out' onClick={() => navigate('/products')}>
-                                    <ProductionQuantityLimitsIcon />  products
-                                </button>
-                            </Box>
-                            <Box m={1}>
-                                <button className='btn btn-success Btn_out' onClick={() => navigate('/products/shop')}>
-                                    <ShoppingCartIcon /> <Badge pill bg="secondary">{total_item(state1.selectedItems)}</Badge>
-                                </button>
-                            </Box>
-
-                            {/* <button className='bg-slate-500 rounded-3xl px-3 py-2  hover:bg-blue-700' onClick={() => MoodHandler()}> <DarkModeIcon />  </button> */}
-
-                            <Box m={1}>
-                                <div className={PathName === "/products" ? "flex items-start flex-col gap-4" : "hidden"}>
-                                    <div className='w-40'>
-                                        <TextField className=' bg-zinc-300 rounded-md'
-                                            select fullWidth value={select.text}
-                                            label="Please select a Category"
-                                            onChange={selectHandler}
-                                        >
-                                            <MenuItem value="">All</MenuItem>
-                                            <MenuItem value="clothing">clothing</MenuItem>
-                                            <MenuItem value="electronics">electrical devices</MenuItem>
-                                            <MenuItem value="jeweler">jeweler</MenuItem>
-                                        </TextField>
-                                    </div>
-
-                                    <div className='w-72'>
-                                        <TextField className=' bg-zinc-300 rounded-lg' type="search" label={<SearchIcon />} fullWidth
-                                            value={search.text} onChange={searchHandler} />
-                                    </div>
-                                </div>
-                            </Box>
+                        <Box m={4} p={1}>
+                            <div>
+                                <Box>
+                                    <button className='' onClick={() => navigate('/')} >
+                                        <HomeIcon />
+                                    </button>
+                                </Box>
+                            </div>
+                            <div>
+                                <Box>
+                                    <button className='' onClick={() => navigate('/AppShop')} >
+                                        Home
+                                    </button>
+                                </Box>
+                            </div>
+                            <div>
+                                <Box>
+                                    <Tippy content="Whats News" delay={550} placement='auto-end'>
+                                        <button>
+                                            Whats News
+                                        </button>
+                                    </Tippy>
+                                </Box>
+                            </div>
+                            <div>
+                                <Box>
+                                    <button className='' onClick={() => navigate('/AppShop/products')}>
+                                        <ProductionQuantityLimitsIcon />  products
+                                    </button>
+                                </Box>
+                            </div>
+                            <div>
+                                <Box>
+                                    <button onClick={() => navigate('/AppShop/shop')}>
+                                        <ShoppingCartIcon /> <Badge pill bg="secondary">{total_item(state1.selectedItems)}</Badge>
+                                    </button>
+                                </Box>
+                            </div>
                         </Box>
                     </Drawer>
                 </div>
 
-
-                <div className='w-full flex items-center justify-around relative'>
+                <div style={{ width: "93%" }} className='flex items-center justify-between mx-auto relative'>
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <button className='' onClick={() => navigate('/')} >
@@ -222,7 +217,6 @@ const NavbarAppShop = () => {
                                         <MenuItem className='hover:text-blue-700'>
                                             Bags,Shoes
                                         </MenuItem>
-
                                     </div>
                                 </div>
                             </motion.div>
@@ -233,7 +227,7 @@ const NavbarAppShop = () => {
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <Tippy content="Whats News" delay={550} placement='auto-end'>
-                                <button>
+                                <button onClick={() => navigate('/AppShop/city')}>
                                     Whats News
                                 </button>
                             </Tippy>
@@ -288,8 +282,8 @@ const NavbarAppShop = () => {
                                             </div>
                                         </div>
                                         <div>
-                                            <img src={img} alt="" width={200} className="rounded-lg mb-2" />
-                                            <p>NEW ARRIVALS </p>
+                                            <img src={img} alt="#" width={200} className="rounded-lg mb-2" />
+                                            <p> NEW ARRIVALS </p>
                                             <p>
                                                 Accessories
                                                 It's the little things. <br />
@@ -406,8 +400,8 @@ const NavbarAppShop = () => {
                                 transition={{ duration: 0.3 }}
                             >
                                 <div className='absolute'>
-                                    <div className='w-60 rounded-md bg-white text-black py-2 mt-3 px-3'>
-                                        <p> Welcome to ShopCart!</p>
+                                    <div className='w-60 rounded-md bg-white text-black py-2 mt-3'>
+                                        <p className="text-center"> Welcome to ShopCart!</p>
 
                                         <div className="bg-green-300 px-2 rounded-lg my-2">
                                             userName : {signed_user.email}
@@ -423,11 +417,8 @@ const NavbarAppShop = () => {
                                             Massage Center
                                         </MenuItem>
                                         <MenuItem className='hover:text-blue-700'>
-                                            <div className="mr-4"> Payment </div>
-                                            {signed_user.purchased_products && <div>
-                                                <Badge pill bg="secondary">
-                                                    {signed_user.purchased_products} </Badge>
-                                            </div>}
+                                            <p className="mr-4"> Payment </p>
+                                            {signed_user.purchased_products && <div> <Badge pill bg="secondary"> {signed_user.purchased_products} </Badge> </div>}
                                         </MenuItem>
                                     </div>
                                 </div>
@@ -448,31 +439,6 @@ const NavbarAppShop = () => {
                         : null
                     }
 
-                    {/* <div className={PathName === "/products" ? "flex items-center MD:hidden" : "hidden"}>
-                        <button className='btn'><SearchIcon fontSize='large' /></button>
-                        <div className='flex-auto w-96'>
-                            <TextField className=' bg-zinc-300 rounded-lg' fullWidth
-                                type="search"
-                                label="search"
-                                value={search.text}
-                                onChange={searchHandler} />
-                        </div>
-                        <div className='flex-auto w-40'>
-                            <TextField
-                                className='ml-2 bg-zinc-300 rounded-md'
-                                select fullWidth
-                                value={select.text}
-                                label="Please select a Category"
-                                onChange={selectHandler} >
-
-                                <MenuItem value="">All</MenuItem>
-                                <MenuItem value="clothing">clothing</MenuItem>
-                                <MenuItem value="electronics">electrical devices</MenuItem>
-                                <MenuItem value="jeweler">jeweler</MenuItem>
-                            </TextField>
-                        </div>
-                    </div> */}
-
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <button onClick={() => navigate('/AppShop/shop')}>
@@ -482,7 +448,6 @@ const NavbarAppShop = () => {
                     </div>
                 </div>
             </div>
-            {/* </AppBar > */}
             <ToastContainer />
         </>
 

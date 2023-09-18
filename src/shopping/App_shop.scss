@@ -1,103 +1,65 @@
-        @mixin link {
-            // color: aliceblue;
-            &:hover {
-                text-decoration: none;
-                color: white;
-            }
-        }
-        
-        .link {
-            @include link()
-        }
-        
-        @mixin Btn_outline {
-            &:focus {
-                box-shadow: none;
-            }
-        }
-        
-        .Btn_out {
-            @include Btn_outline()
-        }
-        
-        /////////// navbar
-        .navbar_app_shop {
-            // margin-bottom: 20px;
-            // width: 100%;
-            // padding-top: 10px;
-            // border-top: 2px solid rgb(174, 0, 166);
-            // justify-content: space-around;
-            // display: flex;
-            background: rgb(98, 237, 200);
-            background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
-        }
-        
-        ///////////// 
-        // .con_detail {
-        //     //     padding: 10px;
-        //     //     margin-top: 50px;
-        //     //     border: 2px solid;
-        //     //     gap: 10px;
-        //     //     // background-color: cornflowerblue;
-        //     //     width: 900px;
-        //     //     display: flex;
-        //     //     // justify-content: space-between;
-        //     //     margin: 0% auto;
-        //     //     align-items: center;
-        //     .leftt {
-        //         flex: 1;
-        //         // flex-shrink: 2;
-        //         // width: 40%;
-        //         // img {
-        //         //     width: 100%;
-        //         // }
-        //     }
-        //     .rightt {
-        //         flex: 3;
-        //         // flex-shrink: 3;
-        //         // width: 60%;
-        //     }
-        //     //     .footer {
-        //     //         padding: 2px;
-        //     //         margin: 0% auto;
-        //     //         // width: 400px;
-        //     //         display: flex;
-        //     //         align-items: center;
-        //     //         justify-content: space-between;
-        //     //     }
-        // }
-        ///////// store 
-        .container_store {
-            // gap: 18px;
-            // padding: 30px 0%;
-            // flex-wrap: wrap;
-            // background: rgb(98, 237, 200);
-            // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
-            // display: flex;
-            // justify-content: center;
-            // .bild_footer {
-            //     display: flex;
-            //     justify-content: space-evenly;
-            //     align-items: center;
-            //     padding-bottom: 10px;
-            // }
-            .bild {
-                // border: 2px solid;
-                // width: 23%;
-                img {
-                    width: 100%;
-                    height: 300px;
-                }
-            }
-        }
-        
-        //////////////////////
-        .shop {
-            .rgt {
-                flex: 1;
-                // flex-wrap: wrap;
-            }
-            .lft {
-                flex: 2;
-            }
-        }
+@mixin link {
+    // color: aliceblue;
+    &:hover {
+        text-decoration: none;
+        color: white;
+    }
+}
+
+.link {
+    @include link();
+}
+
+@mixin Btn_outline {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.Btn_out {
+    @include Btn_outline();
+}
+
+//////////////////////////// store ///////////////////////////
+.container_store {
+    img {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+//////////////////////////// slider ///////////////////////////
+.btn {
+    color: purple;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid purple;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    background: transparent;
+    position: relative;
+    transition: all 1s;
+    overflow: hidden;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    top: 0;
+    left: -40px;
+    transform: skewX(45deg);
+    background-color: purple;
+    z-index: -1;
+    transition: all 1s;
+}
+
+.btn:hover::before {
+    width: 160%;
+}

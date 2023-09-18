@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { AiOutlineMinus, AiOutlinePlus, AiTwotoneCloud } from "react-icons/ai"
-import { TextField } from '@mui/material';
+// import { TextField } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 
 import { useStateContext } from '../context/useStateContext';
@@ -24,13 +24,17 @@ import 'slick-carousel/slick/slick-theme.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
+import img_gift from "../img/yellow-gift-with-red-tie-removebg-preview.png"
 import { IoIosWater } from 'react-icons/io';
 import { BsArrowUpSquareFill, BsPlusCircleFill } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
+import { useNavigate } from 'react-router-dom';
 // import img1 from './scribble_gif_croped.webp'
 // import img2 from './trash_talk_full_en.webp'
+import '../App_shop.scss'
 ///////////////////////
 const SliderComponent = () => {
+    const navigate = useNavigate();
 
     const [sliderRef, setSliderRef] = useState(null)
     const [sliderRef2, setSliderRef2] = useState(null)
@@ -43,7 +47,7 @@ const SliderComponent = () => {
     const state_img3 = useSelector(state => state.useReducerShow3)
     const dispatch = useDispatch()
 
-    const { FAQ, isCollapse, setIsCollapse } = useContext(useStateContext);
+    const { FAQ, isCollapse, setIsCollapse, scroll } = useContext(useStateContext);
 
     /// old Method
     // const length = dataSlider.length
@@ -108,14 +112,6 @@ const SliderComponent = () => {
 
     return (
         <>
-            {/* <div className="relative">
-                <img src={img1} alt="" />
-                <div className="absolute left-12 top-32 text-xl font-bold ">
-                    <p className="text-2xl mb-3"> Shopping and Department Store </p>
-                    <button className="bg-slate-500 text-white px-3 py-1 rounded-md"> learn more </button>
-                </div>
-            </div> */}
-
             {/* Section Slider 1  */}
             <div className='relative'>
                 <div>
@@ -139,8 +135,12 @@ const SliderComponent = () => {
                                 <img src={item.img} alt='#' width={"100%"} height={"100%"} />
                                 <div className="absolute left-10 top-32 text-xl font-bold">
                                     <p className="text-2xl mb-3 bg-slate-300 p-2 rounded-lg"> {item.description} </p>
-                                    <button className="bg-slate-500 text-white px-3 py-1 rounded-md"> learn more </button>
+                                    <button onClick={() => navigate("/AppShop/products")} className="px-3 py-1 rounded-md btn"> 
+                                    shop now 
+                                    </button>
                                 </div>
+                                {item.id === 6 && <img src={img_gift} alt="#" className="absolute bottom-4 right-64"
+                                    width={'7%'} style={{ rotate: scroll * .7 + "deg" }} />}
                             </motion.div>
                         ))}
                     </Slider>
@@ -172,7 +172,6 @@ const SliderComponent = () => {
                     <BsArrowRightSquareFill size={25} />
                 </button>
             </div> */}
-
 
 
 
@@ -296,9 +295,7 @@ const SliderComponent = () => {
                                 <p className="text-gray-400 text-sm">CO2 saved</p>
                             </div>
                         </div>
-
                     </div>
-
                     <div>
                         <img src={img} alt="" width={"1100px"} className="rounded-lg" />
                     </div>
@@ -426,7 +423,6 @@ const SliderComponent = () => {
                     </div>
                 </div>
 
-
                 <div className='border-y-2 py-7 flex justify-between'>
                     <div>
                         <div>
@@ -488,7 +484,7 @@ const SliderComponent = () => {
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default SliderComponent;

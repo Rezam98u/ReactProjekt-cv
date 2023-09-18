@@ -27,7 +27,7 @@ const Store = () => {
     // }, [dispatch]);
 
     return (
-        <div className="mx-10 pt-20 pb-5 dark:bg-slate-500">
+        <div className="mx-10 pt-9 pb-5 dark:bg-slate-500">
             <div className={PathName === "/AppShop/products" ? "flex items-center justify-around MD:hidden" : "hidden"}>
                 <div className="flex gap-2 items-center">
                     <button> <SearchIcon fontSize='medium' /> </button>
@@ -60,7 +60,7 @@ const Store = () => {
             <Grid container rowGap={5} columnSpacing={3} justifyContent={'center'} className='container_store mt-3'>
                 {search.bool ?
                     searched.map(item =>
-                        <Grid item xs={12} sm={6} md={4} lg={3} minWidth='300px' key={item.id} className='bild'>
+                        <Grid item xs={12} sm={6} md={4} lg={3} minWidth='300px' key={item.id} >
                             <Product key={item.id} Data={item} />
                         </Grid>)
                     :

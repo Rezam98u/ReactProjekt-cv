@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import store from './Redux/store';
 //styles
 import './App_shop.scss'
+import City from './city';
 
 ///////////////////////
 const AppShop = () => {
@@ -22,21 +23,18 @@ const AppShop = () => {
         <Provider store={store}>
             <GoogleOAuthProvider clientId='175738615798-ni3ctkvnb3gcg0ou7r9ld1m31ugcck2e.apps.googleusercontent.com'>
                 <UseStateContext>
-                    <div className="relative">
-                        <div className="absolute w-full">
-                            <NavbarAppShop />
-                        </div>
-                        <Routes>
-                            <Route path="/:id" element={<DetailProduct />}></Route>
-                            <Route path="/shop" element={<Shop />}></Route>
-                            <Route path="/" element={<Home_shop />}></Route>
-                            <Route path="/products" element={<Store />}></Route>
-                            <Route path="/checkout" element={<AddressForm />}></Route>
-                        </Routes>
-                    </div>
+                    <NavbarAppShop />
+                    <Routes>
+                        <Route path="/:id" element={<DetailProduct />}></Route>
+                        <Route path="/shop" element={<Shop />}></Route>
+                        <Route path="/" element={<Home_shop />}></Route>
+                        <Route path="/products" element={<Store />}></Route>
+                        <Route path="/checkout" element={<AddressForm />}></Route>
+                        <Route path="/city" element={<City />}></Route>
+                    </Routes>
                 </UseStateContext>
             </GoogleOAuthProvider>
-        </Provider>
+        </Provider >
     );
 }
 
