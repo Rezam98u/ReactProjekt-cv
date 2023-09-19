@@ -16,7 +16,7 @@ import { BsTwitter } from "react-icons/bs";
 import { BsYoutube } from "react-icons/bs";
 import { BsLinkedin } from "react-icons/bs";
 import { BsInstagram } from "react-icons/bs";
-import PageScrollProgressBar from "react-page-scroll-progress-bar";
+import ProgressBar from "react-scroll-progress-bar";
 import { motion, useScroll } from "framer-motion"
 import img_p from '../img/Layer.png'
 import img_p2 from '../img/Layer_1_2-removebg-preview (1).png'
@@ -132,7 +132,7 @@ const Programmer = () => {
             <AppBar style={{
                 background: scroll >= 2.933333396911621 ? '#FFFFFF' : "transparent", boxShadow: 'none', zIndex: 5, height: "62px"
             }}>
-                <PageScrollProgressBar color="#F71AB7" bgColor="#f2f2f2" height="4.1px" zIndex="2" />
+                <ProgressBar color="#F71AB7" bgColor="#f2f2f2" height="4.1px" zIndex="2" />
 
                 <div className='flex justify-around py-4 items-center'>
                     <div className={scroll === 0 && 'relative rounded-lg flex hover:bg-gray-700'}>

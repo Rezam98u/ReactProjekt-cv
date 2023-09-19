@@ -27,7 +27,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
 import img_gift from "../img/yellow-gift-with-red-tie-removebg-preview.png"
 import { IoIosWater } from 'react-icons/io';
-import { BsArrowUpSquareFill, BsPlusCircleFill } from 'react-icons/bs';
+import { BsArrowUpSquareFill } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
 import { useNavigate } from 'react-router-dom';
 // import img1 from './scribble_gif_croped.webp'
@@ -135,12 +135,16 @@ const SliderComponent = () => {
                                 // transition={{ duration: 2 }}
                                 key={item.id} className='relative'>
                                 <img src={item.img} alt='#' width={"100%"} height={"100%"} />
-                                <div className="absolute left-10 top-32 text-xl font-bold">
+                                <motion.div
+                                    initial={{ opacity: .2, top: 150 }}
+                                    whileInView={{ opacity: 1, top: 100 }}
+                                    transition={{ duration: 2.1, type: 'spring' }}
+                                    className="absolute left-10  text-xl font-bold">
                                     <p className="text-2xl mb-3 bg-slate-300 p-2 rounded-lg"> {item.description} </p>
                                     <button onClick={() => navigate("/AppShop/products")} className="px-3 py-1 rounded-md btn">
                                         shop now
                                     </button>
-                                </div>
+                                </motion.div>
                                 {item.id === 6 && <img src={img_gift} alt="#" className="absolute bottom-4 right-64"
                                     width={'7%'} style={{ rotate: scroll * .7 + "deg" }} />}
                             </motion.div>

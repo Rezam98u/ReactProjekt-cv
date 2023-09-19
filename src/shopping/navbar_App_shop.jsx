@@ -1,13 +1,12 @@
 import { React, useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import PageScrollProgressBar from "react-page-scroll-progress-bar";
+import ProgressBar from "react-scroll-progress-bar"
 import { BsGithub } from 'react-icons/bs'
 import { Badge } from 'react-bootstrap';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import { Drawer, IconButton, Box, TextField, MenuItem, Avatar } from '@mui/material';
+import { Drawer, IconButton, Box, MenuItem, Avatar } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useStateContext } from './context/useStateContext';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,12 +31,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import img from './Slider/SS23_NavContentUpdate_Accessories_FA.min.avif'
 import { IoMdCloseCircle } from 'react-icons/io'
 import axios from 'axios';
-import { RiEnglishInput } from 'react-icons/ri';
 ///////////////////////
 const NavbarAppShop = () => {
-    const { i18n } = useTranslation();
-    const { t } = useTranslation();
-
+    const { t, i18n } = useTranslation();
     const { handleSubmit } = useForm();
     const navigate = useNavigate();
     const location = useLocation();
@@ -122,8 +118,8 @@ const NavbarAppShop = () => {
 
     return (
         <>
-            <PageScrollProgressBar color="#00AE47" bgColor="#f2f2f2" height="4.1px" />
-            <div className={scroll >= 2.933333396911621 ? "bg-white fixed z-20 h-14 pt-2 w-full" : 'sticky h-14 pt-2 z-10'}
+            <ProgressBar color="#00AE47" bgColor="#f2f2f2" height="4.1px" />
+            <div className={scroll >= 2.933333396911621 ? "bg-white fixed z-20 h-14 pt-2 w-full" : 'sticky h-14 pt-2 z-20'}
                 style={{ backgroundColor: "transparent" }}>
 
                 <div className='md:hidden'>
@@ -134,14 +130,14 @@ const NavbarAppShop = () => {
                         <Box m={4} p={1}>
                             <div>
                                 <Box>
-                                    <button className='' onClick={() => navigate('/')} >
+                                    <button onClick={() => navigate('/')} >
                                         <HomeIcon />
                                     </button>
                                 </Box>
                             </div>
                             <div>
                                 <Box>
-                                    <button className='' onClick={() => navigate('/AppShop')} >
+                                    <button onClick={() => navigate('/AppShop')} >
                                         Home
                                     </button>
                                 </Box>
@@ -157,7 +153,7 @@ const NavbarAppShop = () => {
                             </div>
                             <div>
                                 <Box>
-                                    <button className='' onClick={() => navigate('/AppShop/products')}>
+                                    <button onClick={() => navigate('/AppShop/products')}>
                                         <ProductionQuantityLimitsIcon />  products
                                     </button>
                                 </Box>
@@ -184,7 +180,7 @@ const NavbarAppShop = () => {
 
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                            <button className='' onClick={() => navigate('/AppShop')} >
+                            <button onClick={() => navigate('/AppShop')} >
                                 Home
                             </button>
                         </Box>
@@ -201,7 +197,7 @@ const NavbarAppShop = () => {
                             <motion.div
                                 initial={{ scaleY: 0 }}
                                 animate={{ scaleY: 1 }}
-                                transition={{ duration: 0.3 }}
+                                transition={{ duration: 0.4 }}
                             >
                                 <div className='absolute'>
                                     <div className='w-72 rounded-md bg-white text-black py-2 mt-3'>
@@ -307,7 +303,7 @@ const NavbarAppShop = () => {
 
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                            <button className='' onClick={() => navigate('/AppShop/products')}>
+                            <button onClick={() => navigate('/AppShop/products')}>
                                 <ProductionQuantityLimitsIcon />  products
                             </button>
                         </Box>
@@ -408,11 +404,9 @@ const NavbarAppShop = () => {
                                 <div className='absolute'>
                                     <div className='w-60 rounded-md bg-white text-black py-2 mt-3'>
                                         <p className="text-center"> Welcome to ShopCart!</p>
-
                                         <div className="bg-green-300 px-2 rounded-lg my-2">
                                             userName : {signed_user.email}
                                         </div>
-
                                         <MenuItem className='hover:text-blue-700'>
                                             My Orders
                                         </MenuItem>
@@ -453,16 +447,15 @@ const NavbarAppShop = () => {
                         </Box>
                     </div>
 
-                    <div>
-                        {/* <RiEnglishInput /> */}
+                    {/* <div>
                         <div className="flex gap-3 mt-2">
                             <button onClick={() => i18n.changeLanguage('en')}>English</button>
                             <button onClick={() => i18n.changeLanguage('de')}>Deutsch</button>
                         </div>
                         <div>
-                            <h1>{t('welcome')}</h1>
+                            <h1 className="text-sm">{t('welcome')}</h1>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <ToastContainer />
