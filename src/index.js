@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { QueryClient, QueryClientProvider } from "react-query";
 // import { ReactQueryDevtools } from "react-query-devtools";
@@ -35,14 +35,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render( <
     I18nextProvider i18n = { i18n } >
     <
-    BrowserRouter >
-    <
     QueryClientProvider client = { queryClient } >
     <
     App > < /App> < /
     QueryClientProvider > <
-    /BrowserRouter >
-
     <
     /I18nextProvider>
 )
