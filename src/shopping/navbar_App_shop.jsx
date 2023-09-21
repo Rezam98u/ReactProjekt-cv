@@ -403,7 +403,7 @@ const NavbarAppShop = () => {
                             >
                                 <div className='absolute'>
                                     <div className='w-60 rounded-md bg-white text-black py-2 mt-3'>
-                                        <p className="text-center"> Welcome to ShopCart!</p>
+                                        <div className="text-center"> Welcome to ShopCart!</div>
                                         <div className="bg-green-300 px-2 rounded-lg my-2">
                                             userName : {signed_user.email}
                                         </div>
@@ -417,7 +417,7 @@ const NavbarAppShop = () => {
                                             Massage Center
                                         </MenuItem>
                                         <MenuItem className='hover:text-blue-700'>
-                                            <p className="mr-4"> Payment </p>
+                                            <div className="mr-4"> Payment </div>
                                             {signed_user.purchased_products && <div> <Badge pill bg="secondary"> {signed_user.purchased_products} </Badge> </div>}
                                         </MenuItem>
                                     </div>

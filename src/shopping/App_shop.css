@@ -46,3 +46,34 @@
   width: 160%;
   height: 100%;
 }
+
+.rot:hover {
+  transform: rotate3d(-1, 1, 0, 73deg);
+  -webkit-transform: rotate3d(-1, 1, 0, 73deg);
+  -moz-transform: rotate3d(-1, 1, 0, 73deg);
+  -ms-transform: rotate3d(-1, 1, 0, 73deg);
+  -o-transform: rotate3d(-1, 1, 0, 73deg);
+}
+
+.image_container {
+  perspective: 1000px;
+  /* Adjust the perspective depth as needed */
+}
+
+.rotate_image {
+  width: 300px;
+  transition: transform 0.5s;
+}
+
+.rotate_image:hover {
+  transform: rotateY(180deg);
+}
+
+.rotated {
+  transform: rotateY(180deg);
+  /* Rotate the image 180 degrees */
+}
+
+.bootle_font {
+  font-family: "Brush Script MT", cursive;
+}

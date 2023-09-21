@@ -126,7 +126,7 @@ const SliderComponent = () => {
                         <FaChevronRight color='white' size={20} />
                     </button>
                 </div>
-                <div className="">
+                <div>
                     <Slider ref={setSliderRef2} {...settings_img}>
                         {imgSlider.map(item => (
                             <motion.div
@@ -286,17 +286,17 @@ const SliderComponent = () => {
                         </div>
                         <div className="flex justify-around mt-5">
                             <div>
-                                <div className="flex justify-center"> <RiDeleteBin6Fill size={30} /></div>
+                                <p className="flex justify-center"> <RiDeleteBin6Fill size={30} /></p>
                                 <p className='mt-2'>200 MM g</p>
                                 <p className="text-gray-400 text-sm"> waste saved</p>
                             </div>
                             <div>
-                                <div className="flex justify-center"><IoIosWater size={30} /></div>
+                                <p className="flex justify-center"><IoIosWater size={30} /></p>
                                 <p className='mt-2'>245 MM l</p>
                                 <p className="text-gray-400 text-sm"> water saved</p>
                             </div>
                             <div>
-                                <div className="flex justify-center"><AiTwotoneCloud size={30} /></div>
+                                <p className="flex justify-center"><AiTwotoneCloud size={30} /></p>
                                 <p className='mt-2'>1 MM kg</p>
                                 <p className="text-gray-400 text-sm">CO2 saved</p>
                             </div>
@@ -413,12 +413,23 @@ const SliderComponent = () => {
 
             <div style={{ width: '93%' }} className="mx-auto">
                 <div className="my-4">
-                    <div className="text-center my-2 text-white bg-black py-3 rounded-lg">
-                        <p className="font-bold mb-2 text-4xl"> How Can We Help? </p>
-                        <p>Send us a text: 1-814-251-9966 </p>
-                        <p>Give us a call: 1-888-963-8944 </p>
-                        <p>Monday - Thursday: 5AM - 5PM PST </p>
-                        <p> Friday: 6AM - 5PM PST </p>
+                    <div className="text-center my-2 text-white bg-black py-3 rounded-lg overflow-hidden">
+                        <motion.p
+                            initial={{ x: "-25rem" }}
+                            whileInView={{ x: 0 }}
+                            transition={{ duration: 1.3 }}
+                            className="font-bold mb-3 text-4xl">
+                            How Can We Help?
+                        </motion.p>
+                        <motion.div
+                            initial={{ x: "25rem" }}
+                            whileInView={{ x: 0 }}
+                            transition={{ duration: 1.3 }}>
+                            <p>Send us a text: 1-814-251-9966 </p>
+                            <p>Give us a call: 1-888-963-8944 </p>
+                            <p>Monday - Thursday: 5AM - 5PM PST </p>
+                            <p> Friday: 6AM - 5PM PST </p>
+                        </motion.div>
                     </div>
                     <div>
                         <p className="text-center text-4xl my-4"> Frequently Asked Questions </p>
@@ -438,65 +449,7 @@ const SliderComponent = () => {
             </div>
 
 
-            {/* Footer Section */}
-            <div className='pt-5 bg-blue-600 text-white'>
-                <div style={{ width: "93%" }} className="mx-auto">
-                    <div className="flex justify-between mb-3">
-                        <div>
-                            <div>
-                                <p>ShopCart</p>
-                                {/* <p>Text ...</p> */}
-                                <p>Accepted Payments</p>
-                            </div>
-                            <div className="flex items-center gap-3 my-3">
-                                <p><FaCcVisa size={35} /></p>
-                                <p><FaCcStripe size={35} /></p>
-                                <p><FaAmazon size={35} /></p>
-                                <p><FaPaypal size={35} /></p>
-                            </div>
-                            <div className="flex items-center gap-3">
-                                <p><FaApplePay size={35} /></p>
-                                <p><FaGooglePay size={35} /></p>
-                                <p><FaCcAmex size={35} /></p>
-                                <p><FaCcDiscover size={35} /></p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <p className="font-bold"> ABOUT US </p>
-                            <p> ABOUT ShopCart!</p>
-                            <p> ABOUT THE FOUNDERS </p>
-                            <p>IN THE PRESS</p>
-                            <p>TESTIMONIALS</p>
-                            <p>SUBMIT PRODUCTS</p>
-                            <p>WISHLIST</p>
-                        </div>
-
-                        <div>
-                            <p className="font-bold"> CUSTOMER SERVICE </p>
-                            <p> FREE SHIPPING + RETURNS </p>
-                            <p> START A RETURN </p>
-                            <p> RETURN POLICY </p>
-                            <p> TRADE PROGRAM </p>
-                            <p> AFFILIATE PROGRAM </p>
-                            <p> TERMS OF SERVICE </p>
-                            <p> PRIVACY POLICY </p>
-                            <p> PRESS REQUESTS </p>
-                        </div>
-                    </div>
-
-                    <div className="pb-3 relative border-t-2">
-                        <div className="flex justify-center  mt-3">
-                            <p> © 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
-                        </div>
-                        <Tippy content="click to scroll on top" delay={550} placement='top'>
-                            <button className="absolute right-4 top-3">
-                                <BsArrowUpSquareFill size={33} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-                            </button>
-                        </Tippy>
-                    </div>
-                </div>
-            </div>
+            
         </>
     )
 }

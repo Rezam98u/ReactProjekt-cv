@@ -1,6 +1,6 @@
 import React from 'react';
-
 import SliderComponent from './Slider/Slider'
+
 const Home_shop = () => {
     return (
         <>

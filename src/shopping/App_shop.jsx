@@ -1,6 +1,7 @@
 import { React } from 'react'
 import { Routes, Route } from "react-router-dom"
 import NavbarAppShop from "./navbar_App_shop"
+import FooterAppShop from "./footerAppShop.jsx"
 import AddressForm from './AddressForm';
 import Store from './store';
 import DetailProduct from "./detail_product"
@@ -20,7 +21,7 @@ import City from './city';
 
 ///////////////////////
 const AppShop = () => {
-    const queryClient = new QueryClient({});
+    const queryClient = new QueryClient({})
 
     return (
         <Provider store={store}>
@@ -36,6 +37,7 @@ const AppShop = () => {
                             <Route path="/checkout" element={<AddressForm />}></Route>
                             <Route path="/city" element={<City />}></Route>
                         </Routes>
+                        <FooterAppShop />
                     </UseStateContext>
                 </QueryClientProvider>
             </GoogleOAuthProvider>
