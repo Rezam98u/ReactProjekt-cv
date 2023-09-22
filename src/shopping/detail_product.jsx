@@ -52,7 +52,7 @@ const DetailProduct = () => {
 
     return (
         <>
-            <Grid container spacing={2} flex sx={{ justifyContent: { xs: 'center' } }} className='pt-36 px-3'>
+            <Grid container spacing={2} flex sx={{ justifyContent: { xs: 'center' } }} className='pt-32 px-3'>
                 <Grid item xs={5} md={3}>
                     <div className='bg-slate-200 shadow-2xl overflow-hidden'>
                         <img className='w-full rounded-3xl' src={image} alt="#" />
@@ -63,7 +63,7 @@ const DetailProduct = () => {
                     <div className='px-4 pt-2'>
                         <p className='text-center text-3xl mb-3 w-full border-b-4 pb-2 MD:mt-4'>{title} </p>
                         <div className='text-lg mb-2'> <span className='text-orange-600 text-2xl'> description </span>: <p>{description}</p>  </div>
-                        <p className='mb-4 text-lg'> <span className='text-orange-600 text-2xl'> Category</span>  : {category} </p>
+                        <p className='mb-4 text-lg'> <span className='text-orange-600 text-2xl'> Category </span>  : {category} </p>
                         <div className='text-3xl'> {price} $ </div>
                     </div>
                 </Grid>

@@ -1,8 +1,8 @@
 import { React } from 'react'
 import { Routes, Route } from "react-router-dom"
-import NavbarAppShop from "./navbar_App_shop"
+import NavbarAppShop from "./NavbarAppShop"
 import FooterAppShop from "./footerAppShop.jsx"
-import AddressForm from './AddressForm';
+import Checkout from './checkout';
 import Store from './store';
 import DetailProduct from "./detail_product"
 import Shop from "./shop"
@@ -34,7 +34,7 @@ const AppShop = () => {
                             <Route path="/shop" element={<Shop />}></Route>
                             <Route path="/" element={<Home_shop />}></Route>
                             <Route path="/products" element={<Store />}></Route>
-                            <Route path="/checkout" element={<AddressForm />}></Route>
+                            <Route path="/checkout" element={<Checkout />}></Route>
                             <Route path="/city" element={<City />}></Route>
                         </Routes>
                         <FooterAppShop />

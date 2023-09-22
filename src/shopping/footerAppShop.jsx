@@ -3,8 +3,7 @@ import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaG
 import Tippy from '@tippyjs/react';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
 
-
-
+////////////////////////////////
 const FooterAppShop = () => {
     return (
         <>
@@ -58,16 +57,11 @@ const FooterAppShop = () => {
                         <div className="flex justify-center  mt-3">
                             <p> © 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
                         </div>
-                        <Tippy content="click to scroll on top" delay={550} placement='top'>
-                            <button className="absolute right-4 top-3">
-                                <BsArrowUpSquareFill size={33} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
-                            </button>
-                        </Tippy>
                     </div>
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default FooterAppShop;

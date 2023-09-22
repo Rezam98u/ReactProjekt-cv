@@ -19,7 +19,7 @@ const Shop = () => {
     const state = useSelector(state => state.useReducer)
     const { total_item, total_payment } = useContext(useStateContext)
     return (
-        <div className='px-4 pt-24 dark:bg-gray-800'>
+        <div className='px-4 py-24 dark:bg-gray-800'>
             <Grid container rowGap={0} columnGap={3}>
                 <Grid item xs>
                     {state.itemsCounter > 0 ?
@@ -62,7 +62,7 @@ const Shop = () => {
                         :
 
                         state.checkout === true ?
-                            <div className='text-4xl text-center text-green-500 pt-40 mt-7'>
+                            <div className='text-4xl text-center text-green-500  mt-7'>
                                 {/* <AddressForm></AddressForm> */}
                             </div>
                             :

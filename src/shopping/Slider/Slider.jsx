@@ -1,33 +1,24 @@
-import { React, useContext } from 'react';
+import { React, useContext, useState } from 'react';
 import { logoSlider, gadgets, fashion, fitness, imgSlider, imgSlider3 } from '../Slider/Data_slider'
-import { useState } from 'react';
 import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaChevronLeft, FaChevronRight, FaGooglePay, FaPaypal } from 'react-icons/fa'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { AiOutlineMinus, AiOutlinePlus, AiTwotoneCloud } from "react-icons/ai"
 
 // import { TextField } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
-
 import { useStateContext } from '../context/useStateContext';
-
-
-
 // import Carousel from 'react-elastic-carousel';
 // import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 import "./slider.module.scss"
 // import { useEffect } from 'react';
 import { motion } from "framer-motion"
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import img from './HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp'
 import img_gift from "../img/yellow-gift-with-red-tie-removebg-preview.png"
 import { IoIosWater } from 'react-icons/io';
-import { BsArrowUpSquareFill } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
 import { useNavigate } from 'react-router-dom';
 // import img1 from './scribble_gif_croped.webp'
@@ -449,7 +440,7 @@ const SliderComponent = () => {
             </div>
 
 
-            
+
         </>
     )
 }

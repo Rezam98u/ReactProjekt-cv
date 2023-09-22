@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.6a65eac6.css",
-    "main.js": "/static/js/main.56b41a2c.js",
+    "main.css": "/static/css/main.e480c9c4.css",
+    "main.js": "/static/js/main.dc61efac.js",
+    "static/media/2588.jpg": "/static/media/2588.5737cd38de7012a1e8a7.jpg",
     "static/media/video-1.mp4": "/static/media/video-1.59e75226d30ad48f9ede.mp4",
     "static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4": "/static/media/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.b167724f7ca53838b7b9.mp4",
     "static/media/Frame 4.png": "/static/media/Frame 4.a423738fd87b34ab4a58.png",
+    "static/media/abstract-blur-gym.jpg": "/static/media/abstract-blur-gym.37ded1ff3b5ff224fb76.jpg",
     "static/media/Frame 5.png": "/static/media/Frame 5.d2a9471f2db2b148c791.png",
     "static/media/Frame 3.png": "/static/media/Frame 3.98ea2a49c1a27b023ea7.png",
     "static/media/0f5c9bae_1681544141.webp": "/static/media/fe2491448fa82a761c8e01d3e77b73180f5c9bae_1681544141.36825b450c43a59c498d.webp",
     "static/media/ales-nesetril-Im7lZjxeLhg-unsplash.jpg": "/static/media/ales-nesetril-Im7lZjxeLhg-unsplash.37f9618ac10afa3bfcdd.jpg",
     "static/media/Frame 5.jpg": "/static/media/Frame 5.39482b5f676a7c99ace2.jpg",
     "static/media/MENSRESPONSIBLEFLANNELNIGHTSKY101-259-25025_8339.webp": "/static/media/MENSRESPONSIBLEFLANNELNIGHTSKY101-259-25025_8339.dc0c2301f795ceb0f6e6.webp",
+    "static/media/yellow-gift-with-red-tie-removebg-preview.png": "/static/media/yellow-gift-with-red-tie-removebg-preview.21d184df70deb91de612.png",
     "static/media/MENSRESPONSIBLEFLANNELEGRET101-259-20425_5260.webp": "/static/media/MENSRESPONSIBLEFLANNELEGRET101-259-20425_5260.1c1c78f1d5788a6669ea.webp",
     "static/media/ULTIMATEBISONSOCK_NAVY_709-001-13224_8207.webp": "/static/media/ULTIMATEBISONSOCK_NAVY_709-001-13224_8207.77d3c727dbba89badae2.webp",
     "static/media/ULTIMATEBISONSOCK_LIME_709-001-07024_3085.webp": "/static/media/ULTIMATEBISONSOCK_LIME_709-001-07024_3085.761be310c3ab8d2519d5.webp",
@@ -23,6 +26,7 @@
     "static/media/spare your time and.mp4": "/static/media/spare your time and.8fb9c6cb3a124a642e1a.mp4",
     "service-worker.js": "/service-worker.js",
     "static/media/Layer_1_2-removebg-preview (1).png": "/static/media/Layer_1_2-removebg-preview (1).6cb3b6d7ea36524e63bc.png",
+    "static/media/transparent_bottle_for_water.png": "/static/media/transparent_bottle_for_water.fd735bd28df836a100ce.png",
     "static/media/11765-removebg-preview.png": "/static/media/11765-removebg-preview.5ba1d5eb4a4c211d6dea.png",
     "static/media/digitalernomade-984x540.jpg": "/static/media/digitalernomade-984x540.fe9925c31d4cb4cc2ae4.jpg",
     "static/media/Layer.png": "/static/media/Layer.f0391fd9cb759b8d5cd9.png",
@@ -34,6 +38,7 @@
     "static/media/1-Pairs-Weightlifting-Training-Gloves-for-Men-Women-Fitness-Sports-.webp": "/static/media/1-Pairs-Weightlifting-Training-Gloves-for-Men-Women-Fitness-Sports-.9cfe93dcd3660f3e4cac.webp",
     "static/media/Boho-Geometric-Bracelet-Bangle-Sets-For-Women-Vintage-Star-Map-Hand-Heart-charm-Beads-Chains-Fashion.jpg_220x220xz.jpg_.webp": "/static/media/Boho-Geometric-Bracelet-Bangle-Sets-For-Women-Vintage-Star-Map-Hand-Heart-charm-Beads-Chains-Fashion.jpg_220x220xz.jpg_.833adb2aebcd02149193.webp",
     "static/media/EMS-Muscle-Stimulator-Abdominal-Body-Slimming-Belt-Electric-Smart-ABS-Trainer-Arm-Leg-Waist-Weight-Loss.jpg_220x220xz.jpg_.webp": "/static/media/EMS-Muscle-Stimulator-Abdominal-Body-Slimming-Belt-Electric-Smart-ABS-Trainer-Arm-Leg-Waist-Weight-Loss.jpg_220x220xz.jpg_.05f72724921dbf2ae4dc.webp",
+    "static/media/iconshome-07_300x.avif": "/static/media/iconshome-07_300x.940d0b9361c14602b3a9.avif",
     "static/media/Frame 3.svg": "/static/media/Frame 3.bd8223f4f8ad8a2a652c02f428849fe0.svg",
     "static/media/c2c-hero-1-800x800.webp": "/static/media/c2c-hero-1-800x800.448b3c63e2bee3c8da6c.webp",
     "static/media/New-2021-Loudly-Gas-Lighter-Square-Metal-Sideslip-.webp": "/static/media/New-2021-Loudly-Gas-Lighter-Square-Metal-Sideslip-.bb818878a5b8e2532aad.webp",
@@ -53,11 +58,11 @@
     "static/media/HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.webp": "/static/media/HomePage_03_Sustainability_Transparency_Hero_Image_Desktop_FA_2.7580bef98b998fe2df8f.webp",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.6a65eac6.css.map": "/static/css/main.6a65eac6.css.map",
-    "main.56b41a2c.js.map": "/static/js/main.56b41a2c.js.map"
+    "main.e480c9c4.css.map": "/static/css/main.e480c9c4.css.map",
+    "main.dc61efac.js.map": "/static/js/main.dc61efac.js.map"
   },
   "entrypoints": [
-    "static/css/main.6a65eac6.css",
-    "static/js/main.56b41a2c.js"
+    "static/css/main.e480c9c4.css",
+    "static/js/main.dc61efac.js"
   ]
 }

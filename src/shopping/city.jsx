@@ -44,7 +44,7 @@ const City = () => {
                     <img src={img3} alt="#" width={"100%"} />
                 </div>
                 <div>
-                    <motion.div className='w-4/5 mx-auto absolute left-7 top-60 z-20'
+                    <motion.div className='w-4/5 mx-auto absolute left-7 top-60 z-10'
                         initial={{ x: '-10rem' }}
                         animate={{ x: 30 }}
                         transition={{ duration: 1.9 }}
@@ -55,7 +55,7 @@ const City = () => {
                     </motion.div>
 
                     <motion.div
-                        className='absolute z-10'
+                        className='absolute'
                         style={scroll >= 0.800000011920929 && scroll <= 734.2000122070312 ? { left: 500 + scroll, top: 150 + scroll } : { right: 200 }}
                         initial={{ rotateY: "0deg", bottom: "-100px" }}
                         animate={{ rotateY: "180deg", bottom: 470 }}

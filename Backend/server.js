@@ -3,7 +3,8 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
-
+import http from 'http'
+import { Server } from 'socket.io'
 
 import nodemailer from 'nodemailer'
 import randomToken from 'random-token'
@@ -22,160 +23,183 @@ import randomToken from 'random-token'
 // import { User } from './models/user'
 //////////////////////////////////////////////////////////////////////////////////
 const app = express();
-app.use(bodyParser.json({ limit: "50mb" }))
+// app.use(bodyParser.json({ limit: "50mb" }))
+app.use(cors())
+
+
+///////////////////////////////// Socket.io  /////////////////////////////////////
+const server = http.createServer(app)
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:3002",
+        methods: ["GET", "POST"]
+    }
+})
+
+io.on("connection", socket => {
+    console.log(`⚡: ${socket.id} user just connected!`)
+
+    socket.on("sendMessage", data => {
+        console.log(data)
+    })
+
+    socket.on('disconnect', () => {
+        console.log('🔥: A user disconnected');
+    })
+})
 
 
 ///////////////////////// Mongo database and Email verification //////////////////
-const MONGODB_URI = "mongodb+srv://root111:15H0rRro5uLFJcZQ@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
-    // console.log(process.env.MONGODB_URI)
-app.use(express.json())
-app.use(cors())
+// const MONGODB_URI = "mongodb+srv://root111:15H0rRro5uLFJcZQ@cluster0.rie8oh2.mongodb.net/?retryWrites=true&w=majority"
+// // console.log(process.env.MONGODB_URI)
+// app.use(express.json())
+// app.use(cors())
 
-const connectToMongo = async() => {
-    await mongoose.connect(MONGODB_URI)
-    console.log("Connected to MongoDB")
-}
-connectToMongo()
+// const connectToMongo = async () => {
+//     await mongoose.connect(MONGODB_URI)
+//     console.log("Connected to MongoDB")
+// }
+// connectToMongo()
 
-var UserSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    isValid: {
-        type: Boolean,
-        // required: true
-    },
-    verificationToken: {
-        type: String
-    },
-    purchased_products: Number,
-    profileImg: {
-        data: Buffer,
-        type: String
-    }
-})
-var User = mongoose.model('users', UserSchema)
-User.createIndexes()
+// var UserSchema = new mongoose.Schema({
+//     email: {
+//         type: String,
+//         required: true
+//     },
+//     password: {
+//         type: String,
+//         required: true
+//     },
+//     isValid: {
+//         type: Boolean,
+//         // required: true
+//     },
+//     verificationToken: {
+//         type: String
+//     },
+//     purchased_products: Number,
+//     profileImg: {
+//         data: Buffer,
+//         type: String
+//     }
+// })
+// var User = mongoose.model('users', UserSchema)
+// User.createIndexes()
 
-// const testAccount = nodemailer.createTestAccount()
-// console.log(testAccount.user);
+// // const testAccount = nodemailer.createTestAccount()
+// // console.log(testAccount.user);
 
-// Configure Nodemailer transporter
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    // secure: true, // true for 465, false for other ports
-    auth: {
-        user: 'reza.m2000u@gmail.com',
-        pass: 'zdcrgqspdjptgmse',
-    },
-})
+// // Configure Nodemailer transporter
+// const transporter = nodemailer.createTransport({
+//     host: 'smtp.gmail.com',
+//     port: 587,
+//     secure: false,
+//     // secure: true, // true for 465, false for other ports
+//     auth: {
+//         user: 'reza.m2000u@gmail.com',
+//         pass: 'zdcrgqspdjptgmse',
+//     },
+// })
 
-app.get("/", (req, res) => {
-    res.send("App is Working")
-        // You can check backend is working or not by
-        // entering http://loacalhost:3003
-        // If you see App is working means
-        // backend working properly
-})
+// app.get("/", (req, res) => {
+//     res.send("App is Working")
+//     // You can check backend is working or not by
+//     // entering http://loacalhost:3003
+//     // If you see App is working means
+//     // backend working properly
+// })
 
-app.post("/postUser", async(req, res) => {
-    const verificationToken = randomToken(16)
-    const { email, pass } = req.body
-    try {
-        const user = new User({
-            email: email,
-            password: pass,
-            isValid: false,
-            verificationToken: verificationToken,
-            purchased_products: 0,
-            profileImg: null
-        })
+// app.post("/postUser", async (req, res) => {
+//     const verificationToken = randomToken(16)
+//     const { email, pass } = req.body
+//     try {
+//         const user = new User({
+//             email: email,
+//             password: pass,
+//             isValid: false,
+//             verificationToken: verificationToken,
+//             purchased_products: 0,
+//             profileImg: null
+//         })
 
-        const mailOptions = {
-            from: 'onlineShopping@gmail.com',
-            to: email,
-            subject: 'Email Verification',
-            text: `Please click the following link to verify your email: http://localhost:3003/verify/${verificationToken}`,
-        };
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) throw Error(error)
-            console.log('Email Sent Successfully')
-                // console.log(info)
-        })
-        res.status(200).json({ message: 'Registration successful. Please check your email for verification instructions.' })
-        await user.save()
+//         const mailOptions = {
+//             from: 'onlineShopping@gmail.com',
+//             to: email,
+//             subject: 'Email Verification',
+//             text: `Please click the following link to verify your email: http://localhost:3003/verify/${verificationToken}`,
+//         };
+//         transporter.sendMail(mailOptions, (error, info) => {
+//             if (error) throw Error(error)
+//             console.log('Email Sent Successfully')
+//             // console.log(info)
+//         })
+//         res.status(200).json({ message: 'Registration successful. Please check your email for verification instructions.' })
+//         await user.save()
 
-    } catch (error) {
-        res.json({ message: 'An error occurred.' })
-    }
-    // res.redirect("http://localhost:3002/AppShop")
-})
+//     } catch (error) {
+//         res.json({ message: 'An error occurred.' })
+//     }
+//     // res.redirect("http://localhost:3002/AppShop")
+// })
 
-app.post('/postUserGoogle', async(req, res) => {
-    const { email } = req.body
-    try {
-        const user = new User({
-            email: email,
-            isValid: true,
-        })
-        await user.save()
-    } catch (error) {
-        res.status(500).json({ message: 'An error occurred.' })
-    }
-})
+// app.post('/postUserGoogle', async (req, res) => {
+//     const { email } = req.body
+//     try {
+//         const user = new User({
+//             email: email,
+//             isValid: true,
+//         })
+//         await user.save()
+//     } catch (error) {
+//         res.status(500).json({ message: 'An error occurred.' })
+//     }
+// })
 
-app.get("/verify/:verificationToken", async(req, res) => {
-    const { verificationToken } = req.params
-    console.log(verificationToken)
-    const user = await User.findOne({ verificationToken: verificationToken })
-    if (user) {
-        user.isValid = true
-        await user.save()
-            // res.send("email is verified")
-        res.redirect("http://localhost:3002/AppShop")
-    } else { res.json("Invalid Token or user not found") }
-})
+// app.get("/verify/:verificationToken", async (req, res) => {
+//     const { verificationToken } = req.params
+//     console.log(verificationToken)
+//     const user = await User.findOne({ verificationToken: verificationToken })
+//     if (user) {
+//         user.isValid = true
+//         await user.save()
+//         // res.send("email is verified")
+//         res.redirect("http://localhost:3002/AppShop")
+//     } else { res.json("Invalid Token or user not found") }
+// })
 
 
-app.get("/getDataMongoDb", async(req, res) => {
-    try {
-        const users = await User.find({})
-        res.send({ data: users, status: "ok" })
-    } catch (error) {
-        console.log(error)
-    }
-})
+// app.get("/getDataMongoDb", async (req, res) => {
+//     try {
+//         const users = await User.find({})
+//         res.send({ data: users, status: "ok" })
+//     } catch (error) {
+//         console.log(error)
+//     }
+// })
 
-app.post('/checkOut', async(req, res) => {
-    const { email, total_item } = req.body
-    const user = await User.findOneAndUpdate({ email: email })
-    if (user) {
-        user.purchased_products += total_item
-        await user.save()
-        res.status(200).json({ massage: total_item + " products were purchased" })
-            // res.status(200).redirect("http://localhost:3002/AppShop")
-    } else { res.json("Invalid user") }
+// app.post('/checkOut', async (req, res) => {
+//     const { email, total_item } = req.body
+//     const user = await User.findOneAndUpdate({ email: email })
+//     if (user) {
+//         user.purchased_products += total_item
+//         await user.save()
+//         res.status(200).json({ massage: total_item + " products were purchased" })
+//         // res.status(200).redirect("http://localhost:3002/AppShop")
+//     } else { res.json("Invalid user") }
 
-})
+// })
 
-app.post('/postProfileImg', async(req, res) => {
-    const { email, img } = req.body
-    const user = await User.findOneAndUpdate({ email: email })
-    if (user) {
-        user.profileImg = img
-        await user.save()
-        res.status(200).json({ massage: "profile was saved" })
-            // res.status(200).redirect("http://localhost:3002/AppShop")
-    } else { res.json("Invalid user") }
+// app.post('/postProfileImg', async (req, res) => {
+//     const { email, img } = req.body
+//     const user = await User.findOneAndUpdate({ email: email })
+//     if (user) {
+//         user.profileImg = img
+//         await user.save()
+//         res.status(200).json({ massage: "profile was saved" })
+//         // res.status(200).redirect("http://localhost:3002/AppShop")
+//     } else { res.json("Invalid user") }
 
-})
+// })
 
 ///////////////////////////////// Email verification //////////////////////
 // const testAccount = nodemailer.createTestAccount()

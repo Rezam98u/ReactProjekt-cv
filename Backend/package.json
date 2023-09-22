@@ -16,11 +16,13 @@
         "express": "^4.18.2",
         "express-graphql": "^0.12.0",
         "graphql": "^15.8.0",
+        "http": "^0.0.1-security",
         "mongodb": "^5.7.0",
         "mongoose": "^7.4.3",
         "mysql": "^2.18.1",
         "nodemon": "^2.0.22",
-        "random-token": "^0.0.8"
+        "random-token": "^0.0.8",
+        "socket.io": "^4.7.2"
     },
     "devDependencies": {
         "dotenv-webpack": "^8.0.1"

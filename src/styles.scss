@@ -289,39 +289,3 @@ $font: 1.36rem;
         // }
     }
 }
-
-////////////////////// Footer
-.footer {
-    // background-color: rgb(49, 55, 67);
-    .con {
-        // width: 1200px;
-        // margin: 0% auto;
-        display: flex;
-        gap: 10px;
-        flex-direction: column;
-        .header_text {
-            flex: 1;
-            color: aliceblue;
-        }
-        .input_area {
-            flex: 1;
-            form {
-                input {
-                    outline: none;
-                    border: none;
-                }
-            }
-        }
-        .footer_link {
-            padding-top: 20px;
-            // border: solid 2px;
-            color: aliceblue;
-            display: flex;
-            justify-content: center;
-            .footer_link_item {
-                flex: 1;
-                flex-direction: column;
-            }
-        }
-    }
-}
