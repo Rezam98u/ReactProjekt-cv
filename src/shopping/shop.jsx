@@ -48,7 +48,7 @@ const Shop = () => {
                                             </span>
                                     }
 
-                                    <button className='btn btn-dark rounded-2xl mx-2'>{item.quantity}</button>
+                                    <button className='btn btn-dark rounded-2xl mx-2'> {item.quantity} </button>
 
                                     <span>
                                         <button onClick={() => { dispatch(increase(item)) }}
@@ -82,11 +82,11 @@ const Shop = () => {
                         </div>
 
                         <div className='d-flex items-center pt-4 gap-2'>
-                            <button className={state.itemsCounter === 0 ? 'hidden' : ' btn btn-secondary w-1/4 Btn_out'}
+                            <button className={state.itemsCounter === 0 ? 'hidden' : 'p-1 btn-secondary rounded-sm w-1/4 Btn_out'}
                                 onClick={() => { dispatch(clear()); Navigate("/AppShop/products") }} >
                                 <ClearIcon fontSize='small' /> clear
                             </button>
-                            <button onClick={() => { Navigate('/AppShop/checkout') }} className={state.itemsCounter > 0 ? 'btn btn-primary Btn_out w-3/4  ' : ' hidden'} >
+                            <button onClick={() => { Navigate('/AppShop/checkout') }} className={state.itemsCounter > 0 ? 'p-1 btn-primary rounded-sm Btn_out w-3/4  ' : ' hidden'} >
                                 checkout
                             </button>
                             {/* <Link to="/products/checkout"> <button className={state.itemsCounter > 0 ? 'btn btn-primary mx-1 Btn_out w-80 ' : ' hidden'} onClick={() => { dispatch({ type: "checkout" }) }} > checkout </button> </Link> */}

@@ -39,9 +39,16 @@ const UseStateContext = ({ children }) => {
     }, []);
 
     //////////////////////// React Query Method //////////////////////// 
-    const { isLoading, isError, data, error, refetch } = useQuery(["repo"], () =>
-        axios.get("https://fakestoreapi.com/products")
-            .then(res => setProducts(res.data))
+    const { isLoading, isError, data, error, refetch } = useQuery("repo", () =>
+        axios.get("https://fakestoreapi.com/products").then(res => setProducts(res.data)),
+        {
+            // staleTime: 30000,
+            // refetchOnMount: "always",
+            refetchOnMount: true,
+            refetchOnWindowFocus: true,
+            // refetchInterval: 2000,
+            refetchIntervalInBackground: true
+        }
     )
 
     if (isLoading) return (

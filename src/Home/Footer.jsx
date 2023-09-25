@@ -3,22 +3,22 @@ import { Button } from '@mui/material';
 import io from 'socket.io-client'
 ////////////////////////////
 const Footer = () => {
-    const socket = io.connect('http://localhost:3003')
+    // const socket = io.connect('http://localhost:3003')
 
     const [messageInput, setMessageInput] = useState('')
 
     const [massageReceived, setMassageReceived] = useState('')
 
-    const sendMessage = () => {
-        socket.emit('sendMessage', messageInput)
-        setMessageInput('')
-    }
+    // const sendMessage = () => {
+    //     socket.emit('sendMessage', messageInput)
+    //     setMessageInput('')
+    // }
 
-    useEffect(() => {
-        socket.on('messageReceived', (data) => {
-            setMassageReceived(data)
-        })
-    }, [])
+    // useEffect(() => {
+    //     socket.on('messageReceived', (data) => {
+    //         setMassageReceived(data)
+    //     })
+    // }, [])
 
     return (
         <>
@@ -37,9 +37,9 @@ const Footer = () => {
                     <div>
                         <input className='rounded-sm px-2 w-56' type="text" placeholder='send message'
                             onChange={e => setMessageInput(e.target.value)} />
-                        <Button variant='contained' className="mx-2" onClick={sendMessage}>
+                        {/* <Button variant='contained' className="mx-2" onClick={sendMessage}>
                             Submit
-                        </Button>
+                        </Button> */}
                         <p> message : {massageReceived} </p>
                     </div>
 

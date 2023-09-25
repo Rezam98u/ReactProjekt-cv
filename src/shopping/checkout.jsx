@@ -27,7 +27,7 @@ const Checkout = () => {
         // setPay(false); dispatch(checkout())
     }
     return (
-        <div className='px-8 pt-14'>
+        <div className='px-8 pt-1'>
             <form onSubmit={handleSubmit(paySubmit)} className='shadow-2xl border-2 rounded-lg py-4 my-5'>
 
                 <div className='mx-auto w-4/5 mb-4 pb-4 text-4xl text-center font-bold'>
@@ -124,11 +124,11 @@ const Checkout = () => {
                         </div>
 
                         <div className='flex SM:flex-col SM:gap-2 sm:justify-between'>
-                            <button className='btn btn-primary w-52 SM:w-full SM:order-3' onClick={() => { Navigate("/AppShop/shop") }} >
-                                <KeyboardBackspaceIcon />  Back to Card
+                            <button className='p-1 rounded-sm btn-primary w-52 SM:w-full SM:order-3' onClick={() => { Navigate("/AppShop/shop") }} >
+                                <KeyboardBackspaceIcon />  back to Card
                             </button>
-                            <button type='submit' className='btn text-white w-52 bg-blue-600 SM:w-full SM:order-2'>
-                                PAY {total_payment(state.selectedItems)}
+                            <button type='submit' className='p-1 rounded-sm text-white w-52 bg-blue-600 SM:w-full SM:order-2'>
+                                PAY {total_payment(state.selectedItems)} $
                             </button>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ const Checkout = () => {
                         <div>
                             <p className='text-green-600 text-2xl pb-2 font-bold'> Successfully  </p>
                             <p className=' text-lg'> Thank You for your Shop </p>
-                            <button className='mt-12 btn btn-primary w-2/5 ' onClick={() => Navigate("/AppShop/products")}>
+                            <button className='mt-12 p-1 rounded-sm btn-primary w-2/5 ' onClick={() => Navigate("/AppShop/products")}>
                                 <ArrowBackIcon /> <ArrowBackIcon />  Back to Product
                             </button>
                         </div>
