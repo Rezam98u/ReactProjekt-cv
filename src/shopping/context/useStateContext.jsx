@@ -47,7 +47,10 @@ const UseStateContext = ({ children }) => {
             refetchOnMount: true,
             refetchOnWindowFocus: true,
             // refetchInterval: 2000,
-            refetchIntervalInBackground: true
+            refetchIntervalInBackground: true,
+
+            
+            // enabled: false
         }
     )
 

@@ -42,7 +42,7 @@ const AppShop = () => {
                 </QueryClientProvider>
             </GoogleOAuthProvider>
         </Provider >
-    );
+    )
 }
 
 export default AppShop;

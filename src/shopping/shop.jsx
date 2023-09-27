@@ -19,62 +19,48 @@ const Shop = () => {
     const state = useSelector(state => state.useReducer)
     const { total_item, total_payment } = useContext(useStateContext)
     return (
-        <div className='px-4 py-24 dark:bg-gray-800'>
+        <div className='px-4 py-10 dark:bg-gray-800'>
             <Grid container rowGap={0} columnGap={3}>
                 <Grid item xs>
                     {state.itemsCounter > 0 ?
-
                         state.selectedItems.map(item =>
                             <Card elevation={5} key={item.id} className='mb-3 dark:bg-gray-800'>
-                                <div className='pl-3 py-2'>
-                                    <div className='w-36 '> <img src={item.image} alt="#" /> </div>
-                                    <div className='text-xl font-bold'> {item.title} </div>
-                                    <div className='pl-3 text-4xl py-2'>   {item.price} $ </div>
+                                <div className='pl-4 py-3'>
+                                    <div className='w-28'> <img src={item.image} alt="#" /> </div>
+                                    <div className='text-xl font-bold mt-3'> {item.title} </div>
+                                    <div className='text-4xl py-2'>   {item.price} $ </div>
 
-                                    {
-                                        item.quantity > 1 ?
-                                            <span>
-                                                <button onClick={() => dispatch(decrease(item))}
-                                                    className='btn btn-danger text-xs Btn_out'>
-                                                    <FontAwesomeIcon icon={faMinus} />
-                                                </button>
-                                            </span>
+                                    <div className='flex items-center gap-4 '>
+                                        {item.quantity > 1 ?
+                                            <button onClick={() => dispatch(decrease(item))}
+                                                className='btn-danger text-xs Btn_out p-1 px-2 rounded-lg'>
+                                                <FontAwesomeIcon icon={faMinus} />
+                                            </button>
                                             :
-                                            <span>
-                                                <button onClick={() => { dispatch(removeItem(item)) }}
-                                                    className='btn btn-danger text-xs Btn_out'>
-                                                    <DeleteForeverSharpIcon fontSize='small' />
-                                                </button>
-                                            </span>
-                                    }
+                                            <button onClick={() => { dispatch(removeItem(item)) }}
+                                                className='btn-danger text-xs Btn_out p-1 px-2 rounded-lg'>
+                                                <DeleteForeverSharpIcon fontSize='small' />
+                                            </button>
+                                        }
+                                        <button className='btn-dark rounded-3xl p-1 px-2'> {item.quantity} </button>
 
-                                    <button className='btn btn-dark rounded-2xl mx-2'> {item.quantity} </button>
-
-                                    <span>
                                         <button onClick={() => { dispatch(increase(item)) }}
-                                            className='btn btn-info text-xs Btn_out'>
+                                            className='btn-info text-xs Btn_out p-1 px-2 rounded-lg'>
                                             <FontAwesomeIcon icon={faAdd} />
                                         </button>
-                                    </span>
+                                    </div>
                                 </div>
                             </Card>)
 
                         :
 
-                        state.checkout === true ?
-                            <div className='text-4xl text-center text-green-500  mt-7'>
-                                {/* <AddressForm></AddressForm> */}
-                            </div>
-                            :
-                            <Grid Container>
-                                <p className='text-danger text-4xl text-center pt-40'> please select an item </p>
-                            </Grid>
-
+                        state.itemsCounter === 0 &&
+                        <p className='text-danger text-4xl text-center pt-20'> please select an item </p>
                     }
                 </Grid>
 
                 <Grid item xs={12} md={4} lg={4} >
-                    <div className='border-2 shadow rounded-2xl py-3 h-full px-3'>
+                    <div className='border-2 shadow rounded-lg py-3 h-full px-3'>
                         <div>
                             <p className='text-3xl text-center border-b-4 mb-3 pb-2'> Order-Summary </p>
                             <p className='text-lg font-bold'>Total item : {total_item(state.selectedItems)}  </p>
