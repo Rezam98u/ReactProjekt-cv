@@ -22,8 +22,8 @@ const Footer = () => {
 
     return (
         <>
-            <div className="footer bg-gradient-to-b from-yellow-300 to-blue-900 ">
-                <div style={{ width: "90%" }} className='con text-center py-4 mx-auto dark:bg-gradient-to-b from-black to-gray-500 '>
+            <div className="footer bg-gradient-to-b from-yellow-300 to-blue-900">
+                <div style={{ width: "90%" }} className='con text-center py-4 mx-auto '>
                     <div className='header_text'>
                         <p className='text-blue-900 text-2xl '>
                             kommen sie gern uns mit, um tolle Urlauben zu erleben
