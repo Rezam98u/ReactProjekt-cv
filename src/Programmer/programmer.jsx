@@ -134,7 +134,7 @@ const Programmer = () => {
             }}>
                 <ProgressBar color="#F71AB7" bgColor="#f2f2f2" height="4.1px" zIndex="2" />
 
-                <div className='flex justify-around py-4 items-center'>
+                <div style={{ width: "90%" }} className='flex justify-between mx-auto py-4 items-center'>
                     <div className={scroll === 0 && 'relative rounded-lg flex hover:bg-gray-700'}>
                         <button className={scroll >= 2.933333396911621 ? "scrollChange flex" : "flex px-2"}
                             onClick={() => navigate('/')}>
@@ -238,7 +238,7 @@ const Programmer = () => {
                 </div>
             </AppBar>
 
-
+            {/* Hero Section */}
             <div className={scroll === 0 ? 'Hero_Section relative' : 'relative'}>
                 {/* <img className='bg-no-repeat bg-cover bg-center' src={img} alt="" /> */}
                 <div className='w-full h-screen bg-black'>
@@ -313,18 +313,20 @@ const Programmer = () => {
                 </div>
             </div>
 
-            <div className='w-4/5 mx-auto  mt-20 mb-3 py-2 pr-2 flex justify-end rounded-lg'>
-                <div>
-                    <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 2 }} >
-                        <img className='z-20 ml-4' width={230} height={230} src={img_p} alt='#' />
-                    </motion.div>
-                    <motion.div initial={{ y: 80 }} whileInView={{ y: -12 }} transition={{ duration: 2 }}>
-                        <img className='z-10' width={320} height={320} src={img_p2} alt='#' />
-                    </motion.div>
-                </div>
-            </div>
+            <div style={{ width: "90%" }} className="mx-auto">
 
-            {/* <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
+                <div className=' mx-auto my-20 flex justify-end rounded-lg'>
+                    <div>
+                        <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ duration: 2 }} >
+                            <img className='z-20 ml-4' width={230} height={230} src={img_p} alt='#' />
+                        </motion.div>
+                        <motion.div initial={{ y: 80 }} whileInView={{ y: -12 }} transition={{ duration: 2 }}>
+                            <img className='z-10' width={320} height={320} src={img_p2} alt='#' />
+                        </motion.div>
+                    </div>
+                </div>
+
+                {/* <div className='bg-green-400 text-center w-4/5 mx-auto my-2 py-2 rounded-lg'>
                 <motion.div
                     style={{ width: '30%' }}
                     initial={{ scale: 0 }}
@@ -337,107 +339,109 @@ const Programmer = () => {
             </div> */}
 
 
-            <div ref={ToPython} className='flex justify-center'
-                data-aos='fade-up'
-                // data-aos-easing="linear"
-                data-aos-duration="1100"
-            >
-                <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-2'> What is Python? </p>
-                    <p>
-                        <span className='bg-blue-300 rounded-md px-1 py-1'>
-                            Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.
-                            Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn’t specialized for any specific problems.
-                        </span>
-                        This versatility, along with its beginner-friendliness, has made it one of the most-used programming languages today.
-                        A survey conducted by industry analyst firm RedMonk found that it was the second-most popular programming language among developers in 2021.
-                    </p>
-                </div>
-            </div>
+                <div ref={ToPython} className='flex justify-center'
+                    data-aos='fade-up'
+                    // data-aos-easing="linear"
+                    data-aos-duration="1100" >
 
-
-            <div ref={ToC} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
-                <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-2'> What is C#? </p>
-                    <p>
-                        <span className='bg-blue-300 rounded-md px-1 py-1'>
-                            C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET. C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers.
-                        </span>
-                        This tour provides an overview of the major components of the language in C# 11 and earlier. If you want to explore the language through interactive examples, try the introduction to C# tutorials. <br />
-                        C# is an object-oriented, component-oriented programming language. C# provides language constructs to directly support these concepts, making C# a natural language in which to create and use software components. Since its origin, C# has added features to support new workloads and emerging software design practices. At its core, C# is an object-oriented language. You define types and their behavior.
-                    </p>
-                </div>
-            </div>
-
-
-            <div ref={scrollToRef} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
-                <div style={{ background: `${hex}` }} className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-                        animate={{ opacity: 1, scale: 1, rotate: moveMotion ? [7, 0, 0] : [0, 0, 0] }}
-                        transition={{
-                            duration: 0.5,
-                            ease: [0, 0.71, 0.2, 1.01],
-                            scale: {
-                                type: "spring",
-                                damping: 6,
-                                stiffness: 100,
-                                restDelta: 0.001
-                            }
-                        }}
-                    >
-                        <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => { setHex(hex1); setMoveMotion(!moveMotion) }}>
-                            click to change color
-                        </button>
-                    </motion.div>
-                    <p className='text-2xl text-center pb-4 '>
-                        Living like a digital nomad - that's how it's done!
-                    </p>
-                    <div className='py-4'>
-                        <img className=' w-full bg-no-repeat bg-cover bg-center rounded-md' src={img_digitale_nomade} alt="" />
+                    <div className='border-4 rounded-xl p-8 my-4'>
+                        <p className='text-2xl text-start pb-2'> What is Python? </p>
+                        <p className="break-normal">
+                            <span className='bg-blue-300 rounded-md px-1 py-1'>
+                                Python is a computer programming language often used to build websites and software, automate tasks, and conduct data analysis.
+                                Python is a general-purpose language, meaning it can be used to create a variety of different programs and isn’t specialized for any specific problems.
+                            </span>
+                            This versatility, along with its beginner-friendliness, has made it one of the most-used programming languages today.
+                            A survey conducted by industry analyst firm RedMonk found that it was the second-most popular programming language among developers in 2021.
+                        </p>
                     </div>
-                    <p className='py-2'>
-                        Living and working everywhere - just wishful thinking or really feasible? Live like a digital nomad, So, as an entrepreneur or even an employee who uses almost exclusively digital technologies to do his work and at the same time leads a rather location-independent or multi-local life... Nothing is impossible!
-                    </p>
                 </div>
-            </div >
 
 
-            <div ref={yolov8} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
-                <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start pb-2'> What is YoLo v8 ? </p>
-                    <p>
-                        Ultralytics YOLOv8 is the latest version of the YOLO (You Only Look Once) object detection and image segmentation model developed by Ultralytics.
-                        This page serves as the starting point for exploring the various resources available to help you get started with YOLOv8 and understand its features and capabilities.
+                <div ref={ToC} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
+                    <div className='border-4 rounded-xl p-8 my-4'>
+                        <p className='text-2xl text-start pb-2'> What is C#? </p>
+                        <p className="break-normal">
+                            <span className='bg-blue-300 rounded-md px-1 py-1'>
+                                C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET. C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers.
+                            </span>
+                            This tour provides an overview of the major components of the language in C# 11 and earlier. If you want to explore the language through interactive examples, try the introduction to C# tutorials. <br />
+                            C# is an object-oriented, component-oriented programming language. C# provides language constructs to directly support these concepts, making C# a natural language in which to create and use software components. Since its origin, C# has added features to support new workloads and emerging software design practices. At its core, C# is an object-oriented language. You define types and their behavior.
+                        </p>
+                    </div>
+                </div>
 
-                        {/* <span className='bg-blue-300 rounded-md px-1 py-1'>
+
+                <div ref={scrollToRef} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
+                    <div style={{ background: `${hex}` }} className='border-4 rounded-xl p-8 my-4'>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
+                            animate={{ opacity: 1, scale: 1, rotate: moveMotion ? [7, 0, 0] : [0, 0, 0] }}
+                            transition={{
+                                duration: 0.5,
+                                ease: [0, 0.71, 0.2, 1.01],
+                                scale: {
+                                    type: "spring",
+                                    damping: 6,
+                                    stiffness: 100,
+                                    restDelta: 0.001
+                                }
+                            }}
+                        >
+                            <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => { setHex(hex1); setMoveMotion(!moveMotion) }}>
+                                click to change color
+                            </button>
+                        </motion.div>
+                        <div className='text-2xl text-center pb-4 '>
+                            Living like a digital nomad - that's how it's done!
+                        </div>
+                        <div className='py-4 flex justify-center'>
+                            <img className=' rounded-md' src={img_digitale_nomade} width={"63%"} alt="" />
+                        </div>
+                        <div className='py-2'>
+                            Living and working everywhere - just wishful thinking or really feasible? Live like a digital nomad, So, as an entrepreneur or even an employee who uses almost exclusively digital technologies to do his work and at the same time leads a rather location-independent or multi-local life... Nothing is impossible!
+                        </div>
+                    </div>
+                </div >
+
+
+                <div ref={yolov8} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
+                    <div className='border-4 rounded-xl p-8 my-4'>
+                        <p className='text-2xl text-start pb-2'> What is YoLo v8 ? </p>
+                        <p className="break-normal">
+                            Ultralytics YOLOv8 is the latest version of the YOLO (You Only Look Once) object detection and image segmentation model developed by Ultralytics.
+                            This page serves as the starting point for exploring the various resources available to help you get started with YOLOv8 and understand its features and capabilities.
+
+                            {/* <span className='bg-blue-300 rounded-md px-1 py-1'>
                                     C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. C# enables developers to build many types of secure and robust applications that run in .NET. C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers.
                                 </span>
                                 This tour provides an overview of the major components of the language in C# 11 and earlier. If you want to explore the language through interactive examples, try the introduction to C# tutorials. <br />
                                 C# is an object-oriented, component-oriented programming language. C# provides language constructs to directly support these concepts, making C# a natural language in which to create and use software components. Since its origin, C# has added features to support new workloads and emerging software design practices. At its core, C# is an object-oriented language. You define types and their behavior. */}
-                    </p>
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div ref={ToDetectType} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
-                <div className='w-4/5 border-4 rounded-xl p-8 m-4'>
-                    <p className='text-2xl text-start '> show your details </p>
-                    <p className='text-md'> for example : login with mobile or laptop </p>
-                    <div>
-                        <button onClick={detectDevice} className='p-1 px-3 rounded-lg bg-slate-400 text-white mt-3'>
-                            click to show
-                        </button>
-                        {detectOn &&
-                            <p className='text-lg mt-1'>
-                                Website is showed in {detectedType}
-                            </p>
-                        }
+                <div ref={ToDetectType} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
+                    <div className=' w-full border-4 rounded-xl p-8'>
+                        <p className='text-2xl text-start '> show your details </p>
+                        <p className='text-md'> for example : login with mobile or laptop </p>
+                        <div>
+                            <button onClick={detectDevice} className='p-1 px-3 rounded-lg bg-slate-400 text-white mt-3'>
+                                click to show
+                            </button>
+                            {detectOn &&
+                                <p className='text-lg mt-1'>
+                                    Website is showed in {detectedType}
+                                </p>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
 
+            {/* Footer */}
             <div className='flex w-full footer justify-center mt-5 bg-slate-200'>
-                <div className='flex justify-between w-4/5 my-4'>
+                <div style={{ width: "90%" }} className='flex justify-between mx-auto my-4'>
                     <div className='flex gap-5 items-center'>
                         <p> © 2023, Strapi </p>
                         <p>License</p>
@@ -458,6 +462,7 @@ const Programmer = () => {
                     </div>
                 </div>
             </div>
+
         </>
     );
 }

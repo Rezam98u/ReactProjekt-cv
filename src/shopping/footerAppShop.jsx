@@ -53,7 +53,7 @@ const FooterAppShop = () => {
                         </div>
                     </div>
 
-                    <div className="pb-3 relative border-t-2">
+                    <div className="pb-3 relative border-t-2 text-sm">
                         <div className="flex justify-center  mt-3">
                             <p> © 2023. All Rights Reserved. Privacy Policy & Copyright Policy. Terms and Conditions. </p>
                         </div>

@@ -42,7 +42,7 @@ const Home = () => {
     return (
         <>
             <AppBar>
-                <Toolbar className='flex xs:justify-between md:justify-evenly py-2'>
+                <Toolbar style={{ width: "90%" }} className='flex mx-auto xs:justify-between py-2'>
                     <IconButton sx={{ display: { xs: 'none', md: 'block' } }}>
                         React
                     </IconButton>
@@ -59,9 +59,6 @@ const Home = () => {
                         </button>
                     </Box>
 
-                    <Box>
-                        <div className='md:hidden'> <DrawerMui /> </div>
-                    </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         <button onClick={() => Navigate('/Record_fantasyMain')} >
@@ -76,7 +73,9 @@ const Home = () => {
                     </Box>
 
                     <Box>
-                        <button className='bg-slate-500 rounded-3xl px-2 py-2  hover:bg-blue-700' onClick={() => MoodHandler()}> <DarkModeIcon />  </button>
+                        <button className='bg-slate-500 rounded-3xl px-2 py-2  hover:bg-blue-700'
+                            onClick={() => MoodHandler()}> <DarkModeIcon />
+                        </button>
                     </Box>
                 </Toolbar>
             </AppBar>

@@ -23,7 +23,7 @@ const Footer = () => {
     return (
         <>
             <div className="footer bg-gradient-to-b from-yellow-300 to-blue-900 ">
-                <div className='con text-center py-4  dark:bg-gradient-to-b from-black to-gray-500 '>
+                <div style={{ width: "90%" }} className='con text-center py-4 mx-auto dark:bg-gradient-to-b from-black to-gray-500 '>
                     <div className='header_text'>
                         <p className='text-blue-900 text-2xl '>
                             kommen sie gern uns mit, um tolle Urlauben zu erleben
@@ -34,16 +34,16 @@ const Footer = () => {
                         <div> <Button variant='contained' className="mt-3"> Ein geben  </Button> </div>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <input className='rounded-sm px-2 w-56' type="text" placeholder='send message'
                             onChange={e => setMessageInput(e.target.value)} />
-                        {/* <Button variant='contained' className="mx-2" onClick={sendMessage}>
+                        <Button variant='contained' className="mx-2" onClick={sendMessage}>
                             Submit
-                        </Button> */}
+                        </Button>
                         <p> message : {massageReceived} </p>
-                    </div>
+                    </div> */}
 
-                    <div className="flex justify-around mt-4">
+                    <div className="flex justify-between mt-4">
                         <div>
                             <h3>
                                 About us

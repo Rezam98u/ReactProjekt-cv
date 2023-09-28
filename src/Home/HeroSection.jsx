@@ -2,33 +2,99 @@ import { React, useContext } from 'react';
 // import video from './video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4'
 import video1 from "../video/video-1.mp4"
 import video2 from "../video/stock-footage-multi-generation-family-preparing-dinner-outdoors-by-car-caravan-holiday-trip.mp4"
-import { Button } from '@mui/material';
+import { Button, List, ListItem } from '@mui/material';
 import { AppContext } from '../ContextApp';
-
+import { motion } from 'framer-motion'
 // import './hero.styles.scss'
+import img from '../img/norway-gd7ea90b9a_1920-1229x1536.jpg'
 //////////////////////////////////
 const HeroSection = () => {
     const { mood } = useContext(AppContext);
 
     return (
         <>
-            <div className="hero_con">
-                {
-                    mood ?
+            <div>
+                <div className="hero_con">
+                    {mood ?
                         <video src={video1} autoPlay loop muted />
                         : <video src={video2} autoPlay loop muted />
-                }
+                    }
 
-                <div className="banner">
-                    <p className='text-4xl'>
-                        <span className='shadow-inner text-teal-400'> Zelten </span>
-                        in der Natur oder irgendwo
-                    </p>
-                    <Button variant='contained' className='text-xl  mt-3 bg-blue-500'> Get Started </Button>
+                    <div className="banner">
+                        <p className='text-4xl'>
+                            <span className='shadow-inner text-teal-400'> Zelten </span>
+                            in der Natur oder irgendwo
+                        </p>
+                        <Button variant='contained' className='text-xl  mt-3 bg-blue-500'> Get Started </Button>
+                    </div>
+                </div>
+
+                <div style={{ width: "90%" }} className=" mx-auto my-5">
+                    <div className="flex gap-5 items-center relative overflow-hidden">
+                        <motion.div
+                            className="relative"
+                            initial={{ x: '-70px' }}
+                            whileInView={{ x: 10 }}
+                            transition={{ duration: 1.7 }}>
+                            <img src={img} alt="" className='rounded-md' width={840} />
+                        </motion.div>
+
+                        <motion.div
+                            className="relative"
+                            initial={{ right: "-170px" }}
+                            whileInView={{ right: 10 }}
+                            transition={{ duration: 1.9 }}>
+                            <p className="break-normal whitespace-normal px-5 leading-8">
+                                Ohne Zelt einfach unter freiem Himmel zu schlafen oder im Winter in einem Iglu zu übernachten, nennt sich biwakieren.
+                                Das ist in Deutschland erlaubt, insofern es aus einer Notsituation heraus geschieht.In den meisten Bundesländern darfst du für eine solche Notüberachtung auch ein Tarp, also eine Schutzplane, aufspannen. Da Bergwacht, Ranger und Förster allerdings damit rechnen, nur in notgeratene Naturliebhaber nachts anzutreffen, haben Taschenlampen oder gar offenes Feuer oft schon Rettungseinsätze ausgelöst.
+                                Man sollte mit nächtlichem Besuch rechnen. In besonders geschützten Bereichen ist auch biwakieren aus Naturschutzgründen untersagt.
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    <div className="my-5">
+                        <div className="text-xl font-bold"> Wo in Europa ist Wildcampen erlaubt? </div>
+                        <div className="break-normal whitespace-normal leading-8 mt-2">
+                            In Österreich ist die Regelung ähnlich wie in Deutschland, das Wildcampen ist verboten und Biwakieren unter bestimmten Voraussetzungen erlaubt.
+                            Wie genau die Regelungen sind, unterscheidet sich ähnlich wie in Deutschland auch je nach Bundesland: In Kärnten, Niederösterreich und Tirol ist das Zelten außerhalb von Campingplätzen verboten, in Oberösterreich, Salzburg, der Steiermark und Vorarlberg gibt es kein explizites Verbot, die Gemeinden können jedoch Einschränkungen festlegen.
+                            Eine vorherige Abklärung ist deshalb empfehlenswert. Aktuelle Informationen gibt’s auf der österreichischen Plattform oesterreich.gv.at.
+                            Italien und die Schweiz sehen das etwas lockerer, hier kommt es aber stark auf die Region und die Zeit an, ob du dein Zelt in der freien Natur aufschlagen darfst.
+                            Die Strafen können aber – insbesondere in der Schweiz –  empfindlich hoch sein. Ebenso beim Biwak. In Ländern wie Portugal, den Niederlanden oder Kroatien beispielsweise ist auch das verboten.
+                        </div>
+                    </div>
+
+                    <div className="my-5">
+                        <div className="text-xl font-bold "> Beliebte Naturcamping-Plätze in Deutschland  </div>
+                        <List sx={{
+                            listStyleType: 'disc',
+                            pl: 1,
+                            '& .MuiListItem-root': {
+                                display: 'list-item',
+                            },
+                        }}
+                            className="break-normal whitespace-normal leading-8 mt-2">
+                            <ListItem> Campingplatz Zum Hexenwäldchen – am See, im Wald und fast im Müritz-Nationalpark (auch von uns wärmstens zu empfehlen) </ListItem>
+                            <ListItem> Campingplatz Naturfreund – einziger Zeltplatz im Müritz-Nationalpark </ListItem>
+                            <ListItem> Regenbogen Prerow – am Strand auf der Ostseehalbinsel Darß </ListItem>
+                            <ListItem> NaturCamping am Ellbogensee – Seen, Kanäle, Flüsse und Wald </ListItem>
+                            <ListItem> Zeltplatz Spiekeroog – in den Dünen ohne Autos und Strom </ListItem>
+                            <ListItem> Adventure Camp Schnitzmühle – am Fluss im Bayerischem Wald </ListItem>
+                            <ListItem> Camping Müllerwiese – im Schwarzwald,Heidelbeerdorf </ListItem>
+                            <ListItem> Naturcampingpark Isarhorn – am Fluss mit Alpenblick </ListItem>
+                            <ListItem> Camping Walchensee – am See in den Alpen </ListItem>
+                            <ListItem> Campinginsel Buchau – im Staffelsee mit Alpenblick und autofrei </ListItem>
+                            <ListItem> Naturcampingplatz Strotzbüschermühle – im Tal am Fluss </ListItem>
+                            <ListItem> Zeltareal vom Biber Ferienhof – im Herzen der Mecklenburgischen Seenplatte </ListItem>
+                            <ListItem> Am Schlosspark – im Spreewald und ideal für Paddler und Angler </ListItem>
+                            <ListItem> Wilde Heimat – Brandenburg an der Havel mit Natur-Kinderprogramm </ListItem>
+                            <ListItem> Camping Haus am Einberg – im Sauerland mit Bauernhofanschluss </ListItem>
+                            <ListItem> Campingplatz „Entenfarm“ Hohnstein – in der Sächsischen Schweiz </ListItem>
+                        </List>
+                    </div>
                 </div>
             </div>
         </>
-    );
+    )
 }
 
 export default HeroSection;
