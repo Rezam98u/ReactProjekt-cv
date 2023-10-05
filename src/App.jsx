@@ -5,6 +5,7 @@ import Programmer from './Programmer/programmer';
 import AppShop from "./shopping/App_shop"
 import AppCrypto from "./Crypto/Api_Provider"
 import RecordFantasyMain from "./RecordFantasy/RecordFantasyMain"
+import ThreeJs from './threeJs/threeJs';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
@@ -25,12 +26,13 @@ const App = () => {
                             <Route path="/AppShop/*" element={<AppShop />} ></Route>
                             <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
                             <Route path="/crypto/*" element={<AppCrypto />} ></Route>
+                            <Route path="/threeJs" element={<ThreeJs />} ></Route>
                         </Routes>
                     </ContextApp>
                 </GoogleOAuthProvider>
             </BrowserRouter>
         </>
-    );
+    )
 }
 
 export default App;

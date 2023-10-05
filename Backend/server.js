@@ -36,16 +36,15 @@ const io = new Server(server, {
     }
 })
 
-io.on("connection", socket => {
+io.on("connect", socket => {
     console.log(`⚡: ${socket.id} user just connected!`)
 
-    socket.on("sendMessage", data => {
-        console.log(data)
-    })
+    socket.on("sendMessage", data => console.log(data))
 
-    socket.on('disconnect', () => {
-        console.log('🔥: A user disconnected');
-    })
+    // socket.on("sendMessage", data => socket.broadcast.emit("messageReceived", data))
+
+    socket.on('disconnect', () => console.log('🔥: A user disconnected'))
+
 })
 
 

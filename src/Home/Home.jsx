@@ -42,7 +42,7 @@ const Home = () => {
     return (
         <>
             <AppBar>
-                <Toolbar style={{ width: "90%" }} className='flex mx-auto xs:justify-between py-2'>
+                <Toolbar style={{ width: "90%" }} className='flex mx-auto justify-between py-2'>
                     <IconButton sx={{ display: { xs: 'none', md: 'block' } }}>
                         React
                     </IconButton>
@@ -59,6 +59,11 @@ const Home = () => {
                         </button>
                     </Box>
 
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <button onClick={() => Navigate('/threeJs')} >
+                            threeJs
+                        </button>
+                    </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         <button onClick={() => Navigate('/Record_fantasyMain')} >

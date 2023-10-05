@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react';
 import { Button } from '@mui/material';
-import io from 'socket.io-client'
+import { io } from 'socket.io-client'
 ////////////////////////////
 const Footer = () => {
     // const socket = io.connect('http://localhost:3003')
 
     const [messageInput, setMessageInput] = useState('')
-
+    console.log(messageInput)
     const [massageReceived, setMassageReceived] = useState('')
 
     // const sendMessage = () => {
@@ -15,9 +15,8 @@ const Footer = () => {
     // }
 
     // useEffect(() => {
-    //     socket.on('messageReceived', (data) => {
-    //         setMassageReceived(data)
-    //     })
+    //     socket.on('messageReceived', data => setMassageReceived(data))
+    //     console.log(massageReceived)
     // }, [])
 
     return (
@@ -34,16 +33,18 @@ const Footer = () => {
                         <div> <Button variant='contained' className="mt-3"> Ein geben  </Button> </div>
                     </div>
 
-                    {/* <div>
-                        <input className='rounded-sm px-2 w-56' type="text" placeholder='send message'
+                    <div>
+                        <input className='rounded-sm px-2 w-56' type="text"
+                            placeholder='send message'
+                            value={messageInput}
                             onChange={e => setMessageInput(e.target.value)} />
-                        <Button variant='contained' className="mx-2" onClick={sendMessage}>
-                            Submit
-                        </Button>
+                        {/* <Button variant='contained' className="mx-2" onClick={sendMessage}>
+                            Send
+                        </Button> */}
                         <p> message : {massageReceived} </p>
-                    </div> */}
+                    </div>
 
-                    <div className="flex justify-between mt-4">
+                    {/* <div className="flex justify-between mt-4">
                         <div>
                             <h3>
                                 About us
@@ -68,7 +69,7 @@ const Footer = () => {
                             </h3>
                             <p>4</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
