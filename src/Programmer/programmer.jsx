@@ -304,6 +304,16 @@ const Programmer = () => {
                         <img src={img_neon} alt="" width={245} />
                     </motion.div>
 
+
+                    <motion.img
+                        width={"3%"}
+                        className=" absolute bottom-5 left-1/2"
+                        src='/img/scroll.png'
+                        initial={{ y: -11, opacity: 1 }}
+                        animate={{ y: 30, opacity: 0 }}
+                        transition={{ duration: 2.9, repeat: Infinity }}
+                    />
+
                     {/* <img width="512" height="512" src="https://img.icons8.com/glyph-neue/512/000000/search--v1.png" alt="search--v1"
                     className='cursor' style={{ left: cursorX + 'px', top: cursorY + 'px' }}
                 /> */}
