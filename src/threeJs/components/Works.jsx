@@ -67,7 +67,7 @@ const ListItem = styled.li`
   }
 
   ::after {
-    content: "${(props) => props.text}";
+    content: "${props => props.text}";
     position: absolute;
     top: 0;
     left: 0;
@@ -100,8 +100,8 @@ const Works = () => {
       <div className="flex items-center justify-around">
         <div className="text-4xl font-bold cursor-pointer leading-relaxed">
           {data.map(item => (
-            <div key={item} text={item} onClick={() => setWork(item)} className="">
-              {item}
+            <div key={item} text={item} onClick={() => setWork(item)} className="text_animate">
+              <p>{item}</p>
             </div>
           ))}
         </div>

@@ -168,7 +168,7 @@ const NavbarAppShop = () => {
                     </Drawer>
                 </div>
 
-                <div style={{ width: "93%" }} className='relative flex items-center justify-between mx-auto'>
+                <div className='relative w-[93%] mx-auto flex items-center justify-between '>
                     <div>
                         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                             <button className='' onClick={() => navigate('/')} >

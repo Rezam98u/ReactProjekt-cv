@@ -149,7 +149,7 @@ const AppCrypto = () => {
                         </motion.div>
                     </div>
 
-                    ``                    <div style={{ width: "90%" }} className='bg-slate-300 mx-auto rounded-md'>
+                    <div className='bg-slate-300 w-[90%] mx-auto rounded-md'>
                         <div className='flex justify-center py-3 '>
                             <input style={{ width: 600 }} type="text" className="rounded-lg border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
                         </div>

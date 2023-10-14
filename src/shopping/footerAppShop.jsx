@@ -8,7 +8,7 @@ const FooterAppShop = () => {
     return (
         <>
             <div className='pt-5 bg-blue-600 text-white'>
-                <div style={{ width: "93%" }} className="mx-auto">
+                <div className="w-[93%] mx-auto">
                     <div className="flex justify-between mb-3">
                         <div>
                             <div>

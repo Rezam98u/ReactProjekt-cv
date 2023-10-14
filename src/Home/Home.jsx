@@ -12,6 +12,7 @@ import Footer from './Footer';
 import { AppContext } from '../ContextApp';
 // import "./navbar.styles.scss"
 import Works from '../threeJs/components/Works';
+import Tech from './Tech';
 ///////////////////////////
 const Home = () => {
     const Navigate = useNavigate()
@@ -81,6 +82,8 @@ const Home = () => {
 
                 <HeroSection />
                 <Works />
+
+                <Tech />
 
                 {/* <div className='w-4/5 mx-auto border-4 my-3'>
                 <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>

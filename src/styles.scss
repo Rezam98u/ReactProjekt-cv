@@ -293,3 +293,19 @@ $font: 1.36rem;
         // }
     }
 }
+
+/////////////////////// Works Component
+.text_animate {
+    background-image: linear-gradient(to right, rgb(190, 27, 106), rgb(48, 61, 201));
+    /* Define the gradient from left (red) to right (blue) */
+    background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    /* Set the background size to twice the width of the text */
+    transition: background-position 0.5s ease;
+    /* Define the transition effect */
+    &:hover {
+        background-position: 100% 0;
+        /* Shift the background to the right on hover to reveal the text with a color transition */
+    }
+}
