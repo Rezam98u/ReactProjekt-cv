@@ -134,7 +134,7 @@ const Programmer = () => {
             }}>
                 <ProgressBar color="#F71AB7" bgColor="#f2f2f2" height="4.1px" zIndex="2" />
 
-                <div style={{ width: "90%" }} className='flex justify-between mx-auto py-4 items-center'>
+                <div className='w-[90%] flex justify-between mx-auto py-4 items-center'>
                     <div className={scroll === 0 && 'relative rounded-lg flex hover:bg-gray-700'}>
                         <button className={scroll >= 2.933333396911621 ? "scrollChange flex" : "flex px-2"}
                             onClick={() => navigate('/')}>
@@ -323,7 +323,7 @@ const Programmer = () => {
                 </div>
             </div>
 
-            <div style={{ width: "90%" }} className="mx-auto">
+            <div className="w-[90%] mx-auto">
 
                 <div className=' mx-auto my-20 flex justify-end rounded-lg'>
                     <div>
@@ -451,7 +451,7 @@ const Programmer = () => {
 
             {/* Footer */}
             <div className='flex w-full footer justify-center mt-5 bg-slate-200'>
-                <div style={{ width: "90%" }} className='flex justify-between mx-auto my-4'>
+                <div className='w-[90%] flex justify-between mx-auto my-4'>
                     <div className='flex gap-5 items-center'>
                         <p> © 2023, Strapi </p>
                         <p>License</p>

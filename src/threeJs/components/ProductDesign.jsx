@@ -35,7 +35,7 @@ const ProductDesign = () => {
             <OrbitControls enableZoom={false} autoRotate />
           </Suspense>
         </Canvas>
-        <div style={{ bottom: "-15px" }} className="absolute">
+        <div className="absolute -bottom-4">
           We design products with a strong focus on both world class design and
           ensuring your product is a market success.
         </div>

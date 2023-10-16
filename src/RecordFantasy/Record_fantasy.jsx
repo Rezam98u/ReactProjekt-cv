@@ -103,7 +103,7 @@ const RecordFantasy = () => {
         <>
             <AppBar>
                 <div className='flex justify-center'>
-                    <div className='flex justify-between items-center w-4/5 py-4 '>
+                    <div className='flex justify-between items-center w-4/5 py-3 '>
                         <Button variant="contained" onClick={() => navigate('/')}>
                             <HomeIcon />
                         </Button>

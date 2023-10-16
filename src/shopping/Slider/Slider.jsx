@@ -192,7 +192,7 @@ const SliderComponent = () => {
             </button> */}
 
 
-            <div style={{ width: "93%" }} className='mx-auto my-20'>
+            <div className='w-[93%] mx-auto my-20'>
                 <div className="text-2xl font-bold mb-4"> Back In Stock </div>
 
                 <div className="flex gap-3 justify-center">
@@ -237,7 +237,7 @@ const SliderComponent = () => {
             </div>
 
             {/* Section Slider 2  */}
-            <div style={{ width: "93%" }} className='relative mt-36 mx-auto'>
+            <div className='relative w-[93%] mt-36 mx-auto'>
                 <div>
                     <button onClick={sliderRef?.slickPrev}
                         className="absolute top-12 left-1 z-10 bg-blue-600 p-1 rounded-xl">
@@ -261,7 +261,7 @@ const SliderComponent = () => {
                 </div>
             </div>
 
-            <div style={{ width: "93%" }} className='mx-auto my-20'>
+            <div className='w-[93%] mx-auto my-20'>
                 <div className='flex justify-around gap-2 items-center'>
                     <div className="relative">
 
@@ -402,7 +402,7 @@ const SliderComponent = () => {
             </div>
 
 
-            <div style={{ width: '93%' }} className="mx-auto">
+            <div className=" w-[93%] mx-auto">
                 <div className="my-4">
                     <div className="text-center my-2 text-white bg-black py-3 rounded-lg overflow-hidden">
                         <motion.p

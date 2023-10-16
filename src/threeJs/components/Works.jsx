@@ -96,7 +96,7 @@ const Right = styled.div`flex: 1;`;
 const Works = () => {
   const [work, setWork] = useState("Web Design");
   return (
-    <div className="w-[93%] mx-auto h-full my-6">
+    <div className="w-[93%] mx-auto h-full mb-24">
       <div className="flex items-center justify-around">
         <div className="text-4xl font-bold cursor-pointer leading-relaxed">
           {data.map(item => (

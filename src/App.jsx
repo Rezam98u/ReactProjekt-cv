@@ -23,8 +23,8 @@ const App = () => {
                         <Routes>
                             <Route path='/' element={<Home />}></Route>
                             <Route path="/programmer" element={<Programmer />} ></Route>
-                            <Route path="/AppShop/*" element={<AppShop />} ></Route>
-                            <Route path="/Record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
+                            <Route path="/appShop/*" element={<AppShop />} ></Route>
+                            <Route path="/record_fantasyMain/*" element={<RecordFantasyMain />} ></Route>
                             <Route path="/crypto/*" element={<AppCrypto />} ></Route>
                             <Route path="/threeJs" element={<ThreeJs />} ></Route>
                         </Routes>

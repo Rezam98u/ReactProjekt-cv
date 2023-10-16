@@ -1,4 +1,4 @@
-import { React, useState, createContext } from 'react';
+import { React, useState, createContext, useEffect } from 'react';
 
 export const AppContext = createContext();
 
@@ -9,6 +9,14 @@ const ContextApp = ({ children }) => {
     const MoodHandler = () => setMood(!mood);
     const [scroll, setScroll] = useState(Number);
 
+
+    useEffect(() => {
+        const onScroll = () => {
+            const scrollY = window.scrollY;
+            setScroll(scrollY)
+        };
+        window.addEventListener("scroll", onScroll);
+    }, []);
 
     return (
         <div className={mood ? "dark" : ""}>

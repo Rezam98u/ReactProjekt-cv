@@ -20,8 +20,8 @@ const RecordFantasyMain = () => {
                 <Routes>
                     <Route path="/" element={<RecordFantasy />} ></Route>
                     <Route path="/userFantasy" element={<UserFantasy />} ></Route>
-                    <Route path='/singUp' element={<SingUp></SingUp>} ></Route>
-                    <Route path="/login" element={<Login></Login>} ></Route>
+                    <Route path='/singUp' element={<SingUp/>} ></Route>
+                    <Route path="/login" element={<Login/>} ></Route>
                     <Route path="/typeOfManAndWoman" element={<TypeOfManAndWoman />} ></Route>
                 </Routes>
             </ContextRecordFantasy>

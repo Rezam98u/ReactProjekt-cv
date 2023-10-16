@@ -1,12 +1,14 @@
-
 import React from 'react';
-import { FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe, FaCcVisa, FaGooglePay, FaPaypal } from 'react-icons/fa'
+import {
+    FaAmazon, FaApplePay, FaCcAmex, FaCcDiscover, FaCcStripe,
+    FaCcVisa, FaGooglePay, FaPaypal
+} from 'react-icons/fa'
 
 ////////////////////////////////
 const FooterAppShop = () => {
     return (
         <>
-            <div style={{ backgroundColor: "#10182f", }} className='text-slate-400 mt-5 py-4'>
+            <div className='bg-[#10182f] text-slate-400 mt-5 py-4'>
                 <div className="w-[93%] mx-auto">
                     <div className="flex justify-between my-3">
                         <div>

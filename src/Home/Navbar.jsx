@@ -14,10 +14,10 @@ import { AppContext } from '../ContextApp';
 ///////////////////////////
 const Navbar = () => {
     const Navigate = useNavigate()
-
     const { MoodHandler } = useContext(AppContext);
+
     return (
-        <div>
+        <>
             <AppBar style={{ backgroundColor: "#10182f" }}>
                 <Toolbar className='w-[93%] mx-auto flex justify-between py-2'>
                     {/* <IconButton sx={{ display: { xs: 'none', md: 'block' } }}
@@ -32,7 +32,7 @@ const Navbar = () => {
                     </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                        <button onClick={() => Navigate('/AppShop')} >
+                        <button onClick={() => Navigate('/appShop')} >
                             <FontAwesomeIcon icon={faShop} />  Online Shop
                         </button>
                     </Box>
@@ -44,7 +44,7 @@ const Navbar = () => {
                     </Box>
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-                        <button onClick={() => Navigate('/Record_fantasyMain')} >
+                        <button onClick={() => Navigate('/record_fantasyMain')} >
                             Record fantasy  (is completing)
                         </button>
                     </Box>
@@ -62,7 +62,7 @@ const Navbar = () => {
                     </Box>
                 </Toolbar>
             </AppBar>
-        </div>
+        </>
     );
 }
 
