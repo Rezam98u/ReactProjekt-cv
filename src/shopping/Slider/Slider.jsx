@@ -25,6 +25,7 @@ import { useNavigate } from 'react-router-dom';
 // import img2 from './trash_talk_full_en.webp'
 import img3 from '../img/iconshome-07_300x.avif'
 import '../App_shop.scss'
+import LazyImage from '../../lazyImage';
 ///////////////////////
 const SliderComponent = () => {
     const navigate = useNavigate();
@@ -125,7 +126,7 @@ const SliderComponent = () => {
                                 // animate={{ opacity: 1 }}
                                 // transition={{ duration: 2 }}
                                 key={item.id} className='relative'>
-                                <img src={item.img} alt='#' width={"100%"} height={"100%"} />
+                                <LazyImage src={item.img} alt='#' />
                                 <motion.div
                                     initial={{ opacity: .2, top: 150 }}
                                     whileInView={{ opacity: 1, top: 100 }}
@@ -194,7 +195,6 @@ const SliderComponent = () => {
 
             <div className='w-[93%] mx-auto my-20'>
                 <div className="text-2xl font-bold mb-4"> Back In Stock </div>
-
                 <div className="flex gap-3 justify-center">
                     <div>
                         <div key={state_img2.id}>
@@ -233,7 +233,6 @@ const SliderComponent = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
             {/* Section Slider 2  */}
@@ -294,7 +293,7 @@ const SliderComponent = () => {
                         </div>
                     </div>
                     <div>
-                        <img src={img} alt="" width={"1100px"} className="rounded-lg" />
+                        <LazyImage src={img} alt="#" width={"1100px"} className="rounded-lg" />
                     </div>
                 </div>
             </div>
@@ -324,27 +323,12 @@ const SliderComponent = () => {
                             Fitness
                         </button>
                     </div>
-
-                    {/* <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Toys </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Educations </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Beauty </button>
-                        </div>
-                        <div>
-                            <button className="bg-green-700 text-white px-2 rounded-xl py-1"> Travel </button>
-                        </div>
-                        */}
-
                 </div>
 
                 {state.showGadget &&
                     <div className="flex items-center gap-9 mt-4">
                         {gadgets.map(i => <div key={i.id}>
-                            <img src={i.img} alt="#" className="rounded-xl" />
+                            <LazyImage src={i.img} alt="#" className="rounded-xl" />
                             <p className='mt-2 ml-2'>Price : {i.price}</p>
                         </div>)}
                     </div>

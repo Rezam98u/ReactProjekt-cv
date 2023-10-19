@@ -197,7 +197,7 @@ const AppCrypto = () => {
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <Button variant='contained'> <p>{item.symbol} </p>  </Button>
+                                                    <Button variant='contained'> {item.symbol}   </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={1} sm={2} xs={2}>

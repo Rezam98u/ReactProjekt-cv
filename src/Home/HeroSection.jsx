@@ -149,12 +149,22 @@ const HeroSection = () => {
               <Desc>
                 we enjoy creating delightful, human-centered digital experiences.
               </Desc> */}
-              <Button>Learn More</Button>
+              <div>
+                <button className='w-48 p-2 cssBtn2'> Learn more </button>
+              </div>
+
+              <div>
+                <button className="cssBtn3 text-lg">
+                  <p>&nbsp; scroll to explore &nbsp;</p>
+                  <p className="hover-text"> &nbsp; scroll to explore&nbsp; </p>
+                </button>
+              </div>
+
               <motion.img
                 width={"4.7%"}
                 src='/img/scroll-down.png'
-                initial={{ y: -6, opacity: 1 }}
-                animate={{ y: 15, opacity: 0 }}
+                initial={{ y: 7, opacity: 1 }}
+                animate={{ y: 20, opacity: 0 }}
                 transition={{ duration: 2.5, repeat: Infinity }}
               />
             </Left>

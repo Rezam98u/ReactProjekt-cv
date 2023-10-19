@@ -2,247 +2,358 @@
 @tailwind components;
 @tailwind utilities;
 * {
-    padding: 0%;
-    margin: 0%;
-    // font-family: 'IBM Plex Sans', sans-serif;
-    font-family: "Poppins", sans-serif;
-    // font-weight: 400;
-    box-sizing: border-box;
-    box-shadow: none;
-    // scroll-behavior: smooth;
-    // scroll-padding-top: 75px;
-    // width: 100%;
-    // height: 100%;
+  padding: 0%;
+  margin: 0%;
+  // font-family: 'IBM Plex Sans', sans-serif;
+  font-family: "Poppins", sans-serif;
+  // font-weight: 400;
+  box-sizing: border-box;
+  box-shadow: none;
+  // scroll-behavior: smooth;
+  // scroll-padding-top: 75px;
+  // width: 100%;
+  // height: 100%;
 }
 
-// @font-face {
-//     font-family: "IBM Plex Sans":
-//     src: local('CustomFont1Name'),
-//          url('./fonts/CustomFont1Name.woff') format('woff'),
-//          url('./fonts/CustomFont1Name.woff2') format('woff2');
-// }
 ////////////////////////////
 $font: 1.36rem;
 @mixin mainBtn {
-    outline: none;
-    border: 0px;
-    // outline: none;
-    // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
-    color: black;
-    &:hover {
-        background-color: darkmagenta;
-        color: aliceblue;
-    }
+  outline: none;
+  border: 0px;
+  // outline: none;
+  // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+  color: black;
+  &:hover {
+    background-color: darkmagenta;
+    color: aliceblue;
+  }
 }
 
 .btn {
-    @include mainBtn;
+  @include mainBtn;
 }
 
-.scrollChange {
-    color: black;
-    &:hover {
-        color: cornflowerblue;
+@mixin cssButton {
+  //   padding: 10px 20px;
+  border: unset;
+  border-radius: 10px;
+  color: #212121;
+  z-index: 1;
+  background: #da4ea2;
+  position: relative;
+  font-weight: 500;
+  //   font-size: 15px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    background-color: #10182f;
+    z-index: -1;
+    -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+  }
+  &:hover {
+    color: #e8e8e8;
+    &::before {
+      width: 100%;
     }
+  }
+}
+
+.cssBtn {
+  @include cssButton();
+}
+.cssBtn2 {
+  // display: inline-block;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  color: #03045e;
+  border: 1px solid #03045e;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    transform: skew(15deg);
+    transition: all 0.5s;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  &::before {
+    left: -10px;
+    background: #240046;
+  }
+
+  &::after {
+    right: -10px;
+    background: #5a189a;
+  }
+
+  &:hover {
+    color: #e0aaff;
+    transition: 0.3s;
+    &::before,
+    &::after {
+      width: 58%;
+    }
+  }
+}
+.cssBtn3 {
+  --border-right: 6px;
+  --text-stroke-color: rgba(116, 56, 236, 0.6);
+  --animation-color: #8806df;
+  //   --fs-size: 2em;
+
+  letter-spacing: 3px;
+  //   font-size: var(--fs-size);
+  font-family: "Arial";
+  position: relative;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-stroke-color);
+
+  /* this is the text, when you hover on button */
+  .hover-text {
+    position: absolute;
+    box-sizing: border-box;
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+  }
+  &:hover {
+    .hover-text {
+      width: 100%;
+      filter: drop-shadow(0 0 20px var(--animation-color));
+    }
+  }
+}
+//////////////////////////////////////////////////////
+.scrollChange {
+  color: black;
+  &:hover {
+    color: cornflowerblue;
+  }
 }
 
 .Hero_Section {
-    cursor: none;
-    overflow: hidden;
-    .cursor {
-        box-sizing: border-box;
-        width: 44px;
-        height: 44px;
-        background-color: rgb(255, 255, 255);
-        position: fixed;
-        pointer-events: none;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
-        mix-blend-mode: difference;
-        transform: translate(-44%, -40%);
-        -webkit-transform: translate(-44%, -40%);
-        -moz-transform: translate(-44%, -40%);
-        -ms-transform: translate(-44%, -40%);
-        -o-transform: translate(-44%, -40%);
+  cursor: none;
+  overflow: hidden;
+  .cursor {
+    box-sizing: border-box;
+    width: 44px;
+    height: 44px;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    pointer-events: none;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    mix-blend-mode: difference;
+    transform: translate(-44%, -40%);
+    -webkit-transform: translate(-44%, -40%);
+    -moz-transform: translate(-44%, -40%);
+    -ms-transform: translate(-44%, -40%);
+    -o-transform: translate(-44%, -40%);
+  }
+  .text_hero {
+    &:hover ~ .cursor {
+      //background-color: rgb(0, 200, 200);
+      height: 120px;
+      width: 120px;
     }
-    .text_hero {
-        &:hover~.cursor {
-            //background-color: rgb(0, 200, 200);
-            height: 120px;
-            width: 120px;
-        }
+  }
+  .text_hero2 {
+    background-color: aliceblue;
+  }
+  .hero {
+    &:hover {
+      // border-color: rgb(220, 22, 255);
+      // border-bottom: solid 3px rgb(221, 27, 255);
+      // border-top: solid 3px rgb(221, 27, 255);
+      transform: scaleX(2);
     }
-    .text_hero2 {
-        background-color: aliceblue;
-    }
-    .hero {
-        &:hover {
-            // border-color: rgb(220, 22, 255);
-            // border-bottom: solid 3px rgb(221, 27, 255);
-            // border-top: solid 3px rgb(221, 27, 255);
-            transform: scaleX(2);
-        }
-        width: 4rem;
-        height: 4rem;
-        //color: black;
-        background-color: rgb(161, 161, 161);
-        // border: 2.8px solid;
-        // border-color: rgb(0, 0, 0);
-        // border-radius: 10%;
-        transform: scaleX(1);
-        // transition-duration: 2s;
-    }
-    .programming {
-        border-bottom: solid 4px rgb(255, 18, 223);
-        // background-color: aqua;
-    }
+    width: 4rem;
+    height: 4rem;
+    //color: black;
+    background-color: rgb(161, 161, 161);
+    // border: 2.8px solid;
+    // border-color: rgb(0, 0, 0);
+    // border-radius: 10%;
+    transform: scaleX(1);
+    // transition-duration: 2s;
+  }
+  .programming {
+    border-bottom: solid 4px rgb(255, 18, 223);
+    // background-color: aqua;
+  }
 }
 
 .special_color {
-    color: rgb(255, 18, 223);
+  color: rgb(255, 18, 223);
 }
 
 ///////////////////// Navbar
 .conn {
-    // position: relative;
-    height: 70px;
-    // background-color: rgba(0, 0, 0, 0.18);
+  // position: relative;
+  height: 70px;
+  // background-color: rgba(0, 0, 0, 0.18);
+  // position: fixed;
+  z-index: 999;
+  width: 100%;
+  top: 0;
+  // left: 22%;
+  .navbar {
+    // position: absolute;
+    // z-index: 999;
+    width: 70%;
+    left: 24%;
+    // height: 100px;
     // position: fixed;
-    z-index: 999;
-    width: 100%;
-    top: 0;
-    // left: 22%;
-    .navbar {
-        // position: absolute;
-        // z-index: 999;
-        width: 70%;
-        left: 24%;
-        // height: 100px;
-        // position: fixed;
-        // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
-        .brnd {
-            font-size: $font;
-        }
-        .toggle {
-            // background-color: rgb(27, 27, 27);
-            .fa {
-                color: rgb(238, 94, 123);
-            }
-        }
-        .ul {
-            font-size: $font;
-            display: flex;
-            gap: 20px;
-        }
-        .li_link {
-            &:hover {
-                text-decoration: none;
-                color: rgb(255, 0, 0);
-            }
-        }
+    // background: linear-gradient(90deg, rgba(98, 237, 200, 1) 0%, rgba(90, 158, 240, 1) 39%, rgba(24, 81, 143, 1) 100%);
+    .brnd {
+      font-size: $font;
     }
+    .toggle {
+      // background-color: rgb(27, 27, 27);
+      .fa {
+        color: rgb(238, 94, 123);
+      }
+    }
+    .ul {
+      font-size: $font;
+      display: flex;
+      gap: 20px;
+    }
+    .li_link {
+      &:hover {
+        text-decoration: none;
+        color: rgb(255, 0, 0);
+      }
+    }
+  }
 }
 
 ///// Form styles
 .form-container {
-    width: 320px;
-    border-radius: 0.75rem;
-    background-color: rgba(17, 24, 39, 1);
-    padding: 2rem;
-    color: rgba(243, 244, 246, 1);
+  width: 320px;
+  border-radius: 0.75rem;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 2rem;
+  color: rgba(243, 244, 246, 1);
 }
 
 .title {
-    text-align: center;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 700;
+  text-align: center;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
 }
 
 .form {
-    margin-top: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .input-group {
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .input-group label {
-    display: block;
-    color: rgba(156, 163, 175, 1);
-    margin-bottom: 4px;
+  display: block;
+  color: rgba(156, 163, 175, 1);
+  margin-bottom: 4px;
 }
 
 .input-group input {
-    width: 100%;
-    border-radius: 0.375rem;
-    border: 1px solid rgba(55, 65, 81, 1);
-    outline: 0;
-    background-color: rgba(17, 24, 39, 1);
-    padding: 0.75rem 1rem;
-    color: rgba(243, 244, 246, 1);
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(55, 65, 81, 1);
+  outline: 0;
+  background-color: rgba(17, 24, 39, 1);
+  padding: 0.75rem 1rem;
+  color: rgba(243, 244, 246, 1);
 }
 
 .input-group input:focus {
-    border-color: rgba(167, 139, 250);
+  border-color: rgba(167, 139, 250);
 }
 
 .forgot {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: rgba(156, 163, 175, 1);
-    margin: 8px 0 14px 0;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgba(156, 163, 175, 1);
+  margin: 8px 0 14px 0;
 }
 
 .forgot a,
 .signup a {
-    color: rgba(243, 244, 246, 1);
-    text-decoration: none;
-    font-size: 14px;
+  color: rgba(243, 244, 246, 1);
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .forgot a:hover,
 .signup a:hover {
-    text-decoration: underline rgba(167, 139, 250, 1);
+  text-decoration: underline rgba(167, 139, 250, 1);
 }
 
 .sign {
-    display: block;
-    width: 100%;
-    background-color: rgba(167, 139, 250, 1);
-    padding: 0.75rem;
-    text-align: center;
-    color: rgba(17, 24, 39, 1);
-    border: none;
-    border-radius: 0.375rem;
-    font-weight: 600;
+  display: block;
+  width: 100%;
+  background-color: rgba(167, 139, 250, 1);
+  padding: 0.75rem;
+  text-align: center;
+  color: rgba(17, 24, 39, 1);
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 600;
 }
 
 .social-message {
-    display: flex;
-    align-items: center;
-    padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  padding-top: 1rem;
 }
 
 .line {
-    height: 1px;
-    flex: 1 1 0%;
-    background-color: rgba(55, 65, 81, 1);
+  height: 1px;
+  flex: 1 1 0%;
+  background-color: rgba(55, 65, 81, 1);
 }
 
 .social-message .message {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: rgba(156, 163, 175, 1);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgba(156, 163, 175, 1);
 }
 
 // .social-icons {
@@ -262,50 +373,54 @@ $font: 1.36rem;
 //     fill: #fff;
 // }
 .signup {
-    text-align: center;
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: rgba(156, 163, 175, 1);
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgba(156, 163, 175, 1);
 }
 
 /////////////////////// HeroSection
 .hero_con {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  video {
+    z-index: -1;
+    // position: fixed;
+    object-fit: cover;
     width: 100%;
-    height: 100vh;
-    video {
-        z-index: -1;
-        // position: fixed;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-    .banner {
-        // color: aliceblue;
-        font-weight: bold;
-        position: absolute;
-        top: 100px;
-        left: 20px;
-        // span {
-        //     font-size: 1.8rem;
-        //     background-color: #007bff;
-        //     box-shadow: inset 10px 10px 10px;
-        // }
-    }
+    height: 100%;
+  }
+  .banner {
+    // color: aliceblue;
+    font-weight: bold;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    // span {
+    //     font-size: 1.8rem;
+    //     background-color: #007bff;
+    //     box-shadow: inset 10px 10px 10px;
+    // }
+  }
 }
 
 /////////////////////// Works Component
 .text_animate {
-    background-image: linear-gradient(to right, rgb(190, 27, 106), rgb(48, 61, 201));
-    /* Define the gradient from left (red) to right (blue) */
-    background-clip: text;
-    color: transparent;
-    background-size: 200% 100%;
-    /* Set the background size to twice the width of the text */
-    transition: background-position 0.5s ease;
-    /* Define the transition effect */
-    &:hover {
-        background-position: 100% 0;
-        /* Shift the background to the right on hover to reveal the text with a color transition */
-    }
+  background-image: linear-gradient(
+    to right,
+    rgb(190, 27, 106),
+    rgb(48, 61, 201)
+  );
+  /* Define the gradient from left (red) to right (blue) */
+  background-clip: text;
+  color: transparent;
+  background-size: 200% 100%;
+  /* Set the background size to twice the width of the text */
+  transition: background-position 0.5s ease;
+  /* Define the transition effect */
+  &:hover {
+    background-position: 100% 0;
+    /* Shift the background to the right on hover to reveal the text with a color transition */
+  }
 }

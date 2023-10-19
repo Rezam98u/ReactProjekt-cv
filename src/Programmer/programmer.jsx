@@ -22,9 +22,12 @@ import img_p from '../img/Layer.png'
 import img_p2 from '../img/Layer_1_2-removebg-preview (1).png'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import LazyImage from '../lazyImage';
+import { fadeIn } from '../utils/motion';
 
 ///Context 
 import { AppContext } from "../ContextApp"
+
 // import { number } from 'prop-types';
 ///////////////////////////////////////////////////////
 const Programmer = () => {
@@ -385,18 +388,9 @@ const Programmer = () => {
                 <div ref={scrollToRef} className='flex justify-center' data-aos='fade-up' data-aos-duration="1100">
                     <div style={{ background: `${hex}` }} className='border-4 rounded-xl p-8 my-4'>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
-                            animate={{ opacity: 1, scale: 1, rotate: moveMotion ? [7, 0, 0] : [0, 0, 0] }}
-                            transition={{
-                                duration: 0.5,
-                                ease: [0, 0.71, 0.2, 1.01],
-                                scale: {
-                                    type: "spring",
-                                    damping: 6,
-                                    stiffness: 100,
-                                    restDelta: 0.001
-                                }
-                            }}
+                            variants={fadeIn("up", 'spring', .4)}
+                            initial='hidden'
+                            whileInView="show"
                         >
                             <button className='bg-slate-200 px-3 py-1 mb-3 rounded-xl' onClick={() => { setHex(hex1); setMoveMotion(!moveMotion) }}>
                                 click to change color
@@ -406,9 +400,9 @@ const Programmer = () => {
                             Living like a digital nomad - that's how it's done!
                         </div>
                         <div className='py-4 flex justify-center'>
-                            <img className=' rounded-md' src={img_digitale_nomade} width={"63%"} alt="" />
+                            <LazyImage src={img_digitale_nomade} width={"700px"} alt="#" className='rounded-md ' />
                         </div>
-                        <div className='py-2'>
+                        <div className='py-2 break-all'>
                             Living and working everywhere - just wishful thinking or really feasible? Live like a digital nomad, So, as an entrepreneur or even an employee who uses almost exclusively digital technologies to do his work and at the same time leads a rather location-independent or multi-local life... Nothing is impossible!
                         </div>
                     </div>

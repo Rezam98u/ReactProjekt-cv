@@ -15,6 +15,7 @@ import { AppContext } from '../ContextApp';
 ///////////////////////////
 const Home = () => {
     const { scroll } = useContext(AppContext)
+    // const fakeDelay = () => new Promise(resolve => setTimeout(resolve, 2000))
 
 
     return (

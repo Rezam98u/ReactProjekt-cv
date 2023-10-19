@@ -2,11 +2,13 @@ import React from "react";
 import { Tilt } from "react-tilt";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "../utils/motion";
+import LazyImage from "../lazyImage";
 
 import backend from "../img/backend.png";
 import creator from "../img/creator.png";
 import mobile from "../img/mobile.png";
 import web from "../img/web.png";
+
 
 const services = [
   {
@@ -38,7 +40,7 @@ const ServiceCard = ({ index, title, icon }) => (
       className='w-full rounded-[20px] shadow-xl bg-[#10182f]'
     >
       <div className='py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'>
-        <img src={icon} alt='web-development' className='w-16 h-16 object-contain' />
+        <LazyImage src={icon} alt='web-development' className='w-16 h-16 object-contain' />
         <h3 className='text-white text-[20px] font-bold text-center'> {title} </h3>
       </div>
     </motion.div>
