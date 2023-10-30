@@ -1,16 +1,17 @@
-import { React, useContext } from 'react';
+import { React, useContext, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, TextField } from '@mui/material'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 // Context
 import { useStateContext } from "./context/useStateContext"
 // Redux
 import { checkout } from './Redux/useReducerAction';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
+
 
 /////////////////
 const Checkout = () => {
@@ -18,6 +19,8 @@ const Checkout = () => {
     const dispatch = useDispatch()
     const { total_payment, pay, setPay, email, total_item } = useContext(useStateContext)
     const state = useSelector(state => state.useReducer)
+    const total_payment_memo = useMemo(() => total_payment(state.selectedItems), [state.selectedItems])
+
 
     const { handleSubmit, register, formState: { errors } } = useForm()
     const paySubmit = () => {
@@ -128,7 +131,7 @@ const Checkout = () => {
                                 <KeyboardBackspaceIcon />  back to Card
                             </button>
                             <button type='submit' className='p-1 rounded-sm text-white w-52 bg-blue-600 SM:w-full SM:order-2'>
-                                PAY {total_payment(state.selectedItems)} $
+                                PAY {total_payment_memo} $
                             </button>
                         </div>
                     </div>

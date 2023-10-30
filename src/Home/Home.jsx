@@ -1,4 +1,4 @@
-import { React, useContext } from 'react';
+import { React, useContext, useEffect, useMemo, useState } from 'react';
 import { BsArrowUpSquareFill } from 'react-icons/bs';
 import Tippy from '@tippyjs/react';
 import Navbar from './Navbar';
@@ -17,6 +17,37 @@ const Home = () => {
     const { scroll } = useContext(AppContext)
     // const fakeDelay = () => new Promise(resolve => setTimeout(resolve, 2000))
 
+    // const [text, setText] = useState(String);
+    // const [nm, setNm] = useState(Number);
+
+
+    // const sum = (nm) => {
+    //     console.log("fun rendered");
+    //     let total = 0
+    //     for (let i = 0; i < nm; i++) {
+    //         total += i
+    //     }
+    //     return total
+    // }
+
+
+
+    // // const sumMemo = sum()
+    // const sumMemo = useMemo(() => sum(nm), [nm])
+
+
+
+    // const sum = useMemo(() => ({
+    //     const: `${nm} of example`
+    // }), [nm])
+
+
+    // useEffect(() => {
+    //     console.log('sum has changed')
+    // }, [sum])
+
+
+    // console.log('component rendered')
 
     return (
         <>
@@ -24,9 +55,20 @@ const Home = () => {
                 <Navbar />
                 <HeroSection />
                 <Works />
+{/* 
+                <div>
+                    <input type="text" value={text} onChange={e => setText(e.target.value)} />
+                </div>
+                <div>
+                    <input type="number" value={nm} onChange={e => setNm(e.target.value)} />
+                </div> */}
+
+
                 <Tech />
                 <About />
                 <Footer />
+
+
 
                 <div
                     className='absolute h-6 top-[32%] bg-[#10182f] rounded-3xl'

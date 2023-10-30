@@ -1,8 +1,10 @@
-import axios from 'axios';
-import { React, useState, createContext, useEffect } from 'react';
+import { React, useState, createContext, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useQuery } from "react-query";
+import axios from 'axios';
 import { CircularProgress } from '@mui/material';
+
+import TotalPayment from '../../hooks/totalpayment';
 
 export const useStateContext = createContext()
 //////////////////////////
@@ -36,6 +38,7 @@ const UseStateContext = ({ children }) => {
         //     // console.log(data.data)
         // }
         // fetch()
+
     }, []);
 
     //////////////////////// React Query Method //////////////////////// 
@@ -49,7 +52,7 @@ const UseStateContext = ({ children }) => {
             // refetchInterval: 2000,
             refetchIntervalInBackground: true,
 
-            
+
             // enabled: false
         }
     )
@@ -73,12 +76,12 @@ const UseStateContext = ({ children }) => {
     // }, []);
 
     //////////////////////// Search products //////////////////////// 
-    const searchHandler = e => { setSearch({ text: e.target.value, bool: true }) }
-    const selectHandler = e => { setSelect({ text: e.target.value, bool: true }) }
+    const searchHandler = e => setSearch({ text: e.target.value, bool: true })
+    const selectHandler = e => setSelect({ text: e.target.value, bool: true })
     const categoryBESelected = products.filter(i => i.category.includes(select.text))
     const searched = categoryBESelected.filter(i => i.title.includes(search.text))
     ///////////////////////
-    const total_item = (sum) => {
+    const total_item = sum => {
         const newSum = sum.map(item => item.quantity)
         let finalSum = 0
         for (let i = 0; i < newSum.length; i++) {
@@ -87,14 +90,16 @@ const UseStateContext = ({ children }) => {
         return finalSum
         // console.log(finalSum);
     }
-    const total_payment = (sum) => {
-        const total_payment = sum.map(item => item.quantity * item.price)
+    const total_payment = item => {
+        const total_payment = item.map(item => item.quantity * item.price)
         let payment = 0
         for (let i = 0; i < total_payment.length; i++) {
             payment += total_payment[i]
         }
         return payment
     }
+
+    // const total_payment_memo = useMemo(() => total_payment(sum), [sum])
     ///////////////////////
     const shorten = title => title.split(" ")[0] + " " + title.split(" ")[1]
     const isInCart = (state, id) => !!state.selectedItems.find(item => item.id === id)
@@ -158,7 +163,7 @@ const UseStateContext = ({ children }) => {
                 {children}
             </useStateContext.Provider>
         </>
-    );
+    )
 }
 
 export default UseStateContext;

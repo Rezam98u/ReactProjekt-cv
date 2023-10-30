@@ -1,9 +1,9 @@
 import { React, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-import Product from "./product"
 import { Grid, TextField, MenuItem } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import Product from "./product"
+
 
 // import CircularProgress from '@mui/material/CircularProgress';
 

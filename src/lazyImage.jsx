@@ -10,7 +10,7 @@ const LazyImage = props => {
                 if (entry.isIntersecting) {
                     imageRef.current.src = props.src
                     // setInView(true)
-                    console.log('ok')
+                    // console.log('ok')
                     observer.disconnect()
                 }
             })

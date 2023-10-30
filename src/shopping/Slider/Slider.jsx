@@ -24,8 +24,10 @@ import { useNavigate } from 'react-router-dom';
 // import img1 from './scribble_gif_croped.webp'
 // import img2 from './trash_talk_full_en.webp'
 import img3 from '../img/iconshome-07_300x.avif'
-import '../App_shop.scss'
 import LazyImage from '../../lazyImage';
+
+
+import '../App_shop.scss'
 ///////////////////////
 const SliderComponent = () => {
     const navigate = useNavigate();
@@ -42,6 +44,14 @@ const SliderComponent = () => {
     const dispatch = useDispatch()
 
     const { FAQ, isCollapse, setIsCollapse, scroll } = useContext(useStateContext);
+
+
+
+    
+
+
+
+
 
     /// old Method
     // const length = dataSlider.length

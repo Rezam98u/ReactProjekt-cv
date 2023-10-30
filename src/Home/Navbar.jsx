@@ -43,9 +43,15 @@ const Navbar = () => {
                         </button>
                     </Box>
 
-                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                    {/* <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         <button onClick={() => Navigate('/record_fantasyMain')} >
                             Record fantasy  (is completing)
+                        </button>
+                    </Box> */}
+
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <button onClick={() => Navigate('/adminPanel')} >
+                            AdminPanel (is completing)
                         </button>
                     </Box>
 
