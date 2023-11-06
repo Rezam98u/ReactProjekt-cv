@@ -15,17 +15,17 @@ const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
 
   return (
-    <div className="relative bg-[#c0c9e4] h-[52px] border-b-2">
-      <div className="absolute flex justify-around w-full top-1/2 -translate-y-[50%]">
+    <div className="relative bg-[#c0c9e4] h-[52px] border-b-2 flex justify-center">
+      <div className="absolute flex justify-between w-[96.5%] top-1/2 -translate-y-[50%]">
         <div className="flex items-center gap-2">
           <input type="text" placeholder="Search..." className="rounded-lg px-1" />
           <SearchOutlinedIcon />
         </div>
         <div className="flex items-center gap-7">
-          <div className="flex items-center gap-1">
+          {/* <div className="flex items-center gap-1">
             <LanguageOutlinedIcon />
             English
-          </div>
+          </div> */}
           <div className="flex items-center">
             <DarkModeOutlinedIcon onClick={() => dispatch({ type: "TOGGLE" })} />
           </div>

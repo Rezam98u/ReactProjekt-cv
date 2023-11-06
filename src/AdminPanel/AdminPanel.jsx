@@ -5,6 +5,7 @@ import Login from "./pages/login/Login";
 import List from "./pages/list/List";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
+import Calendar from "./pages/Calendar/Calendar";
 import { productInputs, userInputs } from "./formSource";
 import { DarkModeContext } from "./context/darkModeContext";
 
@@ -30,6 +31,7 @@ const AdminPanel = () => {
                     <Route path=":productId" element={<Single />} />
                     <Route path="new" element={<New inputs={productInputs} title="Add New Product" />} />
                 </Route>
+                <Route path="/calendar" element={<Calendar />} />
             </Routes>
         </>
     )

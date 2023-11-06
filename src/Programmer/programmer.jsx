@@ -284,7 +284,7 @@ const Programmer = () => {
                         <div>
                             <p className='text-xl font-bold text-white'>
                                 Programming is actually <Typewriter
-                                    words={['a big dream', 'a Life Style']}
+                                    words={['a good work', 'a Life Style']}
                                     loop={2}
                                     typeSpeed={72}
                                     deleteSpeed={45}
@@ -294,7 +294,7 @@ const Programmer = () => {
                         </div>
                         <div>
                             <p className='text-white'>
-                                <Typewriter words={["Make grate change in your Life with Programming"]} loop={2} typeSpeed={72} />
+                                <Typewriter words={["Make great change in your Life with Programming"]} loop={2} typeSpeed={72} />
                             </p>
                         </div>
                     </div>

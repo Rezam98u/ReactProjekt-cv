@@ -4,12 +4,10 @@ import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
+const DataTable = () => {
+  const [data, setData] = useState(userRows)
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  const handleDelete = id => setData(data.filter(item => item.id !== id))
 
   const actionColumn = [
     {
@@ -20,19 +18,16 @@ const Datatable = () => {
         return (
           <div className="cellAction">
             <Link to="/AdminPanel/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+              <div className="viewButton"> View </div>
             </Link>
-            <div
-              className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
-            >
+            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
               Delete
             </div>
           </div>
-        );
-      },
-    },
-  ];
+        )
+      }
+    }
+  ]
   return (
     <div className="datatable">
       <div className="datatableTitle">
@@ -48,9 +43,10 @@ const Datatable = () => {
         pageSize={9}
         rowsPerPageOptions={[9]}
         checkboxSelection
+        disableRowSelectionOnClick
       />
     </div>
-  );
-};
+  )
+}
 
-export default Datatable;
+export default DataTable;

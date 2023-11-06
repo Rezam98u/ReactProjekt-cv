@@ -4,11 +4,14 @@ import Widget from "../../components/widget/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
-
+import BarCharts from "../../components/chart/barChart";
 
 import "./home.scss";
 /////////////////////////////
 const Home = () => {
+
+
+
   return (
     <div className="home">
       <Sidebar />
@@ -29,7 +32,9 @@ const Home = () => {
           <div className="listTitle">Latest Transactions</div>
           <Table />
         </div> */}
-        
+
+        <BarCharts />
+
       </div>
     </div>
   )
