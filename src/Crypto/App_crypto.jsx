@@ -151,7 +151,8 @@ const AppCrypto = () => {
 
                     <div className='bg-slate-300 w-[90%] mx-auto rounded-md'>
                         <div className='flex justify-center py-3 '>
-                            <input style={{ width: 600 }} type="text" className="rounded-lg border-2 p-1" value={search.text} onChange={searchHandler} placeholder='search' />
+                            <input style={{ width: 600 }} type="text" className="rounded-lg border-2 p-1"
+                                value={search.text} onChange={searchHandler} placeholder='search ...' />
                         </div>
 
                         {
@@ -166,12 +167,12 @@ const AppCrypto = () => {
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <button className="btn btn-dark"> <div className="text-center"> {item.name} </div> </button>
+                                                    <Button variant='text'>  {item.name} </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <button className="btn btn-primary"> <p>{item.symbol} </p>  </button>
+                                                    <Button variant='contained'> {item.symbol}  </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={1} sm={2} xs={2}>
@@ -192,12 +193,12 @@ const AppCrypto = () => {
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <Button variant='text'> <div className="text-center"> {item.name} </div> </Button>
+                                                    <Button variant='text'>  {item.name} </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={3} sm={3} xs={3}>
                                                 <div className="lg:w-1/2 text-center">
-                                                    <Button variant='contained'> {item.symbol}   </Button>
+                                                    <Button variant='contained'> {item.symbol}  </Button>
                                                 </div>
                                             </Grid>
                                             <Grid item lg={1} sm={2} xs={2}>

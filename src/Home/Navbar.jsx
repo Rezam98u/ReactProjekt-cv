@@ -51,7 +51,7 @@ const Navbar = () => {
 
                     <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                         <button onClick={() => Navigate('/adminPanel')} >
-                            AdminPanel (is completing)
+                            AdminPanel
                         </button>
                     </Box>
 
