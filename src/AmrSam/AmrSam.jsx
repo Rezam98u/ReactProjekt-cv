@@ -252,7 +252,7 @@ const AmrSam = () => {
                                                     </div>
 
                                                     {treeName.map(item =>
-                                                        <div>
+                                                        <div key={item.id}>
                                                             <div className='flex gap-3 items-center'>
                                                                 <button onClick={() => toggleCollapse(item.id)}>
                                                                     {isCollapse[item.id] ? <TbSquareMinus /> : <TbSquarePlus />}
@@ -263,7 +263,7 @@ const AmrSam = () => {
                                                             <div className='border-solid border-r-2 rounded-md leading-7'>
                                                                 {isCollapse[item.id] &&
                                                                     item.kind.map(itm =>
-                                                                        <div>
+                                                                        <div key={itm.id}>
                                                                             <div className='flex gap-3 items-center mr-4'>
                                                                                 <button onClick={() => {
                                                                                     toggleCollapse(itm.id)
@@ -282,7 +282,7 @@ const AmrSam = () => {
 
                                                                             {isCollapse[itm.id] &&
                                                                                 itm.kind.map(i =>
-                                                                                    <div className='flex gap-3 items-center mr-14'>
+                                                                                    <div key={i.id} className='flex gap-3 items-center mr-14'>
                                                                                         <FaUserAlt size={13} />
                                                                                         {i.jobPosition} /<span className='text-blue-600'>{i.name}</span>
                                                                                     </div>
