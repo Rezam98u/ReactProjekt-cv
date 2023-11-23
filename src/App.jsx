@@ -14,6 +14,7 @@ const ThreeJs = lazy(() => import('./threeJs/threeJs'))
 const RecordFantasyMain = lazy(() => import('./RecordFantasy/RecordFantasyMain'))
 const AdminPanel = lazy(() => import('./AdminPanel/AdminPanel'))
 const AppCrypto = lazy(() => import('./Crypto/Api_Provider'))
+const AmrSam = lazy(() => import('./AmrSam/AmrSam'))
 
 /////////////////////////////
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                             <Route path="/record_fantasyMain/*" element={<Suspense fallback={<div> Loading... </div>}> <RecordFantasyMain /> </Suspense>} />
                             <Route path="/adminPanel/*" element={<Suspense fallback={<div> Loading... </div>}> <AdminPanel /> </Suspense>} />
                             <Route path="/crypto/*" element={<Suspense fallback={<div> Loading... </div>}> <AppCrypto /> </Suspense>} />
+                            <Route path="/amrSam/*" element={<Suspense fallback={<div> Loading... </div>}> <AmrSam /> </Suspense>} />
                         </Routes>
                     </ContextApp>
                 </GoogleOAuthProvider>

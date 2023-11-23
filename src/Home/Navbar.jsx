@@ -61,6 +61,12 @@ const Navbar = () => {
                         </button>
                     </Box>
 
+                    <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                        <button onClick={() => Navigate('/amrSam')} >
+                            AmrSam
+                        </button>
+                    </Box>
+
                     <Box>
                         <button className='bg-slate-500 rounded-3xl px-2 py-2  hover:bg-blue-700'
                             onClick={() => MoodHandler()}> <DarkModeIcon />

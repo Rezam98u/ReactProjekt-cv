@@ -1,0 +1,77 @@
+$myColor: #b7b7b7;
+
+form {
+  padding: 30px 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 17px;
+  text-align: center;
+  input {
+    border: solid 1px;
+    border-color: $myColor;
+    border-radius: 4px;
+    height: 35px;
+  }
+  textarea {
+    border: solid 1px;
+    border-color: $myColor;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+  }
+}
+.circle1 {
+  width: 100px;
+  height: 100px;
+  border: solid 4px rgb(13, 216, 98);
+  border-radius: 50%;
+  color: #0f8a03;
+  background-color: rgb(177, 255, 225);
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.circle2 {
+  width: 100px;
+  height: 100px;
+  border: solid 4px #b8b8b8;
+  border-radius: 50%;
+  color: $myColor;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.circle1_tab2 {
+  width: 100px;
+  height: 100px;
+  border: solid 4px #0dd862;
+  border-radius: 50%;
+  color: #0f8a03;
+  background-color: rgb(177, 255, 225);
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.circle2_tab2 {
+  width: 100px;
+  height: 100px;
+  border: solid 4px rgb(13, 216, 98);
+  border-radius: 50%;
+  color: #0f8a03;
+  background-color: rgb(177, 255, 225);
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.myButton {
+  background-color: #495d99;
+  color: white;
+  padding: 7px 18px;
+  border-radius: 10px;
+  font-weight: bold;
+}

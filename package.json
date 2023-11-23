@@ -59,6 +59,7 @@
         "react-circular-progressbar": "^2.1.0",
         "react-dom": "^18.2.0",
         "react-elastic-carousel": "^0.11.5",
+        "react-force-graph": "^1.44.0",
         "react-google-login": "^5.2.2",
         "react-hook-form": "^7.38.0",
         "react-i18next": "^13.2.2",
